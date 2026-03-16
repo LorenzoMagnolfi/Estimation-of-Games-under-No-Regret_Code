@@ -1,77 +1,88 @@
-# Handover
+# Handover — Estimation of Games under No Regret (Code)
 
-## Status
-- The active code home is [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code).
-- The project is being handled in two tracks:
-  - baseline replication of the current paper
-  - later revision work built on top of a frozen baseline
-- The Stata pipeline has been repaired enough to rebuild the curated intermediates and MATLAB inputs from the current replication package data.
-- MATLAB has not been rerun end-to-end in the refactored code repo yet.
-- Scraping/provenance documentation is still incomplete and is waiting on replies from former RAs.
-- The current direction for the numerical layer is to keep MATLAB, but do a deep architectural refactor rather than a language migration.
+## Purpose
+Replication codebase for "Estimation of Games under No Regret." Two tracks:
+1. Reproduce current paper outputs from the existing replication package.
+2. Deep MATLAB refactor to support revision-track work (new experiments, new replication package).
 
-## What Changed
-- Repo structure and replication notes were established in:
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\README.md](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\README.md)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\FIRST_PORT_NOTES.md](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\FIRST_PORT_NOTES.md)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\REVISION_TRACK_NOTES.md](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\REVISION_TRACK_NOTES.md)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\REPLICATION_README_AUDIT.md](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\REPLICATION_README_AUDIT.md)
-- Stata drivers and pathing were cleaned in:
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\build_intermediates.do](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\build_intermediates.do)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\run_stata_outputs.do](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\run_stata_outputs.do)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\run_appendix_tables.do](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\run_appendix_tables.do)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\gazelle_data.do](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\gazelle_data.do)
-- MATLAB entry scripts were patched earlier for repo-relative pathing, centered on:
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\df_repo_paths.m](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\df_repo_paths.m)
-- Non-proprietary data mirrors were created by:
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\export_nonproprietary_mirrors.do](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\stata\export_nonproprietary_mirrors.do)
-  - output tree: [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\open_data](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\open_data)
-- Provenance recovery notes were written in:
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\PROVENANCE_RECOVERY_NOTES.md](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\docs\PROVENANCE_RECOVERY_NOTES.md)
+## Architecture
 
-## Key Context
-- Verified earlier in this thread:
-  - the current replication package is a sufficient raw starting point for baseline replication
-  - literal [C:\Users\lorem\Dropbox\Data](C:\Users\lorem\Dropbox\Data) is useful as an archive/convenience layer, but it should not be the official package baseline unless a missing dependency is discovered
-- Stata rebuilds succeeded earlier in this thread:
-  - curated intermediates were rebuilt
-  - MATLAB input files were regenerated
-  - appendix tables and most Stata figures were generated
-- One known Stata blocker remains:
-  - Figure 12 depends on `heatplot`, which is not installed on this machine
-- Current MATLAB architecture assessment:
-  - the biggest hotspot is repeated CVX solves inside [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\ComputeBCCE_eps.m](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\ComputeBCCE_eps.m)
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\II_MAIN_simul.m](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\II_MAIN_simul.m) and [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\III_MAIN_Estim_Application_PrefSpec.m](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\III_MAIN_Estim_Application_PrefSpec.m) mix compute, I/O, plotting, and reporting
-  - [C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\learn_mod.m](C:\Users\lorem\Dropbox\ClaudeCodeProjects\Estimation-of-Games-under-No-Regret_Code\matlab\src\learn_mod.m) is another major speed target
-- Bo Feng's repo should be treated as revision-track input only:
-  - it contains meaningful referee-response simulation work
-  - it does not provide a full architectural refactor of the MATLAB stack
-- Current refactor preference:
-  - preserve the current paper outputs to numerical tolerance
-  - keep thin wrapper mains for replication
-  - move the numerical core to a modular pipeline
-  - likely use `coneprog` as the future default backend, with `CVX` preserved as a validation/fallback backend during transition
+### Pipeline
+```
+Stata (data cleaning)  →  matlab/data/ (inputs)  →  MATLAB (compute)  →  output/ (figures, tables)
+python/ (scrapers)     →  data/ (raw)            →  Stata             →  ...
+```
 
-## Open Items
-- MATLAB has not yet been run end-to-end from the new repo; timing improvements are estimated, not benchmarked.
-- Former RAs have not yet replied with the missing scraping/provenance details.
-- A proper `SCRAPING_PROTOCOL.md` has not been written yet.
-- Fixture infrastructure is in place but has not yet been run on a MATLAB machine (pending baseline capture).
+### MATLAB Compute Stages
+| Stage | Script | Solver | What it does |
+|-------|--------|--------|-------------|
+| I | `I_MAIN_Simul_2acts.m` | AMPL (LP) | Polytope vertex enumeration |
+| II | `II_MAIN_simul.m` | `ComputeBCCE_eps` (CVX SOCP) | Simulation: learning + identification |
+| III | `III_MAIN_Estim_Application_PrefSpec.m` | `ComputeBCCE_eps_ApplicationL` (CVX SOCP) | Application: data-driven identification |
+| IV | `IV_MAIN_Emp_Distrib_Regrets.m` | `ComputeBCCE_eps_pass` (CVX SOCP) | Bootstrap regret distribution + identification |
 
-## MATLAB Refactor
-- The full refactor plan is in [docs/MATLAB_REFACTOR_PLAN.md](MATLAB_REFACTOR_PLAN.md).
-- Supersedes earlier chat-only notes. Includes:
-  - deep audit of all three solver variants (including previously missed `ComputeBCCE_eps_pass.m`)
-  - 5-phase implementation plan + lightweight baseline capture
-  - decision to kill AMPL dependency (replace with `linprog`)
-  - paper outputs as artifact oracle + targeted fixture runs for module-level validation
-  - `+df/` package namespace layout
-  - performance targets, risk assessment, decision log
+Three solver variants, not two: `ComputeBCCE_eps` (joint), `_ApplicationL` (marginal), `_pass` (pre-computed epsilon).
 
-## Next Step
-1. ~~Instrument the four MAIN scripts with `save` calls~~ (DONE)
-2. ~~Create fixture runner, verify script, timing template~~ (DONE — `matlab/test/`)
-3. **Run `run_fixtures.m` on a MATLAB machine** to capture baseline (~15-25 min)
-4. Copy `fixture_*.mat` → `matlab/test/fixtures/baseline/`
-5. Begin Phase 1: eliminate globals + extract game setup (mechanical, low risk)
-6. Phase 3b (kill AMPL / `linprog`) can proceed independently in parallel
+### Key Technical Details
+- **CVX parsing overhead** dominates runtime (~1.5-2.5s per solve); actual SOCP is fast
+- **Constraint matrices** (B_EQ, B_INEQ, Mat_NLC, bounds) are invariant across inner loops; only objective `c` changes
+- **12+ global variables** passed via `global` declarations across the entire codebase
+- **Epsilon formulas**: `epsilon_switch.m` (cases 0-5) and `epsilon_switch_distrib.m` (cases 0-9) differ for same switch values (intentional per-stage)
+- **Joint vs marginal**: genuinely different constraint dimensions (`dv = s^2*NA` vs `dv = s*Nactions`)
+- **AMPL**: used only by Stage I for an LP; replaceable with `linprog`
+
+## Project Structure
+```
+docs/
+  HANDOVER.md              ← this file (stable context)
+  CLAUDE_HANDOVER.md       ← volatile session state (read first when resuming)
+  MATLAB_REFACTOR_PLAN.md  ← full refactor plan (single source of truth)
+  FIRST_PORT_NOTES.md      ← initial port documentation
+  REPLICATION_README_AUDIT.md
+  REVISION_TRACK_NOTES.md
+  PROVENANCE_RECOVERY_NOTES.md
+matlab/
+  src/                     ← all MATLAB source (MAINs, solvers, utilities)
+  data/                    ← replication input data (tracked in git)
+  test/
+    run_fixtures.m         ← reduced-scale fixture runner
+    verify_refactor.m      ← regression test: compare new vs baseline
+    fixtures/              ← fixture .mat outputs (gitignored)
+    fixtures/baseline/     ← frozen pre-refactor fixtures (gitignored)
+    fixtures/timing_baseline.md  ← timing records
+stata/                     ← .do files for data pipeline
+python/                    ← scrapers (Swappa, Decluttr, Gazelle)
+```
+
+## MATLAB Refactor Plan
+Full plan: `docs/MATLAB_REFACTOR_PLAN.md` (5 phases, 50+ work items, 13-17 sessions).
+
+Summary of phases:
+1. **Eliminate globals + extract game setup** — mechanical, low risk
+2. **Unified solver** — replace CVX with `coneprog` (R2020b+); biggest speedup
+3. **Parallelize + kill AMPL** — `parfor` solver grid; `linprog` replaces AMPL
+4. **Stage wrappers** — thin MAIN scripts calling modular `+df/` functions
+5. **Polish + validation** — end-to-end check against paper outputs
+
+Key decisions:
+- Kill AMPL dependency entirely
+- Paper outputs serve as final artifact oracle (no full 7.6h rerun needed for baseline)
+- Lightweight fixture capture at 1/100 scale for module-level regression testing
+- Package namespace: `+df/` with `+io`, `+setup`, `+solvers`, `+sim`, `+stages`, `+report`, `+util`
+
+## Baseline Fixture Infrastructure
+- `run_fixtures.m` exercises Stages II-IV at reduced scale (20x20 grid, 5k iters, B=10)
+- Baseline captured 2026-03-16 on R2024a: **43 min total** (II: 732s, III: 991s, IV: 864s)
+- Baseline .mat files frozen in `matlab/test/fixtures/baseline/`
+- `verify_refactor.m` compares post-refactor outputs against baseline (dual tolerance: strict 1e-10, solver 1e-6)
+
+## Environment
+- MATLAB R2024a on Windows (lorem@LoresLG)
+- CVX installed at `matlab/cvx/` (gitignored)
+- Git identity: `Lorenzo Magnolfi <lorenzo.magnolfi@wisc.edu>` (repo-local config)
+
+## Known Limitations
+- MATLAB not yet run end-to-end at full scale from the new repo
+- Figure 12 (Stata) depends on `heatplot`, not installed
+- Former RAs have not replied with scraping/provenance details
+- `SCRAPING_PROTOCOL.md` not yet written
