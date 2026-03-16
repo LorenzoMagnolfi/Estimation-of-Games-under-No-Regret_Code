@@ -7,8 +7,8 @@
 
 ## Last Session
 - **Date**: 2026-03-16
-- **Duration**: ~6 hours (continued from prior sessions)
-- **Summary**: Completed Phases 1, 2, 3b, and 3a of the MATLAB refactor. All globals eliminated, solver unified, AMPL replaced with linprog, coneprog investigated (failed), SeDuMi adopted as default CVX solver for ~2x speedup.
+- **Duration**: ~8 hours (continued from prior sessions)
+- **Summary**: Completed Phases 1, 2, 3b, 3a, and 4 of the MATLAB refactor. Phase 4 rewrote the learning kernel (`learn_mod` → `df.sim.learn`) with sufficient statistics, vectorized counterfactual utilities, and precomputed lookup tables for 2.1x speedup. Also unified marginal cost draw functions into `df.sim.marginal_cost_draws`.
 
 ## Current State
 
@@ -17,6 +17,7 @@
 - **Phase 2**: Unified three solver variants (`ComputeBCCE_eps`, `_ApplicationL`, `_pass`) into `df.solvers.solve_bcce()`. Hoisted constraint matrix construction outside the parameter-grid loop. Created `build_constraints.m` (joint), `build_constraints_marginal.m`, `solve_socp_cvx.m`. Old files are now thin wrappers. Validated: same results.
 - **Phase 3b**: Replaced AMPL external solver with native `linprog` for Stage I polytope computation. Created `df.solvers.solve_polytope_lp()`. 100 Halton directions solved in ~12s. `find_polytope_switch.m` is now a thin wrapper. No AMPL binary required.
 - **Phase 3a**: SOCP solver speedup. See detailed experiment record below. Outcome: switched default CVX solver from SDPT3 to SeDuMi for ~2x speedup with zero identification mismatches. Created `solve_socp_coneprog.m` (experimental, not recommended). Cross-validated: all 8 fixtures PASS against SDPT3 baseline.
+- **Phase 4**: Learning kernel rewrite. Created `df.sim.learn` as optimized replacement for `learn_mod`. Three optimizations: (1) sufficient statistics — store cumulative sums instead of running averages, only update realized type per iteration (eliminates O(s) decay loop); (2) vectorized counterfactual utility — single vectorized expression replaces per-action loop; (3) precomputed lookup tables — 2D action-profile-to-index map and recording-time maps replace `find()`/`ismember()` per iteration. Also unified `marginal_cost_draws_v4` and `marginal_cost_draws_v4_new` into `df.sim.marginal_cost_draws`. Head-to-head validation: ALL PASS (max_diff ≤ 2.78e-16). Full fixture suite: ALL 8 PASS. Speedup: 2.1x on learning kernel, 1.7x on Stage IV bootstrap.
 
 ### New Files Created (All Sessions)
 - `matlab/src/+df/+io/repo_paths.m`
@@ -33,12 +34,15 @@
 - `matlab/src/+df/+util/table2latex.m`
 - `matlab/test/compare_coneprog_vs_cvx.m` ← Phase 3a cross-validation
 - `matlab/test/fixtures_baseline_cvx/` ← Phase 3a SDPT3 baseline backup
+- `matlab/src/+df/+sim/learn.m` ← Phase 4 (optimized learning kernel)
+- `matlab/src/+df/+sim/marginal_cost_draws.m` ← Phase 4 (unified MC draw function)
+- `matlab/test/compare_learn_old_vs_new.m` ← Phase 4 head-to-head validation
 
 ### Files Heavily Modified
 - All four MAIN scripts (removed globals, use `cfg`)
 - `ComputeBCCE_eps.m`, `_ApplicationL.m`, `_pass.m` (thin wrappers to `solve_bcce`)
 - `epsilon_switch.m`, `epsilon_switch_distrib.m` (thin wrappers to `compute_epsilon`)
-- `learn_mod.m`, `learn.m` (accept `cfg` as first arg)
+- `learn_mod.m` (Phase 4: thin wrapper to `df.sim.learn`), `learn.m` (accept `cfg` as first arg)
 - `find_polytope_switch.m` (thin wrapper to `solve_polytope_lp`)
 - `matlab/test/run_fixtures.m` (uses `cfg` pattern)
 - `solve_bcce.m` (Phase 3a: added backend/solver/precision options, defaults to SeDuMi)
@@ -46,13 +50,13 @@
 
 ### Git Status
 - Branch: `main`
-- Last commit: `80b44dc Replace AMPL with native linprog for polytope computation (Phase 3b)`
+- Last commit: `18fa631 Add SeDuMi default solver and coneprog backend for SOCP speedup (Phase 3a)`
 - Pushed to remote: **no**
-- Uncommitted changes: Phase 3a files (solve_socp_coneprog.m, updated solve_bcce.m, updated solve_socp_cvx.m, compare_coneprog_vs_cvx.m, fixtures_baseline_cvx/, this file)
+- Uncommitted changes: Phase 4 files (df.sim.learn, df.sim.marginal_cost_draws, learn_mod wrapper, compare_learn_old_vs_new.m, this file)
 
 ## Pending / Next Steps
 - [x] **Phase 3a**: SOCP solver speedup (completed — SeDuMi default, coneprog abandoned)
-- [ ] **Phase 4**: Learning kernel rewrite (sufficient statistics, vectorized inner loop, `parfor` bootstrap)
+- [x] **Phase 4**: Learning kernel rewrite (completed — 2.1x speedup, sufficient statistics, vectorized inner loop)
 - [ ] **Phase 5**: Separate compute from reporting (`df.stages.run_stage_*`, `df.report.*`, `df_run.m`)
 - [ ] Remove AMPL files (`.mod`, `.dat`, `.run`) and `fprintAmplParam.m`
 - [ ] Add Stage I to the fixture runner (now possible with linprog)
