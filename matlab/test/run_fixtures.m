@@ -29,6 +29,13 @@ clear all; clc; close all;
 clear global;
 
 %% Path setup
+% Ensure matlab/src is on the path (needed when running from test/ or batch mode)
+this_file = mfilename('fullpath');
+test_dir = fileparts(this_file);
+matlab_root = fileparts(test_dir);
+src_dir = fullfile(matlab_root, 'src');
+addpath(src_dir);
+
 paths = df_repo_paths();
 fixture_dir = fullfile(paths.matlab_root, 'test', 'fixtures');
 if ~exist(fixture_dir, 'dir'), mkdir(fixture_dir); end

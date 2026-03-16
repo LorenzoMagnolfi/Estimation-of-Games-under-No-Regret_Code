@@ -16,16 +16,16 @@ This file documents the baseline measurements and post-refactor comparisons.
 | Solver calls | 400  | 800 (2 pl) | 400    |
 
 ## Baseline Run (Pre-Refactor)
-- Date: (pending — run `run_fixtures.m` on MATLAB machine)
-- MATLAB version:
-- Machine:
+- Date: 2026-03-16
+- MATLAB version: R2024a
+- Machine: Windows, lorem@LoresLG
 
 | Stage | Time (s) | Notes |
 |-------|----------|-------|
-| II    |          |       |
-| III   |          |       |
-| IV    |          |       |
-| TOTAL |          |       |
+| II    | 732.4    | 1 learn_mod (5k iters) + 400 CVX solves |
+| III   | 991.3    | 800 CVX solves (2 players x 400 grid) via ApplicationL |
+| IV    | 864.0    | 10 bootstrap learn_mod + 400 CVX solves (eps_pass) |
+| TOTAL | 2587.7   | ~43 min |
 
 ## Post-Refactor Runs
 Record each refactor phase here after running `run_fixtures.m` again.
