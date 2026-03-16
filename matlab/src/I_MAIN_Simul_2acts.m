@@ -38,17 +38,19 @@ for jj = 1:numel(results.conf_set)
         'VP', 'conf2', 'switch_eps', 'maxiters');
 end
 
-%% Reporting
+%% Reporting — native MATLAB (no MPT3 dependency)
 for jj = 1:numel(results.conf_set)
     conf2 = results.conf_set(jj);
     plotname = fullfile(paths.figures_i, strcat('BCCE_set_', num2str(rem(conf2,1)*1e3)));
-    drawBCCE(plotname, results.VP{jj});
+    df.report.plot_polytope(results.VP{jj}, plotname);
+    close;
 end
 
-close;
 numdists = 1000;
-drawConvergence(cfg, fullfile(paths.figures_i, 'Learning2A_s20'), ...
+df.report.plot_convergence(cfg, fullfile(paths.figures_i, 'Learning2A_s20'), ...
     numdists, results.maxiters, 1, results.actions, results.VP{end});
+close;
 
 drawRegrets_per_period(cfg, fullfile(paths.figures_i, 'RegretsPerPeriodPlot'), ...
     results.regret_per_period);
+close;

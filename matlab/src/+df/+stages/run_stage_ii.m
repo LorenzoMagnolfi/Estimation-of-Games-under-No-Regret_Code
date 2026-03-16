@@ -42,9 +42,14 @@ type_space = cfg.type_space;
 action_space = cfg.action_space;
 Pi = cfg.Pi;
 
-NGrid = opts.NGridV * opts.NGridM;
 n_iters = numel(opts.maxiters_values);
 num_alpha = numel(opts.alpha_set);
+
+% NGrid computed after grid construction (gridparamV/M include a leading 1,
+% so actual size is (NGridV+1)*(NGridM+1))
+NGridV_actual = opts.NGridV + 1;
+NGridM_actual = opts.NGridM + 1;
+NGrid = NGridV_actual * NGridM_actual;
 
 % Preallocate
 VV_all = zeros(n_iters, NGrid);
