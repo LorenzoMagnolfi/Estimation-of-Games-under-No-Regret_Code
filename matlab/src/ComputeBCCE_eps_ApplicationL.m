@@ -1,4 +1,4 @@
-function [outputs] = ComputeBCCE_eps_ApplicationL(type_space,action_space,action_distribution,payoff_parameters,distribution_parameters,T,confid,Pi,switch_eps,marg_mean)
+function [outputs] = ComputeBCCE_eps_ApplicationL(type_space,action_space,action_distribution,payoff_parameters,distribution_parameters,T,confid,Pi,switch_eps,marg_mean,cfg)
 
 %==========================================================================
 %--------------------------------------------------------------------------
@@ -213,7 +213,7 @@ util = Pi;
 exp_pi = kron(eye(Nactions),marg_act_distrib_II') * util(:,:,1);
 
 % EPS linked to rate of convergence!
-eps = epsilon_switch_distrib(T,confid,switch_eps,marg_mean,s);
+eps = epsilon_switch_distrib(T,confid,switch_eps,marg_mean,s,cfg);
 
 %% Define basic objects
 

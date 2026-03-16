@@ -1,12 +1,9 @@
 %% Clean Up
 clear all; clc; close all;
-clear global;
 
 %%
 
 tic
-
-% global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Resolve repository-relative paths and keep optimization templates on path.

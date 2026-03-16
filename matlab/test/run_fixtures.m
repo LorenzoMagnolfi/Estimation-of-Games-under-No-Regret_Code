@@ -26,7 +26,6 @@
 %              NGridV = NGridM = 20      (vs 100)
 
 clear all; clc; close all;
-clear global;
 
 %% Path setup
 % Ensure matlab/src is on the path (needed when running from test/ or batch mode)
@@ -56,69 +55,25 @@ fprintf('  When linprog replacement is ready, add Stage I fixture capture here.\
 fprintf('[Stage II] Simulation: learn_mod + ComputeBCCE_eps\n');
 t_start = tic;
 
-% --- Globals (same as II_MAIN_simul.m) ---
-global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
-global learning_style
-
-% --- RNG seed (matches II_MAIN_simul.m) ---
+% --- Build config struct (replaces all globals) ---
 rng(12345);
 
-% --- Game parameters ---
 NPlayers = 2;
 alpha = -(1/3);
+actions_vec = [4;5;6;7;8];
 mu = 3*ones(NPlayers,1);
 sigma2 = 1*eye(NPlayers);
-
-% Action space: 5 actions (same as production)
-for ind=1:NPlayers
-    action_space{ind,1} = [4;5;6;7;8];
-end
-
-AA = action_space{1,1};
-A = allcomb(action_space{1,:},action_space{2,:});
-NAct = size(action_space{1,:},1);
-NActPr = size(A,1);
-
-% Type space: s=5 (same as production)
 s = 5;
-[type_space, marg_distrib] = marginal_cost_draws_v5(mu, sigma2, s);
-s2 = s^2;
-Egrid = type_space{1,1}';
 
-% Joint type space
-AEnum = 1;
-T_sorted = type_space{1,1};
-for ind=2:NPlayers
-    AEnum = [size(T_sorted,1), AEnum];
-    T_sorted = [kron(type_space{ind,1}, ones(size(T_sorted,1),1)) ...
-                kron(ones(size(type_space{ind,1},1),1), T_sorted)];
-end
+cfg = df.setup.game_simulation(NPlayers, alpha, actions_vec, mu, sigma2, s);
+cfg.learning_style = 'rm';
 
-% Joint prior Psi
-Psi = zeros(s2,1);
-for ii = 1:s
-    for jj = 1:s
-        kk = (ii-1)*s+jj;
-        Psi(kk) = marg_distrib(ii)*marg_distrib(jj);
-    end
-end
+% Unpack for local use
+action_space = cfg.action_space;
+type_space = cfg.type_space;
+Pi = cfg.Pi;
+marg_distrib = cfg.marg_distrib;
 
-% Payoff matrix Pi
-cp = zeros(NActPr,NPlayers);
-tps = [type_space{1,:},type_space{2,:}];
-r_sq = size(tps,1);
-Pi = zeros(NActPr,r_sq,NPlayers);
-for j = 1:NPlayers
-    for aa = 1:NActPr
-        cp(aa,j) = exp(alpha*A(aa,j))/(1 + sum(exp(alpha*A(aa,:)),2));
-        for tt = 1:s
-            Pi(aa,tt,j) = cp(aa,j).*(A(aa,j)-tps(tt,j));
-        end
-    end
-end
-
-% --- Learning ---
-learning_style = 'rm';
 numdst_t = 1;
 numdst_t_obs = numdst_t;
 
@@ -133,7 +88,7 @@ for maxiter_index = 1:length(maxiters_values)
 
     fprintf('  Learning: maxiters=%d ...', maxiters);
     t_learn = tic;
-    [distY_time, ~] = learn_mod(N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
     fprintf(' %.1fs\n', toc(t_learn));
 
     action_distribution = distY_time;
@@ -142,8 +97,6 @@ for maxiter_index = 1:length(maxiters_values)
     NGridV = 20;
     NGridM = 20;
     NGrid = NGridV*NGridM;
-
-    plot_param = 'Both';
 
     gridparamV = [1; linspace(0.15, sigma2(1,1)*10, NGridV)'];
     gridparamM = [1; linspace(0.55, mu(1,1)*0.5, NGridM)'];
@@ -171,7 +124,7 @@ for maxiter_index = 1:length(maxiters_values)
         for jj = 1:num_alpha
             confid = alpha_set(jj);
             outs = ComputeBCCE_eps(type_space, action_space, distrib, alpha, ...
-                distribution_parameters, maxiters, confid, Pi, switch_eps);
+                distribution_parameters, maxiters, confid, Pi, switch_eps, cfg);
             maxvals(ii,jj,:) = cell2mat(outs);
         end
     end
@@ -264,61 +217,8 @@ end
 fprintf('[Stage IV] Empirical regret distribution\n');
 t_start = tic;
 
-% Reset globals to simulation game (same as II, matching IV_MAIN)
-clear global
-global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
-global learning_style
-
+% Reuse same cfg from Stage II (same game parameters)
 rng(1);
-
-NPlayers = 2;
-alpha = -(1/3);
-mu = 3*ones(NPlayers,1);
-sigma2 = 1*eye(NPlayers);
-
-for ind=1:NPlayers
-    action_space_iv{ind,1} = [4;5;6;7;8];
-end
-AA = action_space_iv{1,1};
-A = allcomb(action_space_iv{1,:}, action_space_iv{2,:});
-NAct = size(action_space_iv{1,:},1);
-NActPr = size(A,1);
-
-s = 5;
-[type_space, marg_distrib] = marginal_cost_draws_v5(mu, sigma2, s);
-s2 = s^2;
-Egrid = type_space{1,1}';
-
-AEnum = 1;
-T_sorted = type_space{1,1};
-for ind=2:NPlayers
-    AEnum = [size(T_sorted,1), AEnum];
-    T_sorted = [kron(type_space{ind,1}, ones(size(T_sorted,1),1)) ...
-                kron(ones(size(type_space{ind,1},1),1), T_sorted)];
-end
-
-Psi = zeros(s2,1);
-for ii = 1:s
-    for jj = 1:s
-        kk = (ii-1)*s+jj;
-        Psi(kk) = marg_distrib(ii)*marg_distrib(jj);
-    end
-end
-
-cp = zeros(NActPr,NPlayers);
-tps = [type_space{1,:},type_space{2,:}];
-r_sq = size(tps,1);
-Pi = zeros(NActPr,r_sq,NPlayers);
-for j = 1:NPlayers
-    for aa = 1:NActPr
-        cp(aa,j) = exp(alpha*A(aa,j))/(1 + sum(exp(alpha*A(aa,:)),2));
-        for tt = 1:s
-            Pi(aa,tt,j) = cp(aa,j).*(A(aa,j)-tps(tt,j));
-        end
-    end
-end
-
-learning_style = 'rm';
 
 % REDUCED: maxiters and bootstrap count
 maxiters_iv = 5000;   % vs 100000
@@ -350,7 +250,7 @@ else
     t_boot = tic;
     for b = 1:B
         [distY_time_iv, ~, fin, Pl1_EmpRegr, Pl2_EmpRegr] = ...
-            learn_mod(N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
+            learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
         final_regret_iv(:,:,b) = fin;
         Pl1_regret_iv(:,b) = Pl1_EmpRegr;
         Pl2_regret_iv(:,b) = Pl2_EmpRegr;
@@ -362,7 +262,7 @@ else
         'B', 'maxiters_iv', 'Nobs_Pl1', 'Nobs_Pl2');
 
     % Theoretical regrets (same formulas as IV_MAIN)
-    eps1 = epsilon_switch(maxiters_iv, 1, 1) .* 0.05;
+    eps1 = epsilon_switch(maxiters_iv, 1, 1, cfg) .* 0.05;
     ExpectedRegretComp_iv = sqrt(marg_distrib) .* eps1';
     avg_th_regret_iv = sum(ExpectedRegretComp_iv) / s;
 
@@ -370,11 +270,11 @@ else
     regret_95perc_iv = prctile(final_regret_iv(:,:,:), 95, 3);
 
     % Application-specific regret ratios
-    epsPl1 = epsilon_switch(Nobs_Pl1, 0.05, 1) .* 0.05;
+    epsPl1 = epsilon_switch(Nobs_Pl1, 0.05, 1, cfg) .* 0.05;
     ExpectedRegretComp_Pl1 = sqrt(marg_distrib) .* epsPl1';
     aepsPl1 = NPlayers*s*ExpectedRegretComp_Pl1/0.05;
 
-    epsPl2 = epsilon_switch(Nobs_Pl2, 0.05, 1) .* 0.05;
+    epsPl2 = epsilon_switch(Nobs_Pl2, 0.05, 1, cfg) .* 0.05;
     ExpectedRegretComp_Pl2 = sqrt(marg_distrib) .* epsPl1';  % Note: matches IV_MAIN (uses epsPl1, not epsPl2)
     aepsPl2 = NPlayers*s*ExpectedRegretComp_Pl2/0.05;
 
@@ -428,7 +328,7 @@ else
             confid_iv = alpha_set_iv(jj);
             regret_comp_iv = avg_exp_regret2_iv * (s*NPlayers);
             ExpRegr_pass_iv = regret_comp_iv ./ confid_iv;
-            outs_iv = ComputeBCCE_eps_pass(type_space, action_space_iv, distrib_iv, alpha, ...
+            outs_iv = ComputeBCCE_eps_pass(type_space, action_space, distrib_iv, alpha, ...
                 distribution_parameters_iv, T_iv, confid_iv, Pi, switch_eps_iv, ExpRegr_pass_iv);
             maxvals_iv(ii,jj,:) = cell2mat(outs_iv);
         end

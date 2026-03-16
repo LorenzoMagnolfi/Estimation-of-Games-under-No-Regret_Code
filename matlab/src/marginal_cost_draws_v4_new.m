@@ -1,5 +1,10 @@
-function [mc_draws] = marginal_cost_draws_v4_new(type_space, draws)
-global sigma2 mu
+function [mc_draws] = marginal_cost_draws_v4_new(cfg, type_space, draws)
+% marginal_cost_draws_v4_new  Draw marginal costs from discrete normal (marginals).
+%
+%   cfg must contain: .sigma2, .mu
+
+sigma2 = cfg.sigma2;
+mu = cfg.mu;
 
 % Generate marginal distribution as in v5
 marg_distrib = pdf('normal', type_space{1,1}, mu(1), sigma2(1,1));

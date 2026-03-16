@@ -1,6 +1,9 @@
-function plot = drawConvergence(filename,numdists,M,N,actions,VP)
+function plot = drawConvergence(cfg, filename, numdists, M, N, actions, VP)
+% drawConvergence  Plot learning convergence on simplex.
+%
+%   cfg must contain: .A
 
-global A
+A = cfg.A;
 
 figure('Name','Learning','NumberTitle','off','GraphicsSmoothing','on');
 

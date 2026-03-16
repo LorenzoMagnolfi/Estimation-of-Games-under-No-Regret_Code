@@ -1,5 +1,10 @@
-function [mc_draws] = marginal_cost_draws_v4(type_space,draws)
-global sigma2 mu
+function [mc_draws] = marginal_cost_draws_v4(cfg, type_space, draws)
+% marginal_cost_draws_v4  Draw marginal costs from truncated discrete normal.
+%
+%   cfg must contain: .sigma2, .mu
+
+sigma2 = cfg.sigma2;
+mu = cfg.mu;
 
 %% Generate (Double) Truncated `Discrete' Normal Distribution
 % For 2 dimensions, use the mutlivariate pdf values

@@ -1,13 +1,7 @@
 %% Clean Up
 clear all; clc; close all;
-clear global;
 
 %% A: Setup
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Define Globals
-
-global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Resolve repository-relative paths and keep optimization templates on path.
 paths = df_repo_paths();
@@ -27,110 +21,43 @@ B = 500;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Parameters of the Game
 
-% Players
-NPlayers = 2;    
-
-% Demand parameter
+% Build config struct (replaces all globals)
+NPlayers = 2;
 alpha = -(1/3);
-
-% Marginal Cost Parameters
+actions_vec = [4;5;6;7;8];
 mu = 3*ones(NPlayers,1);
-sigma2 = 1*eye(NPlayers);                                                            % Variance of marginal costs (Currently independently distributed)
+sigma2 = 1*eye(NPlayers);
+s = 5;
 
-% Action Space (Finite)
-for ind=1:NPlayers
-%     action_space{ind,1} = linspace(3,10,5)';                                                     % Possible Actions (Column Vector)
-     action_space{ind,1} = [4;5;6;7;8];                                                     % 3 actions!
-%     action_space{ind,1} = [3;10];                                                     % 2 actions!
+cfg = df.setup.game_simulation(NPlayers, alpha, actions_vec, mu, sigma2, s);
 
-end
+% Unpack what's needed locally
+action_space = cfg.action_space;
+type_space = cfg.type_space;
+Pi = cfg.Pi;
+marg_distrib = cfg.marg_distrib;
+NAct = cfg.NAct;
+A = cfg.A;
 
-AA = action_space{1,1};
-AH = AA(2);
-AL = AA(1);
-
-A = allcomb(action_space{1,:},action_space{2,:});
-NAct = size(action_space{1,:},1);
-NActPr = size(A,1);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NEW Grid of Epsilons
-
-step_size = (1/8)*ones(NPlayers,1);                                                 % Step Size: governs number of possible types (currently identically spaced)
-% 1/3.3 corresponds to s=20;
-% 1/8 corresponds to s=50
-
-s=5;
-
-% This FUNCTION??
-[type_space,marg_distrib] = marginal_cost_draws_v5(mu,sigma2,s);
-
-% s = size(type_space{1,1},1);
 s2 = s^2;
-
-Egrid = type_space{1,1}';
-
-% get type space JOINT
-
-% define a dummy useful for reshaping 
-AEnum = 1;
-% initialize
-T_sorted = type_space{1,1};
-for ind=2:NPlayers
-    AEnum = [size(T_sorted,1), AEnum];
-    T_sorted = [kron(type_space{ind,1}, ones(size(T_sorted,1),1) ) ...
-    kron( ones(size(type_space{ind,1},1),1), T_sorted)]; 
-end
-
-% Initialize the matrix of distributions psi for all values of lambda
-Psi = zeros(s2,1);
-kk = 0 ;
-for ii = 1:s
-    for jj = 1:s
-        kk = (ii-1)*s+jj;
-        Psi(kk) = marg_distrib(ii)*marg_distrib(jj);
-    end
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Create Matrix of Utilities - for each combination of types, actions
-
-cp = zeros(NActPr,NPlayers); % Probability of selling for each action profile (row) and seller (column)
-tps = [type_space{1,:},type_space{2,:}]; %matrix with types (row) individual (column)
-
-r_sq = size(tps,1);
-
-Pi = zeros(NActPr,r_sq,NPlayers); % Matrix that has - for each action profile (row) the corresponding payoff for each payoff type (column)
-
-for j = 1:NPlayers
-    for aa = 1:NActPr
-        cp(aa,j) = exp(alpha*A(aa,j))/(1 + sum(exp(alpha*A(aa,:)),2));
-        for tt = 1:s
-            Pi(aa,tt,j) = cp(aa,j).*(A(aa,j)-tps(tt,j));
-        end
-    end
-end
 
 %% Comparison of eps
 %{
 conf = 0.05;
 
-eps1 = epsilon_switch(maxiters,conf,1);     % NEW eps linked to conv rate
-eps0 = epsilon_switch(maxiters,conf,0);     % OLD eps linked to perc deviations
+eps1 = epsilon_switch(maxiters,conf,1,cfg);     % NEW eps linked to conv rate
+eps0 = epsilon_switch(maxiters,conf,0,cfg);     % OLD eps linked to perc deviations
 
 eps_fin1 = repmat(marg_distrib,1,NAct*NPlayers).*repmat(sqrt(marg_distrib),1,NAct*NPlayers).*repmat(eps1',1,NAct*NPlayers);
-eps_fin0 = repmat(marg_distrib,1,NAct*NPlayers).*repmat(eps0',1,NAct*NPlayers);    
-    
-ratio = mean(eps_fin1,2)./mean(eps_fin0,2);    
+eps_fin0 = repmat(marg_distrib,1,NAct*NPlayers).*repmat(eps0',1,NAct*NPlayers);
+
+ratio = mean(eps_fin1,2)./mean(eps_fin0,2);
 %}
 %% C: Learning
 
-global learning_style
+cfg.learning_style = 'rm';
 
-%learning_style = 'fp';                                                     % Learning style: 'fp' or 'rm'
-learning_style = 'rm';                                                      % Learning style: 'fp' or 'rm'
-
-% For Identification figures: 
+% For Identification figures:
 N = 1;                                                                    % Training period: 'phase-in' period where players play actions uniformly at random
 M = maxiters;                                                                  % Number of time periods (past the training period)
 M_obs = maxiters;                                                               % How many observations the econometrician gets to see at the END of the sample
@@ -158,7 +85,7 @@ Pl2_regret = zeros(s,B);
 %% Learning algo
 
 for b = 1:B
-[distY_time, distY_time_obs, fin, Pl1_EmpRegr, Pl2_EmpRegr] = learn_mod(N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
+[distY_time, distY_time_obs, fin, Pl1_EmpRegr, Pl2_EmpRegr] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
 final_regret(:,:,b) = fin;
 
 % Also save regrets for application, using # of obs for pl. 1 and 2;
@@ -195,16 +122,16 @@ save(fullfile(fixture_dir, 'stage_iv_bootstrap.mat'), ...
 % load("Psi_emp_10t.mat")
 
 %% COMPUTE THEORETICAL REGRETS
-eps1 = epsilon_switch(maxiters,1,1).*0.05;     % NEW eps linked to conv rate
+eps1 = epsilon_switch(maxiters,1,1,cfg).*0.05;     % NEW eps linked to conv rate
 ExpectedRegretComp = sqrt(marg_distrib).*eps1';
 avg_th_regret = sum(ExpectedRegretComp)/s;
 
 % Now for parameters of application
-epsPl1 = epsilon_switch(Nobs_Pl1,0.05,1).*0.05;     % NEW eps linked to conv rate
+epsPl1 = epsilon_switch(Nobs_Pl1,0.05,1,cfg).*0.05;     % NEW eps linked to conv rate
 ExpectedRegretComp_Pl1 = sqrt(marg_distrib).*epsPl1';
 aepsPl1 = NPlayers*s*ExpectedRegretComp_Pl1/0.05;
 
-epsPl2 = epsilon_switch(Nobs_Pl2,0.05,1).*0.05;     % NEW eps linked to conv rate
+epsPl2 = epsilon_switch(Nobs_Pl2,0.05,1,cfg).*0.05;     % NEW eps linked to conv rate
 ExpectedRegretComp_Pl2 = sqrt(marg_distrib).*epsPl1';
 aepsPl2 = NPlayers*s*ExpectedRegretComp_Pl2/0.05;
 
@@ -221,7 +148,7 @@ avg_regret_95perc = mean(regret_95perc);
 regret_995perc = prctile(final_regret(:,:,:), 99.5, 3);
 avg_regret_995perc = mean(regret_995perc);
 
-ratio = sqrt(marg_distrib).*mean(epsilon_switch(maxiters,1,1))./avg_regret_95perc;
+ratio = sqrt(marg_distrib).*mean(epsilon_switch(maxiters,1,1,cfg))./avg_regret_95perc;
 
 %% Comparisons for Application (by pl/type)
 
@@ -253,7 +180,7 @@ all_regrets = reshape(final_regret, [], 1);
 percentile_95 = prctile(all_regrets, 95);
 mean_expected_regret = mean(ExpectedRegretComp);
 average_empirical_regret = mean(all_regrets);
-average_epsilon = mean(sqrt(marg_distrib).*mean(epsilon_switch(maxiters,1,1)));
+average_epsilon = mean(sqrt(marg_distrib).*mean(epsilon_switch(maxiters,1,1,cfg)));
 
 % Create the figure
 figure('Position', [100, 100, 800, 600]);
@@ -369,11 +296,11 @@ for ind = 1:NGrid
         distribution_parameters{3,ind} = gridparamV(ind)*sigma2';
         %distribution_parameters{3,ind} = linspace(0.1,sigma2*3,NGrid);
         distpars(ind,1) = gridparamV(ind)*sigma2(1,1);
-    end 
+    end
 end
 
 else
-    for ind1 = 1:NGridM 
+    for ind1 = 1:NGridM
         for ind2 = 1:NGridV
             distribution_parameters{1,(ind1-1)*NGridM+ind2} = 'Normal';
             distribution_parameters{2,(ind1-1)*NGridM+ind2} = gridparamM(ind1)*mu';
@@ -396,13 +323,13 @@ maxvals = zeros(numdist,num_alpha,NGrid);
 
 
 for ii = 1:numdist
-    
+
     T=ii*(maxiters/numdist);
     distrib = action_distribution(:,ii);
-    
+
     for jj = 1:num_alpha
-        
-    confid = alpha_set(jj);  
+
+    confid = alpha_set(jj);
 
     regret_comp = avg_exp_regret2*(s*NPlayers);
     ExpRegr_pass = regret_comp./confid;
@@ -456,13 +383,13 @@ label = predict(SVMMod,PGx);
 
 PG_IdSet = [PGx(label>0,:)];
 
-figure 
+figure
 hold on
 s1 = gscatter(PGx(:,1),PGx(:,2),label(:), 'wc', '.', 40);
 s2 = plot(3,1,'.','MarkerSize',40,'color','k');
 
-xlabel('$\mu$','Interpreter','latex') 
-ylabel('$\sigma$','Interpreter','latex') 
+xlabel('$\mu$','Interpreter','latex')
+ylabel('$\sigma$','Interpreter','latex')
 
  % Extract identified set points
     id_set_points = PGx(label == 1, :);
@@ -474,18 +401,18 @@ ylabel('$\sigma$','Interpreter','latex')
 
     % Hovering line positions
     hover_offset = 0.6; % Adjust this value to control the hover height
-    
+
     % Plot horizontal projection (mu range)
     plot([min_mu max_mu], [min_sigma min_sigma] - hover_offset, 'r-', 'LineWidth', 1.5);
     s3 =  plot(min_mu, min_sigma - hover_offset, 'ko', 'MarkerFaceColor', 'r','MarkerSize',10);
     plot(max_mu, min_sigma - hover_offset, 'ko', 'MarkerFaceColor', 'r','MarkerSize',10);
-    
+
     % Plot vertical projection (sigma range)
     plot([min_mu min_mu] - hover_offset, [min_sigma max_sigma], 'g-', 'LineWidth', 1.5);
     s4 = plot(min_mu - hover_offset, max_sigma, 'ko', 'MarkerFaceColor', 'g','MarkerSize',10);
     plot(min_mu - hover_offset, min_sigma, 'ko', 'MarkerFaceColor', 'g','MarkerSize',10);
 
-    
+
     yticks([0.2 0.6 1 1.4 1.8])
 
 

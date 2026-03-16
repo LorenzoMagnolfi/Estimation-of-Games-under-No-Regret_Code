@@ -1,13 +1,7 @@
 %% Clean Up
 clear all; clc; close all;
-clear global;
 
 %% A: Setup
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Define Globals
-
-global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Resolve repository-relative paths and keep optimization templates on path.
 paths = df_repo_paths();
@@ -23,90 +17,16 @@ maxiters = 10000;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Parameters of the Game
 
-% Players
-NPlayers = 2;    
-
-% Demand parameter
+% Build config struct (replaces all globals)
+% Stage I uses 2-action game
+NPlayers = 2;
 alpha = -(1/3);
-
-% Marginal Cost Parameters
+actions_vec = [4;8];          % 2 actions for polytope demo
 mu = 3*ones(NPlayers,1);
-sigma2 = 1*eye(NPlayers);                                                            % Variance of marginal costs (Currently independently distributed)
+sigma2 = 1*eye(NPlayers);
+s = 20;
 
-% Action Space (Finite)
-for ind=1:NPlayers
-%    action_space{ind,1} = linspace(3,10,10)'; %[2;3;4;5;6;7;8;9;10;11];                                                     % Possible Actions (Column Vector)
-%     action_space{ind,1} = [5;7;9];                                                     % 3 actions!
-     action_space{ind,1} = [4;8];                                                     % 2 actions!
-
-end
-
-AA = action_space{1,1};
-AH = AA(2);
-AL = AA(1);
-
-A = allcomb(action_space{1,:},action_space{2,:});
-NAct = size(action_space{1,:},1);
-NActPr = size(A,1);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NEW Grid of Epsilons
-
-% step_size = (1/8)*ones(NPlayers,1);                                                 % Step Size: governs number of possible types (currently identically spaced)
-% 1/3.3 corresponds to s=20;
-% 1/8 corresponds to s=50
-
-s=20;
-
-% This FUNCTION??
-[type_space,marg_distrib] = marginal_cost_draws_v5(mu,sigma2,s);
-% [type_space,marg_distrib] = marginal_cost_draws_v3(mu,sigma2,step_size);
-
-% s = size(type_space{1,1},1);
-s2 = s^2;
-
-Egrid = type_space{1,1}';
-
-% get type space JOINT
-
-% define a dummy useful for reshaping 
-AEnum = 1;
-% initialize
-T_sorted = type_space{1,1};
-for ind=2:NPlayers
-    AEnum = [size(T_sorted,1), AEnum];
-    T_sorted = [kron(type_space{ind,1}, ones(size(T_sorted,1),1) ) ...
-    kron( ones(size(type_space{ind,1},1),1), T_sorted)]; 
-end
-
-% Initialize the matrix of distributions psi for all values of lambda
-Psi = zeros(s2,1);
-kk = 0 ;
-for ii = 1:s
-    for jj = 1:s
-        kk = (ii-1)*s+jj;
-        Psi(kk) = marg_distrib(ii)*marg_distrib(jj);
-    end
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Create Matrix of Utilities - for each combination of types, actions
-
-cp = zeros(NActPr,NPlayers); % Probability of selling for each action profile (row) and seller (column)
-tps = [type_space{1,:},type_space{2,:}]; %matrix with types (row) individual (column)
-
-r_sq = size(tps,1);
-
-Pi = zeros(NActPr,r_sq,NPlayers); % Matrix that has - for each action profile (row) the corresponding payoff for each payoff type (column)
-
-for j = 1:NPlayers
-    for aa = 1:NActPr
-        cp(aa,j) = exp(alpha*A(aa,j))/(1 + sum(exp(alpha*A(aa,:)),2));
-        for tt = 1:s
-            Pi(aa,tt,j) = cp(aa,j).*(A(aa,j)-tps(tt,j));
-        end
-    end
-end
+cfg = df.setup.game_simulation(NPlayers, alpha, actions_vec, mu, sigma2, s);
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,10 +37,10 @@ conf_set = [0.1, 0.025, 0.05];
 switch_eps = 3;
 
 for jj = 1:length(conf_set)
-    
+
 conf2 =  conf_set(jj);
 
-VP = find_polytope_switch(maxiters,conf2,switch_eps);
+VP = find_polytope_switch(maxiters,conf2,switch_eps,cfg);
 
 %% Fixture: save polytope vertices
 fixture_dir = fullfile(paths.matlab_root, 'test', 'fixtures');
@@ -139,12 +59,9 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% C: Learning
 
-global learning_style
+cfg.learning_style = 'rm';
 
-%learning_style = 'fp';                                                     % Learning style: 'fp' or 'rm'
-learning_style = 'rm';                                                      % Learning style: 'fp' or 'rm'
-
-% For Identification figures: 
+% For Identification figures:
 Ntrain = 1;                                                                    % Training period: 'phase-in' period where players play actions uniformly at random
 M = maxiters;                                                                  % Number of time periods (past the training period)
 M_obs = maxiters;                                                               % How many observations the econometrician gets to see at the END of the sample
@@ -156,7 +73,7 @@ numdst_t_obs = numdst_t;                                                        
 %% Learning algo
 rng(11111);
 
-[distY_time, distY_time_obs, actions, regret, type_inds] = learn(Ntrain,M,M_obs,numdst_t,numdst_t_obs);
+[distY_time, distY_time_obs, actions, regret, type_inds] = learn(cfg,Ntrain,M,M_obs,numdst_t,numdst_t_obs);
 
 % create regret matrix
 
@@ -167,8 +84,8 @@ for p = 1:NPlayers
         for ii = 1:s
             if type_inds(jj,ii,p) == 1
             regret_per_period(jj,ii,p) = regret(jj,p);
-            else 
-            regret_per_period(jj,ii,p) = regret_per_period(jj-1,ii,p)*(jj-1)/jj;    
+            else
+            regret_per_period(jj,ii,p) = regret_per_period(jj-1,ii,p)*(jj-1)/jj;
             end
         end
     end
@@ -183,11 +100,11 @@ close
 numdists = 1000;
 filename = fullfile(paths.figures_i, 'Learning2A_s20');
 
-drawConvergence(filename,numdists,M,Ntrain,actions,VP)
+drawConvergence(cfg, filename, numdists, M, Ntrain, actions, VP)
 
 %% Plot regrets
 
 filename22 = fullfile(paths.figures_i, 'RegretsPerPeriodPlot');
-drawRegrets_per_period(filename22,regret_per_period)
+drawRegrets_per_period(cfg, filename22, regret_per_period)
 
 %%

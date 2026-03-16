@@ -1,7 +1,14 @@
 
-function VP = find_polytope_switch(maxiters,conf2,switch_eps)
+function VP = find_polytope_switch(maxiters,conf2,switch_eps,cfg)
 
-global alpha AA s Egrid Psi marg_distrib NAct NPlayers
+alpha = cfg.alpha;
+AA = cfg.AA;
+s = cfg.s;
+Egrid = cfg.Egrid;
+Psi = cfg.Psi;
+marg_distrib = cfg.marg_distrib;
+NAct = cfg.NAct;
+NPlayers = cfg.NPlayers;
 paths = df_repo_paths();
 
 %% Grid of directions
@@ -21,7 +28,7 @@ PGrid = PG ./ repmat(norms,1,4);
 % for each direction in grid, send to AMPL the data of the problem, and call the AMPL .run file to
 % generate polytope edges
 
-eps = epsilon_switch(maxiters,conf2,switch_eps);
+eps = epsilon_switch(maxiters,conf2,switch_eps,cfg);
 d4 = repmat(marg_distrib,1,NAct*NPlayers).*repmat(sqrt(marg_distrib),1,NAct*NPlayers).*repmat(eps',1,NAct*NPlayers);
 % epsil=0.000000001;
 epsil=1;

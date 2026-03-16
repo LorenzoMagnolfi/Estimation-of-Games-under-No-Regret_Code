@@ -1,15 +1,9 @@
 %% Clean Up
 clear all; clc; close all;
-clear global;
 
 %diary II_simul
 
 %% A: Setup
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Define Globals
-
-global NAct alpha NPlayers A AA s Egrid Psi Pi marg_distrib mu sigma2 type_space tps
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Resolve repository-relative paths and keep optimization templates on path.
 paths = df_repo_paths();
@@ -24,116 +18,46 @@ maxiters_values = [500000, 1000000, 2000000, 4000000];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Parameters of the Game
 
-% Players
-NPlayers = 2;    
-
-% Demand parameter
+% Build config struct (replaces all globals)
+NPlayers = 2;
 alpha = -(1/3);
-
-% Marginal Cost Parameters
+actions_vec = [4;5;6;7;8];
 mu = 3*ones(NPlayers,1);
-sigma2 = 1*eye(NPlayers);                                                            % Variance of marginal costs (Currently independently distributed)
+sigma2 = 1*eye(NPlayers);
+s = 5;
 
-% Action Space (Finite)
-for ind=1:NPlayers
-%     action_space{ind,1} = linspace(3,10,5)';                                                     % Possible Actions (Column Vector)
-     action_space{ind,1} = [4;5;6;7;8];                                                     % 3 actions!
-%     action_space{ind,1} = [3;10];                                                     % 2 actions!
+cfg = df.setup.game_simulation(NPlayers, alpha, actions_vec, mu, sigma2, s);
 
-end
+% Unpack what's needed locally
+action_space = cfg.action_space;
+type_space = cfg.type_space;
+Pi = cfg.Pi;
+marg_distrib = cfg.marg_distrib;
 
-AA = action_space{1,1};
-AH = AA(2);
-AL = AA(1);
-
-A = allcomb(action_space{1,:},action_space{2,:});
-NAct = size(action_space{1,:},1);
-NActPr = size(A,1);
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% NEW Grid of Epsilons
-
-step_size = (1/8)*ones(NPlayers,1);                                                 % Step Size: governs number of possible types (currently identically spaced)
-% 1/3.3 corresponds to s=20;
-% 1/8 corresponds to s=50
-
-s=5;
-
-% This FUNCTION??
-[type_space,marg_distrib] = marginal_cost_draws_v5(mu,sigma2,s);
-
-% s = size(type_space{1,1},1);
 s2 = s^2;
-
-Egrid = type_space{1,1}';
-
-% get type space JOINT
-
-% define a dummy useful for reshaping 
-AEnum = 1;
-% initialize
-T_sorted = type_space{1,1};
-for ind=2:NPlayers
-    AEnum = [size(T_sorted,1), AEnum];
-    T_sorted = [kron(type_space{ind,1}, ones(size(T_sorted,1),1) ) ...
-    kron( ones(size(type_space{ind,1},1),1), T_sorted)]; 
-end
-
-% Initialize the matrix of distributions psi for all values of lambda
-Psi = zeros(s2,1);
-kk = 0 ;
-for ii = 1:s
-    for jj = 1:s
-        kk = (ii-1)*s+jj;
-        Psi(kk) = marg_distrib(ii)*marg_distrib(jj);
-    end
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Create Matrix of Utilities - for each combination of types, actions
-
-cp = zeros(NActPr,NPlayers); % Probability of selling for each action profile (row) and seller (column)
-tps = [type_space{1,:},type_space{2,:}]; %matrix with types (row) individual (column)
-
-r_sq = size(tps,1);
-
-Pi = zeros(NActPr,r_sq,NPlayers); % Matrix that has - for each action profile (row) the corresponding payoff for each payoff type (column)
-
-for j = 1:NPlayers
-    for aa = 1:NActPr
-        cp(aa,j) = exp(alpha*A(aa,j))/(1 + sum(exp(alpha*A(aa,:)),2));
-        for tt = 1:s
-            Pi(aa,tt,j) = cp(aa,j).*(A(aa,j)-tps(tt,j));
-        end
-    end
-end
 
 %% C: Learning
 
-global learning_style
-
-%learning_style = 'fp';                                                     % Learning style: 'fp' or 'rm'
-learning_style = 'rm';                                                      % Learning style: 'fp' or 'rm'
-                                                        % How many observations the econometrician gets to see at the END of the sample
+cfg.learning_style = 'rm';
 
 numdst_t = 1;                                                               % FULL DIstr with training period; now these are dist at different points in time!
 numdst_t_obs = numdst_t;                                                           % NO TRAINING PERIOD! now these are dist at different points in time!
 
 for maxiter_index = 1:length(maxiters_values)
-    
+
 maxiters = maxiters_values(maxiter_index);
 
-% For Identification figures: 
+% For Identification figures:
 N = 1;                                                                    % Training period: 'phase-in' period where players play actions uniformly at random
 M = maxiters;                                                                  % Number of time periods (past the training period)
-M_obs = maxiters;       
+M_obs = maxiters;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Learning algo
 
 % [distY_time, distY_time_obs, actions, regret, type_inds] = learn(N,M,M_obs,numdst_t,numdst_t_obs);
-[distY_time, ~] = learn_mod(N, M, M_obs, numdst_t, numdst_t_obs,1,1);
-%toc 
+[distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs,1,1);
+%toc
 
 %% Plot regrets
 
@@ -187,11 +111,11 @@ for ind = 1:NGrid
         distribution_parameters{3,ind} = gridparamV(ind)*sigma2';
         %distribution_parameters{3,ind} = linspace(0.1,sigma2*3,NGrid);
         distpars(ind,1) = gridparamV(ind)*sigma2(1,1);
-    end 
+    end
 end
 
 else
-    for ind1 = 1:NGridM 
+    for ind1 = 1:NGridM
         for ind2 = 1:NGridV
             distribution_parameters{1,(ind1-1)*NGridM+ind2} = 'Normal';
             distribution_parameters{2,(ind1-1)*NGridM+ind2} = gridparamM(ind1)*mu';
@@ -216,16 +140,16 @@ num_alpha = length(alpha_set);
 maxvals = zeros(numdist,num_alpha,NGrid);
 
 for ii = 1:numdist
-    
+
     T=ii*(maxiters/numdist);
     distrib = action_distribution(:,ii);
-    
+
     for jj = 1:num_alpha
-        
-    confid = alpha_set(jj);       
-    
-    
-    outs = ComputeBCCE_eps(type_space,action_space,distrib,alpha,distribution_parameters,maxiters,confid,Pi,switch_eps);
+
+    confid = alpha_set(jj);
+
+
+    outs = ComputeBCCE_eps(type_space,action_space,distrib,alpha,distribution_parameters,maxiters,confid,Pi,switch_eps,cfg);
 
     maxvals(ii,jj,:) = cell2mat(outs);
     end
@@ -261,7 +185,7 @@ ddpars = repmat(distpars,1,num_alpha,1)';
 %% Plot before SVM
 
 %{
-figure 
+figure
 hold on
 ss1 = gscatter(ddpars(1,:)',ddpars(2,:)',id_set_index,'green','.',20);
 %}
@@ -296,13 +220,13 @@ label = predict(SVMMod,PGx);
 
 PG_IdSet = [PGx(label>0,:)];
 
-figure 
+figure
 hold on
 s1 = gscatter(PGx(:,1),PGx(:,2),label(:), 'wc', '.', 20);
 s2 = plot(3,1,'.','MarkerSize',25,'color','k');
 
-xlabel('$\mu$','Interpreter','latex') 
-ylabel('$\sigma$','Interpreter','latex') 
+xlabel('$\mu$','Interpreter','latex')
+ylabel('$\sigma$','Interpreter','latex')
 
  % Extract identified set points
     % id_set_points = PGx(label == 1, :);
@@ -316,7 +240,7 @@ ylabel('$\sigma$','Interpreter','latex')
     max_mu = max(id_set_points(1,:));
     min_sigma = min(id_set_points(2,:));
     max_sigma = max(id_set_points(2,:));
-    
+
     if maxiter_index == 1 || maxiter_index ==3
     % Hovering line positions
     hover_offset = 0.9; % Adjust this value to control the hover height
@@ -328,7 +252,7 @@ ylabel('$\sigma$','Interpreter','latex')
     plot([min_mu max_mu], [min_sigma min_sigma] - hover_offset, 'r-', 'LineWidth', 1.5);
     s3 =  plot(min_mu, min_sigma - hover_offset, 'ko', 'MarkerFaceColor', 'r');
     plot(max_mu, min_sigma - hover_offset, 'ko', 'MarkerFaceColor', 'r');
-    
+
     % Plot vertical projection (sigma range)
     plot([min_mu min_mu] - hover_offset, [min_sigma max_sigma], 'g-', 'LineWidth', 1.5);
     s4 = plot(min_mu - hover_offset, max_sigma, 'ko', 'MarkerFaceColor', 'g');
@@ -453,7 +377,7 @@ set(gca,...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%figure 
+%figure
 %hold on
 %scatter3(Xtrain(:,1),Xtrain(:,2),VV,30, VV, 'filled')
 %plot3(PG_IdSet(:,1),PG_IdSet(:,2),zeros(length(PG_IdSet(:,1))))
@@ -474,7 +398,7 @@ for i = 1:numdist
         id_set =  distpars(squeeze(id_set_index(i,j,:)));
         id_set_bds(i,j,:) = [min(id_set),max(id_set)];
         clear id_set
-        
+
     end
 end
 
@@ -485,7 +409,7 @@ for jj = 1:num_alpha
 end
 
 else
-    
+
 id_set = [];
 id_set_bds = zeros(num_alpha,2);
 
@@ -515,4 +439,3 @@ end
 
 end
 fprintf('Simulations completed for all maxiters values.\n');
-

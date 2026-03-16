@@ -1,6 +1,10 @@
-function plots = drawRegrets_per_period(filename,regret_per_period)
+function plots = drawRegrets_per_period(cfg, filename, regret_per_period)
+% drawRegrets_per_period  Plot per-period regrets by type.
+%
+%   cfg must contain: .s, .type_space
 
-global s tps
+s = cfg.s;
+tps = cfg.type_space{1,1};
 
 figure('Name','Regrets','NumberTitle','off','GraphicsSmoothing','on');
 

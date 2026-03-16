@@ -1,4 +1,4 @@
-function [outputs] = ComputeBCCE_eps(type_space,action_space,action_distribution,payoff_parameters,distribution_parameters,T,confid,Pi,switch_eps)
+function [outputs] = ComputeBCCE_eps(type_space,action_space,action_distribution,payoff_parameters,distribution_parameters,T,confid,Pi,switch_eps,cfg)
 
 %==========================================================================
 %--------------------------------------------------------------------------
@@ -192,7 +192,7 @@ pi_2 = reshape(squeeze(Pi(:,:,2)),NA*s,1); % payoff vectors
 util = Pi;
 
 % EPS linked to rate of convergence!
-eps = epsilon_switch(T,confid,switch_eps);
+eps = epsilon_switch(T,confid,switch_eps,cfg);
 %eps = (Type_spec_LargestDev * (log(a))^(1/2))./(confid*((T)^(1/2)));
 
 %% Define basic objects
