@@ -42,12 +42,16 @@
 - [x] **Fix Stage IV NGrid computation**: `NGrid = opts.NGridV * opts.NGridM` → `(NGridV+1) * (NGridM+1)` to account for leading 1 in gridparamV/M.
 - [ ] **Replace Excel I/O in Stage III**: Deferred — requires MATLAB to convert multi-sheet XLSX to .mat
 - [ ] **Push batch objectives to Stage III**: Deferred — requires refactoring ApplicationL marginal solver path
+- [x] **Refactor Bo Feng nonparametric code**: Created `run_stage_ii_nonparam.m`, `build_nonparam_grid.m`, extended `solve_bcce` for probability-vector mode. Replaced globals, inline CVX, manual grid construction with df.* infrastructure.
 
 ### New Files Created (This Session)
 - `matlab/src/+df/+solvers/solve_grid_cvx.m` — Batch CVX+SeDuMi solver (serial, production reliable)
 - `matlab/src/+df/+solvers/solve_grid_coneprog.m` — Batch coneprog solver (DEPRECATED, unreliable)
 - `matlab/src/+df/+solvers/solve_grid_adaptive.m` — Adaptive coarse-to-fine grid solver (exploration only)
 - `matlab/src/+df/+report/plot_polytope.m` — Native convhull polytope plotting (no MPT3)
+- `matlab/src/+df/+report/build_nonparam_grid.m` — Nonparametric candidate distribution grid builder
+- `matlab/src/+df/+stages/run_stage_ii_nonparam.m` — Nonparametric Stage II orchestrator
+- `matlab/src/II_MAIN_nonparam_simul.m` — Thin wrapper for nonparametric Stage II
 - `matlab/src/+df/+report/plot_convergence.m` — Native simplex scatter plotting
 - `matlab/test/benchmark_solvers.m` — Comprehensive solver benchmark
 - `matlab/test/compare_backends_production.m` — Production-scale coneprog vs CVX comparison

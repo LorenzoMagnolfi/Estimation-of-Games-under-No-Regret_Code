@@ -99,6 +99,21 @@ else
     marg_distrib = zeros(s, NGrid_lambda);
     if size(distribution_parameters,1) == 0
         Psi = ones(s2, 1);
+    elseif size(distribution_parameters,1) == 1
+        % Nonparametric mode: each cell contains a probability mass vector
+        for nd = 1:NGrid_lambda
+            prob_vec = distribution_parameters{nd};
+            prob_vec = prob_vec(:) ./ sum(prob_vec(:));
+            marg_distrib(:,nd) = prob_vec;
+            % Joint prior from product of marginals (independence)
+            joint = zeros(s2, 1);
+            for ii = 1:s
+                for jj = 1:s
+                    joint((ii-1)*s + jj) = prob_vec(ii) * prob_vec(jj);
+                end
+            end
+            Psi(:,nd) = joint;
+        end
     elseif size(distribution_parameters,1) == 3
         for nd = 1:NGrid_lambda
             if strcmp(distribution_parameters{1,nd}, 'Normal')
@@ -111,12 +126,16 @@ else
     Psi = Psi ./ sum(Psi, 1);
 
     % Marginal distributions (needed for eps_fin weighting)
-    for nd = 1:NGrid_lambda
-        mu_val = distribution_parameters{2,nd}; mu_val = mu_val(1);
-        sg_val = distribution_parameters{3,nd}; sg_val = sg_val(1,1);
-        md = pdf(distribution_parameters{1,nd}, type_space{1,1}, mu_val, sg_val);
-        marg_distrib(:,nd) = md / sum(md);
+    if size(distribution_parameters,1) ~= 1
+        % Parametric mode: compute marginals from distribution parameters
+        for nd = 1:NGrid_lambda
+            mu_val = distribution_parameters{2,nd}; mu_val = mu_val(1);
+            sg_val = distribution_parameters{3,nd}; sg_val = sg_val(1,1);
+            md = pdf(distribution_parameters{1,nd}, type_space{1,1}, mu_val, sg_val);
+            marg_distrib(:,nd) = md / sum(md);
+        end
     end
+    % (Nonparametric mode: marg_distrib already set above)
 end
 
 %% Prepare epsilon vectors
