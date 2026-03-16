@@ -7,8 +7,8 @@
 
 ## Last Session
 - **Date**: 2026-03-16
-- **Duration**: ~10 hours (continued from prior sessions)
-- **Summary**: Completed Phase 5 of the MATLAB refactor. Extracted computation into `df.stages.run_stage_{i,ii,iii,iv}` orchestrators and reporting into `df.report.*` shared modules. Each MAIN script is now a thin wrapper (~20-80 lines) calling setup → compute → report. Net -1297/+236 lines across 5 modified files; 10 new modules created. All 8 fixtures PASS cross-validation against CVX baseline.
+- **Duration**: ~12 hours (continued from prior sessions)
+- **Summary**: Completed remaining refactor items: added Stage I polytope to fixture runner (now 9 fixtures total), validated linprog vs legacy AMPL/Knitro outputs (linprog weakly dominates all 100 Halton directions, max obj diff 3.73e-4), removed all AMPL files (.mod, .dat, .run, fprintAmplParam.m, Output_Pricing/), cleaned up repo_paths. Full cross-validation: ALL 9 PASS. Pushed to GitHub.
 
 ## Current State
 
@@ -62,8 +62,8 @@
 
 ### Git Status
 - Branch: `main`
-- Last commit: `6db10f9 Separate compute from reporting with stage orchestrators and shared modules (Phase 5)`
-- Pushed to remote: **no**
+- Last commit: `c4e9d10 Add Stage I polytope fixtures, remove AMPL files, clean up paths`
+- Pushed to remote: **yes** (origin/main)
 - Uncommitted changes: **none** (clean working tree)
 
 ## Pending / Next Steps
@@ -73,14 +73,17 @@
 - [x] **Phase 3a**: SOCP solver speedup (completed — SeDuMi default)
 - [x] **Phase 4**: Learning kernel rewrite (completed — 2.1x speedup)
 - [x] **Phase 5**: Separate compute from reporting (completed — stage orchestrators + shared modules)
-- [ ] Remove AMPL files (`.mod`, `.dat`, `.run`) and `fprintAmplParam.m`
-- [ ] Add Stage I to the fixture runner (now possible with linprog)
-- [ ] No AMPL baseline exists to validate against — need to confirm polytope correctness analytically or visually
-- [ ] Push to GitHub when ready
+- [x] Remove AMPL files (`.mod`, `.dat`, `.run`) and `fprintAmplParam.m` — done, committed `c4e9d10`
+- [x] Add Stage I to fixture runner — done, 9 fixtures total, all PASS
+- [x] Validate linprog vs AMPL/Knitro — done, validated against legacy outputs at `DynamicFoundations/Matlab_Code/LatestCode/Output_Pricing/`
+- [x] Push to GitHub — done
 
-## Open Questions
-- Stage I polytope validation: no AMPL baseline was captured. Should we run the old AMPL code once to generate a reference, or is the linprog output sufficient?
+### Refactor Complete
+All phases of the MATLAB refactor are done. The codebase is fully modularized under the `+df/` namespace, all external solver dependencies (AMPL, Knitro) removed, and all 9 fixtures pass cross-validation.
+
+### Possible Future Work
 - Parallelization strategy for Stage IV: `parfor` requires Parallel Computing Toolbox
+- Phase 5 plan includes slimming MAIN scripts further (Steps 10-11 of plan) — currently ~20-80 lines each, could be reduced
 
 ## Phase 5 Design Notes
 
