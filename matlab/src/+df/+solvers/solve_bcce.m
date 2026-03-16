@@ -49,9 +49,10 @@ if isfield(opts, 'precision'), precision = opts.precision; end
 switch_eps_val = 0;
 if isfield(opts, 'switch_eps'), switch_eps_val = opts.switch_eps; end
 
-% Backend selection: cvx (default) or coneprog (experimental, R2020b+)
-% Note: coneprog has numerical issues with this problem class (large dual
-% variables + many inequality constraints). Use 'cvx' unless testing.
+% Backend selection: cvx (default) or coneprog (DEPRECATED, R2020b+)
+% coneprog is numerically unreliable at production scale (101x101 grids,
+% 5-action games): returns spurious negative values, 92% disagreement with
+% CVX+SeDuMi. Use 'cvx' for all production work.
 if isfield(opts, 'backend')
     use_coneprog = strcmp(opts.backend, 'coneprog');
 else

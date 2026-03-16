@@ -1,6 +1,11 @@
 function [optval, status] = solve_socp_coneprog(cstr, c)
 % SOLVE_SOCP_CONEPROG  Solve a single SOCP instance via coneprog (R2020b+).
 %
+%   DEPRECATED — coneprog is numerically unreliable for this problem class at
+%   production scale (101x101 grids, 5-action games). Returns large negative
+%   spurious values where CVX+SeDuMi correctly returns near-zero. Use
+%   df.solvers.solve_socp_cvx instead. Retained for benchmarking only.
+%
 %   [optval, status] = df.solvers.solve_socp_coneprog(cstr, c)
 %
 %   Maps the CVX problem:

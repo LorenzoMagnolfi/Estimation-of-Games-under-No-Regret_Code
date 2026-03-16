@@ -44,7 +44,7 @@ if strcmp(plot_param, 'Both')
 
     for ind1 = 1:NGridM
         for ind2 = 1:NGridV
-            idx = (ind1 - 1) * NGridM + ind2;
+            idx = (ind1 - 1) * NGridV + ind2;
             distribution_parameters{1, idx} = 'Normal';
 
             if is_application

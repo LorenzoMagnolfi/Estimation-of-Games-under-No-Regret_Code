@@ -7,129 +7,90 @@
 
 ## Last Session
 - **Date**: 2026-03-16
-- **Duration**: ~12 hours (continued from prior sessions)
-- **Summary**: Completed remaining refactor items: added Stage I polytope to fixture runner (now 9 fixtures total), validated linprog vs legacy AMPL/Knitro outputs (linprog weakly dominates all 100 Halton directions, max obj diff 3.73e-4), removed all AMPL files (.mod, .dat, .run, fprintAmplParam.m, Output_Pricing/), cleaned up repo_paths. Full cross-validation: ALL 9 PASS. Pushed to GitHub.
+- **Duration**: ~16 hours (continued from prior sessions)
+- **Summary**: Completed Phases 1-5 refactor. Then moved to result reproduction and computational exploration. Generated Stage I figures (validated against paper). Benchmarked SOCP solver alternatives (coneprog, adaptive grid, parfor). Discovered coneprog is numerically unreliable at production scale. Implemented stabilization items. Full-grid CVX+SeDuMi run for 500k identified set in progress.
 
 ## Current State
 
 ### Completed Phases
-- **Phase 1**: Eliminated all 12+ MATLAB globals. Created `cfg` struct passed explicitly through all function calls. Extracted `df.setup.game_simulation()` and `df.setup.game_application()`. Created `+df/` package namespace. All four MAINs, all solver functions, and the fixture runner updated. Validated against baseline: exact match on Stages II-IV (20 CVX-nondeterministic Stage IV points excepted).
-- **Phase 2**: Unified three solver variants (`ComputeBCCE_eps`, `_ApplicationL`, `_pass`) into `df.solvers.solve_bcce()`. Hoisted constraint matrix construction outside the parameter-grid loop. Created `build_constraints.m` (joint), `build_constraints_marginal.m`, `solve_socp_cvx.m`. Old files are now thin wrappers. Validated: same results.
-- **Phase 3b**: Replaced AMPL external solver with native `linprog` for Stage I polytope computation. Created `df.solvers.solve_polytope_lp()`. 100 Halton directions solved in ~12s. `find_polytope_switch.m` is now a thin wrapper. No AMPL binary required.
-- **Phase 3a**: SOCP solver speedup. Switched default CVX solver from SDPT3 to SeDuMi for ~2x speedup with zero identification mismatches. Created `solve_socp_coneprog.m` (experimental, not recommended). Cross-validated: all 8 fixtures PASS against SDPT3 baseline.
-- **Phase 4**: Learning kernel rewrite. Created `df.sim.learn` as optimized replacement for `learn_mod`. Three optimizations: sufficient statistics, vectorized counterfactual utility, precomputed lookup tables. Also unified `marginal_cost_draws_v4` and `marginal_cost_draws_v4_new` into `df.sim.marginal_cost_draws`. Speedup: 2.1x on learning kernel, 1.7x on Stage IV bootstrap.
-- **Phase 5**: Separated compute from reporting. Created 5 `df.report.*` modules (build_param_grid, classify_identified_set, plot_identified_set, write_tables, plot_regret_histogram) and 5 `df.stages.*` orchestrators (run_stage_i through iv, plus compute_cost_statistics). Each MAIN is now a thin wrapper. Validated: all 8 fixtures PASS cross-validation against CVX baseline with identical results.
+- **Phase 1**: Eliminated all 12+ MATLAB globals. Created `cfg` struct passed explicitly.
+- **Phase 2**: Unified three solver variants into `df.solvers.solve_bcce()`.
+- **Phase 3b**: Replaced AMPL with native `linprog` for Stage I polytope.
+- **Phase 3a**: SOCP solver speedup — SeDuMi default (~2x over SDPT3).
+- **Phase 4**: Learning kernel rewrite — 2.1x speedup via sufficient statistics.
+- **Phase 5**: Separated compute from reporting — stage orchestrators + shared modules.
+- **Phase 6 (in progress)**: Result reproduction + stabilization for revision.
 
-### New Files Created (All Sessions)
-- `matlab/src/+df/+io/repo_paths.m`
-- `matlab/src/+df/+setup/game_simulation.m`
-- `matlab/src/+df/+setup/game_application.m`
-- `matlab/src/+df/+solvers/compute_epsilon.m`
-- `matlab/src/+df/+solvers/build_constraints.m`
-- `matlab/src/+df/+solvers/build_constraints_marginal.m`
-- `matlab/src/+df/+solvers/solve_socp_cvx.m`
-- `matlab/src/+df/+solvers/solve_socp_coneprog.m` ← Phase 3a (experimental)
-- `matlab/src/+df/+solvers/solve_bcce.m`
-- `matlab/src/+df/+solvers/solve_polytope_lp.m`
-- `matlab/src/+df/+util/allcomb.m`
-- `matlab/src/+df/+util/table2latex.m`
-- `matlab/test/compare_coneprog_vs_cvx.m` ← Phase 3a cross-validation
-- `matlab/test/fixtures_baseline_cvx/` ← Phase 3a SDPT3 baseline backup
-- `matlab/src/+df/+sim/learn.m` ← Phase 4 (optimized learning kernel)
-- `matlab/src/+df/+sim/marginal_cost_draws.m` ← Phase 4 (unified MC draw function)
-- `matlab/test/compare_learn_old_vs_new.m` ← Phase 4 head-to-head validation
-- `matlab/src/+df/+report/build_param_grid.m` ← Phase 5 (shared grid construction)
-- `matlab/src/+df/+report/classify_identified_set.m` ← Phase 5 (shared SVM classification)
-- `matlab/src/+df/+report/plot_identified_set.m` ← Phase 5 (shared visualization)
-- `matlab/src/+df/+report/write_tables.m` ← Phase 5 (Stage III table export)
-- `matlab/src/+df/+report/plot_regret_histogram.m` ← Phase 5 (Stage IV broken-axis histogram)
-- `matlab/src/+df/+stages/run_stage_i.m` ← Phase 5 (Stage I orchestrator)
-- `matlab/src/+df/+stages/run_stage_ii.m` ← Phase 5 (Stage II orchestrator)
-- `matlab/src/+df/+stages/run_stage_iii.m` ← Phase 5 (Stage III orchestrator)
-- `matlab/src/+df/+stages/run_stage_iv.m` ← Phase 5 (Stage IV orchestrator)
-- `matlab/src/+df/+stages/compute_cost_statistics.m` ← Phase 5 (Stage III MC helper)
+### Phase 6: Result Reproduction & Stabilization
 
-### Files Heavily Modified
-- All four MAIN scripts (removed globals → cfg → thin wrappers)
-- `ComputeBCCE_eps.m`, `_ApplicationL.m`, `_pass.m` (thin wrappers to `solve_bcce`)
-- `epsilon_switch.m`, `epsilon_switch_distrib.m` (thin wrappers to `compute_epsilon`)
-- `learn_mod.m` (Phase 4: thin wrapper to `df.sim.learn`), `learn.m` (accept `cfg` as first arg)
-- `find_polytope_switch.m` (thin wrapper to `solve_polytope_lp`)
-- `Identification_Pricing_Game_ApplicationL.m` (Phase 5: uses `df.report.build_param_grid`)
-- `matlab/test/run_fixtures.m` (uses `cfg` pattern)
-- `solve_bcce.m` (Phase 3a: added backend/solver/precision options, defaults to SeDuMi)
-- `solve_socp_cvx.m` (Phase 3a: added precision parameter, `cvx_begin quiet`)
+#### Figures Generated
+- **Stage I**: Polytope plot + convergence simplex scatter — validated against paper ✓
+- **Stage II (500k, adaptive)**: Identified set with SVM boundary — shape matches paper, some nonconvexities from adaptive approximation
+- **Stage II (500k, full-grid)**: CVX+SeDuMi run in progress (~2hrs, 10,201 solves at ~0.65s/solve)
+
+#### Computational Exploration Results
+- **Benchmark (21×21 = 441 grid)**: CVX 0.91s/solve, coneprog 0.21s (4.3x faster), adaptive 7.2x, parfor 3.8x
+- **Production scale (101×101 = 10,201 grid)**: coneprog UNRELIABLE — returns all-negative values, 92% disagreement with CVX. Closed as a viable path.
+- **Architecture**: Fast backend now uses CVX+SeDuMi with precomputed objectives (constraints built once, objective vectors vectorized). Adaptive grid is exploration-only, not production.
+
+#### Stabilization Items (from code audit)
+- [x] **Close coneprog path**: Deprecated `solve_socp_coneprog.m` and `solve_grid_coneprog.m` with warnings. Updated `solve_bcce.m` and `run_stage_ii.m` docstrings. Fixed misleading "coneprog" log message.
+- [x] **Halton quality parameter**: Added `opts.quality` ('draft' 50k / 'final' 500k) to `classify_identified_set.m`
+- [x] **Stage IV bootstrap parfor**: Added `opts.use_parfor` to `run_stage_iv.m`. Bootstrap loop is textbook parfor — each draw is independent.
+- [x] **Batch objective push to Stage IV**: Converted identification exercise from `ComputeBCCE_eps_pass` to `df.solvers.solve_bcce` (builds constraints once). Added progress logging.
+- [x] **Fix build_param_grid indexing bug**: `idx = (ind1-1)*NGridM + ind2` → `(ind1-1)*NGridV + ind2`. Benign when NGridM==NGridV but wrong for asymmetric grids.
+- [x] **Fix Stage IV NGrid computation**: `NGrid = opts.NGridV * opts.NGridM` → `(NGridV+1) * (NGridM+1)` to account for leading 1 in gridparamV/M.
+- [ ] **Replace Excel I/O in Stage III**: Deferred — requires MATLAB to convert multi-sheet XLSX to .mat
+- [ ] **Push batch objectives to Stage III**: Deferred — requires refactoring ApplicationL marginal solver path
+
+### New Files Created (This Session)
+- `matlab/src/+df/+solvers/solve_grid_cvx.m` — Batch CVX+SeDuMi solver (serial, production reliable)
+- `matlab/src/+df/+solvers/solve_grid_coneprog.m` — Batch coneprog solver (DEPRECATED, unreliable)
+- `matlab/src/+df/+solvers/solve_grid_adaptive.m` — Adaptive coarse-to-fine grid solver (exploration only)
+- `matlab/src/+df/+report/plot_polytope.m` — Native convhull polytope plotting (no MPT3)
+- `matlab/src/+df/+report/plot_convergence.m` — Native simplex scatter plotting
+- `matlab/test/benchmark_solvers.m` — Comprehensive solver benchmark
+- `matlab/test/compare_backends_production.m` — Production-scale coneprog vs CVX comparison
+- `matlab/test/run_stage_ii_fast.m` — Stage II fast-backend test runner
+- `matlab/test/run_stage_i_fast.m` — Stage I test runner
+
+### Files Modified (This Session)
+- `run_stage_ii.m` — Added fast backend (precomputed objectives, CVX+SeDuMi batch, adaptive grid option)
+- `run_stage_iv.m` — Added parfor bootstrap, unified solver for identification, fixed NGrid bug
+- `solve_bcce.m` — Updated coneprog deprecation warning
+- `solve_socp_coneprog.m` — Added DEPRECATED header
+- `solve_grid_coneprog.m` — Added DEPRECATED header
+- `classify_identified_set.m` — Added quality presets ('draft'/'final')
+- `build_param_grid.m` — Fixed indexing bug (NGridM→NGridV)
+- `I_MAIN_Simul_2acts.m` — Updated to use native plotting functions
+- `solve_grid_adaptive.m` — Added backend option (CVX or coneprog)
 
 ### Git Status
 - Branch: `main`
-- Last commit: `c4e9d10 Add Stage I polytope fixtures, remove AMPL files, clean up paths`
-- Pushed to remote: **yes** (origin/main)
-- Uncommitted changes: **none** (clean working tree)
+- Last commit: `a3e0600 Add native polytope/convergence plots, fix run_stage_ii grid size`
+- Pushed to remote: **yes**
+- Uncommitted changes: **many** (stabilization items above)
 
 ## Pending / Next Steps
-- [x] **Phase 1**: Eliminate globals (completed)
-- [x] **Phase 2**: Unify solvers (completed)
-- [x] **Phase 3b**: Replace AMPL with linprog (completed)
-- [x] **Phase 3a**: SOCP solver speedup (completed — SeDuMi default)
-- [x] **Phase 4**: Learning kernel rewrite (completed — 2.1x speedup)
-- [x] **Phase 5**: Separate compute from reporting (completed — stage orchestrators + shared modules)
-- [x] Remove AMPL files (`.mod`, `.dat`, `.run`) and `fprintAmplParam.m` — done, committed `c4e9d10`
-- [x] Add Stage I to fixture runner — done, 9 fixtures total, all PASS
-- [x] Validate linprog vs AMPL/Knitro — done, validated against legacy outputs at `DynamicFoundations/Matlab_Code/LatestCode/Output_Pricing/`
-- [x] Push to GitHub — done
 
-### Refactor Complete
-All phases of the MATLAB refactor are done. The codebase is fully modularized under the `+df/` namespace, all external solver dependencies (AMPL, Knitro) removed, and all 9 fixtures pass cross-validation.
+### Immediate
+1. Wait for full-grid CVX run to finish → validate 500k identified set figure against paper
+2. Commit stabilization changes
+3. Excel I/O replacement (Stage III)
 
-### Possible Future Work
-- Parallelization strategy for Stage IV: `parfor` requires Parallel Computing Toolbox
-- Phase 5 plan includes slimming MAIN scripts further (Steps 10-11 of plan) — currently ~20-80 lines each, could be reduced
-
-## Phase 5 Design Notes
-
-### build_param_grid auto-detection
-`df.report.build_param_grid` auto-detects application vs simulation mode via `isscalar(mu)`. In simulation mode, `gridparamM`/`gridparamV` are multipliers applied to `mu`/`sigma2`; in application mode, they are absolute grid endpoint values. `Identification_Pricing_Game_ApplicationL` passes `mu(1,1)` (scalar) to trigger application mode.
-
-### Stage III reference price path
-`run_stage_iii` always uses `df.io.repo_paths()` to find the data directory for reference prices, rather than inferring paths from the distribution file location.
-
-## Phase 3a Experiment Record: SOCP Solver Speedup
-
-### Goal
-Replace CVX+SDPT3 with a faster SOCP backend. Two strategies attempted: (1) MATLAB's native `coneprog` (R2020b+), (2) alternative CVX solvers/precision settings.
-
-### Experiment 1: coneprog Backend
-
-**Setup**: Mapped the CVX SOCP to `coneprog` format:
-- `maximize -c'x` → `minimize c'x`
-- `B_INEQ * x >= b` → `-B_INEQ * x <= -b`
-- `||Mat_NLC * x|| <= 1` → `secondordercone(Mat_NLC, 0, 0, -1)` (gamma=-1)
-
-**Bug found**: Initial implementation used `gamma=+1` in `secondordercone()`. MATLAB's convention is `||Ax - b|| <= d'x - gamma`, so `gamma=-1` gives the constraint `||Mat_NLC*x|| <= 1`. With `gamma=+1`, coneprog returned all infeasible (exitflag=-2).
-
-**After fixing gamma**: coneprog returns exitflag=1 (success) but the solutions violate equality constraints by ~7% (eq_viol=6.96e-2). Extensive debugging confirmed coneprog cannot handle the heavily rank-deficient inequality system (rank 91/125, cond=Inf) with large dual variables (±9368).
-
-**Conclusion**: coneprog is fundamentally unable to solve this SOCP class. Retained as experimental option only.
-
-### Experiment 2: CVX Solver/Precision Comparison
-
-| Configuration | Time/solve | Identification mismatches vs SDPT3 |
-|---|---|---|
-| CVX + SDPT3 (default precision) | 1.305s | 0 (baseline) |
-| CVX + SeDuMi (default precision) | 0.656s | 0 |
-| CVX + SDPT3 (low precision) | 0.625s | 5/50 (10%) |
-| Direct SeDuMi (no CVX) | 2.990s | N/A |
-
-### Outcome
-- Default solver: SeDuMi. Default precision: `default`.
-- **Speedup: 1.7-2.2x** across stages.
+### Then: NEW RESULTS for REVISION
+User has requested: "After stabilization, we move to produce the NEW RESULTS for the REVISION."
+- Run all four iterations (500k, 1M, 2M, 4M) for Stage II identified sets
+- Stage III application identification
+- Stage IV bootstrap regrets + identification
+- Generate all paper figures
 
 ## Tricky Bits (Accumulated)
-- **`switch_eps==1` discrepancy**: simulation mode uses `Kappa*sqrt(log(NAct))/(conf*sqrt(T))`, application mode uses `s*Kappa*sqrt(log(NAct))/(conf*sqrt(T))`. This is intentional.
-- **`ExpectedRegretComp_Pl2` bug**: Line 208 in original `IV_MAIN` uses `epsPl1` instead of `epsPl2`. Preserved for baseline fidelity in `run_stage_iv`.
-- **CVX nondeterminism**: ~20 of 400 Stage II/IV identification grid points return `100` (infeasible) in some runs but converge in others. Fixture comparison tolerates ≤30 infeasibility mismatches.
-- **Marginal-mode constraint builder**: `build_constraints_marginal.m` uses `exp_pi` (expected payoffs integrated over opponent actions) rather than the full joint payoff tensor.
-- **`Identification_Pricing_Game_ApplicationL.m` per-player loop**: calls `df.setup.game_application(iii, ...)` inside the player loop. Each player gets its own `cfg`.
-- **coneprog sign convention**: `secondordercone(A, b, d, gamma)` encodes `||Ax - b|| <= d'x - gamma`. To get `||Ax|| <= 1`, use `gamma=-1` (NOT `+1`).
-- **coneprog numerical limits**: Cannot solve SOCPs with rank-deficient inequality systems and large dual variables.
-- **build_param_grid application mode**: Pass `mu(1,1)` as scalar to trigger application mode. If `mu` is a vector, simulation mode is triggered (grid uses multipliers).
+- **`switch_eps==1` discrepancy**: simulation mode uses `Kappa*sqrt(log(NAct))/(conf*sqrt(T))`, application mode uses `s*Kappa*sqrt(log(NAct))/(conf*sqrt(T))`. Intentional.
+- **`ExpectedRegretComp_Pl2` bug**: Line 90 in `run_stage_iv` uses `epsPl1` instead of `epsPl2`. Preserved for baseline fidelity.
+- **CVX nondeterminism**: ~20 of 400 Stage II/IV points return `100` (infeasible) in some runs but converge in others. Fixture comparison tolerates ≤30 mismatches.
+- **coneprog sign convention**: `secondordercone(A, b, d, gamma)` encodes `||Ax - b|| <= d'x - gamma`. gamma=-1 gives `||Ax|| <= 1`.
+- **coneprog production unreliability**: Returns large negative spurious values at 101×101 scale. 92% disagreement with CVX. Interior-point method cannot handle the ill-conditioned inequality system (rank 91/125, cond=Inf, dual ±9368). DO NOT USE for production.
+- **Grid leading 1**: `gridparamV = [1; linspace(..., NGridV)']` gives NGridV+1 elements. Actual grid is (NGridV+1)×(NGridM+1) = 10,201 for NGridV=NGridM=100.
+- **Adaptive grid**: Exploration only. Solves ~31% of grid points but boundary approximation introduces nonconvexities. Not suitable for inference/publication figures.
+- **build_param_grid application mode**: Pass `mu(1,1)` as scalar to trigger application mode (absolute grid values, not multipliers).

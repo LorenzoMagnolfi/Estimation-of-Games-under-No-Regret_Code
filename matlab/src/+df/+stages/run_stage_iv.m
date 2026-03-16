@@ -15,6 +15,7 @@ function results = run_stage_iv(cfg, opts)
 %       .NGridV         — variance grid size (default: 100)
 %       .NGridM         — mean grid size (default: 100)
 %       .alpha_set      — confidence levels (default: 0.05)
+%       .use_parfor     — logical, enable parfor for bootstrap (default: false)
 %       .Dist_file      — seller distribution file (for Nobs)
 %       .Prob_file      — sale probability file (for Nobs)
 %
@@ -39,6 +40,7 @@ if ~isfield(opts, 'maxiters'),  opts.maxiters = 100000; end
 if ~isfield(opts, 'NGridV'),    opts.NGridV = 100; end
 if ~isfield(opts, 'NGridM'),    opts.NGridM = 100; end
 if ~isfield(opts, 'alpha_set'), opts.alpha_set = 0.05; end
+if ~isfield(opts, 'use_parfor'), opts.use_parfor = false; end
 
 cfg.learning_style = 'rm';
 
@@ -67,13 +69,33 @@ final_regret = zeros(s, NPlayers, opts.B);
 Pl1_regret = zeros(s, opts.B);
 Pl2_regret = zeros(s, opts.B);
 
-for b = 1:opts.B
-    [distY_time, ~, fin, Pl1_EmpRegr, Pl2_EmpRegr] = ...
+fprintf('[Stage IV] Bootstrap: B=%d, maxiters=%dk', opts.B, maxiters/1000);
+if opts.use_parfor, fprintf(' (parfor)'); end
+fprintf('\n');
+t_boot = tic;
+
+if opts.use_parfor
+    % parfor: each bootstrap draw is independent (learn_mod is stateless)
+    parfor b = 1:opts.B
+        [~, ~, fin, Pl1_EmpRegr, Pl2_EmpRegr] = ...
+            learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
+        final_regret(:, :, b) = fin;
+        Pl1_regret(:, b) = Pl1_EmpRegr;
+        Pl2_regret(:, b) = Pl2_EmpRegr;
+    end
+    % Run one more serial draw for distY_time (needed for identification)
+    [distY_time, ~, ~, ~, ~] = ...
         learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
-    final_regret(:, :, b) = fin;
-    Pl1_regret(:, b) = Pl1_EmpRegr;
-    Pl2_regret(:, b) = Pl2_EmpRegr;
+else
+    for b = 1:opts.B
+        [distY_time, ~, fin, Pl1_EmpRegr, Pl2_EmpRegr] = ...
+            learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, Nobs_Pl1, Nobs_Pl2);
+        final_regret(:, :, b) = fin;
+        Pl1_regret(:, b) = Pl1_EmpRegr;
+        Pl2_regret(:, b) = Pl2_EmpRegr;
+    end
 end
+fprintf('[Stage IV] Bootstrap done: %.1fs\n', toc(t_boot));
 
 %% Theoretical regrets
 eps1 = epsilon_switch(maxiters, 1, 1, cfg) .* 0.05;
@@ -122,10 +144,14 @@ gridparamM = [1; linspace(0.55, mu(1,1)*0.5, opts.NGridM)'];
 [distpars, distribution_parameters] = df.report.build_param_grid(mu, sigma2, gridparamM, gridparamV);
 
 num_alpha = numel(opts.alpha_set);
-NGrid = opts.NGridV * opts.NGridM;
+nV = opts.NGridV + 1;  % gridparamV includes leading 1
+nM = opts.NGridM + 1;  % gridparamM includes leading 1
+NGrid = nV * nM;
 numdist = size(action_distribution, 2);
 maxvals = zeros(numdist, num_alpha, NGrid);
 
+fprintf('[Stage IV] Identification exercise (%d grid points)...\n', NGrid);
+t_ident = tic;
 for ii = 1:numdist
     T = ii * (maxiters / numdist);
     distrib = action_distribution(:, ii);
@@ -133,11 +159,16 @@ for ii = 1:numdist
         confid = opts.alpha_set(jj);
         regret_comp = avg_exp_regret2 * (s * NPlayers);
         ExpRegr_pass = regret_comp ./ confid;
-        outs = ComputeBCCE_eps_pass(type_space, action_space, distrib, ...
-            cfg.alpha, distribution_parameters, T, confid, Pi, 0, ExpRegr_pass);
-        maxvals(ii, jj, :) = cell2mat(outs);
+
+        % Use unified solver (builds constraints once, loops over grid)
+        eps_info = struct('mode', 'pass', 'ExpRegr_pass', ExpRegr_pass);
+        solve_opts = struct('switch_eps', 0);
+        g = df.solvers.solve_bcce(type_space, action_space, distrib, ...
+            cfg.alpha, distribution_parameters, Pi, eps_info, solve_opts);
+        maxvals(ii, jj, :) = g(:);
     end
 end
+fprintf('[Stage IV] Identification done: %.1fs\n', toc(t_ident));
 
 VV = squeeze(maxvals);
 id_set_index = (VV <= 1e-12);

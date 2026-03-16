@@ -15,6 +15,10 @@ function [label, PGx, SVMMod] = classify_identified_set(distpars, id_set_index, 
 %                      OR [xmin_offset, xmax, ymin_offset, ymax] for absolute ranges
 %     opts           — optional struct:
 %       .NGx         — number of Halton points (default: 500000)
+%                      OR use .quality preset: 'draft' (50k) | 'final' (500k)
+%       .quality     — 'draft' | 'final' (default: 'final')
+%                      'draft': 50k points, fast for exploration/iteration
+%                      'final': 500k points, publication quality
 %       .filter      — function handle for post-filter (e.g., Stage IV clips to rectangle)
 %
 %   Outputs:
@@ -23,6 +27,15 @@ function [label, PGx, SVMMod] = classify_identified_set(distpars, id_set_index, 
 %     SVMMod  — trained SVM model
 
 if nargin < 4, opts = struct(); end
+
+% Quality presets: 'draft' (50k, fast) vs 'final' (500k, publication)
+if isfield(opts, 'quality') && ~isfield(opts, 'NGx')
+    switch opts.quality
+        case 'draft',  opts.NGx = 50000;
+        case 'final',  opts.NGx = 500000;
+        otherwise, error('opts.quality must be ''draft'' or ''final''.');
+    end
+end
 if ~isfield(opts, 'NGx'), opts.NGx = 500000; end
 
 % Build training data
