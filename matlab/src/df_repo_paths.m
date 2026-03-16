@@ -20,8 +20,6 @@ paths.figures_iv = fullfile(paths.figures, 'part_iv');
 paths.tables_ii = fullfile(paths.tables, 'part_ii');
 paths.tables_iii = fullfile(paths.tables, 'part_iii');
 paths.artifacts_iv = fullfile(paths.artifacts, 'part_iv');
-paths.legacy_ampl_output = fullfile(src_dir, 'Output_Pricing');
-
 required_dirs = {
     paths.output
     paths.figures
@@ -34,7 +32,6 @@ required_dirs = {
     paths.tables_ii
     paths.tables_iii
     paths.artifacts_iv
-    paths.legacy_ampl_output
 };
 
 for ii = 1:numel(required_dirs)
@@ -46,14 +43,7 @@ end
 addpath(src_dir);
 cd(src_dir);
 
-default_ampl = 'C:\Users\DELL\AMPL\ampl.exe';
-paths.ampl_command = getenv('AMPL_PATH');
-if isempty(paths.ampl_command)
-    if isfile(default_ampl)
-        paths.ampl_command = default_ampl;
-    else
-        paths.ampl_command = 'ampl';
-    end
-end
+% AMPL removed — polytope computation now uses native linprog
+% (df.solvers.solve_polytope_lp)
 
 end

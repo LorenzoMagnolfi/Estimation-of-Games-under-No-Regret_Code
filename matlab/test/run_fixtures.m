@@ -10,12 +10,14 @@
 % TIMING:   Estimated ~15-25 min total (vs ~7.6 h at full scale).
 %
 % STAGES COVERED:
-%   Stage I  — Polytope (SKIPPED: requires AMPL; will be replaced by linprog)
+%   Stage I  — Polytope: solve_polytope_lp (native linprog)
 %   Stage II — Simulation: learn_mod + ComputeBCCE_eps
 %   Stage III— Application: Identification_Pricing_Game_ApplicationL
 %   Stage IV — Empirical regret distribution: bootstrap learn_mod + ComputeBCCE_eps_pass
 %
 % REDUCED-SCALE CONFIG (vs production):
+%   Stage I:   actions = [4;8], s = 20, maxiters = 10000
+%              conf_set = [0.05], switch_eps = 3
 %   Stage II:  maxiters = [5000]         (vs [500k, 1M, 2M, 4M])
 %              NGridV = NGridM = 20      (vs 100)
 %              s = 5                     (same as production)
@@ -44,10 +46,41 @@ fprintf('=== Fixture Runner: Baseline Capture ===\n');
 fprintf('Fixture output: %s\n\n', fixture_dir);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% STAGE I — Polytope (SKIPPED)
+%% STAGE I — Polytope (native linprog)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-fprintf('[Stage I] SKIPPED — requires AMPL. Will be replaced by linprog.\n');
-fprintf('  When linprog replacement is ready, add Stage I fixture capture here.\n\n');
+fprintf('[Stage I] Polytope: solve_polytope_lp (linprog)\n');
+t_start = tic;
+
+rng(1);
+
+NPlayers_i = 2;
+alpha_i = -(1/3);
+actions_vec_i = [4;8];
+mu_i = 3*ones(NPlayers_i,1);
+sigma2_i = 1*eye(NPlayers_i);
+s_i = 20;
+
+cfg_i = df.setup.game_simulation(NPlayers_i, alpha_i, actions_vec_i, mu_i, sigma2_i, s_i);
+
+maxiters_i = 10000;
+conf_set_i = [0.05];
+switch_eps_i = 3;
+
+VP_all = cell(1, numel(conf_set_i));
+for jj = 1:numel(conf_set_i)
+    conf_i = conf_set_i(jj);
+    fprintf('  Polytope LP: conf=%.3f ...', conf_i);
+    t_lp = tic;
+    VP_all{jj} = df.solvers.solve_polytope_lp(cfg_i, maxiters_i, conf_i, switch_eps_i);
+    fprintf(' %.1fs\n', toc(t_lp));
+end
+
+save(fullfile(fixture_dir, 'fixture_stage_i_polytope.mat'), ...
+    'VP_all', 'conf_set_i', 'switch_eps_i', 'maxiters_i', ...
+    'actions_vec_i', 'mu_i', 'sigma2_i', 's_i');
+
+timing.stage_i = toc(t_start);
+fprintf('[Stage I] Done: %.1fs\n\n', timing.stage_i);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% STAGE II — Simulation

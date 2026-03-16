@@ -15,6 +15,7 @@ fprintf('New (coneprog): %s\n', new_dir);
 fprintf('Old (CVX):      %s\n\n', old_dir);
 
 files = {
+    'fixture_stage_i_polytope.mat'
     'fixture_stage_ii_iter_5k.mat'
     'fixture_stage_ii_solver_all.mat'
     'fixture_stage_iii_solver_raw.mat'
