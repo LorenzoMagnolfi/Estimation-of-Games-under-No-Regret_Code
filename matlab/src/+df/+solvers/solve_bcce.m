@@ -31,7 +31,9 @@ function g = solve_bcce(type_space, action_space, action_distribution, ...
 %     .marg_act_distrib_I   (Nactions x Nq_N) player 1 marginal (marginal mode)
 %     .marg_act_distrib_II  (Nactions x Nq_N) player 2 marginal (marginal mode)
 %     .switch_eps         integer, needed for eps_fin weighting rule
-%     .solver             '' (default) | 'sedumi'
+%     .solver             'sedumi' (default) | 'sdpt3' | ''  (CVX solver)
+%     .precision          'low' (default) | 'default' | 'medium' | 'high'
+%     .backend            'cvx' (default) | 'coneprog'
 %
 %   Output
 %     g   objective values:
@@ -40,10 +42,21 @@ function g = solve_bcce(type_space, action_space, action_distribution, ...
 
 if nargin < 8, opts = struct(); end
 marginal_mode = isfield(opts, 'marginal') && opts.marginal;
-solver_name   = '';
+solver_name   = 'sedumi';  % SeDuMi is ~2x faster than SDPT3 with same results
 if isfield(opts, 'solver'), solver_name = opts.solver; end
+precision     = 'default';  % 'low' is 2x faster but changes identification for ~10% of points
+if isfield(opts, 'precision'), precision = opts.precision; end
 switch_eps_val = 0;
 if isfield(opts, 'switch_eps'), switch_eps_val = opts.switch_eps; end
+
+% Backend selection: cvx (default) or coneprog (experimental, R2020b+)
+% Note: coneprog has numerical issues with this problem class (large dual
+% variables + many inequality constraints). Use 'cvx' unless testing.
+if isfield(opts, 'backend')
+    use_coneprog = strcmp(opts.backend, 'coneprog');
+else
+    use_coneprog = false;
+end
 
 %% Grid dimensions
 NGrid_lambda = size(distribution_parameters, 2);
@@ -149,14 +162,22 @@ for nd = 1:NGrid_lambda
         for nb = 1:Nq_N
             act_dist = opts.marg_act_distrib_I(:, nb)';
             c = [zeros(1, dim_u), act_dist, bmarg', 1, eps_fin]';
-            [g(nd, nb), ~] = df.solvers.solve_socp_cvx(cstr, c, solver_name);
+            if use_coneprog
+                [g(nd, nb), ~] = df.solvers.solve_socp_coneprog(cstr, c);
+            else
+                [g(nd, nb), ~] = df.solvers.solve_socp_cvx(cstr, c, solver_name, precision);
+            end
             fprintf('  Grid %d/%d, Obs %d/%d\n', nd, NGrid_lambda, nb, Nq_N);
         end
     else
         for np = 1:NAlpha
             for nb = 1:Nq_N
                 c = [zeros(1, dim_u), action_distribution(:,nb)', bmarg', 1, eps_fin]';
-                [g(np, nd, nb), ~] = df.solvers.solve_socp_cvx(cstr, c, solver_name);
+                if use_coneprog
+                    [g(np, nd, nb), ~] = df.solvers.solve_socp_coneprog(cstr, c);
+                else
+                    [g(np, nd, nb), ~] = df.solvers.solve_socp_cvx(cstr, c, solver_name, precision);
+                end
                 fprintf('  Grid %d/%d, Alpha %d/%d, Obs %d/%d\n', ...
                     nd, NGrid_lambda, np, NAlpha, nb, Nq_N);
             end

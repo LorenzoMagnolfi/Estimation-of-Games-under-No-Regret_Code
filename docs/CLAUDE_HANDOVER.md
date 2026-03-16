@@ -7,65 +7,119 @@
 
 ## Last Session
 - **Date**: 2026-03-16
-- **Duration**: ~2 hours (continued from a prior session that ran out of context)
-- **Summary**: Completed Prep phase of MATLAB refactor — built and ran fixture infrastructure, established git repo with initial commit and baseline tag.
+- **Duration**: ~6 hours (continued from prior sessions)
+- **Summary**: Completed Phases 1, 2, 3b, and 3a of the MATLAB refactor. All globals eliminated, solver unified, AMPL replaced with linprog, coneprog investigated (failed), SeDuMi adopted as default CVX solver for ~2x speedup.
 
 ## Current State
 
-### What Was Done
-- Audited and critiqued the MATLAB refactor plan (across 2 sessions); consolidated into `MATLAB_REFACTOR_PLAN.md`
-- Instrumented all four MAIN scripts with `save` calls for key intermediates
-- Created `matlab/test/run_fixtures.m` — reduced-scale fixture runner (Stages II-IV)
-- Created `matlab/test/verify_refactor.m` — regression comparison script
-- Created `matlab/test/fixtures/timing_baseline.md` — timing record template
-- Fixed `.gitignore` to allow `matlab/data/*.xlsx` through while excluding `data/`
-- Set repo-local git config (Lorenzo Magnolfi)
-- Initial commit to `main`, tagged `v0-baseline` (78 files)
-- Ran fixture runner on MATLAB R2024a: 43 min total, all 9 fixture files captured
-- Copied fixtures to `matlab/test/fixtures/baseline/`
-- Updated timing template with actual results
+### Completed Phases
+- **Phase 1**: Eliminated all 12+ MATLAB globals. Created `cfg` struct passed explicitly through all function calls. Extracted `df.setup.game_simulation()` and `df.setup.game_application()`. Created `+df/` package namespace. All four MAINs, all solver functions, and the fixture runner updated. Validated against baseline: exact match on Stages II-IV (20 CVX-nondeterministic Stage IV points excepted).
+- **Phase 2**: Unified three solver variants (`ComputeBCCE_eps`, `_ApplicationL`, `_pass`) into `df.solvers.solve_bcce()`. Hoisted constraint matrix construction outside the parameter-grid loop. Created `build_constraints.m` (joint), `build_constraints_marginal.m`, `solve_socp_cvx.m`. Old files are now thin wrappers. Validated: same results.
+- **Phase 3b**: Replaced AMPL external solver with native `linprog` for Stage I polytope computation. Created `df.solvers.solve_polytope_lp()`. 100 Halton directions solved in ~12s. `find_polytope_switch.m` is now a thin wrapper. No AMPL binary required.
+- **Phase 3a**: SOCP solver speedup. See detailed experiment record below. Outcome: switched default CVX solver from SDPT3 to SeDuMi for ~2x speedup with zero identification mismatches. Created `solve_socp_coneprog.m` (experimental, not recommended). Cross-validated: all 8 fixtures PASS against SDPT3 baseline.
 
-### Files Touched
-- `matlab/src/I_MAIN_Simul_2acts.m` — added fixture save calls
-- `matlab/src/II_MAIN_simul.m` — added fixture save calls
-- `matlab/src/III_MAIN_Estim_Application_PrefSpec.m` — added fixture save calls
-- `matlab/src/IV_MAIN_Emp_Distrib_Regrets.m` — added fixture save calls
-- `matlab/test/run_fixtures.m` — created, then fixed path setup for batch mode
-- `matlab/test/verify_refactor.m` — created
-- `matlab/test/fixtures/timing_baseline.md` — created, filled with baseline data
-- `docs/MATLAB_REFACTOR_PLAN.md` — created (previous session)
-- `docs/HANDOVER.md` — rewritten for stable/volatile separation
-- `.gitignore` — fixed `data/` vs `matlab/data/` scoping, added `.claude/`, `**/*.mat`
+### New Files Created (All Sessions)
+- `matlab/src/+df/+io/repo_paths.m`
+- `matlab/src/+df/+setup/game_simulation.m`
+- `matlab/src/+df/+setup/game_application.m`
+- `matlab/src/+df/+solvers/compute_epsilon.m`
+- `matlab/src/+df/+solvers/build_constraints.m`
+- `matlab/src/+df/+solvers/build_constraints_marginal.m`
+- `matlab/src/+df/+solvers/solve_socp_cvx.m`
+- `matlab/src/+df/+solvers/solve_socp_coneprog.m` ← Phase 3a (experimental)
+- `matlab/src/+df/+solvers/solve_bcce.m`
+- `matlab/src/+df/+solvers/solve_polytope_lp.m`
+- `matlab/src/+df/+util/allcomb.m`
+- `matlab/src/+df/+util/table2latex.m`
+- `matlab/test/compare_coneprog_vs_cvx.m` ← Phase 3a cross-validation
+- `matlab/test/fixtures_baseline_cvx/` ← Phase 3a SDPT3 baseline backup
 
-### Decisions Made
-- **Kill AMPL**: user explicitly prefers removing AMPL dependency entirely; replace with `linprog`
-- **Paper-as-oracle**: paper outputs suffice as final artifact check; no need for full 7.6h baseline rerun
-- **Fixture scale**: 20x20 grids (vs 100x100), 5k iters (vs 500k-4M), B=10 (vs 500) — exercises same code paths
-- **Git on `main`**: initial commit captures everything; refactor work will branch off as `refactor/matlab`
-- **No remote yet**: repo is local + Dropbox only; GitHub push deferred
+### Files Heavily Modified
+- All four MAIN scripts (removed globals, use `cfg`)
+- `ComputeBCCE_eps.m`, `_ApplicationL.m`, `_pass.m` (thin wrappers to `solve_bcce`)
+- `epsilon_switch.m`, `epsilon_switch_distrib.m` (thin wrappers to `compute_epsilon`)
+- `learn_mod.m`, `learn.m` (accept `cfg` as first arg)
+- `find_polytope_switch.m` (thin wrapper to `solve_polytope_lp`)
+- `matlab/test/run_fixtures.m` (uses `cfg` pattern)
+- `solve_bcce.m` (Phase 3a: added backend/solver/precision options, defaults to SeDuMi)
+- `solve_socp_cvx.m` (Phase 3a: added precision parameter, `cvx_begin quiet`)
 
 ### Git Status
 - Branch: `main`
-- Last commit: `7568fbe Fix fixture runner path setup and record baseline timing`
-- Tag: `v0-baseline` on `836a074`
-- Pushed to remote: **no** (no remote configured)
-- Uncommitted changes: none (clean)
+- Last commit: `80b44dc Replace AMPL with native linprog for polytope computation (Phase 3b)`
+- Pushed to remote: **no**
+- Uncommitted changes: Phase 3a files (solve_socp_coneprog.m, updated solve_bcce.m, updated solve_socp_cvx.m, compare_coneprog_vs_cvx.m, fixtures_baseline_cvx/, this file)
 
 ## Pending / Next Steps
-- [ ] Push to GitHub (when ready)
-- [ ] **Phase 1**: eliminate globals + extract game setup into struct-passing functions
-- [ ] **Phase 3b** (independent): replace `find_polytope_switch.m` AMPL calls with `linprog`
-- [ ] After Phase 1: re-run `run_fixtures.m`, compare with `verify_refactor.m`
-- [ ] Phase 2: unified solver (CVX → `coneprog`)
+- [x] **Phase 3a**: SOCP solver speedup (completed — SeDuMi default, coneprog abandoned)
+- [ ] **Phase 4**: Learning kernel rewrite (sufficient statistics, vectorized inner loop, `parfor` bootstrap)
+- [ ] **Phase 5**: Separate compute from reporting (`df.stages.run_stage_*`, `df.report.*`, `df_run.m`)
+- [ ] Remove AMPL files (`.mod`, `.dat`, `.run`) and `fprintAmplParam.m`
+- [ ] Add Stage I to the fixture runner (now possible with linprog)
+- [ ] No AMPL baseline exists to validate against — need to confirm polytope correctness analytically or visually
+- [ ] Push to GitHub when ready
 
 ## Open Questions
-- GitHub repo: private or public? Organization?
-- Phase 1 vs 3b: which to tackle first? (Both are independent; Phase 1 is prerequisite for Phase 2)
-- Should fixture runner also cover Stage I once linprog replacement exists?
+- Stage I polytope validation: no AMPL baseline was captured. Should we run the old AMPL code once to generate a reference, or is the linprog output sufficient?
+- Parallelization strategy for Stage IV: `parfor` requires Parallel Computing Toolbox
 
-## Tricky Bits
-- **`mfilename('fullpath')` in batch mode**: `run('../test/run_fixtures.m')` from `src/` changes context; the fixture runner must `addpath(src_dir)` explicitly before calling any source functions
-- **`.gitignore` scoping**: `data/` (no leading `/`) catches `matlab/data/`; must use `/data/` + negation rules (`!matlab/data/`) to allow MATLAB input data through
-- **Epsilon formula discrepancy**: `switch_eps==1` has `s*` multiplier in `epsilon_switch_distrib.m` but not in `epsilon_switch.m` — this is intentional, do not "fix" it
-- **`ExpectedRegretComp_Pl2` bug?**: Line 208 in `IV_MAIN` uses `epsPl1` instead of `epsPl2` — appears to be a bug in the original code, but we reproduce it exactly for baseline fidelity
-- **CVX baseline timing**: 43 min at 1/100 scale → the CVX parsing overhead is ~1.5-2.5s per solve, confirming the refactor plan's prediction that `coneprog` will be the single biggest speedup
+## Phase 3a Experiment Record: SOCP Solver Speedup
+
+### Goal
+Replace CVX+SDPT3 with a faster SOCP backend. Two strategies attempted: (1) MATLAB's native `coneprog` (R2020b+), (2) alternative CVX solvers/precision settings.
+
+### Experiment 1: coneprog Backend
+
+**Setup**: Mapped the CVX SOCP to `coneprog` format:
+- `maximize -c'x` → `minimize c'x`
+- `B_INEQ * x >= b` → `-B_INEQ * x <= -b`
+- `||Mat_NLC * x|| <= 1` → `secondordercone(Mat_NLC, 0, 0, -1)` (gamma=-1)
+
+**Bug found**: Initial implementation used `gamma=+1` in `secondordercone()`. MATLAB's convention is `||Ax - b|| <= d'x - gamma`, so `gamma=-1` gives the constraint `||Mat_NLC*x|| <= 1`. With `gamma=+1`, coneprog returned all infeasible (exitflag=-2).
+
+**After fixing gamma**: coneprog returns exitflag=1 (success) but the solutions violate equality constraints by ~7% (eq_viol=6.96e-2). Extensive debugging:
+
+1. **Sparse matrices**: No improvement
+2. **Reduced inequalities** (rank-reduced B_INEQ from 625→91 rows): Still fails
+3. **Null-space elimination** (pre-solve equalities, reduce to free variables): coneprog exitflag=-7
+4. **Tight bounds** ([-1, 1]): coneprog works perfectly (eq_viol=3.33e-16) but solution is wrong because true dual variables reach ±9368
+5. **Equalities as double-sided inequalities**: Still fails
+6. **Incremental constraint addition**: Works with partial B_INEQ rows; fails when all 91 independent rows included
+
+**Root cause**: The problem has 625 inequality constraints (B_INEQ), 25 equality constraints (B_EQ), and a 24-dim SOC cone, with 125 variables. B_INEQ is heavily rank-deficient (rank 91/125, cond=Inf). The equality dual variables in CVX solutions reach ±9368. coneprog's interior-point solver cannot handle this conditioning.
+
+**Conclusion**: coneprog is fundamentally unable to solve this SOCP class. The `solve_socp_coneprog.m` file is retained as an experimental option (`opts.backend = 'coneprog'`) but is not recommended.
+
+### Experiment 2: CVX Solver/Precision Comparison
+
+Benchmarked on 50 grid points from Stage II:
+
+| Configuration | Time/solve | Identification mismatches vs SDPT3 |
+|---|---|---|
+| CVX + SDPT3 (default precision) | 1.305s | 0 (baseline) |
+| CVX + SeDuMi (default precision) | 0.656s | 0 |
+| CVX + SDPT3 (low precision) | 0.625s | 5/50 (10%) |
+| Direct SeDuMi (no CVX) | 2.990s | N/A |
+
+**Key findings**:
+- SeDuMi is ~2x faster than SDPT3 with identical identification results (0 mismatches)
+- `cvx_precision low` is dangerous: 10% of identification decisions change
+- Direct SeDuMi (without CVX) is slower, likely due to missing CVX preprocessing
+
+### Outcome
+- Default solver changed from SDPT3 to SeDuMi in `solve_bcce.m`
+- Default precision kept at `default` (not `low`)
+- Added `opts.solver`, `opts.precision`, `opts.backend` parameters to `solve_bcce`
+- Full fixture validation (all 8 fixtures, Stages II-IV): ALL PASS
+  - Stage II: max_diff=3.30e-04, 23 infeasibility mismatches (within CVX nondeterminism tolerance)
+  - Stages III-IV: exact match (max_diff=0, 0 infeasibility mismatches)
+- **Speedup: 1.7-2.2x** across stages (Stage II: 453→203s, Stage III: 691→409s, Stage IV: 454→265s)
+
+## Tricky Bits (Accumulated)
+- **`switch_eps==1` discrepancy**: simulation mode uses `Kappa*sqrt(log(NAct))/(conf*sqrt(T))`, application mode uses `s*Kappa*sqrt(log(NAct))/(conf*sqrt(T))`. This is intentional.
+- **`ExpectedRegretComp_Pl2` bug**: Line 208 in `IV_MAIN` uses `epsPl1` instead of `epsPl2`. Preserved for baseline fidelity.
+- **CVX nondeterminism**: ~20 of 400 Stage II/IV identification grid points return `100` (infeasible) in some runs but converge in others. This is a CVX/SeDuMi numerical issue, not a code bug. Fixture comparison tolerates ≤30 infeasibility mismatches.
+- **Marginal-mode constraint builder**: `build_constraints_marginal.m` uses `exp_pi` (expected payoffs integrated over opponent actions) rather than the full joint payoff tensor. The alpha/deviation construction is structurally different from the joint mode.
+- **`Identification_Pricing_Game_ApplicationL.m` per-player loop**: calls `df.setup.game_application(iii, ...)` inside the player loop. Each player gets its own `cfg` with data-driven actions and sale probabilities.
+- **coneprog sign convention**: `secondordercone(A, b, d, gamma)` encodes `||Ax - b|| <= d'x - gamma`. To get `||Ax|| <= 1`, use `gamma=-1` (NOT `+1`).
+- **coneprog numerical limits**: Cannot solve SOCPs with rank-deficient inequality systems and large dual variables. Fails silently (exitflag=1) with constraint violations.
