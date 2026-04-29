@@ -40,6 +40,18 @@ if ~isfield(opts, 'switch_eps'),      opts.switch_eps = 1; end
 if ~isfield(opts, 'backend'),         opts.backend = 'cvx'; end
 if ~isfield(opts, 'use_parfor'),      opts.use_parfor = true; end
 if ~isfield(opts, 'adaptive'),        opts.adaptive = true; end
+% Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
+%   .consistency_slack_kind  'none' (default) | 'box' | 'L1'
+%   .alpha_R, .alpha_C       confidence-budget split (alpha_R + alpha_C = alpha_set);
+%                            only used when consistency_slack_kind != 'none'.
+%   .precomputed_distY       optional cell array of cached learning trajectories,
+%                            one per maxiters_values entry, to skip the learn step
+%                            (used for re-solving the LP under different slack/rate).
+if ~isfield(opts, 'consistency_slack_kind'), opts.consistency_slack_kind = 'none'; end
+if ~isfield(opts, 'alpha_R'), opts.alpha_R = opts.alpha_set; end
+if ~isfield(opts, 'alpha_C'), opts.alpha_C = 0; end
+if ~isfield(opts, 'precomputed_distY'), opts.precomputed_distY = {}; end
+use_consistency_slack = ~strcmp(opts.consistency_slack_kind, 'none');
 
 use_fast = strcmp(opts.backend, 'fast');
 
@@ -71,9 +83,16 @@ distY_time_all = cell(n_iters, 1);
 gridparamV_all = cell(n_iters, 1);
 timing_all = struct();
 
-% Build constraints ONCE (shared across all iterations and grid points)
+% Build constraints ONCE (shared across all iterations and grid points).
+% When consistency slack is on, the matrix STRUCTURE depends on the slack flag
+% but not on its numeric value, so we pass any positive dummy here; the actual
+% r_N is injected into c_all per iteration below.
 if use_fast
-    cstr = df.solvers.build_constraints(type_space, action_space, Pi);
+    if use_consistency_slack
+        cstr = df.solvers.build_constraints(type_space, action_space, Pi, 1.0);
+    else
+        cstr = df.solvers.build_constraints(type_space, action_space, Pi);
+    end
     dim_u = cstr.NA - 1;
     a_dim = cstr.a;
     NAg = cstr.NAg;
@@ -81,6 +100,10 @@ if use_fast
     T_sorted = cstr.T_sorted;
     fprintf('[Stage II] Fast backend: CVX+SeDuMi (precomputed objectives)');
     if opts.adaptive, fprintf(' + adaptive'); end
+    if use_consistency_slack
+        fprintf(' + consistency slack (%s, alpha_R=%g, alpha_C=%g)', ...
+            opts.consistency_slack_kind, opts.alpha_R, opts.alpha_C);
+    end
     fprintf('\n');
 end
 
@@ -92,15 +115,25 @@ for maxiter_index = 1:n_iters
     M = maxiters;
     M_obs = maxiters;
 
-    %% Learning
-    fprintf('[Stage II] iter %d/%d: maxiters=%dk, learning...', ...
-        maxiter_index, n_iters, maxiters/1000);
-    t_learn = tic;
-    [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
-    action_distribution = distY_time;
-    distY_time_all{maxiter_index} = distY_time;
-    t_learn_val = toc(t_learn);
-    fprintf(' %.1fs\n', t_learn_val);
+    %% Learning  (skip if a precomputed trajectory was provided for this iter)
+    if numel(opts.precomputed_distY) >= maxiter_index && ...
+            ~isempty(opts.precomputed_distY{maxiter_index})
+        fprintf('[Stage II] iter %d/%d: maxiters=%dk, using cached trajectory\n', ...
+            maxiter_index, n_iters, maxiters/1000);
+        distY_time = opts.precomputed_distY{maxiter_index};
+        action_distribution = distY_time;
+        distY_time_all{maxiter_index} = distY_time;
+        t_learn_val = 0;
+    else
+        fprintf('[Stage II] iter %d/%d: maxiters=%dk, learning...', ...
+            maxiter_index, n_iters, maxiters/1000);
+        t_learn = tic;
+        [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        action_distribution = distY_time;
+        distY_time_all{maxiter_index} = distY_time;
+        t_learn_val = toc(t_learn);
+        fprintf(' %.1fs\n', t_learn_val);
+    end
 
     %% Parameter grid (iteration-dependent variance range)
     if maxiter_index == 1
@@ -139,14 +172,30 @@ for maxiter_index = 1:n_iters
         end
         Psi = Psi ./ sum(Psi, 1);
 
+        % Consistency slack r_N (only if enabled)
+        if use_consistency_slack
+            M_C = s2;  % |T||Theta|; in this simulation Theta is degenerate so M_C = s2
+            r_N = df.solvers.compute_consistency_slack( ...
+                M_C, opts.alpha_C, maxiters, opts.consistency_slack_kind);
+        end
+
         % Build all objective vectors
         c_all = zeros(size(cstr.B_EQ, 2), NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:,nd);
             eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
                       repmat(eps_vec, 1, NAg*a_dim);
-            c_all(:,nd) = [zeros(1, dim_u), action_distribution(:,1)', ...
-                           bmarg', 1, eps_fin]';
+            if use_consistency_slack
+                % New constraint order:
+                %   Meq:  action marginal (NA), total mass (1)
+                %   Mineq: consistency_upper (s2), consistency_lower (s2), obedience
+                c_all(:,nd) = [zeros(1, dim_u), action_distribution(:,1)', 1, ...
+                               (bmarg + r_N)', (-bmarg + r_N)', eps_fin]';
+            else
+                % Legacy order: [cone; action_dist; bmarg; 1; eps_fin]
+                c_all(:,nd) = [zeros(1, dim_u), action_distribution(:,1)', ...
+                               bmarg', 1, eps_fin]';
+            end
         end
         fprintf(' %.1fs\n', toc(t_obj));
 

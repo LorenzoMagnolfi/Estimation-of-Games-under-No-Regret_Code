@@ -37,7 +37,7 @@ Pi = cfg.Pi;
 NAct = cfg.NAct;
 
 % Kappa computation (shared across both modes)
-if switch_eps <= 1 || switch_eps == 3 || switch_eps == 4
+if switch_eps <= 1 || switch_eps == 3 || switch_eps == 4 || switch_eps == 10 || switch_eps == 11
     Kappa = max(Pi(:,:,1)) - min(Pi(:,:,1));
 elseif switch_eps == 2
     Kappa = max(abs(Pi(1:2,:,1) - Pi(3:4,:,1)));
@@ -77,6 +77,20 @@ if strcmp(mode, 'simulation')
         eps = Kappa / sqrt(maxiters) * (4*sqrt(NAct*log(NAct)) + 2*sqrt(NAct/log(NAct))*log(2/conf));
     elseif switch_eps == 5
         eps = (NAct - 1) ./ (Kappa * conf * maxiters);
+    elseif switch_eps == 10
+        % Niccolo R1: adversarial environment + full feedback (Hedge corollary)
+        % Per-cell radius (sqrt(phi) factored out at LP layer):
+        %   K * sqrt(2*ln|A|) / (alpha * sqrt(N))
+        % vs switch_eps==1: factor of sqrt(2) wider.
+        % The K*ln|A|/(alpha*N) lower-order correction is omitted (negligible
+        % at our N and cannot be threaded through the per-cell sqrt(phi) factor).
+        eps = Kappa .* sqrt(2 * log(NAct)) ./ (conf * sqrt(maxiters));
+    elseif switch_eps == 11
+        % Niccolo R2: adversarial environment + bandit feedback (Exp3 corollary)
+        % Per-cell radius (sqrt(phi) factored out at LP layer):
+        %   2*sqrt(e-1) * K * sqrt(|A|*ln|A|) / (alpha * sqrt(N))
+        % vs switch_eps==1: factor of 2*sqrt(e-1)*sqrt(|A|) wider.
+        eps = 2 * sqrt(exp(1) - 1) * Kappa .* sqrt(NAct * log(NAct)) ./ (conf * sqrt(maxiters));
     end
 else
     % Original epsilon_switch_distrib.m formulas
@@ -101,6 +115,12 @@ else
         eps = s_val .* TType_spec_LargestDev2 ./ (conf * maxiters);
     elseif switch_eps == 9
         eps = TType_spec_LargestDev2 ./ ((1 - (1-conf)^(1/s_val)) * maxiters);
+    elseif switch_eps == 10
+        % Niccolo R1 (application analogue): preserves switch_eps==1's s_val multiplier.
+        eps = s_val * Kappa .* sqrt(2 * log(NAct)) ./ (conf * sqrt(maxiters));
+    elseif switch_eps == 11
+        % Niccolo R2 (application analogue): preserves switch_eps==1's s_val multiplier.
+        eps = s_val * 2 * sqrt(exp(1) - 1) * Kappa .* sqrt(NAct * log(NAct)) ./ (conf * sqrt(maxiters));
     end
 end
 
