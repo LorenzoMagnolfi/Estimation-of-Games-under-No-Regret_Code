@@ -33,6 +33,7 @@ function results = run_stage_ii_nonparam(cfg, opts)
 %       .n_adjacent      — neighbor count for spiky (default: 4)
 %       .solver          — CVX solver (default: 'sedumi')
 %       .precision       — CVX precision (default: 'default')
+%       .learning_style  — 'rm' (default) | 'prm' (proxy-regret matching)
 %
 %   Outputs:
 %     results — struct with fields:
@@ -51,8 +52,10 @@ if ~isfield(opts, 'switch_eps'),      opts.switch_eps = 1; end
 if ~isfield(opts, 'backend'),         opts.backend = 'fast'; end
 if ~isfield(opts, 'solver'),          opts.solver = 'sedumi'; end
 if ~isfield(opts, 'precision'),       opts.precision = 'default'; end
+if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
 
 use_fast = strcmp(opts.backend, 'fast');
+use_prm = strcmp(opts.learning_style, 'prm');
 
 % Grid parameters (passed through to build_nonparam_grid)
 grid_opts = struct();
@@ -132,7 +135,11 @@ for maxiter_index = 1:n_iters
     % Learning
     N = 1; M = maxiters; M_obs = maxiters;
     numdst_t = 1; numdst_t_obs = numdst_t;
-    [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    if use_prm
+        [distY_time, ~] = learn_mod_prm(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    else
+        [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    end
     timing.learn(maxiter_index) = toc(t_iter);
     fprintf('%.1fs\n', timing.learn(maxiter_index));
 
