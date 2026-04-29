@@ -37,6 +37,10 @@ output/             Generated figures/tables (gitignored)
 | `II_RUN_nonparam_revision.m` | II | Nonparametric identification (R1.1.b) |
 | `II_RUN_demand_identification.m` | II | Joint η + (μ,σ) identification (R1.1.d) |
 | `II_RUN_prm_comparison.m` | II | PRM vs RM comparison (R1.1.c, not yet run) |
+| `II_RUN_rate_landscape_pilot.m`     | II | Pre-flight rate-landscape pilot (R1, 4-N overlay) |
+| `II_RUN_rate_landscape_pilot_v2.m`  | II | R1 with vs without consistency slack (Pass A/B, two-panel) |
+| `II_RUN_realization_pilot.m`        | II | Realization-conditional ID pilot (App. SIM-RC, s=5) |
+| `II_RUN_realization_pilot_s9.m`     | II | Realization-conditional ID, s=9 finer-grid diagnostic |
 | `III_MAIN_Estim_Application_PrefSpec.m` | III | Swappa application |
 | `IV_MAIN_Emp_Distrib_Regrets.m` | IV | Bootstrap regrets |
 
