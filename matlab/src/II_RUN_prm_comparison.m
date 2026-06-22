@@ -1,134 +1,219 @@
-%% II_RUN_prm_comparison — R1.1.c: Confidence sets under proxy-regret matching
+%% II_RUN_prm_comparison
 %
-% Runs both regret matching (full feedback) and proxy-regret matching
-% (bandit feedback) for the baseline s=5 case, generating side-by-side
-% identified set comparisons. Responds to R1.1.c: "I would also be
-% interested in seeing confidence sets under proxy-regret matching."
+% R1.1.c: confidence sets under proxy-regret matching.
 %
-% Uses parametric (mu, sigma) grid for direct comparison with existing
-% figures. Nonparametric variant can be added after validation.
+% The comparison separates two objects that should not be conflated:
+%   1. the learning rule used to generate the empirical play distribution;
+%   2. the finite-sample confidence radius implied by the feedback structure.
+%
+% Regret matching is paired with the corrected adversarial full-feedback
+% radius (switch_eps = 10). Proxy-regret matching is paired with the
+% corrected adversarial bandit-feedback radius (switch_eps = 11).
 
-%% Setup
 clear all; clc; close all;
 
 paths = df_repo_paths();
 rng(12345);
 
-% Game parameters
+%% Game parameters
 NPlayers = 2;
 alpha = -(1/3);
-actions_vec = [4;5;6;7;8];
-mu = 3*ones(NPlayers,1);
-sigma2 = 1*eye(NPlayers);
+actions_vec = [4; 5; 6; 7; 8];
+mu = 3 * ones(NPlayers, 1);
+sigma2 = 1 * eye(NPlayers);
 s = 5;
 
 cfg = df.setup.game_simulation(NPlayers, alpha, actions_vec, mu, sigma2, s);
 
-%% Shared options
-maxiters_values = [500000, 1000000, 2000000, 4000000];
-alpha_set = 0.05;
-switch_eps = 1;
-
-% Grid: use the nonparametric grid for apples-to-apples
-grid_opts = struct('K_local', 100, 'K_global', 800, 'K_spiky', 100);
-
+%% Shared Stage II options
 stage_opts_base = struct();
-stage_opts_base.maxiters_values = maxiters_values;
-stage_opts_base.alpha_set = alpha_set;
-stage_opts_base.switch_eps = switch_eps;
+stage_opts_base.maxiters_values = [500000, 1000000, 2000000, 4000000];
+stage_opts_base.NGridV = 100;
+stage_opts_base.NGridM = 100;
+stage_opts_base.alpha_set = 0.05;
 stage_opts_base.backend = 'fast';
-stage_opts_base.K_local  = grid_opts.K_local;
-stage_opts_base.K_global = grid_opts.K_global;
-stage_opts_base.K_spiky  = grid_opts.K_spiky;
-stage_opts_base.spike_mult = 3;
-stage_opts_base.n_adjacent = 4;
+stage_opts_base.adaptive = true;
+stage_opts_base.consistency_slack_kind = 'none';
 
-%% Run 1: Standard regret matching (full feedback)
-fprintf('\n========== Regret Matching (full feedback) ==========\n');
-rng(12345);  % same seed for comparability
+%% Run 1: regret matching with full-feedback radius
+fprintf('\n========== Regret matching, full-feedback radius ==========\n');
+rng(12345);
 stage_opts_rm = stage_opts_base;
 stage_opts_rm.learning_style = 'rm';
-results_rm = df.stages.run_stage_ii_nonparam(cfg, stage_opts_rm);
+stage_opts_rm.switch_eps = 10;
+results_rm = df.stages.run_stage_ii(cfg, stage_opts_rm);
 
-%% Run 2: Proxy-regret matching (bandit feedback)
-fprintf('\n========== Proxy-Regret Matching (bandit feedback) ==========\n');
-rng(12345);  % same seed for comparability
+%% Run 2: proxy-regret matching with bandit-feedback radius
+fprintf('\n========== Proxy-regret matching, bandit-feedback radius ==========\n');
+rng(12345);
 stage_opts_prm = stage_opts_base;
 stage_opts_prm.learning_style = 'prm';
-results_prm = df.stages.run_stage_ii_nonparam(cfg, stage_opts_prm);
+stage_opts_prm.switch_eps = 11;
+results_prm = df.stages.run_stage_ii(cfg, stage_opts_prm);
 
-%% Compare and plot side-by-side
-for mi = 1:numel(maxiters_values)
-    iteration_k = maxiters_values(mi) / 1000;
+%% Summaries
+summary_table = summarize_prm_results(results_rm, results_prm);
+disp(summary_table);
 
-    VV_rm = results_rm.VV_all(mi, :);
-    VV_prm = results_prm.VV_all(mi, :);
-    distpars = squeeze(results_rm.distpars_all(mi, :, :));
+if ~exist(paths.tables_ii, 'dir'), mkdir(paths.tables_ii); end
+writetable(summary_table, fullfile(paths.tables_ii, 'prm_comparison_s5.csv'));
 
-    id_rm  = (VV_rm  <= 1e-12);
-    id_prm = (VV_prm <= 1e-12);
+%% Figures
+if ~exist(paths.figures_ii, 'dir'), mkdir(paths.figures_ii); end
 
-    fprintf('iter=%dk: RM identified %d/%d (%.1f%%), PRM identified %d/%d (%.1f%%)\n', ...
-        iteration_k, sum(id_rm), numel(id_rm), 100*mean(id_rm), ...
-        sum(id_prm), numel(id_prm), 100*mean(id_prm));
+fig_all = figure('Color', 'w', 'Position', [50 100 1600 720]);
+tiledlayout(2, numel(results_rm.maxiters_values), ...
+    'TileSpacing', 'compact', 'Padding', 'compact');
 
-    % SVM for both
-    mu_range = [min(distpars(:,1)), max(distpars(:,1))];
-    sig_range = [min(distpars(:,2)), max(distpars(:,2))];
-    halton_ranges = [mu_range(1), mu_range(2), sig_range(1), sig_range(2)];
-    svm_opts = struct('quality', 'draft');
+for mi = 1:numel(results_rm.maxiters_values)
+    N = results_rm.maxiters_values(mi);
 
-    if sum(id_rm) >= 3
-        [label_rm, PGx_rm, ~] = df.report.classify_identified_set(...
-            distpars, id_rm(:), halton_ranges, svm_opts);
-    end
-    if sum(id_prm) >= 3
-        [label_prm, PGx_prm, ~] = df.report.classify_identified_set(...
-            distpars, id_prm(:), halton_ranges, svm_opts);
-    end
+    ax = nexttile(mi);
+    plot_identified_region(ax, results_rm, mi, [0.12 0.32 0.66], ...
+        sprintf('RM, R1 radius, N=%s', commas(N)));
 
-    % Side-by-side figure
-    figure('Position', [100, 100, 1400, 550]);
-
-    % Left panel: RM
-    subplot(1, 2, 1);
-    if sum(id_rm) >= 3
-        hold on;
-        gscatter(PGx_rm(:,1), PGx_rm(:,2), label_rm(:), 'wc', '.', 15);
-        plot(3, 1, '.', 'MarkerSize', 25, 'Color', 'k');
-        xlabel('$\mu$', 'Interpreter', 'latex');
-        ylabel('$\sigma$', 'Interpreter', 'latex');
-        title(sprintf('Regret Matching | %dk iters', iteration_k), 'Interpreter', 'none');
-        set(gca, 'TickLabelInterpreter', 'latex', 'FontName', 'cmr10', 'FontSize', 14, 'Box', 'off');
-    else
-        text(0.5, 0.5, 'Too few identified', 'HorizontalAlignment', 'center');
-        title(sprintf('Regret Matching | %dk iters', iteration_k), 'Interpreter', 'none');
-    end
-
-    % Right panel: PRM
-    subplot(1, 2, 2);
-    if sum(id_prm) >= 3
-        hold on;
-        gscatter(PGx_prm(:,1), PGx_prm(:,2), label_prm(:), 'wc', '.', 15);
-        plot(3, 1, '.', 'MarkerSize', 25, 'Color', 'k');
-        xlabel('$\mu$', 'Interpreter', 'latex');
-        ylabel('$\sigma$', 'Interpreter', 'latex');
-        title(sprintf('Proxy-Regret Matching | %dk iters', iteration_k), 'Interpreter', 'none');
-        set(gca, 'TickLabelInterpreter', 'latex', 'FontName', 'cmr10', 'FontSize', 14, 'Box', 'off');
-    else
-        text(0.5, 0.5, 'Too few identified', 'HorizontalAlignment', 'center');
-        title(sprintf('Proxy-Regret Matching | %dk iters', iteration_k), 'Interpreter', 'none');
-    end
-
-    saveas(gcf, fullfile(paths.figures_ii, ...
-        sprintf('prm_comparison_s%d_%dk.png', s, iteration_k)));
-    saveas(gcf, fullfile(paths.figures_ii, ...
-        sprintf('prm_comparison_s%d_%dk.eps', s, iteration_k)), 'epsc');
-    close;
+    ax = nexttile(mi + numel(results_rm.maxiters_values));
+    plot_identified_region(ax, results_prm, mi, [0.55 0.16 0.16], ...
+        sprintf('PRM, bandit radius, N=%s', commas(N)));
 end
 
-%% Save
+sgtitle('Regret matching versus proxy-regret matching: 95 percent confidence regions', ...
+    'Interpreter', 'latex', 'FontSize', 13);
+saveas(fig_all, fullfile(paths.figures_ii, 'prm_comparison_s5_allN.png'));
+saveas(fig_all, fullfile(paths.figures_ii, 'prm_comparison_s5_allN.pdf'));
+
+last_idx = numel(results_rm.maxiters_values);
+fig_last = figure('Color', 'w', 'Position', [100 100 1200 520]);
+tiledlayout(1, 2, 'TileSpacing', 'compact', 'Padding', 'compact');
+
+ax = nexttile(1);
+plot_identified_region(ax, results_rm, last_idx, [0.12 0.32 0.66], ...
+    sprintf('Regret matching, R1 radius, N=%s', commas(results_rm.maxiters_values(last_idx))));
+
+ax = nexttile(2);
+plot_identified_region(ax, results_prm, last_idx, [0.55 0.16 0.16], ...
+    sprintf('Proxy-regret matching, bandit radius, N=%s', commas(results_prm.maxiters_values(last_idx))));
+
+sgtitle('R1.1.c: full feedback versus bandit feedback in the running example', ...
+    'Interpreter', 'latex', 'FontSize', 13);
+saveas(fig_last, fullfile(paths.figures_ii, 'prm_comparison_s5_4M.png'));
+saveas(fig_last, fullfile(paths.figures_ii, 'prm_comparison_s5_4M.pdf'));
+
+%% Save artifact
 save(fullfile(paths.artifacts, 'prm_comparison_s5.mat'), ...
-    'results_rm', 'results_prm', '-v7.3');
+    'results_rm', 'results_prm', 'summary_table', ...
+    'stage_opts_rm', 'stage_opts_prm', '-v7.3');
 
 fprintf('\n========== PRM comparison complete ==========\n');
+fprintf('Artifact: %s\n', fullfile(paths.artifacts, 'prm_comparison_s5.mat'));
+fprintf('Figures:  %s\n', fullfile(paths.figures_ii, 'prm_comparison_s5_4M.pdf'));
+
+%% Local helpers
+function summary_table = summarize_prm_results(results_rm, results_prm)
+    n_iters = numel(results_rm.maxiters_values);
+    N = zeros(n_iters, 1);
+    rm_count = zeros(n_iters, 1);
+    rm_share = zeros(n_iters, 1);
+    rm_mu_min = nan(n_iters, 1);
+    rm_mu_max = nan(n_iters, 1);
+    rm_sig2_min = nan(n_iters, 1);
+    rm_sig2_max = nan(n_iters, 1);
+    prm_count = zeros(n_iters, 1);
+    prm_share = zeros(n_iters, 1);
+    prm_mu_min = nan(n_iters, 1);
+    prm_mu_max = nan(n_iters, 1);
+    prm_sig2_min = nan(n_iters, 1);
+    prm_sig2_max = nan(n_iters, 1);
+
+    for ii = 1:n_iters
+        N(ii) = results_rm.maxiters_values(ii);
+        [rm_count(ii), rm_share(ii), rm_mu_min(ii), rm_mu_max(ii), ...
+            rm_sig2_min(ii), rm_sig2_max(ii)] = summarize_one(results_rm, ii);
+        [prm_count(ii), prm_share(ii), prm_mu_min(ii), prm_mu_max(ii), ...
+            prm_sig2_min(ii), prm_sig2_max(ii)] = summarize_one(results_prm, ii);
+    end
+
+    summary_table = table(N, rm_count, rm_share, rm_mu_min, rm_mu_max, ...
+        rm_sig2_min, rm_sig2_max, prm_count, prm_share, prm_mu_min, ...
+        prm_mu_max, prm_sig2_min, prm_sig2_max);
+end
+
+function [count, share, mu_min, mu_max, sig2_min, sig2_max] = summarize_one(results, iter_idx)
+    distpars = squeeze(results.distpars_all(iter_idx, :, :));
+    VV = results.VV_all(iter_idx, :);
+    identified = VV(:) <= 1e-12;
+    count = sum(identified);
+    share = count / numel(identified);
+    if any(identified)
+        mu_vals = distpars(identified, 1);
+        sig2_vals = distpars(identified, 2);
+        mu_min = min(mu_vals);
+        mu_max = max(mu_vals);
+        sig2_min = min(sig2_vals);
+        sig2_max = max(sig2_vals);
+    else
+        mu_min = NaN;
+        mu_max = NaN;
+        sig2_min = NaN;
+        sig2_max = NaN;
+    end
+end
+
+function plot_identified_region(ax, results, iter_idx, color, title_text)
+    axes(ax);
+    distpars = squeeze(results.distpars_all(iter_idx, :, :));
+    VV = results.VV_all(iter_idx, :);
+    nV = results.NGridV + 1;
+    nM = results.NGridM + 1;
+
+    mu_grid = reshape(distpars(:, 1), nV, nM);
+    sig2_grid = reshape(distpars(:, 2), nV, nM);
+    VV_grid = reshape(VV, nV, nM);
+
+    % The first row and column contain the prepended true grid value and
+    % are non-monotone in the plotting grid.
+    mu_grid = mu_grid(2:end, 2:end);
+    sig2_grid = sig2_grid(2:end, 2:end);
+    VV_grid = VV_grid(2:end, 2:end);
+
+    feasible = VV_grid <= 1e-12;
+    hold on;
+    if any(feasible(:)) && any(~feasible(:))
+        contour(mu_grid, sig2_grid, double(feasible), [0.5 0.5], ...
+            'LineColor', color, 'LineWidth', 2.2);
+    elseif any(feasible(:))
+        text(0.5, 0.5, 'All plotted candidates included', ...
+            'Units', 'normalized', 'HorizontalAlignment', 'center', ...
+            'Interpreter', 'latex');
+    else
+        text(0.5, 0.5, 'No plotted candidates included', ...
+            'Units', 'normalized', 'HorizontalAlignment', 'center', ...
+            'Interpreter', 'latex');
+    end
+
+    plot(3, 1, 'p', 'MarkerSize', 14, ...
+        'MarkerEdgeColor', [0.10 0.10 0.10], ...
+        'MarkerFaceColor', [0.85 0.15 0.15], 'LineWidth', 1.2);
+    xlim([2.0, 4.0]);
+    ylim([0.0, 4.5]);
+    xlabel('$\mu$', 'Interpreter', 'latex', 'FontSize', 11);
+    ylabel('$\sigma^2$', 'Interpreter', 'latex', 'FontSize', 11);
+    title(title_text, 'Interpreter', 'latex', 'FontSize', 10);
+    grid on;
+    box on;
+    set(gca, 'FontSize', 10);
+    hold off;
+end
+
+function s = commas(n)
+    str = sprintf('%d', n);
+    L = length(str);
+    s = '';
+    for i = 1:L
+        s = [s, str(i)];
+        rem = L - i;
+        if rem > 0 && mod(rem, 3) == 0
+            s = [s, ','];
+        end
+    end
+end

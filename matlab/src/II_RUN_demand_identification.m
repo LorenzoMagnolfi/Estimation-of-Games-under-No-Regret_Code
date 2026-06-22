@@ -9,6 +9,11 @@
 %  Also computes worst-case K bound (no demand knowledge) for comparison.
 %
 %  Usage: run from matlab/src/ with CVX and SeDuMi on path.
+%
+%  Uses Niccolo's corrected adversarial full-feedback radius
+%  (switch_eps = 10). Older demand_id_* outputs without the R1 suffix were
+%  produced under switch_eps = 1 and should be treated as stale for the
+%  revision.
 
 clear; clc; close all;
 rng(12345);
@@ -22,7 +27,8 @@ sigma2_true = eye(2);
 s_val      = 5;                           % type-space size
 T          = 4000000;                     % learning horizon
 confid     = 0.05;
-switch_eps = 1;
+switch_eps = 10;
+method_tag = 'R1';
 
 % (mu,sigma) grid — reduced for fast pass (15 eta × ~256 = ~3840 total SOCPs)
 NGridM = 15;
@@ -128,7 +134,7 @@ fprintf('\n[Worst-case] Computing K_max bound (no demand knowledge)...\n');
 % But K = max_a u - min_a u over ALL action PROFILES, and sale prob affects both.
 % Conservative: K_worst = max(actions_vec) (assuming sale prob = 1 on best action)
 K_worstcase = max(actions_vec);
-eps_worstcase = K_worstcase * sqrt(log(length(actions_vec))) / (confid * sqrt(T));
+eps_worstcase = K_worstcase * sqrt(2 * log(length(actions_vec))) / (confid * sqrt(T));
 fprintf('  K_worst = %.2f, eps_worst = %.6f\n', K_worstcase, eps_worstcase);
 
 % Run worst-case identification (use true eta cfg but inflate epsilon)
@@ -197,13 +203,13 @@ xlabel('$\eta$', 'Interpreter', 'latex', 'FontSize', 14);
 ylabel('Identified (\%)', 'Interpreter', 'latex', 'FontSize', 14);
 legend({'Joint (per $\eta$)', 'Worst-case $K$', 'True $\eta$'}, ...
     'Interpreter', 'latex', 'FontSize', 11, 'Location', 'northeast');
-title('R1.1.d: Joint demand-cost identification', 'FontSize', 13);
+title('R1.1.d: Joint demand-cost identification (R1 full feedback)', 'FontSize', 13);
 set(gca, 'FontSize', 12);
 hold off;
 
-print(fig1, fullfile(fig_dir, 'demand_id_profile'), '-depsc');
-print(fig1, fullfile(fig_dir, 'demand_id_profile'), '-dpng', '-r150');
-fprintf('\nSaved: demand_id_profile.{eps,png}\n');
+print(fig1, fullfile(fig_dir, sprintf('demand_id_profile_%s', method_tag)), '-depsc');
+print(fig1, fullfile(fig_dir, sprintf('demand_id_profile_%s', method_tag)), '-dpng', '-r150');
+fprintf('\nSaved: demand_id_profile_%s.{eps,png}\n', method_tag);
 
 %% ======== Step 7: Comparison SVM figures ========
 % Find closest eta to true value
@@ -240,18 +246,18 @@ for pp = 1:3
     title(panel_titles{pp}, 'Interpreter', 'latex', 'FontSize', 13);
     hold off;
 end
-sgtitle(sprintf('R1.1.d: Identified set comparison ($s=%d$, $T=%dk$)', s_val, T/1000), ...
+sgtitle(sprintf('R1.1.d: Identified set comparison, R1 full feedback ($s=%d$, $T=%dk$)', s_val, T/1000), ...
     'Interpreter', 'latex', 'FontSize', 14);
 
-print(fig2, fullfile(fig_dir, 'demand_id_comparison'), '-depsc');
-print(fig2, fullfile(fig_dir, 'demand_id_comparison'), '-dpng', '-r150');
-fprintf('Saved: demand_id_comparison.{eps,png}\n');
+print(fig2, fullfile(fig_dir, sprintf('demand_id_comparison_%s', method_tag)), '-depsc');
+print(fig2, fullfile(fig_dir, sprintf('demand_id_comparison_%s', method_tag)), '-dpng', '-r150');
+fprintf('Saved: demand_id_comparison_%s.{eps,png}\n', method_tag);
 
 %% ======== Save workspace ========
-save(fullfile(paths.output, 'artifacts', 'demand_identification.mat'), ...
+save(fullfile(paths.output, 'artifacts', sprintf('demand_identification_%s.mat', method_tag)), ...
     'eta_grid', 'eta_true', 'VV_by_eta', 'VV_wc', 'distpars', ...
     'distribution_parameters', 'n_identified', 'n_id_wc', ...
     'K_by_eta', 'eps_by_eta', 'K_worstcase', 'eps_worstcase', ...
-    'timing_eta', 'T', 's_val', 'confid', 'NGrid');
+    'timing_eta', 'T', 's_val', 'confid', 'NGrid', 'switch_eps', 'method_tag');
 
 fprintf('\n=== Done. Total time: %.1f min ===\n', sum(timing_eta)/60);

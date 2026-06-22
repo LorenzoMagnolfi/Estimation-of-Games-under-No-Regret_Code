@@ -19,6 +19,7 @@ function results = run_stage_ii(cfg, opts)
 %                          'fast': precomputes objectives, uses CVX+SeDuMi batch solver
 %       .adaptive        — logical, enable adaptive grid in fast backend (default: true)
 %                          NOTE: adaptive is for exploration only, not production/inference
+%       .learning_style  — 'rm' (default) | 'prm' (proxy-regret matching)
 %
 %   Outputs:
 %     results — struct with fields:
@@ -40,6 +41,7 @@ if ~isfield(opts, 'switch_eps'),      opts.switch_eps = 1; end
 if ~isfield(opts, 'backend'),         opts.backend = 'cvx'; end
 if ~isfield(opts, 'use_parfor'),      opts.use_parfor = true; end
 if ~isfield(opts, 'adaptive'),        opts.adaptive = true; end
+if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
 % Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
 %   .consistency_slack_kind  'none' (default) | 'box' | 'L1'
 %   .alpha_R, .alpha_C       confidence-budget split (alpha_R + alpha_C = alpha_set);
@@ -54,8 +56,14 @@ if ~isfield(opts, 'precomputed_distY'), opts.precomputed_distY = {}; end
 use_consistency_slack = ~strcmp(opts.consistency_slack_kind, 'none');
 
 use_fast = strcmp(opts.backend, 'fast');
+opts.learning_style = lower(opts.learning_style);
+if ~ismember(opts.learning_style, {'rm', 'prm'})
+    error('run_stage_ii:UnknownLearningStyle', ...
+        'Unknown learning_style "%s". Use "rm" or "prm".', opts.learning_style);
+end
+use_prm = strcmp(opts.learning_style, 'prm');
 
-cfg.learning_style = 'rm';
+cfg.learning_style = opts.learning_style;
 numdst_t = 1;
 numdst_t_obs = numdst_t;
 
@@ -128,7 +136,11 @@ for maxiter_index = 1:n_iters
         fprintf('[Stage II] iter %d/%d: maxiters=%dk, learning...', ...
             maxiter_index, n_iters, maxiters/1000);
         t_learn = tic;
-        [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        if use_prm
+            [distY_time, ~] = learn_mod_prm(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        else
+            [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        end
         action_distribution = distY_time;
         distY_time_all{maxiter_index} = distY_time;
         t_learn_val = toc(t_learn);
@@ -251,6 +263,7 @@ results.maxiters_values = opts.maxiters_values;
 results.gridparamV_all = gridparamV_all;
 results.alpha_set = opts.alpha_set;
 results.switch_eps = opts.switch_eps;
+results.learning_style = opts.learning_style;
 results.NGridV = opts.NGridV;
 results.NGridM = opts.NGridM;
 results.timing = timing_all;

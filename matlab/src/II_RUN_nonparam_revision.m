@@ -3,6 +3,10 @@
 % Runs nonparametric identification for s = {5, 10, 20, 50}, collects
 % timing for cost table, generates SVM boundary plots and CDF envelopes.
 %
+% Uses Niccolo's corrected adversarial full-feedback radius
+% (switch_eps = 10). Older outputs with tag "fast" were produced under
+% switch_eps = 1 and should be treated as stale for the revision.
+%
 % Strategy: two passes
 %   Pass 1 (adaptive/fast): small grid (1000 candidates), all s values,
 %          all iteration counts — gives a sense of where things stand.
@@ -34,14 +38,16 @@ if pass == 1
     grid_scale = struct('K_local', 100, 'K_global', 800, 'K_spiky', 100);
     svm_quality = 'draft';
     maxiters_values = [500000, 1000000, 2000000, 4000000];
-    tag = 'fast';
+    tag = 'fast_R1';
 elseif pass == 2
     % Production: full grids
     grid_scale = struct('K_local', 1000, 'K_global', 9000, 'K_spiky', 200);
     svm_quality = 'final';
     maxiters_values = [500000, 1000000, 2000000, 4000000];
-    tag = 'prod';
+    tag = 'prod_R1';
 end
+
+switch_eps = 10;
 
 %% Run for each s value
 all_results = cell(numel(s_values), 1);
@@ -57,7 +63,7 @@ for si = 1:numel(s_values)
     stage_opts = struct();
     stage_opts.maxiters_values = maxiters_values;
     stage_opts.alpha_set = 0.05;
-    stage_opts.switch_eps = 1;
+    stage_opts.switch_eps = switch_eps;
     stage_opts.backend = 'fast';
 
     % Grid parameters — scale down for s>=20 to keep runtime manageable
@@ -147,6 +153,6 @@ df.report.write_cost_table(cost_table, ...
 
 %% Save workspace
 save(fullfile(paths.artifacts, sprintf('nonparam_revision_%s.mat', tag)), ...
-    'all_results', 'cost_table', 's_values', 'pass', '-v7.3');
+    'all_results', 'cost_table', 's_values', 'pass', 'switch_eps', '-v7.3');
 
 fprintf('\n========== All done (%s pass) ==========\n', tag);

@@ -163,14 +163,16 @@ for nd = 1:NGrid_lambda
         eps_fin = [repmat(eps_pl1, 1, a_dim), repmat(eps_pl2, 1, a_dim)];
     elseif marginal_mode
         % Marginal mode
-        if switch_eps_val == 1 || switch_eps_val == 3
+        if switch_eps_val == 1 || switch_eps_val == 3 || ...
+                switch_eps_val == 10 || switch_eps_val == 11
             eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, a_dim) .* repmat(eps_vec, 1, a_dim);
         else
             eps_fin = repmat(eps_vec, 1, a_dim);
         end
     else
         % Joint mode
-        if switch_eps_val == 1 || switch_eps_val == 3 || switch_eps_val == 4
+        if switch_eps_val == 1 || switch_eps_val == 3 || switch_eps_val == 4 || ...
+                switch_eps_val == 10 || switch_eps_val == 11
             eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* repmat(eps_vec, 1, NAg*a_dim);
         else
             eps_fin = repmat(eps_vec, 1, NAg*a_dim);

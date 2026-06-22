@@ -160,7 +160,8 @@ for maxiter_index = 1:n_iters
         c_all = zeros(n_vars, NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:, nd);
-            if opts.switch_eps == 1 || opts.switch_eps == 3 || opts.switch_eps == 4
+            if opts.switch_eps == 1 || opts.switch_eps == 3 || opts.switch_eps == 4 || ...
+                    opts.switch_eps == 10 || opts.switch_eps == 11
                 eps_fin = repmat(sqrt(marg_distrib_grid(:,nd))', 1, NAg*a_dim) .* ...
                           repmat(eps_vec, 1, NAg*a_dim);
             else
@@ -224,6 +225,8 @@ results.distribution_parameters = distribution_parameters;
 results.distY_time_all = distY_time_all;
 results.maxiters_values = opts.maxiters_values;
 results.alpha_set = opts.alpha_set;
+results.switch_eps = opts.switch_eps;
+results.learning_style = opts.learning_style;
 results.timing = timing;
 results.cfg = cfg;
 results.grid_opts = grid_opts;
