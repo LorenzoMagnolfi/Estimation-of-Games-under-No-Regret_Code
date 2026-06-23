@@ -196,6 +196,15 @@ for ei = 1:n_eta
 end
 fprintf('\n  Worst-case (no demand info): %d identified (%.1f%%)\n', n_id_wc, 100*n_id_wc/NGrid);
 
+% Save the .mat BEFORE figures so a headless EPS/SVM error cannot discard the
+% night's SOCP solve (audit B2). The end-of-script save is redundant.
+if ~exist(fullfile(paths.output, 'artifacts'), 'dir'), mkdir(fullfile(paths.output, 'artifacts')); end
+save(fullfile(paths.output, 'artifacts', sprintf('demand_identification_%s.mat', method_tag)), ...
+    'eta_grid', 'eta_true', 'VV_by_eta', 'VV_wc', 'distpars', ...
+    'distribution_parameters', 'n_identified', 'n_id_wc', ...
+    'K_by_eta', 'eps_by_eta', 'K_worstcase', 'eps_worstcase', ...
+    'timing_eta', 'T', 's_val', 'confid', 'NGrid', 'switch_eps', 'method_tag');
+
 %% ======== Step 6: Profile plot ========
 fig1 = figure('Position', [100 100 700 400]);
 bar(eta_grid, 100 * n_identified / NGrid, 0.7, 'FaceColor', [0.3 0.6 0.9]);

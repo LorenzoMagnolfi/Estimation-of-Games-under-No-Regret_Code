@@ -30,7 +30,7 @@ sigma2 = 1*eye(NPlayers);
 
 %% Configuration — edit these for Pass 1 vs Pass 2
 % Pass 1 (fast exploration):
-pass = 1;  % 1 = fast, 2 = production
+pass = 2;  % 1 = fast, 2 = production  (overnight batch = production)
 s_values = [5, 10, 20];  % s=50 in separate run (long)
 
 if pass == 1
@@ -104,7 +104,13 @@ for si = 1:numel(s_values)
         cost_table = [cost_table; row]; %#ok<AGROW>
     end
 
-    %% Plot: scatter + SVM for each iteration count
+    % Incremental save after each s (audit B3): a later-s figure or compute
+    % error cannot erase earlier completed s-results.
+    save(fullfile(paths.artifacts, sprintf('nonparam_revision_%s.mat', tag)), ...
+        'all_results', 'cost_table', 's_values', 'pass', 'switch_eps', '-v7.3');
+
+    %% Plot: scatter + SVM for each iteration count (best-effort; never abort)
+    try
     for mi = 1:numel(maxiters_values)
         VV = results.VV_all(mi, :);
         distpars = squeeze(results.distpars_all(mi, :, :));
@@ -144,6 +150,9 @@ for si = 1:numel(s_values)
             struct('true_distrib', cfg.marg_distrib, ...
                    'save_path', fullfile(paths.figures_ii, ...
                        sprintf('nonparam_CDF_%s_s%d_%dk', tag, s, iteration_k))));
+    end
+    catch figERR
+        warning('nonparam:figs', 'Figures for s=%d failed (continuing): %s', s, figERR.message);
     end
 end
 

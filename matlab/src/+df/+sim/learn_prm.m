@@ -19,9 +19,17 @@ function [distY_time, distY_time_obs, final_regret, Pl1_EmpRegr, Pl2_EmpRegr] = 
 %
 %   cfg must contain: .A, .AA, .NPlayers, .alpha, .type_space, .sigma2, .mu
 
-% Exploration floor: ensures mixing probs bounded away from 0
-% (required for importance-weighted estimator to be well-defined)
-GAMMA_FLOOR = 0.01;
+% Exploration floor (SIM-2): EXP3-style horizon-decaying floor by default; a
+% constant fallback is available via cfg.prm_gamma_floor_mode = 'const'. A
+% decaying floor is what makes realized regret -> 0 as the horizon grows; a
+% fixed 0.01 floor inflates realized regret and biases the bandit identified
+% set wider (audit SIM-2). The floor still keeps mixing probs bounded away from
+% 0 so the importance-weighted estimator stays well-defined.
+floor_mode = 'decay';
+if isfield(cfg, 'prm_gamma_floor_mode') && ~isempty(cfg.prm_gamma_floor_mode)
+    floor_mode = cfg.prm_gamma_floor_mode;
+end
+GAMMA_FLOOR_CONST = 0.01;  % legacy constant floor
 
 % Unpack cfg fields
 A         = cfg.A;
@@ -145,8 +153,18 @@ for t = 1:(N + M)
                 gamma_j = proxy_reg / sum(proxy_reg);
             end
 
-            % Apply exploration floor
-            gamma_j = (1 - nAct * GAMMA_FLOOR) * gamma_j + GAMMA_FLOOR;
+            % Apply exploration floor (SIM-2: EXP3-style decay, or constant fallback).
+            % decay: gamma_floor = min(1/|A|, sqrt(ln|A| / (|A| * tau))), tau =
+            % iterations into the learning phase. min(1/nAct, .) keeps
+            % (1 - nAct*gamma_floor) >= 0 (pure uniform exploration at tau = 1).
+            switch floor_mode
+                case 'decay'
+                    tau = max(1, t - N);
+                    gamma_floor = min(1/nAct, sqrt(log(nAct) / (nAct * tau)));
+                otherwise
+                    gamma_floor = GAMMA_FLOOR_CONST;
+            end
+            gamma_j = (1 - nAct * gamma_floor) * gamma_j + gamma_floor;
             gamma(:, type_indices(j), j) = gamma_j;
 
             % Sample action

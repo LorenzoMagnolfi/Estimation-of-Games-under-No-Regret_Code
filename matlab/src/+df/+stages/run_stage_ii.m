@@ -229,7 +229,7 @@ for maxiter_index = 1:n_iters
             fprintf('  Solved %d/%d points (%.1f%%)\n', n_solved, NGrid, 100*n_solved/NGrid);
         else
             fprintf('  Full grid solve (%d points):\n', NGrid);
-            cvx_opts = struct('verbose', true, 'solver', 'sedumi');
+            cvx_opts = struct('verbose', false, 'solver', 'sedumi');  % overnight: quiet SOCP (VV is saved regardless)
             [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
         end
         t_solve_val = toc(t_solve);

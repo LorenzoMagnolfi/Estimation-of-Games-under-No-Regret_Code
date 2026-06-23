@@ -61,6 +61,13 @@ disp(summary_table);
 if ~exist(paths.tables_ii, 'dir'), mkdir(paths.tables_ii); end
 writetable(summary_table, fullfile(paths.tables_ii, 'prm_comparison_s5.csv'));
 
+% Save the .mat BEFORE figures so a headless figure error cannot discard the
+% night's full-grid SOCP solve (audit B1). The end-of-script save is redundant.
+if ~exist(paths.artifacts, 'dir'), mkdir(paths.artifacts); end
+save(fullfile(paths.artifacts, 'prm_comparison_s5.mat'), ...
+    'results_rm', 'results_prm', 'summary_table', ...
+    'stage_opts_rm', 'stage_opts_prm', '-v7.3');
+
 %% Figures
 if ~exist(paths.figures_ii, 'dir'), mkdir(paths.figures_ii); end
 
