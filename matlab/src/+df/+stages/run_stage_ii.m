@@ -42,6 +42,15 @@ if ~isfield(opts, 'backend'),         opts.backend = 'cvx'; end
 if ~isfield(opts, 'use_parfor'),      opts.use_parfor = true; end
 if ~isfield(opts, 'adaptive'),        opts.adaptive = true; end
 if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
+if ~isfield(opts, 'require_corrected'), opts.require_corrected = false; end
+% SIM-5: guard against the deprecated pre-correction radius silently entering
+% revision artifacts. Revision runners set require_corrected = true.
+if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11])
+    error('run_stage_ii:UncorrectedEps', ...
+        ['require_corrected=true but switch_eps=%d. Use 10 (full-feedback Hedge) or ' ...
+         '11 (bandit EXP3); switch_eps=1 is the deprecated pre-correction radius.'], ...
+        opts.switch_eps);
+end
 % Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
 %   .consistency_slack_kind  'none' (default) | 'box' | 'L1'
 %   .alpha_R, .alpha_C       confidence-budget split (alpha_R + alpha_C = alpha_set);

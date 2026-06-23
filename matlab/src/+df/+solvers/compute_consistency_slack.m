@@ -32,7 +32,11 @@ switch kind
     case 'box'
         r = sqrt(log(2 * M_C / alpha_C) / (2 * N));
     case 'L1'
-        r = sqrt(2 * log((2^M_C - 2) / alpha_C) / N);
+        % SIM-6: log-domain to avoid 2^M_C overflowing to Inf for large M_C.
+        % log(2^M_C - 2) = M_C*log(2) + log1p(-2^(1-M_C)); the correction term
+        % underflows harmlessly to 0, leaving M_C*log(2) for large M_C.
+        log_num = M_C * log(2) + log1p(-2^(1 - M_C));
+        r = sqrt(2 * (log_num - log(alpha_C)) / N);
     otherwise
         error('compute_consistency_slack:badKind', ...
             'kind must be ''box'' or ''L1'', got ''%s''.', kind);

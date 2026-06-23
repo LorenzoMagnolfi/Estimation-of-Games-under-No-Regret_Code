@@ -131,9 +131,12 @@ fprintf('\n[Worst-case] Computing K_max bound (no demand knowledge)...\n');
 % K_worst = max over all (a,t) of |u(a,t)| = max(actions) - min(types) for the profit
 % More precisely: K_worst(t) = max_a [1*(a_i - t_i)] - min_a [0*(a_i - t_i)]
 %                             = max(actions) - t_i   (since min is 0)
-% But K = max_a u - min_a u over ALL action PROFILES, and sale prob affects both.
-% Conservative: K_worst = max(actions_vec) (assuming sale prob = 1 on best action)
-K_worstcase = max(actions_vec);
+% SIM-4: demand-free worst-case K = the largest per-type payoff RANGE over all
+% candidate demand parameters. K_by_eta(ei,:) = max(Pi(eta)) - min(Pi(eta)) per
+% type, already filled in the eta loop above, so max(K_by_eta(:)) is a genuine
+% range over the eta grid rather than the loose max(actions_vec)=8 (which assumed
+% sale prob = 1 on the best action and a zero minimum payoff).
+K_worstcase = max(K_by_eta(:));
 eps_worstcase = K_worstcase * sqrt(2 * log(length(actions_vec))) / (confid * sqrt(T));
 fprintf('  K_worst = %.2f, eps_worst = %.6f\n', K_worstcase, eps_worstcase);
 

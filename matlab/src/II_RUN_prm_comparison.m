@@ -32,7 +32,10 @@ stage_opts_base.NGridV = 100;
 stage_opts_base.NGridM = 100;
 stage_opts_base.alpha_set = 0.05;
 stage_opts_base.backend = 'fast';
-stage_opts_base.adaptive = true;
+stage_opts_base.adaptive = false;   % SIM-1b: inference requires the full SOCP solve.
+                                    % solve_grid_adaptive is exploration-only (coarse subgrid
+                                    % + nearest-neighbor fill) and not valid for the reported set.
+stage_opts_base.require_corrected = true;  % SIM-5: assert switch_eps in {10,11}.
 stage_opts_base.consistency_slack_kind = 'none';
 
 %% Run 1: regret matching with full-feedback radius
