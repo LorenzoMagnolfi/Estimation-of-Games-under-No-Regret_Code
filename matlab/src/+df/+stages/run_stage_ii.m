@@ -201,8 +201,13 @@ for maxiter_index = 1:n_iters
         fprintf('  Building objectives (%d grid points)...', NGrid);
         t_obj = tic;
 
-        % Epsilon for this iteration count (or fixed-radius override)
-        confid = opts.alpha_set(1);
+        % Epsilon for this iteration count (or fixed-radius override).
+        % Use the OBEDIENCE budget alpha_R, not the full alpha: when a consistency
+        % slack reserves alpha_C, the regret/obedience radius must be computed at
+        % alpha_R = alpha - alpha_C so the union bound delivers 1 - alpha overall
+        % (Theorem CR). alpha_R defaults to alpha_set, so exact-consistency runs
+        % (alpha_C = 0) are unchanged.
+        confid = opts.alpha_R(1);
         if ~isempty(opts.eps_override)
             if isscalar(opts.eps_override)
                 eps_vec = opts.eps_override * ones(1, s);
