@@ -30,9 +30,12 @@ s = 5;
 
 A_values = [5, 10, 20];                                  % capped at 20
 maxiters_values = [500000, 1000000, 2000000, 4000000];
-NGridV = 100;
-NGridM = 100;
 switch_eps = 10;
+% (mu,sigma) grid scales DOWN with |A|, set per-|A| in the loop below. The SOCP
+% cost explodes with |A| (smoke: |A|=20 ~16.5s/solve vs |A|=10 ~0.8s), so a full
+% 100x100 grid at |A|=20 would take ~days. A coarser grid at large |A| keeps each
+% cell feasible overnight; the area metric is in (mu,sigma^2) units so it stays
+% comparable across grid resolutions.
 IDTOL = 1e-8;     % SIM-3 precision-matched identified-set tolerance (SeDuMi ~1e-8)
 
 n_A = numel(A_values);
@@ -43,6 +46,11 @@ sweep_rows = [];
 for ai = 1:n_A
     A = A_values(ai);
     actions_vec = linspace(4, 8, A)';
+    switch A
+        case 5,  NGridV = 60; NGridM = 60;
+        case 10, NGridV = 40; NGridM = 40;
+        otherwise, NGridV = 20; NGridM = 20;   % |A| >= 20: SOCP very slow, coarsen
+    end
     fprintf('\n===== |A| = %d (prices %.3f .. %.3f, step %.3f) =====\n', ...
         A, actions_vec(1), actions_vec(end), actions_vec(2) - actions_vec(1));
 
