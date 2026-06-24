@@ -1,15 +1,23 @@
-function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision)
+function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision, cons_l1)
 % SOLVE_SOCP_CVX  Solve a single SOCP instance via CVX.
 %
 %   [optval, status] = df.solvers.solve_socp_cvx(cstr, c)
 %   [optval, status] = df.solvers.solve_socp_cvx(cstr, c, solver_name)
 %   [optval, status] = df.solvers.solve_socp_cvx(cstr, c, solver_name, precision)
+%   [optval, status] = df.solvers.solve_socp_cvx(cstr, c, solver_name, precision, cons_l1)
 %
 %   Inputs
 %     cstr         constraints struct from build_constraints[_marginal]
 %     c            objective vector  (maximize  -c'x)
 %     solver_name  optional: 'sedumi', 'sdpt3', or '' (default SDPT3)
 %     precision    optional: 'default', 'low', 'medium', 'high' (default 'default')
+%     cons_l1      optional struct for the Bretagnolle-Huber-Carol L1 consistency
+%                  relaxation: .r (L1 radius) and .idx (indices of the
+%                  consistency-equality dual block in x). Relaxing the
+%                  consistency equality to the L1 ball ||m_nu - p||_1 <= r adds
+%                  the ball's support function, r * ||y_con||_inf, to the dual
+%                  objective. With r <= 0 (or empty) the program is the exact-
+%                  consistency one, so cons_l1.r = 0 reproduces exact consistency.
 %
 %   Outputs
 %     optval   optimal value (-c'x*), or 100 if infeasible/failed
@@ -21,6 +29,10 @@ end
 if nargin < 4 || isempty(precision)
     precision = 'default';
 end
+if nargin < 5
+    cons_l1 = [];
+end
+use_l1 = ~isempty(cons_l1) && cons_l1.r > 0;
 
 n = size(c, 1);
 
@@ -39,7 +51,14 @@ cvx_begin quiet
 
     variable x(n);
 
-    maximize( -c' * x )
+    if use_l1
+        % L1 (Bretagnolle-Huber-Carol) consistency relaxation: subtract the
+        % support function of the L1 ball, r * inf-norm of the consistency-
+        % equality dual block. Weakly lowers the optimum (enlarges the set).
+        maximize( -c' * x - cons_l1.r * norm( x(cons_l1.idx), Inf ) )
+    else
+        maximize( -c' * x )
+    end
 
     subject to
     cstr.B_EQ   * x == cstr.beq;

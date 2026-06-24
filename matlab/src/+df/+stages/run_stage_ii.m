@@ -77,7 +77,20 @@ if ~isfield(opts, 'fixed_gridparamM'), opts.fixed_gridparamM = []; end
 % preallocation (NGridV+1)*(NGridM+1) matches what build_param_grid returns.
 if ~isempty(opts.fixed_gridparamV), opts.NGridV = numel(opts.fixed_gridparamV) - 1; end
 if ~isempty(opts.fixed_gridparamM), opts.NGridM = numel(opts.fixed_gridparamM) - 1; end
-use_consistency_slack = ~strcmp(opts.consistency_slack_kind, 'none');
+if ~ismember(opts.consistency_slack_kind, {'none', 'box', 'L1'})
+    error('run_stage_ii:BadSlackKind', ...
+        'consistency_slack_kind must be ''none'', ''box'', or ''L1'' (got ''%s'').', ...
+        opts.consistency_slack_kind);
+end
+use_box = strcmp(opts.consistency_slack_kind, 'box');
+use_l1  = strcmp(opts.consistency_slack_kind, 'L1');
+use_consistency_slack = use_box || use_l1;
+% L1 modifies the per-point CVX objective (the L1-ball support function), so it
+% needs the full grid solve, not the adaptive subgrid.
+if use_l1 && opts.adaptive
+    error('run_stage_ii:L1Adaptive', ...
+        'consistency_slack_kind=''L1'' requires adaptive=false (full grid solve).');
+end
 
 use_fast = strcmp(opts.backend, 'fast');
 opts.learning_style = lower(opts.learning_style);
@@ -117,11 +130,13 @@ gridparamV_all = cell(n_iters, 1);
 timing_all = struct();
 
 % Build constraints ONCE (shared across all iterations and grid points).
-% When consistency slack is on, the matrix STRUCTURE depends on the slack flag
-% but not on its numeric value, so we pass any positive dummy here; the actual
-% r_N is injected into c_all per iteration below.
+% The BOX slack changes the matrix STRUCTURE (consistency equality -> upper/lower
+% box inequalities), so it needs the box build with a positive dummy; r_N is
+% injected into c_all per iteration below. The L1 slack keeps the EXACT structure
+% (consistency stays an equality) and instead adds the L1-ball support function to
+% the per-point objective at solve time, so it uses the exact build.
 if use_fast
-    if use_consistency_slack
+    if use_box
         cstr = df.solvers.build_constraints(type_space, action_space, Pi, 1.0);
     else
         cstr = df.solvers.build_constraints(type_space, action_space, Pi);
@@ -131,6 +146,12 @@ if use_fast
     NAg = cstr.NAg;
     s2 = cstr.s2;
     T_sorted = cstr.T_sorted;
+    % L1 slack: indices of the consistency-equality dual block in the dual vector
+    % x. The objective is ordered [cone(dim_u); action-marginal(NA); consistency
+    % (s2); mass(1); obedience], so the consistency duals start after dim_u + NA.
+    if use_l1
+        cons_idx = dim_u + cstr.NA + (1:s2);
+    end
     fprintf('[Stage II] Fast backend: CVX+SeDuMi (precomputed objectives)');
     if opts.adaptive, fprintf(' + adaptive'); end
     if use_consistency_slack
@@ -243,14 +264,15 @@ for maxiter_index = 1:n_iters
             bmarg = Psi(:,nd);
             eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
                       repmat(eps_vec, 1, NAg*a_dim);
-            if use_consistency_slack
-                % New constraint order:
+            if use_box
+                % Box constraint order:
                 %   Meq:  action marginal (NA), total mass (1)
                 %   Mineq: consistency_upper (s2), consistency_lower (s2), obedience
                 c_all(:,nd) = [zeros(1, dim_u), action_distribution(:,1)', 1, ...
                                (bmarg + r_N)', (-bmarg + r_N)', eps_fin]';
             else
-                % Legacy order: [cone; action_dist; bmarg; 1; eps_fin]
+                % Exact / L1 order: [cone; action_dist; bmarg; 1; eps_fin].
+                % L1 keeps this exact objective and adds its dual term at solve time.
                 c_all(:,nd) = [zeros(1, dim_u), action_distribution(:,1)', ...
                                bmarg', 1, eps_fin]';
             end
@@ -267,6 +289,10 @@ for maxiter_index = 1:n_iters
         else
             fprintf('  Full grid solve (%d points):\n', NGrid);
             cvx_opts = struct('verbose', false, 'solver', 'sedumi');  % overnight: quiet SOCP (VV is saved regardless)
+            if use_l1
+                cvx_opts.cons_l1_r   = r_N;        % BHC L1 radius (compute_consistency_slack 'L1')
+                cvx_opts.cons_l1_idx = cons_idx;   % consistency-equality dual block in x
+            end
             [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
         end
         t_solve_val = toc(t_solve);

@@ -28,13 +28,20 @@ precision = 'default';
 if isfield(opts, 'precision'), precision = opts.precision; end
 verbose = ~isfield(opts, 'verbose') || opts.verbose;
 
+% Optional L1 (Bretagnolle-Huber-Carol) consistency relaxation, passed through
+% to solve_socp_cvx (see df.stages.run_stage_ii for r and the dual index set).
+cons_l1 = [];
+if isfield(opts, 'cons_l1_r') && ~isempty(opts.cons_l1_r) && opts.cons_l1_r > 0
+    cons_l1 = struct('r', opts.cons_l1_r, 'idx', opts.cons_l1_idx);
+end
+
 NGrid = size(c_all, 2);
 
 g = zeros(NGrid, 1);
 t_start = tic;
 
 for nd = 1:NGrid
-    [g(nd), ~] = df.solvers.solve_socp_cvx(cstr, c_all(:,nd), solver_name, precision);
+    [g(nd), ~] = df.solvers.solve_socp_cvx(cstr, c_all(:,nd), solver_name, precision, cons_l1);
     if verbose && mod(nd, 500) == 0
         elapsed = toc(t_start);
         fprintf('  %d/%d (%.1fs, ETA %.0fs)\n', nd, NGrid, ...
