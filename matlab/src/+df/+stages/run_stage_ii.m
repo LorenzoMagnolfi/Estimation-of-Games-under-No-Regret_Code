@@ -62,15 +62,31 @@ if ~isfield(opts, 'consistency_slack_kind'), opts.consistency_slack_kind = 'none
 if ~isfield(opts, 'alpha_R'), opts.alpha_R = opts.alpha_set; end
 if ~isfield(opts, 'alpha_C'), opts.alpha_C = 0; end
 if ~isfield(opts, 'precomputed_distY'), opts.precomputed_distY = {}; end
+% Fixed-radius mode (D1 fixed-eps panel, T1 sharp-set volume): when nonempty,
+% the SAME epsilon vector is used at every N instead of compute_epsilon(maxiters).
+% Scalar broadcasts to 1 x s; otherwise must be 1 x s (per-type, as compute_epsilon).
+if ~isfield(opts, 'eps_override'), opts.eps_override = []; end
+% Fixed-grid mode (area-vs-N comparisons): when nonempty, these (mu,sigma)
+% multiplier grids are used for EVERY N so the identified-set AREA is comparable
+% across horizons (the default grid narrows with N, which is fine for per-N region
+% plots but not for an area-vs-N curve). Follow the [1; linspace(...)'] convention:
+% the leading 1 is the true-parameter multiplier dropped by the (2:end) plot slice.
+if ~isfield(opts, 'fixed_gridparamV'), opts.fixed_gridparamV = []; end
+if ~isfield(opts, 'fixed_gridparamM'), opts.fixed_gridparamM = []; end
+% When a fixed grid is supplied, derive the grid sizes from it so the
+% preallocation (NGridV+1)*(NGridM+1) matches what build_param_grid returns.
+if ~isempty(opts.fixed_gridparamV), opts.NGridV = numel(opts.fixed_gridparamV) - 1; end
+if ~isempty(opts.fixed_gridparamM), opts.NGridM = numel(opts.fixed_gridparamM) - 1; end
 use_consistency_slack = ~strcmp(opts.consistency_slack_kind, 'none');
 
 use_fast = strcmp(opts.backend, 'fast');
 opts.learning_style = lower(opts.learning_style);
-if ~ismember(opts.learning_style, {'rm', 'prm'})
+if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled'})
     error('run_stage_ii:UnknownLearningStyle', ...
-        'Unknown learning_style "%s". Use "rm" or "prm".', opts.learning_style);
+        'Unknown learning_style "%s". Use "rm", "prm", or "pooled".', opts.learning_style);
 end
 use_prm = strcmp(opts.learning_style, 'prm');
+use_pooled = strcmp(opts.learning_style, 'pooled');
 
 cfg.learning_style = opts.learning_style;
 numdst_t = 1;
@@ -147,6 +163,8 @@ for maxiter_index = 1:n_iters
         t_learn = tic;
         if use_prm
             [distY_time, ~] = learn_mod_prm(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        elseif use_pooled
+            [distY_time, ~] = learn_mod_pooled(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         else
             [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         end
@@ -156,15 +174,21 @@ for maxiter_index = 1:n_iters
         fprintf(' %.1fs\n', t_learn_val);
     end
 
-    %% Parameter grid (iteration-dependent variance range)
-    if maxiter_index == 1
+    %% Parameter grid (iteration-dependent variance range, unless fixed grid given)
+    if ~isempty(opts.fixed_gridparamV)
+        gridparamV = opts.fixed_gridparamV(:);   % same grid at every N (area-vs-N)
+    elseif maxiter_index == 1
         gridparamV = [1; linspace(0.15, sigma2(1,1)*10, opts.NGridV)'];
     elseif maxiter_index == 2
         gridparamV = [1; linspace(0.15, sigma2(1,1)*6, opts.NGridV)'];
     else
         gridparamV = [1; linspace(0.15, sigma2(1,1)*3.5, opts.NGridV)'];
     end
-    gridparamM = [1; linspace(0.55, mu(1,1)*0.5, opts.NGridM)'];
+    if ~isempty(opts.fixed_gridparamM)
+        gridparamM = opts.fixed_gridparamM(:);
+    else
+        gridparamM = [1; linspace(0.55, mu(1,1)*0.5, opts.NGridM)'];
+    end
     gridparamV_all{maxiter_index} = gridparamV;
 
     [distpars, distribution_parameters] = df.report.build_param_grid(mu, sigma2, gridparamM, gridparamV);
@@ -177,9 +201,17 @@ for maxiter_index = 1:n_iters
         fprintf('  Building objectives (%d grid points)...', NGrid);
         t_obj = tic;
 
-        % Epsilon for this iteration count
+        % Epsilon for this iteration count (or fixed-radius override)
         confid = opts.alpha_set(1);
-        eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
+        if ~isempty(opts.eps_override)
+            if isscalar(opts.eps_override)
+                eps_vec = opts.eps_override * ones(1, s);
+            else
+                eps_vec = opts.eps_override(:)';   % expect 1 x s
+            end
+        else
+            eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
+        end
 
         % Psi (joint prior) and marginal distributions
         Psi = zeros(s2, NGrid);
@@ -272,6 +304,7 @@ results.maxiters_values = opts.maxiters_values;
 results.gridparamV_all = gridparamV_all;
 results.alpha_set = opts.alpha_set;
 results.switch_eps = opts.switch_eps;
+results.eps_override = opts.eps_override;   % [] unless fixed-radius mode (D1/T1)
 results.learning_style = opts.learning_style;
 results.NGridV = opts.NGridV;
 results.NGridM = opts.NGridM;
