@@ -10,6 +10,23 @@
 fprintf('=== NEXTWAVE_SMOKE_START ===\n');
 ok = true;
 
+%% (0) Lint pass: syntax/undefined-variable check on all new/edited files
+%  checkcode does NOT execute the runner scripts, so it catches typos the
+%  machinery smoke below cannot (the smoke exercises the driver/learners, not
+%  the II_RUN_* scripts end to end).
+lint_files = {'II_RUN_fixed_eps_panel.m','II_RUN_pooled_vs_type.m', ...
+    'II_RUN_sharp_set_volume.m','learn_mod_pooled.m', ...
+    fullfile('+df','+sim','learn_pooled.m'), ...
+    fullfile('+df','+stages','run_stage_ii.m')};
+for i = 1:numel(lint_files)
+    m = checkcode(lint_files{i}, '-string');
+    if isempty(strtrim(m))
+        fprintf('CHECKCODE_CLEAN %s\n', lint_files{i});
+    else
+        fprintf('CHECKCODE %s:\n%s\n', lint_files{i}, m);
+    end
+end
+
 NPlayers = 2; alpha = -(1/3); actions_vec = [4;5;6;7;8];
 mu = 3*ones(NPlayers,1); sigma2 = eye(NPlayers); s = 5;
 confid = 0.05; switch_eps = 10;
