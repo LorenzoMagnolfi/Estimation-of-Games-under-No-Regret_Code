@@ -68,7 +68,9 @@ save(fullfile(paths.artifacts, 'prm_comparison_s5.mat'), ...
     'results_rm', 'results_prm', 'summary_table', ...
     'stage_opts_rm', 'stage_opts_prm', '-v7.3');
 
-%% Figures
+%% Figures — SKIPPED on the server (regenerated locally from the .mat). Avoids
+% the headless contour-render hang that forced the scancel that corrupted run 1.
+if false
 if ~exist(paths.figures_ii, 'dir'), mkdir(paths.figures_ii); end
 
 fig_all = figure('Color', 'w', 'Position', [50 100 1600 720]);
@@ -108,11 +110,12 @@ sgtitle('R1.1.c: full feedback versus bandit feedback in the running example', .
     'Interpreter', 'latex', 'FontSize', 13);
 saveas(fig_last, fullfile(paths.figures_ii, 'prm_comparison_s5_4M.png'));
 saveas(fig_last, fullfile(paths.figures_ii, 'prm_comparison_s5_4M.pdf'));
+end  % if false — server figures skipped (regenerated locally)
 
-%% Save artifact
-save(fullfile(paths.artifacts, 'prm_comparison_s5.mat'), ...
-    'results_rm', 'results_prm', 'summary_table', ...
-    'stage_opts_rm', 'stage_opts_prm', '-v7.3');
+%% Artifact already saved BEFORE the figures above (single authoritative save).
+% The redundant end-save was removed: re-saving a 99 MB .mat here risks a
+% corrupt/truncated file if the job is killed mid-write (which is exactly what
+% corrupted the first run when its hung figure phase was scancelled).
 
 fprintf('\n========== PRM comparison complete ==========\n');
 fprintf('Artifact: %s\n', fullfile(paths.artifacts, 'prm_comparison_s5.mat'));
