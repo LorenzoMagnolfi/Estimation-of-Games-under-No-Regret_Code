@@ -66,6 +66,9 @@ for ai = 1:n_A
     opts.adaptive          = false;       % inference-grade
     opts.require_corrected = true;        % SIM-5 guard
     opts.learning_style    = 'rm';        % full feedback
+    opts.alpha_R           = 0.9 * 0.05;  % 0.045  obedience budget
+    opts.alpha_C           = 0.1 * 0.05;  % 0.005  consistency budget
+    opts.consistency_slack_kind = 'L1';   % paper-exact BHC consistency set
 
     results = df.stages.run_stage_ii(cfg, opts);
     results_by_A{ai} = results;
@@ -95,8 +98,9 @@ for ai = 1:n_A
             'area_musigma', area, 'hit_boundary', hit_boundary)]; %#ok<AGROW>
     end
 
-    % Incremental save (data first; no figures on the server).
-    save(fullfile(paths.artifacts, 'action_grid_sweep_R1.mat'), ...
+    % Incremental save (data first; no figures on the server). Writes to the L1
+    % artifact so the earlier exact-consistency action_grid_sweep_R1.mat survives.
+    save(fullfile(paths.artifacts, 'action_grid_sweep_L1.mat'), ...
         'results_by_A', 'sweep_rows', 'A_values', 'maxiters_values', ...
         'switch_eps', 'IDTOL', '-v7.3');
     fprintf('  saved incremental artifact (through |A| = %d)\n', A);

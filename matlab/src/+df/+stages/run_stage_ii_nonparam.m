@@ -53,6 +53,13 @@ if ~isfield(opts, 'backend'),         opts.backend = 'fast'; end
 if ~isfield(opts, 'solver'),          opts.solver = 'sedumi'; end
 if ~isfield(opts, 'precision'),       opts.precision = 'default'; end
 if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
+% Consistency-slack options (default: exact consistency). The nonparam stage shares
+% the parametric SOCP layout, so the BHC-L1 relaxation is the same one-term dual add
+% (df.stages.run_stage_ii): obedience radius at alpha_R, consistency set at alpha_C.
+if ~isfield(opts, 'consistency_slack_kind'), opts.consistency_slack_kind = 'none'; end
+if ~isfield(opts, 'alpha_R'), opts.alpha_R = opts.alpha_set; end
+if ~isfield(opts, 'alpha_C'), opts.alpha_C = 0; end
+use_l1 = strcmp(opts.consistency_slack_kind, 'L1');
 
 use_fast = strcmp(opts.backend, 'fast');
 use_prm = strcmp(opts.learning_style, 'prm');
@@ -91,6 +98,9 @@ if use_fast
     a_dim = cstr.a;
     NAg = cstr.NAg;
     s2 = cstr.s2;
+    if use_l1
+        cons_idx = dim_u + cstr.NA + (1:s2);  % consistency-equality dual block in x
+    end
 
     % Precompute Psi (joint prior) and marg_distrib for ALL grid points
     % (grid-invariant across iterations — only depends on candidate distributions)
@@ -151,9 +161,12 @@ for maxiter_index = 1:n_iters
         fprintf('  Building objectives (%d grid points)...', NGrid);
         t_obj = tic;
 
-        % Epsilon for this iteration count
-        confid = opts.alpha_set(1);
+        % Epsilon for this iteration count (obedience budget alpha_R; see run_stage_ii)
+        confid = opts.alpha_R(1);
         eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
+        if use_l1
+            r_N = df.solvers.compute_consistency_slack(s2, opts.alpha_C, maxiters, 'L1');
+        end
 
         % Build all objective vectors
         n_vars = size(cstr.B_EQ, 2);
@@ -177,6 +190,10 @@ for maxiter_index = 1:n_iters
         fprintf('  Full grid solve (%d points):\n', NGrid);
         t_solve = tic;
         cvx_opts = struct('verbose', true, 'solver', opts.solver);
+        if use_l1
+            cvx_opts.cons_l1_r   = r_N;
+            cvx_opts.cons_l1_idx = cons_idx;
+        end
         [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
         timing.solve(maxiter_index) = toc(t_solve);
         fprintf('  Solver: %.1fs, identified: %d/%d (%.1f%%)\n', ...
