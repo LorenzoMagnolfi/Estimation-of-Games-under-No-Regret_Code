@@ -1,4 +1,4 @@
-function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision, cons_l1)
+function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision, cons_l1, cons_clt)
 % SOLVE_SOCP_CVX  Solve a single SOCP instance via CVX.
 %
 %   [optval, status] = df.solvers.solve_socp_cvx(cstr, c)
@@ -32,7 +32,22 @@ end
 if nargin < 5
     cons_l1 = [];
 end
-use_l1 = ~isempty(cons_l1) && cons_l1.r > 0;
+if nargin < 6
+    cons_clt = [];
+end
+use_l1  = ~isempty(cons_l1)  && cons_l1.r > 0;
+use_clt = ~isempty(cons_clt) && cons_clt.rho > 0;
+
+% CLT (Niccolo Prop 4): relax the consistency equality to the chi-square ellipsoid
+% {m : N (m-p)' Sigma_p^+ (m-p) <= chi2}, with Sigma_p = diag(p) - p p' the
+% multinomial covariance at p = p_lambda (the consistency RHS, read from c). The
+% ellipsoid's support function is rho * ||Sigma_p^{1/2} y_con||_2, the dual term below.
+if use_clt
+    p = c(cons_clt.idx);
+    Sig = diag(p) - p * p';
+    Sig = (Sig + Sig') / 2;          % symmetrize against round-off
+    Sh = real(sqrtm(Sig));           % PSD matrix square root
+end
 
 n = size(c, 1);
 
@@ -56,6 +71,10 @@ cvx_begin quiet
         % support function of the L1 ball, r * inf-norm of the consistency-
         % equality dual block. Weakly lowers the optimum (enlarges the set).
         maximize( -c' * x - cons_l1.r * norm( x(cons_l1.idx), Inf ) )
+    elseif use_clt
+        % CLT chi-square ellipsoid consistency relaxation: subtract the ellipsoid's
+        % support function rho * ||Sigma_p^{1/2} y_con||_2.
+        maximize( -c' * x - cons_clt.rho * norm( Sh * x(cons_clt.idx), 2 ) )
     else
         maximize( -c' * x )
     end

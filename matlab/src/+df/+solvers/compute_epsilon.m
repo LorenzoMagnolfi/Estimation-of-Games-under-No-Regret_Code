@@ -37,7 +37,8 @@ Pi = cfg.Pi;
 NAct = cfg.NAct;
 
 % Kappa computation (shared across both modes)
-if switch_eps <= 1 || switch_eps == 3 || switch_eps == 4 || switch_eps == 10 || switch_eps == 11
+if switch_eps <= 1 || switch_eps == 3 || switch_eps == 4 || switch_eps == 10 || ...
+        switch_eps == 11 || switch_eps == 12 || switch_eps == 13
     Kappa = max(Pi(:,:,1)) - min(Pi(:,:,1));
 elseif switch_eps == 2
     Kappa = max(abs(Pi(1:2,:,1) - Pi(3:4,:,1)));
@@ -91,6 +92,17 @@ if strcmp(mode, 'simulation')
         %   2*sqrt(e-1) * K * sqrt(|A|*ln|A|) / (alpha * sqrt(N))
         % vs switch_eps==1: factor of 2*sqrt(e-1)*sqrt(|A|) wider.
         eps = 2 * sqrt(exp(1) - 1) * Kappa .* sqrt(NAct * log(NAct)) ./ (conf * sqrt(maxiters));
+    elseif switch_eps == 12
+        % Niccolo Prop 3: HIGH-PROBABILITY full-feedback (Hedge) envelope. Replaces
+        % the Markov 1/conf blowup by an additive sqrt(2 ln(M_R/delta)) tail term, so
+        % the radius is ~1/conf tighter. delta budget split over M_R = NPlayers*s pairs.
+        % ILLUSTRATIVE constant (Hoeffding/Azuma form); exact HP constant TBD with NL.
+        M_R = cfg.NPlayers * cfg.s;
+        eps = Kappa .* (sqrt(2*log(NAct)) + sqrt(2*log(M_R/conf))) ./ sqrt(maxiters);
+    elseif switch_eps == 13
+        % Niccolo Prop 3: HIGH-PROBABILITY bandit (EXP3) envelope. ILLUSTRATIVE.
+        M_R = cfg.NPlayers * cfg.s;
+        eps = 2*sqrt(exp(1)-1) * Kappa .* sqrt(NAct .* (log(NAct) + 2*log(M_R/conf))) ./ sqrt(maxiters);
     end
 else
     % Original epsilon_switch_distrib.m formulas

@@ -45,10 +45,10 @@ if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
 if ~isfield(opts, 'require_corrected'), opts.require_corrected = false; end
 % SIM-5: guard against the deprecated pre-correction radius silently entering
 % revision artifacts. Revision runners set require_corrected = true.
-if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11])
+if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13])
     error('run_stage_ii:UncorrectedEps', ...
-        ['require_corrected=true but switch_eps=%d. Use 10 (full-feedback Hedge) or ' ...
-         '11 (bandit EXP3); switch_eps=1 is the deprecated pre-correction radius.'], ...
+        ['require_corrected=true but switch_eps=%d. Use 10/11 (Markov Hedge/EXP3) or ' ...
+         '12/13 (high-probability Hedge/EXP3); switch_eps=1 is the deprecated radius.'], ...
         opts.switch_eps);
 end
 % Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
@@ -77,19 +77,20 @@ if ~isfield(opts, 'fixed_gridparamM'), opts.fixed_gridparamM = []; end
 % preallocation (NGridV+1)*(NGridM+1) matches what build_param_grid returns.
 if ~isempty(opts.fixed_gridparamV), opts.NGridV = numel(opts.fixed_gridparamV) - 1; end
 if ~isempty(opts.fixed_gridparamM), opts.NGridM = numel(opts.fixed_gridparamM) - 1; end
-if ~ismember(opts.consistency_slack_kind, {'none', 'box', 'L1'})
+if ~ismember(opts.consistency_slack_kind, {'none', 'box', 'L1', 'CLT'})
     error('run_stage_ii:BadSlackKind', ...
-        'consistency_slack_kind must be ''none'', ''box'', or ''L1'' (got ''%s'').', ...
+        'consistency_slack_kind must be ''none'', ''box'', ''L1'', or ''CLT'' (got ''%s'').', ...
         opts.consistency_slack_kind);
 end
 use_box = strcmp(opts.consistency_slack_kind, 'box');
 use_l1  = strcmp(opts.consistency_slack_kind, 'L1');
-use_consistency_slack = use_box || use_l1;
-% L1 modifies the per-point CVX objective (the L1-ball support function), so it
-% needs the full grid solve, not the adaptive subgrid.
-if use_l1 && opts.adaptive
-    error('run_stage_ii:L1Adaptive', ...
-        'consistency_slack_kind=''L1'' requires adaptive=false (full grid solve).');
+use_clt = strcmp(opts.consistency_slack_kind, 'CLT');
+use_consistency_slack = use_box || use_l1 || use_clt;
+% L1 and CLT modify the per-point CVX objective (a support-function term), so they
+% need the full grid solve, not the adaptive subgrid.
+if (use_l1 || use_clt) && opts.adaptive
+    error('run_stage_ii:SlackAdaptive', ...
+        'consistency_slack_kind=''L1''/''CLT'' requires adaptive=false (full grid solve).');
 end
 
 use_fast = strcmp(opts.backend, 'fast');
@@ -146,10 +147,11 @@ if use_fast
     NAg = cstr.NAg;
     s2 = cstr.s2;
     T_sorted = cstr.T_sorted;
-    % L1 slack: indices of the consistency-equality dual block in the dual vector
-    % x. The objective is ordered [cone(dim_u); action-marginal(NA); consistency
-    % (s2); mass(1); obedience], so the consistency duals start after dim_u + NA.
-    if use_l1
+    % L1/CLT slack: indices of the consistency-equality dual block in the dual
+    % vector x. The objective is ordered [cone(dim_u); action-marginal(NA);
+    % consistency(s2); mass(1); obedience], so the consistency duals start after
+    % dim_u + NA. (For CLT, p_lambda is read from the same block of c.)
+    if use_l1 || use_clt
         cons_idx = dim_u + cstr.NA + (1:s2);
     end
     fprintf('[Stage II] Fast backend: CVX+SeDuMi (precomputed objectives)');
@@ -251,11 +253,16 @@ for maxiter_index = 1:n_iters
         end
         Psi = Psi ./ sum(Psi, 1);
 
-        % Consistency slack r_N (only if enabled)
-        if use_consistency_slack
+        % Consistency slack radius (only if enabled)
+        if use_box || use_l1
             M_C = s2;  % |T||Theta|; in this simulation Theta is degenerate so M_C = s2
             r_N = df.solvers.compute_consistency_slack( ...
                 M_C, opts.alpha_C, maxiters, opts.consistency_slack_kind);
+        elseif use_clt
+            % CLT chi-square ellipsoid radius rho = sqrt(chi2_{d-1,1-alpha_C}/N).
+            % chi2inv(p,k) = 2*gammaincinv(p,k/2) (base MATLAB; no Stats toolbox).
+            chi2_q = 2 * gammaincinv(1 - opts.alpha_C, (s2 - 1) / 2);
+            clt_rho = sqrt(chi2_q / maxiters);
         end
 
         % Build all objective vectors
@@ -292,6 +299,9 @@ for maxiter_index = 1:n_iters
             if use_l1
                 cvx_opts.cons_l1_r   = r_N;        % BHC L1 radius (compute_consistency_slack 'L1')
                 cvx_opts.cons_l1_idx = cons_idx;   % consistency-equality dual block in x
+            elseif use_clt
+                cvx_opts.cons_clt_rho = clt_rho;   % chi-square ellipsoid radius
+                cvx_opts.cons_clt_idx = cons_idx;
             end
             [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
         end
