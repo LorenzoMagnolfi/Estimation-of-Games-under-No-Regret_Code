@@ -20,6 +20,14 @@ function results = run_stage_ii(cfg, opts)
 %       .adaptive        — logical, enable adaptive grid in fast backend (default: true)
 %                          NOTE: adaptive is for exploration only, not production/inference
 %       .learning_style  — 'rm' (default) | 'prm' (proxy-regret matching)
+%       .solver_backend  — 'cvx' (default) | 'sedumi_direct': engine for the
+%                          full-grid solve. sedumi_direct builds the canonical
+%                          form once and calls sedumi per point (no per-point
+%                          CVX overhead, parfor-capable, identical semantics).
+%       .learn_only      — logical: learn and return trajectories only;
+%                          VV_all is NaN (default: false)
+%       .candidate_mask  — logical NGrid x 1: solve only these grid points,
+%                          NaN elsewhere (monotone-sweep pruning; default: [])
 %
 %   Outputs:
 %     results — struct with fields:
@@ -51,6 +59,25 @@ if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13])
          '12/13 (high-probability Hedge/EXP3); switch_eps=1 is the deprecated radius.'], ...
         opts.switch_eps);
 end
+% Solver engine for the full-grid solve (within backend='fast', adaptive=false):
+%   'cvx'           legacy per-point cvx_begin/cvx_end (modeling overhead per point)
+%   'sedumi_direct' build the canonical form once (socp_to_sedumi), call sedumi
+%                   per point; identical classification semantics, parfor-capable.
+% Validated against 'cvx' by II_SMOKE_sedumi_direct on all consistency kinds.
+if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'cvx'; end
+if ~ismember(opts.solver_backend, {'cvx', 'sedumi_direct'})
+    error('run_stage_ii:BadBackend', ...
+        'solver_backend must be ''cvx'' or ''sedumi_direct'' (got ''%s'').', ...
+        opts.solver_backend);
+end
+% learn_only: run the learning stage, return trajectories in distY_time_all,
+% and skip the radius + grid solve entirely (VV_all comes back NaN). This is
+% the supported way to extract a trajectory for later precomputed_distY reuse.
+if ~isfield(opts, 'learn_only'), opts.learn_only = false; end
+% candidate_mask: logical NGrid x 1. Solve only the masked grid points; the
+% rest return NaN (read as not-identified downstream). Used by monotone
+% sweeps (e.g. descending radius scales) to skip points already excluded.
+if ~isfield(opts, 'candidate_mask'), opts.candidate_mask = []; end
 % Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
 %   .consistency_slack_kind  'none' (default) | 'box' | 'L1'
 %   .alpha_R, .alpha_C       confidence-budget split (alpha_R + alpha_C = alpha_set);
@@ -94,6 +121,10 @@ if (use_l1 || use_clt) && opts.adaptive
 end
 
 use_fast = strcmp(opts.backend, 'fast');
+if ~isempty(opts.candidate_mask) && (opts.adaptive || ~use_fast)
+    error('run_stage_ii:MaskNeedsFullSolve', ...
+        'candidate_mask requires backend=''fast'' and adaptive=false.');
+end
 opts.learning_style = lower(opts.learning_style);
 if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled'})
     error('run_stage_ii:UnknownLearningStyle', ...
@@ -154,13 +185,33 @@ if use_fast
     if use_l1 || use_clt
         cons_idx = dim_u + cstr.NA + (1:s2);
     end
-    fprintf('[Stage II] Fast backend: CVX+SeDuMi (precomputed objectives)');
+    if strcmp(opts.solver_backend, 'sedumi_direct')
+        fprintf('[Stage II] Fast backend: SeDuMi direct (precomputed objectives)');
+    else
+        fprintf('[Stage II] Fast backend: CVX+SeDuMi (precomputed objectives)');
+    end
     if opts.adaptive, fprintf(' + adaptive'); end
     if use_consistency_slack
         fprintf(' + consistency slack (%s, alpha_R=%g, alpha_C=%g)', ...
             opts.consistency_slack_kind, opts.alpha_R, opts.alpha_C);
     end
     fprintf('\n');
+end
+
+% Pool policy: the sedumi_direct lane is parfor-safe (no CVX global state).
+% Open a pool only when that lane will actually solve with use_parfor, no
+% pool is open yet, and the job has cores (SLURM) + the parallel toolbox;
+% otherwise everything runs serially in-process (parfor width 0).
+if use_fast && ~opts.learn_only && strcmp(opts.solver_backend, 'sedumi_direct') ...
+        && opts.use_parfor && exist('gcp', 'file') == 2 && isempty(gcp('nocreate'))
+    ncpu = str2double(getenv('SLURM_CPUS_ON_NODE'));
+    if isfinite(ncpu) && ncpu > 1
+        try
+            parpool('Processes', min(ncpu, 16));
+        catch pool_err
+            fprintf('  (parpool unavailable: %s — solving serially)\n', pool_err.message);
+        end
+    end
 end
 
 for maxiter_index = 1:n_iters
@@ -217,6 +268,17 @@ for maxiter_index = 1:n_iters
     [distpars, distribution_parameters] = df.report.build_param_grid(mu, sigma2, gridparamM, gridparamV);
     distpars_all(maxiter_index, :, :) = distpars;
     distribution_parameters_cell{maxiter_index} = distribution_parameters;
+
+    %% Learn-only mode: keep the trajectory, skip radius + solve entirely.
+    % VV_all must be NaN, not the preallocated 0 (0 would read as identified).
+    if opts.learn_only
+        VV_all(maxiter_index, :) = NaN;
+        t_iter_val = toc(t_iter);
+        fprintf('[Stage II] iter %d done (learn only): %.1fs\n\n', maxiter_index, t_iter_val);
+        timing_all(maxiter_index).learn = t_learn_val;
+        timing_all(maxiter_index).total = t_iter_val;
+        continue
+    end
 
     %% Solver
     if use_fast
@@ -294,16 +356,38 @@ for maxiter_index = 1:n_iters
             [VV, n_solved, ~] = df.solvers.solve_grid_adaptive(cstr, c_all, nV, nM, adapt_opts);
             fprintf('  Solved %d/%d points (%.1f%%)\n', n_solved, NGrid, 100*n_solved/NGrid);
         else
-            fprintf('  Full grid solve (%d points):\n', NGrid);
-            cvx_opts = struct('verbose', false, 'solver', 'sedumi');  % overnight: quiet SOCP (VV is saved regardless)
-            if use_l1
-                cvx_opts.cons_l1_r   = r_N;        % BHC L1 radius (compute_consistency_slack 'L1')
-                cvx_opts.cons_l1_idx = cons_idx;   % consistency-equality dual block in x
-            elseif use_clt
-                cvx_opts.cons_clt_rho = clt_rho;   % chi-square ellipsoid radius
-                cvx_opts.cons_clt_idx = cons_idx;
+            % Candidate mask: solve only the requested columns (monotone-sweep
+            % pruning); unsolved points come back NaN, which downstream
+            % VV<=tol tests read as not-identified.
+            if ~isempty(opts.candidate_mask)
+                mask = logical(opts.candidate_mask(:));
+                if numel(mask) ~= NGrid
+                    error('run_stage_ii:BadMask', ...
+                        'candidate_mask has %d entries; grid has %d points.', ...
+                        numel(mask), NGrid);
+                end
+            else
+                mask = true(NGrid, 1);
             end
-            [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
+            fprintf('  Full grid solve (%d/%d points, %s):\n', ...
+                nnz(mask), NGrid, opts.solver_backend);
+            gopts = struct('verbose', false, 'solver', 'sedumi');  % overnight: quiet SOCP (VV is saved regardless)
+            if use_l1
+                gopts.cons_l1_r   = r_N;        % BHC L1 radius (compute_consistency_slack 'L1')
+                gopts.cons_l1_idx = cons_idx;   % consistency-equality dual block in x
+            elseif use_clt
+                gopts.cons_clt_rho = clt_rho;   % chi-square ellipsoid radius
+                gopts.cons_clt_idx = cons_idx;
+            end
+            c_sub = c_all(:, mask);
+            if strcmp(opts.solver_backend, 'sedumi_direct')
+                gopts.use_parfor = opts.use_parfor;
+                [VV_sub, ~] = df.solvers.solve_grid_sedumi(cstr, c_sub, gopts);
+            else
+                [VV_sub, ~] = df.solvers.solve_grid_cvx(cstr, c_sub, gopts);
+            end
+            VV = nan(NGrid, 1);
+            VV(mask) = VV_sub;
         end
         t_solve_val = toc(t_solve);
         fprintf('  Solver: %.1fs\n', t_solve_val);
@@ -345,6 +429,8 @@ results.maxiters_values = opts.maxiters_values;
 results.gridparamV_all = gridparamV_all;
 results.alpha_set = opts.alpha_set;
 results.switch_eps = opts.switch_eps;
+results.solver_backend = opts.solver_backend;
+results.learn_only = opts.learn_only;
 results.eps_override = opts.eps_override;   % [] unless fixed-radius mode (D1/T1)
 results.learning_style = opts.learning_style;
 results.NGridV = opts.NGridV;
