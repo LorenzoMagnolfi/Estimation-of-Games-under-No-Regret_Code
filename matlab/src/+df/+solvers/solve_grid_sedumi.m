@@ -32,6 +32,28 @@ if isfield(opts, 'cons_clt_rho') && ~isempty(opts.cons_clt_rho) && opts.cons_clt
     bopts.cons_clt = struct('rho', opts.cons_clt_rho, 'idx', opts.cons_clt_idx);
 end
 
+% CVX's path manager (cvx_clear / cvx_end) prunes directories under the CVX
+% root from the path — including the genpath'd sedumi/ folder — so after any
+% CVX-lane call the raw sedumi function disappears. Re-secure it here (and on
+% any open pool's workers) before solving.
+if exist('sedumi', 'file') ~= 2
+    cvx_dir = getenv('CVX_DIR');
+    sp = fullfile(cvx_dir, 'sedumi');
+    if ~isempty(cvx_dir) && exist(sp, 'dir') == 7
+        addpath(sp);
+        if exist('gcp', 'file') == 2
+            p0 = gcp('nocreate');
+            if ~isempty(p0)
+                wait(parfevalOnAll(p0, @addpath, 0, sp));
+            end
+        end
+    end
+end
+if exist('sedumi', 'file') ~= 2
+    error('solve_grid_sedumi:NoSedumi', ...
+        'sedumi is not on the MATLAB path and CVX_DIR is not set to a CVX root with a sedumi/ folder.');
+end
+
 sd = df.solvers.socp_to_sedumi(cstr, bopts);
 use_clt = ~isempty(sd.clt);
 
