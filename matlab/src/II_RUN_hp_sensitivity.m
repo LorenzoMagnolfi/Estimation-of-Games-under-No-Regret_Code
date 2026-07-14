@@ -4,8 +4,14 @@
 %  high-prob radius at N=4M and scale it by a multiplier, then report the region
 %  area for RM (Hedge, sw12) and PRM (EXP3, sw13). A flat curve means the headline is
 %  robust to the constant; a steep curve means the constant must be pinned down before
-%  quoting magnitudes. Learns one RM and one PRM trajectory and re-solves via
-%  eps_override = scale * compute_epsilon(...), fixed 60x60 grid, L1 consistency.
+%  quoting magnitudes. Learns one RM and one PRM trajectory (learn_only) and re-solves
+%  via eps_override = scale * compute_epsilon(...), fixed 60x60 grid, L1 consistency.
+%
+%  Scales run DESCENDING with candidate_mask pruning: membership is monotone in the
+%  radius (larger eps only relaxes the obedience constraints), so a point excluded at
+%  a looser radius is excluded at every tighter one and is never re-solved. The first
+%  (loosest) scale solves the full grid; each later scale solves only the survivors.
+%  Monotonicity is validated by II_SMOKE_sedumi_direct check (7).
 %  Incremental save per scale. NO figures.
 clear; clc;
 paths=df_repo_paths(); rng(12345);
@@ -22,28 +28,39 @@ base=struct('maxiters_values',N,'alpha_set',0.05,'alpha_R',aR,'alpha_C',aC,'back
 eps_rm=df.solvers.compute_epsilon(cfg,N,aR,12);   % HP Hedge
 eps_pr=df.solvers.compute_epsilon(cfg,N,aR,13);   % HP EXP3
 
-% learn one RM and one PRM trajectory; tiny 2x2 grid because only the trajectory
-% is kept from these calls (the region solve is redone per scale below)
-tiny=struct('fixed_gridparamM',[1;0.9;1.1],'fixed_gridparamV',[1;0.9;1.1]);
-o=base; o.learning_style='rm'; o.switch_eps=10; o.fixed_gridparamM=tiny.fixed_gridparamM; o.fixed_gridparamV=tiny.fixed_gridparamV;
+% learn one RM and one PRM trajectory (no grid solve)
+o=base; o.learning_style='rm'; o.switch_eps=10; o.learn_only=true;
 rng(12345); res=df.stages.run_stage_ii(cfg,o); traj_rm=res.distY_time_all;
-o=base; o.learning_style='prm'; o.switch_eps=11; o.fixed_gridparamM=tiny.fixed_gridparamM; o.fixed_gridparamV=tiny.fixed_gridparamV;
+o=base; o.learning_style='prm'; o.switch_eps=11; o.learn_only=true;
 rng(12345); res=df.stages.run_stage_ii(cfg,o); traj_pr=res.distY_time_all;
 
 ns=numel(scales);
+[~,ord]=sort(scales,'descend');   % loosest first: pruning order
 rm_area=nan(ns,1); rm_share=nan(ns,1); pr_area=nan(ns,1); pr_share=nan(ns,1);
 out=fullfile(paths.artifacts,'hp_sensitivity.mat');
-for k=1:ns
-    sc=scales(k);
-    % switch_eps must still be a corrected value (12/13) to pass the SIM-5
-    % require_corrected guard; the radius itself comes from eps_override.
-    o=base; o.learning_style='rm'; o.switch_eps=12; o.eps_override=sc*eps_rm; o.precomputed_distY=traj_rm;
-    rng(12345); r=df.stages.run_stage_ii(cfg,o); [rm_area(k),rm_share(k)]=region_area(r,1,IDTOL);
-    o=base; o.learning_style='prm'; o.switch_eps=13; o.eps_override=sc*eps_pr; o.precomputed_distY=traj_pr;
-    rng(12345); r=df.stages.run_stage_ii(cfg,o); [pr_area(k),pr_share(k)]=region_area(r,1,IDTOL);
-    fprintf('scale=%.2f  RM area=%.4f share=%.4f | PRM area=%.4f share=%.4f\n', ...
-        sc, rm_area(k), rm_share(k), pr_area(k), pr_share(k));
-    save(out,'scales','rm_area','rm_share','pr_area','pr_share','IDTOL','-v7.3');   % incremental
+NGrid=(NGRID+1)^2;
+arms=struct( ...
+    'name',{'rm','prm'}, 'sw',{12,13}, 'eps',{eps_rm,eps_pr}, 'traj',{traj_rm,traj_pr});
+for a=1:2
+    alive=true(NGrid,1);
+    for kk=1:ns
+        k=ord(kk); sc=scales(k);
+        % switch_eps must still be a corrected value (12/13) to pass the SIM-5
+        % require_corrected guard; the radius itself comes from eps_override.
+        o=base; o.learning_style=arms(a).name; o.switch_eps=arms(a).sw;
+        o.eps_override=sc*arms(a).eps; o.precomputed_distY=arms(a).traj;
+        o.candidate_mask=alive;
+        rng(12345); r=df.stages.run_stage_ii(cfg,o);
+        vv=r.VV_all(1,:);
+        vv(~alive.')=100;   % excluded at a looser radius: excluded here too (monotone)
+        rr=r; rr.VV_all(1,:)=vv;
+        [ar,sh]=region_area(rr,1,IDTOL);
+        if a==1, rm_area(k)=ar; rm_share(k)=sh; else, pr_area(k)=ar; pr_share(k)=sh; end
+        alive=(vv.'<=IDTOL);
+        fprintf('arm=%s scale=%.2f  area=%.4f share=%.4f  (solved %d/%d pts)\n', ...
+            arms(a).name, sc, ar, sh, nnz(o.candidate_mask), NGrid);
+        save(out,'scales','rm_area','rm_share','pr_area','pr_share','IDTOL','-v7.3');   % incremental
+    end
 end
 summary=table(scales(:), rm_area, rm_share, pr_area, pr_share, ...
     'VariableNames',{'scale','rm_area','rm_share','pr_area','pr_share'});

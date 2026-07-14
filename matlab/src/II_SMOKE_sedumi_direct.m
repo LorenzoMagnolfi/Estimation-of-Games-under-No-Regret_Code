@@ -76,6 +76,15 @@ for k = 1:numel(kinds)
     fprintf('(%d) kind=%-4s  max|dVV|=%.3e  set flips=%d  solved-class flips=%d -> %s\n', ...
         k, kind, dmax, n_flip, n_cls, tf(dmax < TOL && n_flip == 0));
     ok = ok && dmax < TOL && n_flip == 0;
+    if n_flip > 0 || n_cls > 0
+        sts = r_sd.solver_statuses{1};
+        fl = find((id_cvx ~= id_sd) | ((v_cvx < 100) ~= (v_sd < 100)));
+        for q = 1:min(numel(fl), 12)
+            j = fl(q);
+            fprintf('    FLIP pt %2d: v_cvx=%12.5g  v_sd=%12.5g  sd_status=%s\n', ...
+                j, v_cvx(j), v_sd(j), sts{j});
+        end
+    end
     VV_keep.(matlab.lang.makeValidName(kind)) = v_sd;
 end
 

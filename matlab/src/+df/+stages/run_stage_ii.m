@@ -159,6 +159,7 @@ distpars_all = zeros(n_iters, NGrid, 2);
 distribution_parameters_cell = cell(n_iters, 1);
 distY_time_all = cell(n_iters, 1);
 gridparamV_all = cell(n_iters, 1);
+solver_statuses_cell = cell(n_iters, 1);   % per-point statuses (sedumi_direct lane)
 timing_all = struct();
 
 % Build constraints ONCE (shared across all iterations and grid points).
@@ -382,7 +383,10 @@ for maxiter_index = 1:n_iters
             c_sub = c_all(:, mask);
             if strcmp(opts.solver_backend, 'sedumi_direct')
                 gopts.use_parfor = opts.use_parfor;
-                [VV_sub, ~] = df.solvers.solve_grid_sedumi(cstr, c_sub, gopts);
+                [VV_sub, ~, st_sub] = df.solvers.solve_grid_sedumi(cstr, c_sub, gopts);
+                st = repmat({'masked'}, NGrid, 1);
+                st(mask) = st_sub;
+                solver_statuses_cell{maxiter_index} = st;
             else
                 [VV_sub, ~] = df.solvers.solve_grid_cvx(cstr, c_sub, gopts);
             end
@@ -430,6 +434,7 @@ results.gridparamV_all = gridparamV_all;
 results.alpha_set = opts.alpha_set;
 results.switch_eps = opts.switch_eps;
 results.solver_backend = opts.solver_backend;
+results.solver_statuses = solver_statuses_cell;   % {} entries for cvx-lane iters
 results.learn_only = opts.learn_only;
 results.eps_override = opts.eps_override;   % [] unless fixed-radius mode (D1/T1)
 results.learning_style = opts.learning_style;

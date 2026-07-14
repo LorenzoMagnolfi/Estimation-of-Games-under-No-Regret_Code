@@ -1,4 +1,4 @@
-function [g, timing] = solve_grid_sedumi(cstr, c_all, opts)
+function [g, timing, statuses] = solve_grid_sedumi(cstr, c_all, opts)
 % SOLVE_GRID_SEDUMI  Batch direct-SeDuMi solver for parameter grids.
 %
 %   [g, timing] = df.solvers.solve_grid_sedumi(cstr, c_all, opts)
@@ -68,11 +68,12 @@ end
 
 NGrid = size(c_all, 2);
 g = zeros(NGrid, 1);
+statuses = cell(NGrid, 1);
 t_start = tic;
 
 if ~use_clt
     parfor (nd = 1:NGrid, pool_n)
-        g(nd) = df.solvers.solve_socp_sedumi(sd, c_all(:, nd));
+        [g(nd), statuses{nd}] = df.solvers.solve_socp_sedumi(sd, c_all(:, nd));
     end
 else
     % CLT: the ellipsoid matrix Sh = sqrtm(diag(p)-p*p') depends on the grid
@@ -90,7 +91,7 @@ else
         Sh = real(sqrtm(Sig));
         A_nd = sparse([trip.ii; IIg(:)], [trip.jj; JJg(:)], ...
             [trip.vv; -Sh(:)], trip.m, trip.n);
-        g(nd) = df.solvers.solve_socp_sedumi(sd, c_nd, A_nd);
+        [g(nd), statuses{nd}] = df.solvers.solve_socp_sedumi(sd, c_nd, A_nd);
     end
 end
 
