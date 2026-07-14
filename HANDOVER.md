@@ -72,9 +72,21 @@ Full provenance documentation:
 
 ## Solver Stack
 
-- Primary: CVX 2.2 + SeDuMi (batch mode via `solve_grid_cvx.m`)
+- **Primary (grid solves): direct SeDuMi via `solve_grid_sedumi.m`** — the canonical
+  form is built once per grid (`socp_to_sedumi.m`, includes the L1 epigraph and the
+  per-point CLT SOC block) and `sedumi` is called per candidate with only the
+  objective swapped. No per-point CVX modeling overhead; parfor-capable (pool policy
+  in `run_stage_ii`). Selected by `run_stage_ii` option `solver_backend='sedumi_direct'`.
+- Legacy/reference: CVX 2.2 + SeDuMi per point (`solve_grid_cvx.m`,
+  `solver_backend='cvx'`). Classification semantics are identical by construction
+  ('Solved' iff SeDuMi `numerr==0`; 100 sentinel otherwise) and validated by
+  `II_SMOKE_sedumi_direct` on all four consistency kinds (exact/box/L1/CLT), plus
+  candidate-mask, radius-monotonicity, and parfor-equality checks.
+- Stage options for compute control: `learn_only` (trajectory extraction without a
+  grid solve), `candidate_mask` (monotone-sweep pruning: descending radius scales
+  re-solve only survivors; see `II_RUN_hp_sensitivity.m` for the pattern).
 - Polytope: native `linprog` (AMPL dependency eliminated)
-- Environment: MATLAB R2024a+, Windows 11
+- Environment: MATLAB R2024a+, Windows 11; linstat R2025b
 
 ## Linked Repos
 

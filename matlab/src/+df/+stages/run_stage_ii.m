@@ -60,11 +60,15 @@ if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13])
         opts.switch_eps);
 end
 % Solver engine for the full-grid solve (within backend='fast', adaptive=false):
-%   'cvx'           legacy per-point cvx_begin/cvx_end (modeling overhead per point)
-%   'sedumi_direct' build the canonical form once (socp_to_sedumi), call sedumi
-%                   per point; identical classification semantics, parfor-capable.
-% Validated against 'cvx' by II_SMOKE_sedumi_direct on all consistency kinds.
-if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'cvx'; end
+%   'sedumi_direct' (default) build the canonical form once (socp_to_sedumi),
+%                   call sedumi per point: no per-point CVX overhead, parfor-
+%                   capable, per-point statuses saved for provenance.
+%   'cvx'           legacy per-point cvx_begin/cvx_end reference lane.
+% Equivalence validated by II_SMOKE_sedumi_direct (job 3778539, SHA 4f96f78):
+% identical identified sets on exact/box/L1/CLT, max|dVV| ~ 2e-4 solver noise.
+% Smoke coverage is the s=5 parametric lab; on the first s=20 production run
+% under this lane, spot-check a small grid against solver_backend='cvx'.
+if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'sedumi_direct'; end
 if ~ismember(opts.solver_backend, {'cvx', 'sedumi_direct'})
     error('run_stage_ii:BadBackend', ...
         'solver_backend must be ''cvx'' or ''sedumi_direct'' (got ''%s'').', ...
