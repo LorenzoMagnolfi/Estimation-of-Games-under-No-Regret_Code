@@ -60,9 +60,35 @@ if ~isfield(opts, 'consistency_slack_kind'), opts.consistency_slack_kind = 'none
 if ~isfield(opts, 'alpha_R'), opts.alpha_R = opts.alpha_set; end
 if ~isfield(opts, 'alpha_C'), opts.alpha_C = 0; end
 use_l1 = strcmp(opts.consistency_slack_kind, 'L1');
+% Solver engine for the batch solve, as in df.stages.run_stage_ii:
+%   'cvx' (default)  per-point cvx_begin/cvx_end
+%   'sedumi_direct'  canonical form built once, sedumi called per candidate;
+%                    parfor-capable. Same SOCP layout as the parametric stage;
+%                    equivalence on THIS stage checked by II_SMOKE_sedumi_nonparam.
+if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'cvx'; end
+if ~ismember(opts.solver_backend, {'cvx', 'sedumi_direct'})
+    error('run_stage_ii_nonparam:BadBackend', ...
+        'solver_backend must be ''cvx'' or ''sedumi_direct'' (got ''%s'').', ...
+        opts.solver_backend);
+end
+if ~isfield(opts, 'use_parfor'), opts.use_parfor = true; end
 
 use_fast = strcmp(opts.backend, 'fast');
 use_prm = strcmp(opts.learning_style, 'prm');
+
+% Pool policy (mirrors run_stage_ii): open a pool only for the parfor-safe
+% direct lane, when none is open, on a job that actually has cores.
+if use_fast && strcmp(opts.solver_backend, 'sedumi_direct') && opts.use_parfor ...
+        && exist('gcp', 'file') == 2 && isempty(gcp('nocreate'))
+    ncpu = str2double(getenv('SLURM_CPUS_ON_NODE'));
+    if isfinite(ncpu) && ncpu > 1
+        try
+            parpool('Processes', min(ncpu, 16));
+        catch pool_err
+            fprintf('  (parpool unavailable: %s — solving serially)\n', pool_err.message);
+        end
+    end
+end
 
 % Grid parameters (passed through to build_nonparam_grid)
 grid_opts = struct();
@@ -132,6 +158,7 @@ num_alpha = numel(opts.alpha_set);
 VV_all = zeros(n_iters, NGrid);
 distpars_all = zeros(n_iters, NGrid, 2);
 distY_time_all = cell(n_iters, 1);
+solver_statuses_cell = cell(n_iters, 1);   % per-point statuses (sedumi_direct lane)
 timing = struct('learn', zeros(n_iters, 1), 'objectives', zeros(n_iters, 1), ...
     'solve', zeros(n_iters, 1));
 
@@ -186,15 +213,21 @@ for maxiter_index = 1:n_iters
         timing.objectives(maxiter_index) = toc(t_obj);
         fprintf(' %.1fs\n', timing.objectives(maxiter_index));
 
-        % Batch solve via CVX+SeDuMi
-        fprintf('  Full grid solve (%d points):\n', NGrid);
+        % Batch solve: direct SeDuMi (build-once, parfor) or per-point CVX
+        fprintf('  Full grid solve (%d points, %s):\n', NGrid, opts.solver_backend);
         t_solve = tic;
-        cvx_opts = struct('verbose', true, 'solver', opts.solver);
+        gopts = struct('verbose', true, 'solver', opts.solver);
         if use_l1
-            cvx_opts.cons_l1_r   = r_N;
-            cvx_opts.cons_l1_idx = cons_idx;
+            gopts.cons_l1_r   = r_N;
+            gopts.cons_l1_idx = cons_idx;
         end
-        [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, cvx_opts);
+        if strcmp(opts.solver_backend, 'sedumi_direct')
+            gopts.use_parfor = opts.use_parfor;
+            [VV, ~, st_np] = df.solvers.solve_grid_sedumi(cstr, c_all, gopts);
+            solver_statuses_cell{maxiter_index} = st_np;
+        else
+            [VV, ~] = df.solvers.solve_grid_cvx(cstr, c_all, gopts);
+        end
         timing.solve(maxiter_index) = toc(t_solve);
         fprintf('  Solver: %.1fs, identified: %d/%d (%.1f%%)\n', ...
             timing.solve(maxiter_index), sum(VV <= 1e-12), NGrid, ...
@@ -240,6 +273,8 @@ results.VV_all = VV_all;
 results.distpars_all = distpars_all;
 results.distribution_parameters = distribution_parameters;
 results.distY_time_all = distY_time_all;
+results.solver_backend = opts.solver_backend;
+results.solver_statuses = solver_statuses_cell;   % {} entries for cvx-lane iters
 results.maxiters_values = opts.maxiters_values;
 results.alpha_set = opts.alpha_set;
 results.switch_eps = opts.switch_eps;
