@@ -61,11 +61,12 @@ if ~isfield(opts, 'alpha_R'), opts.alpha_R = opts.alpha_set; end
 if ~isfield(opts, 'alpha_C'), opts.alpha_C = 0; end
 use_l1 = strcmp(opts.consistency_slack_kind, 'L1');
 % Solver engine for the batch solve, as in df.stages.run_stage_ii:
-%   'cvx' (default)  per-point cvx_begin/cvx_end
-%   'sedumi_direct'  canonical form built once, sedumi called per candidate;
-%                    parfor-capable. Same SOCP layout as the parametric stage;
-%                    equivalence on THIS stage checked by II_SMOKE_sedumi_nonparam.
-if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'cvx'; end
+%   'sedumi_direct' (default)  canonical form built once, sedumi called per
+%                   candidate; parfor-capable, statuses saved for provenance.
+%   'cvx'           legacy per-point reference lane.
+% Equivalence on THIS stage validated by II_SMOKE_sedumi_nonparam (job 3779271,
+% SHA d43dfd4): identical identified sets on exact and L1, max|dVV| ~2.5e-4.
+if ~isfield(opts, 'solver_backend'), opts.solver_backend = 'sedumi_direct'; end
 if ~ismember(opts.solver_backend, {'cvx', 'sedumi_direct'})
     error('run_stage_ii_nonparam:BadBackend', ...
         'solver_backend must be ''cvx'' or ''sedumi_direct'' (got ''%s'').', ...
