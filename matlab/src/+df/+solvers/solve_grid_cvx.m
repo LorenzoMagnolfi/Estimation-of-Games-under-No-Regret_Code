@@ -38,6 +38,22 @@ cons_clt = [];
 if isfield(opts, 'cons_clt_rho') && ~isempty(opts.cons_clt_rho) && opts.cons_clt_rho > 0
     cons_clt = struct('rho', opts.cons_clt_rho, 'idx', opts.cons_clt_idx);
 end
+% Joint obedience budget (pilot): .obed_B_all (1 x NGrid per-candidate budgets)
+% and .obed_groups (cell of index sets into x). The group-sum matrix is built
+% once here; per point only the scalar budget changes.
+budget_on = isfield(opts, 'obed_B_all') && ~isempty(opts.obed_B_all);
+G_bud = [];
+if budget_on
+    ng = numel(opts.obed_groups);
+    n_x = size(cstr.B_EQ, 2);
+    ii_g = []; jj_g = [];
+    for gg = 1:ng
+        idxg = opts.obed_groups{gg}(:);
+        ii_g = [ii_g; gg * ones(numel(idxg), 1)]; %#ok<AGROW>
+        jj_g = [jj_g; idxg]; %#ok<AGROW>
+    end
+    G_bud = sparse(ii_g, jj_g, 1, ng, n_x);
+end
 
 NGrid = size(c_all, 2);
 
@@ -45,7 +61,11 @@ g = zeros(NGrid, 1);
 t_start = tic;
 
 for nd = 1:NGrid
-    [g(nd), ~] = df.solvers.solve_socp_cvx(cstr, c_all(:,nd), solver_name, precision, cons_l1, cons_clt);
+    ob = [];
+    if budget_on
+        ob = struct('B', opts.obed_B_all(nd), 'G', G_bud);
+    end
+    [g(nd), ~] = df.solvers.solve_socp_cvx(cstr, c_all(:,nd), solver_name, precision, cons_l1, cons_clt, ob);
     if verbose && mod(nd, 500) == 0
         elapsed = toc(t_start);
         fprintf('  %d/%d (%.1fs, ETA %.0fs)\n', nd, NGrid, ...

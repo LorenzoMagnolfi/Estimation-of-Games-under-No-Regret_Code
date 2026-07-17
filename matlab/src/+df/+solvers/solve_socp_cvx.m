@@ -1,4 +1,4 @@
-function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision, cons_l1, cons_clt)
+function [optval, status] = solve_socp_cvx(cstr, c, solver_name, precision, cons_l1, cons_clt, obed_budget)
 % SOLVE_SOCP_CVX  Solve a single SOCP instance via CVX.
 %
 %   [optval, status] = df.solvers.solve_socp_cvx(cstr, c)
@@ -35,8 +35,18 @@ end
 if nargin < 6
     cons_clt = [];
 end
+if nargin < 7
+    obed_budget = [];
+end
 use_l1  = ~isempty(cons_l1)  && cons_l1.r > 0;
 use_clt = ~isempty(cons_clt) && cons_clt.rho > 0;
+% Joint obedience budget (pilot): replace the componentwise obedience caps with
+% one shared budget B across type groups. Dual form: the rectangle's linear
+% term sum_j c_obed(j) x_j becomes B * max_t (sum of the group's duals), the
+% support function of {r >= 0 : sum r <= B}. Caller zeroes the obedience
+% coefficients in c and supplies .B (scalar, per candidate) and .G (sparse
+% group-sum matrix, n_groups x n).
+use_budget = ~isempty(obed_budget) && obed_budget.B > 0;
 
 % CLT (Niccolo Prop 4): relax the consistency equality to the chi-square ellipsoid
 % {m : N (m-p)' Sigma_p^+ (m-p) <= chi2}, with Sigma_p = diag(p) - p p' the
@@ -66,7 +76,12 @@ cvx_begin quiet
 
     variable x(n);
 
-    if use_l1
+    if use_budget && use_l1
+        maximize( -c' * x - cons_l1.r * norm( x(cons_l1.idx), Inf ) ...
+            - obed_budget.B * max( obed_budget.G * x ) )
+    elseif use_budget
+        maximize( -c' * x - obed_budget.B * max( obed_budget.G * x ) )
+    elseif use_l1
         % L1 (Bretagnolle-Huber-Carol) consistency relaxation: subtract the
         % support function of the L1 ball, r * inf-norm of the consistency-
         % equality dual block. Weakly lowers the optimum (enlarges the set).

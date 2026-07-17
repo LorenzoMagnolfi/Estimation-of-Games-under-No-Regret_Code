@@ -82,6 +82,25 @@ if ~isfield(opts, 'learn_only'), opts.learn_only = false; end
 % rest return NaN (read as not-identified downstream). Used by monotone
 % sweeps (e.g. descending radius scales) to skip points already excluded.
 if ~isfield(opts, 'candidate_mask'), opts.candidate_mask = []; end
+% obed_budget_scale (pilot, joint regret set): when nonempty, the componentwise
+% obedience caps are replaced by ONE budget per candidate,
+%   B(lambda) = scale * sum_t sqrt(phi_t(lambda)) * eps_t,
+% i.e. scale x the tile-sum of the rectangle's own weighted caps. scale = 1
+% makes the budget region CONTAIN the rectangle by construction (same total);
+% smaller scales trace where the joint set crosses the rectangle's area.
+% CVX lane only (the max-term epigraph is not in the direct lane yet);
+% consistency kind 'none' or 'L1' only (the box build reorders the objective).
+if ~isfield(opts, 'obed_budget_scale'), opts.obed_budget_scale = []; end
+if ~isempty(opts.obed_budget_scale)
+    if ~strcmp(opts.solver_backend, 'cvx')
+        error('run_stage_ii:BudgetNeedsCvx', ...
+            'obed_budget_scale requires solver_backend=''cvx'' (pilot lane).');
+    end
+    if ~ismember(opts.consistency_slack_kind, {'none', 'L1'})
+        error('run_stage_ii:BudgetSlackKind', ...
+            'obed_budget_scale supports consistency_slack_kind ''none''/''L1'' only.');
+    end
+end
 % Consistency-slack options (default: exact consistency, equivalent to legacy behavior).
 %   .consistency_slack_kind  'none' (default) | 'box' | 'L1'
 %   .alpha_R, .alpha_C       confidence-budget split (alpha_R + alpha_C = alpha_set);
@@ -334,10 +353,20 @@ for maxiter_index = 1:n_iters
 
         % Build all objective vectors
         c_all = zeros(size(cstr.B_EQ, 2), NGrid);
+        use_obed_budget = ~isempty(opts.obed_budget_scale);
+        B_base = zeros(1, NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:,nd);
             eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
                       repmat(eps_vec, 1, NAg*a_dim);
+            if use_obed_budget
+                % One tile of eps_fin = the s weighted per-type caps at this
+                % candidate; their sum is the budget base. The componentwise
+                % caps are then removed from the objective (the budget term
+                % replaces them at solve time).
+                B_base(nd) = sum(eps_fin(1:s));
+                eps_fin = zeros(size(eps_fin));
+            end
             if use_box
                 % Box constraint order:
                 %   Meq:  action marginal (NA), total mass (1)
@@ -385,6 +414,20 @@ for maxiter_index = 1:n_iters
                 gopts.cons_clt_idx = cons_idx;
             end
             c_sub = c_all(:, mask);
+            if use_obed_budget
+                % Joint-budget pilot: per-candidate budgets + type-group index
+                % sets (obedience block = last s*NAg*a_dim coords, tiled by
+                % type slot). CVX lane only, asserted at options time.
+                n_x = size(cstr.B_EQ, 2);
+                n_obed = s * NAg * a_dim;
+                off_ob = n_x - n_obed;
+                groups = cell(s, 1);
+                for tg = 1:s
+                    groups{tg} = off_ob + (tg:s:n_obed);
+                end
+                gopts.obed_B_all = opts.obed_budget_scale * B_base(mask');
+                gopts.obed_groups = groups;
+            end
             if strcmp(opts.solver_backend, 'sedumi_direct')
                 gopts.use_parfor = opts.use_parfor;
                 [VV_sub, ~, st_sub] = df.solvers.solve_grid_sedumi(cstr, c_sub, gopts);
