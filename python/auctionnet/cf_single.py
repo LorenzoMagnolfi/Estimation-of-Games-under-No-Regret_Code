@@ -88,6 +88,8 @@ Nmain = int(run["checks"][-1]); Zf = run[f"Z_{Nmain}"].astype(float)
 nu_rec = Zf / np.maximum(Zf.sum(axis=0, keepdims=True), 1)         # recorded GSP play: multiplier distribution per context
 intervals = {int(r.N): (float(r.lam_lo), float(r.lam_hi)) for _, r in regP[regP.rule == "markov"].iterrows() if int(r.N) in (10_000_000, 100_000_000)}
 rows = []
+LGRID = np.linspace(1.0, 250.0, 250)                                # value grid for the spend curves
+curves = {}
 for rule in ["gsp", "gsp_r05", "gsp_r10", "fp", "fp_top"]:
     a, c, K = tables(ACF, rule)
     a12, c12, _ = tables(alphas, rule)
@@ -95,6 +97,7 @@ for rule in ["gsp", "gsp_r05", "gsp_r10", "fp", "fp_top"]:
     naive = float(np.sum(psi0 * np.sum(nu_rec * c12, axis=0)))
     row = dict(rule=rule, truth=truth, truth_best_mult_over_lam=list(np.round(ACF[kstar] / lam0, 3)), naive=naive,
                truth_surplus=float(np.sum(psi0 * (lam0 * a - c)[kstar, np.arange(NV)])))
+    curves[rule] = [br_spend(a, c, l)[0] for l in LGRID]
     for N, (lo, hi) in intervals.items():
         lams = np.linspace(max(lo, 1.0), hi, 120)
         sp = [br_spend(a, c, l)[0] for l in lams]
@@ -102,10 +105,18 @@ for rule in ["gsp", "gsp_r05", "gsp_r10", "fp", "fp_top"]:
         for Ncf in (10_000_000, 100_000_000):
             mm = [tol_spend(a, c, K, l, Ncf) for l in lams[::6]]
             row[f"pred_tol{Ncf:.0e}_{N:.0e}"] = (min(m[0] for m in mm), max(m[1] for m in mm))
+    if rule != "gsp":                                               # predicted change relative to the recorded rule
+        for N, (lo, hi) in intervals.items():
+            sel = (LGRID >= lo) & (LGRID <= hi)
+            new, base = np.array(curves[rule])[sel], np.array(curves["gsp"])[sel]
+            ok = base > 0
+            row[f"pred_ratio_{N:.0e}"] = (float((new[ok] / base[ok]).min()), float((new[ok] / base[ok]).max())) if ok.any() else (np.nan, np.nan)
+            row[f"pred_diff_{N:.0e}"] = (float((new - base).min()), float((new - base).max()))
+        row["truth_ratio"] = truth / rows[0]["truth"]
     rows.append(row)
     print(rule, {k: (np.round(v, 6) if isinstance(v, float) else v) for k, v in row.items() if k != "rule"}, f"({time.time() - t0:.0f}s)", flush=True)
 commit, dirty = code_commit()
 with open(pref + "_cf_single.json", "w") as f:
-    json.dump(dict(rows=rows, lam0=lam0, intervals={str(k): v for k, v in intervals.items()}, n_rival_draws=len(Rt),
+    json.dump(dict(rows=rows, lam0=lam0, lam_grid=list(LGRID), curves=curves, intervals={str(k): v for k, v in intervals.items()}, n_rival_draws=len(Rt),
                    code_commit=commit, code_dirty=dirty, seconds=round(time.time() - t0)), f, indent=1)
 print("CF_DONE", f"({time.time() - t0:.0f}s)")
