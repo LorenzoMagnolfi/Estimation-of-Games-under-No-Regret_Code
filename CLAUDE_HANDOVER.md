@@ -6,6 +6,22 @@
 -->
 
 ## Last Session
+- **Date**: 2026-09-10
+- **Summary**: Unity transition started. The campaign had stalled when SSCC linstat closed (July 2026; last linstat-era commit `389086c`, 2026-07-21). Staged the full port surface on OSU Unity and launched the port gate.
+
+### Unity locations (recorded per unity-skill first-use rule)
+- **Code**: `/home/magnolfi.1/NoRegret_Code` — `git archive` of clean local HEAD = `origin/main` = `389086c` (recorded in `STAGED_COMMIT.txt` there). Not a git clone; re-stage the same way after new commits.
+- **Solvers**: `/home/magnolfi.1/NoRegret_tools/cvx` — CVX 2.2 + bundled SeDuMi (downloaded from web.cvxr.com 2026-09-10). Export `CVX_DIR=$HOME/NoRegret_tools/cvx`; the prereq check picks it up via `genpath`.
+- **Cached artifacts**: `/home/magnolfi.1/NoRegret_Code/matlab/output/artifacts` — all 9 files byte-verified against local Dropbox (incl. the s5/s10/s20 nonparam checkpoints and `prm_comparison_s5.mat`, 99 MB).
+- **Run roots**: `/home/magnolfi.1/NoRegret_runs/<name>_<ts>/` with `MANIFEST.md` + `logs/`. First: `smoke_20260910_114613` — **port gate PASSED**, job `11096393` COMPLETED 0:0 (4 min, econ): `SMOKE_SEDUMI: PASS`, all 8 checks (exact/box/L1/CLT dVV<3e-4, zero set flips; learn_only; candidate_mask; eps-monotone; parfor==serial), cvx ~11–12s vs sedumi_direct ~9–10s per 25-point stage call. **The solve lane is live on Unity.**
+- **Unity environment lore (differs from linstat; every future job script needs this)**:
+  1. `~/Documents/MATLAB/startup.m` runs `cvx_startup.m` — created, persists.
+  2. `cvx_setup` must run **in-session** before any CVX-lane solve (`run('/home/magnolfi.1/NoRegret_tools/cvx/cvx_setup.m')` at the top of the `matlab -batch` command; saved CVX prefs do not reconstitute across batch sessions here — `cvx_global` dies on `cvx___.solvers.list` otherwise).
+  3. `export SEDUMI_DIR=$HOME/NoRegret_tools/sedumi` — a **standalone copy** outside the CVX root; the in-root `{cvx}/sedumi` gets pruned off the path by `cvx_clear` (the f6c73c7 failure mode). Do **not** export `CVX_DIR` (whole-tree genpath pollutes CVX's curated path).
+  4. Working job template: `~/NoRegret_runs/smoke_20260910_114613/job_smoke.sh` (single MATLAB session: cvx_setup → prereq check → payload).
+- **Launcher port**: the linstat launchers (`run_corrected_bundle_linstat.sh` etc., nohup-based) must become sbatch scripts; the smoke job script in the run root is the template. MATLAB module: `ml matlab/r2024b` (HANDOVER says R2024a+, so compatible). Linstat reference smokes for equivalence: `3778539`, `3779271` (both PASS).
+
+## Previous Session
 - **Date**: 2026-04-30
 - **Summary**: Completed serious-run characterization of realization-conditional ID set: 3 truths × 5 N's × 2 LP variants (BCCE LP vs data-only). Discovered that the BCCE LP is mis-specified for persistent types and rejects the truth at asymmetric realizations. The data-only spec with per-candidate `kappa` eps is the right calibration — hits asymptotic floor at the smallest N tested. s=20 robustness pass shows the action-grid (not cost-grid) is the binding floor.
 
@@ -73,3 +89,14 @@
 - **Validate launches before claiming "in flight":** check log files growing, CPU > 0 sustained. Earlier in session I claimed runs were in flight when bash exit 127 had killed them silently.
 - **PowerShell `-WindowStyle Hidden` blocks MATLAB startup**; use `-NoNewWindow` instead.
 - **Save trajectories from `learn_fixed`** in the .mat output, then re-process with different `eps` schemes via small reprocessor scripts. Saves 17 min per re-run.
+
+## AuctionNet / Design A on Unity (recorded 2026-09-23, per the unity-skill first-use rule)
+- **Rule (Lorenzo, 2026-09-23):** no large Python jobs on the office machine; downloads, conversions, simulations run on Unity.
+- **Code on Unity:** `/home/magnolfi.1/NoRegret_Code/python/auctionnet/` (scp copy of this repo's `python/auctionnet/`, uncommitted state of 2026-09-23; re-copy after edits).
+- **Data on Unity:** `/home/magnolfi.1/NoRegret_data/auctionnet/{raw,parquet,env,results}`; raw zips downloaded on the login node by `unity/download_unity.sh` (log `download.log`, ends with ALLDONE).
+- **Python env:** `~/.conda/envs/auctionnet` (mamba module 25.11.0 with `CONDA_PKGS_DIRS`/`CONDA_ENVS_DIRS` in home; the module prefix is read-only). Jobs call `~/.conda/envs/auctionnet/bin/python` directly.
+- **Jobs:** `unity/job_convert.sh` (convert_all.py; econ,batch; 6 h; 32 g) then `unity/job_designA.sh` (run_designA.py; 24 h; 48 g; 8 cores), submitted by the login-node watcher `unity/chain.sh` (log `~/NoRegret_runs/auctionnet/chain.log`, ends with CHAIN_SUBMITTED). Job logs in `~/NoRegret_runs/auctionnet/logs/`.
+- **Outputs to pull back:** `results/designA/` (MANIFEST.json, CSVs, npz, figs), `results/rules/`, `results/footprints/`. Local copies of period 7-17 zips/parquet/env remain under `C:/Users/magnolfi.1/AuctionNet/` (outside Dropbox); the local period-13 pilot results are in `C:/Users/magnolfi.1/AuctionNet/results/`.
+- **Definitive run complete (2026-09-23):** download ALLDONE 11:24 EDT (11 zips, 18 GB); convert job 11149732 COMPLETED (47:55); designA job 11149733 COMPLETED (1:41:53). Results pulled on 2026-09-24 to `C:/Users/magnolfi.1/AuctionNet/results_unity/{designA,footprints,rules}` plus `designA_log.txt` (the six 140 MB pooled environments `env_role*.npz` stay on Unity). Recap: paper repo `JPE Revision/Simulation_AuctionNet_DesignA_Results.md`; register updated.
+- **Robustness array (2026-09-24):** `run_robust.py` + `unity/job_robust.sh` (Slurm array 0-5 over the six focal roles; 12 h; 4 cores; 40 g), job 11157909. Variants lam075/lam150/lamcat, nm8/nm16, nv5/nv9, wide; seeds 2-3 at 1e8; STZ comparison (`sim_stz.py`, coverage runs as subsamples). Outputs `results/designA/robust/role<r>/` with `MANIFEST.json`; logs `~/NoRegret_runs/auctionnet/logs/auctionnet-robust_11157909_<i>.log`, ending ROBUST_DONE. Pull back with the same tar recipe (exclude `env.npz`).
+- **Still to do:** `verify_auction.py` on periods other than 13; WIN-EXP; commit `python/auctionnet/` (manifest `code_commit` is empty because the Unity copy is not a git checkout; the local repo copy is the source of truth) before any number enters the paper.
