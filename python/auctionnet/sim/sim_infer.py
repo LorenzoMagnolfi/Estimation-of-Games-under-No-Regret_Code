@@ -9,7 +9,13 @@ feasibility LP in nu(alpha, v) >= 0 with the bid-lattice marginal equal to q_N, 
 relaxed obedience with the POPULATION payoff table (first-stage object, exact here because the fringe distribution is known).
 Slack rules: exact (0); markov (Theorem CR with the Hedge envelope, M_R = NV, alpha_R = 0.045, alpha_C = 0.005);
 empirical (the realized unconditional regret per context at lambda0, a diagnostic that contains the truth by construction).
-Usage: python sim_infer.py <env_npz> <run_npz> <out_prefix> [regimes=PO]
+The Markov tolerance of context j grows with the share phi_j of auctions in that context. In Regime P the contexts are
+observed and phi_j is the realized share. In Regime O they are latent, so for a candidate (mu, sigma) the tolerance uses
+the largest share consistent with the candidate on the consistency event, phi_j <= psi_j(mu, sigma) + r_cons / 2 (an L1
+ball of radius r_cons moves a single coordinate by at most r_cons / 2); this is rule 'markov' in Regime O since 2026-10-07.
+Rule 'markov_realized' (Regime O only) keeps the earlier tolerance with the realized shares, which the analyst does not
+observe in that regime; it is reported as a diagnostic for comparison with the runs of 2026-09-23/24.
+Usage: python sim_infer.py <env_npz> <run_npz> <out_prefix> [regimes=PO] [coarse] [checkpoints]
 """
 import sys
 
@@ -39,16 +45,21 @@ TOL = 1e-12
 LEARNER = str(run["learner"]) if "learner" in run.files else "hedge"
 
 
+def markov_eps(N, phi):
+    """Markov tolerance per auction (unconditional) for context shares phi."""
+    if LEARNER == "exp3":          # Corollary 2 (bandit feedback): 2 sqrt(e-1) K sqrt(m |A| ln|A|)
+        return (M_R / (ALPHA_R * N)) * 2 * np.sqrt(np.e - 1) * K * np.sqrt(N * phi * NM * lnA)
+    return (M_R / (ALPHA_R * N)) * K * (np.sqrt(2 * N * phi * lnA) + lnA)
+
+
 def slack(N, rule, Z, Sa, Sc, Ra, Rc):
     phi = Z.sum(axis=0) / N
     if rule == "exact":
         return np.zeros(NV)
     if rule == "none":             # no obedience restriction: the set identified by the bid marginal and consistency alone
         return np.full(NV, 1e6)
-    if rule == "markov":
-        if LEARNER == "exp3":      # Corollary 2 (bandit feedback): 2 sqrt(e-1) K sqrt(m |A| ln|A|)
-            return (M_R / (ALPHA_R * N)) * 2 * np.sqrt(np.e - 1) * K * np.sqrt(N * phi * NM * lnA)
-        return (M_R / (ALPHA_R * N)) * K * (np.sqrt(2 * N * phi * lnA) + lnA)
+    if rule in ("markov", "markov_realized"):   # realized shares (legitimate in Regime P; diagnostic in Regime O)
+        return markov_eps(N, phi)
     if rule == "empirical":
         S = lam0 * Sa - Sc; real = lam0 * Ra - Rc
         return np.maximum(S.max(axis=1) - real, 0.0) / N
@@ -114,10 +125,10 @@ for N in checks:
         for j in range(NV):
             qN[bid_index[k, j]] += Z[k, j] / N
     r_cons = np.sqrt(2 * np.log((2 ** NV - 2) / ALPHA_C) / N)
-    rules = ["exact", "markov", "empirical"] + (["none"] if "O" in regimes else [])
+    rules = ["exact", "markov", "empirical"] + (["none", "markov_realized"] if "O" in regimes else [])
     for rule in rules:
         eps = slack(N, rule, Z, Sa, Sc, Ra, Rc)
-        if "P" in regimes:
+        if "P" in regimes and rule != "markov_realized":     # in Regime P the realized shares are observed: 'markov' already uses them
             lo, hi, L, H = regime_P(N, Sa, Sc, Ra, Rc, eps)
             rowsP.append(dict(N=N, rule=rule, lam_lo=L, lam_hi=H, width=H - L, contains_truth=(L - 1e-6 <= lam0 <= H + 1e-6),
                               **{f"lo_v{j + 1}": lo[j] for j in range(NV)}, **{f"hi_v{j + 1}": hi[j] for j in range(NV)},
@@ -126,16 +137,21 @@ for N in checks:
                   f"per-context {[f'[{lo[j]:.0f},{hi[j]:.0f}]' for j in range(NV)]}", flush=True)
         if "O" in regimes:
             rc = 0.0 if rule == "exact" else r_cons
+
+            def eps_for(psi):          # tolerance for a candidate with context masses psi (latent contexts)
+                return markov_eps(N, np.minimum(1.0, psi + rc / 2)) if rule == "markov" else eps
+
             feas = np.zeros((len(mus), len(sigs)), dtype=bool)
             for a_, mu in enumerate(mus):
                 for b_, sg in enumerate(sigs):
-                    feas[a_, b_] = regime_O_feasible(qN, psi_of(mu, sg), eps, rc)
+                    psi_c = psi_of(mu, sg)
+                    feas[a_, b_] = regime_O_feasible(qN, psi_c, eps_for(psi_c), rc)
             share = feas.mean()
             if feas.any():
                 mu_rng = (mus[feas.any(axis=1)].min(), mus[feas.any(axis=1)].max()); sg_rng = (sigs[feas.any(axis=0)].min(), sigs[feas.any(axis=0)].max())
             else:
                 mu_rng = sg_rng = (np.nan, np.nan)
-            truth_ok = regime_O_feasible(qN, psi0, eps, rc)
+            truth_ok = regime_O_feasible(qN, psi0, eps_for(psi0), rc)
             rowsO.append(dict(N=N, rule=rule, share=share, mu_lo=mu_rng[0], mu_hi=mu_rng[1], sig_lo=sg_rng[0], sig_hi=sg_rng[1],
                               truth_feasible=truth_ok, r_cons=rc))
             np.save(f"{pref}_O_{rule}_{N}.npy", feas)
