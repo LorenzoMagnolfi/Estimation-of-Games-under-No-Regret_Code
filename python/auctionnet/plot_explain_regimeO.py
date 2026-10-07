@@ -8,7 +8,9 @@ Fig 3  the (mu, sigma) regions at 1e7 and 1e8: kept by the bids alone, kept with
        kept with a tolerance 22 times smaller; dashed outline = current tolerance computed from the candidate's own
        context shares; star = truth.
 Fig 4  share of the bids-only region that survives, as a function of the multiple kappa of the current tolerance.
-Usage: python plot_explain_regimeO.py <designA_dir> <role> <out_dir>
+Usage: python plot_explain_regimeO.py <designA_dir> <role> <out_dir> [explain_subdir=explain]
+With the outputs of explain_regimeO.py in 'candidate' profile (subdir with <tag>_markovrealized_<N>.npy files), the regions use
+the corrected tolerance and the dashed outline is the earlier tolerance with the realized context shares.
 """
 import os
 import sys
@@ -22,7 +24,9 @@ from matplotlib.colors import LinearSegmentedColormap, ListedColormap  # noqa: E
 
 da, role, out = sys.argv[1], int(sys.argv[2]), sys.argv[3]
 os.makedirs(out, exist_ok=True)
-ex = os.path.join(da, "explain")
+ex = os.path.join(da, sys.argv[4] if len(sys.argv) > 4 else "explain")
+CORR = os.path.exists(os.path.join(ex, f"role{role}_base_markovrealized_100000000.npy"))
+ALT_FILE, ALT_LAB = ("markovrealized", "earlier tolerance (realized context shares)") if CORR else ("candphi", "tolerance from the candidate's own context shares")
 plt.rcParams.update({"font.family": "serif", "mathtext.fontset": "cm", "font.size": 9, "axes.titlesize": 10,
                      "axes.edgecolor": "#52514e", "axes.labelcolor": "#0b0b0b", "xtick.color": "#52514e", "ytick.color": "#52514e",
                      "axes.spines.top": False, "axes.spines.right": False, "figure.facecolor": "#fcfcfb", "axes.facecolor": "#fcfcfb",
@@ -108,7 +112,7 @@ for col, (v, title) in enumerate(VARIANTS):
     mus, sigs, mu0, sig0 = g["mus"], g["sigs"], float(g["mu0"]), float(g["sig0"])
     for row, N_ in enumerate([10_000_000, 100_000_000]):
         ax = axs[row, col]
-        kap = np.load(os.path.join(ex, f"role{role}_{v}_kappa_{N_}.npy")); cand = np.load(os.path.join(ex, f"role{role}_{v}_candphi_{N_}.npy"))
+        kap = np.load(os.path.join(ex, f"role{role}_{v}_kappa_{N_}.npy")); cand = np.load(os.path.join(ex, f"role{role}_{v}_{ALT_FILE}_{N_}.npy"))
         lev = np.isfinite(kap).astype(int) + (kap <= 1).astype(int) + (kap <= 1 / 22.2).astype(int)
         dmu, dsg = mus[1] - mus[0], sigs[1] - sigs[0]
         ax.imshow(lev, origin="lower", cmap=LEVELS, vmin=-0.5, vmax=3.5, aspect="auto",
@@ -116,7 +120,7 @@ for col, (v, title) in enumerate(VARIANTS):
         ax.contour(sigs, mus, cand.astype(float), levels=[0.5], colors=INK, linestyles="dashed", linewidths=1.0)
         ax.plot(sig0, mu0, marker="*", ms=11, color=ORANGE, mec="white", mew=0.6, zorder=4)
         none, mk, tight = np.isfinite(kap).mean(), (kap <= 1).mean(), (kap <= 1 / 22.2).mean()
-        ax.text(0.02, 0.97, f"bids only {none:.3f}\nno regret {mk:.3f}\n(candidate shares {cand.mean():.3f})\ntolerance / 22: {tight:.3f}",
+        ax.text(0.02, 0.97, f"bids only {none:.3f}\nno regret {mk:.3f}\n({'earlier tolerance' if CORR else 'candidate shares'} {cand.mean():.3f})\ntolerance / 22: {tight:.3f}",
                 transform=ax.transAxes, ha="left", va="top", fontsize=7, color=INK)
         if row == 0:
             ax.set_title(title, loc="left", fontsize=9)
@@ -127,7 +131,7 @@ for col, (v, title) in enumerate(VARIANTS):
 handles = [plt.Rectangle((0, 0), 1, 1, color=BLUE[150]), plt.Rectangle((0, 0), 1, 1, color=BLUE[400]), plt.Rectangle((0, 0), 1, 1, color=BLUE[700]),
            plt.Line2D([], [], color=INK, ls="dashed"), plt.Line2D([], [], marker="*", color=ORANGE, ls="none", ms=10)]
 fig.legend(handles, ["kept by the bids alone (no-regret off)", "also kept by no regret, current tolerance",
-                     "also kept with tolerance / 22 (illustrative)", "no regret, tolerance from the candidate's own context shares", "truth"],
+                     "also kept with tolerance / 22 (illustrative)", f"no regret, {ALT_LAB}", "truth"],
            loc="upper center", ncol=3, frameon=False, fontsize=8, bbox_to_anchor=(0.5, 1.04))
 save(fig, f"fig3_regions_role{role}")
 

@@ -12,7 +12,12 @@ For one environment (payoff table without the rival draws, as extracted to resul
   3. the same Markov region with a candidate-specific tolerance, eps_j computed from the candidate's context masses
      psi_j(mu, sigma) instead of the realized shares phi_j, which the analyst does not observe when contexts are latent.
 Writes <out>/<tag>_tolerance.csv, <tag>_kappa_<N>.npy, <tag>_candphi_<N>.npy, <tag>_summary.csv.
-Usage: python explain_regimeO.py <table_npz> <run_npz> <out_dir> <tag> [checkpoints, default 1e7,1e8]
+Profile (6th argument): 'realized' (default; the behavior of commit 8348836) scales the Markov profile computed from the
+realized context shares, and item 3 uses the candidate's shares psi_j exactly. 'candidate' scales, for each candidate, the
+corrected profile of sim_infer.py (since 2026-10-07), eps_j(N, psi_j(mu, sigma) + r_cons / 2), so {kappa <= 1} is the
+corrected Markov region; item 3 is then replaced by the old rule (realized shares at kappa = 1), saved as
+<tag>_markovrealized_<N>.npy and reported as 'markov_realized'.
+Usage: python explain_regimeO.py <table_npz> <run_npz> <out_dir> <tag> [checkpoints, default 1e7,1e8] [profile=realized]
 """
 import os
 import sys
@@ -24,6 +29,8 @@ from scipy.stats import norm
 
 tab, run, out, tag = np.load(sys.argv[1]), np.load(sys.argv[2]), sys.argv[3], sys.argv[4]
 checks = [int(float(x)) for x in (sys.argv[5] if len(sys.argv) > 5 else "1e7,1e8").split(",")]
+profile = sys.argv[6] if len(sys.argv) > 6 else "realized"
+assert profile in ("realized", "candidate"), profile
 os.makedirs(out, exist_ok=True)
 alphas, vgrid, psi0, lam0, K = tab["alphas"], tab["vgrid"], tab["psi0"], float(tab["lam0"]), tab["K"]
 expo, cost, bid_index, NB, edges = tab["expo"], tab["cost"], tab["bid_index"], int(tab["NB"]), tab["edges"]
@@ -101,18 +108,28 @@ for N in checks:
             q[bid_index[k, j]] += Z[k, j] / N
     r_cons = np.sqrt(2 * np.log((2 ** NV - 2) / ALPHA_C) / N)
     eps = eps_markov(N, phi)
-    kap = np.array([[min_kappa(q, psi_of(mu, sg), eps, r_cons) for sg in sigs] for mu in mus])
-    candphi = np.array([[feasible(q, psi_of(mu, sg), eps_markov(N, psi_of(mu, sg)), r_cons) for sg in sigs] for mu in mus])
-    np.save(os.path.join(out, f"{tag}_kappa_{N}.npy"), kap); np.save(os.path.join(out, f"{tag}_candphi_{N}.npy"), candphi)
-    k_truth = min_kappa(q, psi0, eps, r_cons)
+    if profile == "candidate":
+        def epsc(psi):
+            return eps_markov(N, np.minimum(1.0, psi + r_cons / 2))
+        kap = np.array([[min_kappa(q, psi_of(mu, sg), epsc(psi_of(mu, sg)), r_cons) for sg in sigs] for mu in mus])
+        candphi = np.array([[feasible(q, psi_of(mu, sg), eps, r_cons) for sg in sigs] for mu in mus])      # old rule
+        np.save(os.path.join(out, f"{tag}_kappa_{N}.npy"), kap); np.save(os.path.join(out, f"{tag}_markovrealized_{N}.npy"), candphi)
+        k_truth = min_kappa(q, psi0, epsc(psi0), r_cons)
+        other_name, other_truth = "markov_realized", bool(feasible(q, psi0, eps, r_cons))
+    else:
+        kap = np.array([[min_kappa(q, psi_of(mu, sg), eps, r_cons) for sg in sigs] for mu in mus])
+        candphi = np.array([[feasible(q, psi_of(mu, sg), eps_markov(N, psi_of(mu, sg)), r_cons) for sg in sigs] for mu in mus])
+        np.save(os.path.join(out, f"{tag}_kappa_{N}.npy"), kap); np.save(os.path.join(out, f"{tag}_candphi_{N}.npy"), candphi)
+        k_truth = min_kappa(q, psi0, eps, r_cons)
+        other_name, other_truth = "markov_candidate_phi", bool(feasible(q, psi0, eps_markov(N, psi0), r_cons))
     none = np.isfinite(kap)
     for thr in [np.inf, 10.0, 3.16, 1.0, 1 / 22.2, 0.01]:
         reg = np.isfinite(kap) if np.isinf(thr) else (kap <= thr)      # kappa = inf marks candidates infeasible without obedience
         summ.append(dict(N=N, kappa_threshold=thr, share=reg.mean(), share_of_none=reg.sum() / max(none.sum(), 1), truth_kappa=k_truth,
                          truth_in=bool(k_truth <= thr)))
-    summ.append(dict(N=N, kappa_threshold="markov_candidate_phi", share=candphi.mean(), share_of_none=candphi.sum() / max(none.sum(), 1),
-                     truth_kappa=k_truth, truth_in=bool(feasible(q, psi0, eps_markov(N, psi0), r_cons))))
-    print(f"{tag} N={N:,d}: none {none.mean():.3f}; markov {np.mean(kap <= 1):.3f}; candidate-phi markov {candphi.mean():.3f}; "
+    summ.append(dict(N=N, kappa_threshold=other_name, share=candphi.mean(), share_of_none=candphi.sum() / max(none.sum(), 1),
+                     truth_kappa=k_truth, truth_in=other_truth))
+    print(f"{tag} [{profile}] N={N:,d}: none {none.mean():.3f}; markov {np.mean(kap <= 1):.3f}; {other_name} {candphi.mean():.3f}; "
           f"kappa<=1/22 {np.mean(kap <= 1 / 22.2):.3f}; truth kappa {k_truth:.4f}", flush=True)
 pd.DataFrame(summ).to_csv(os.path.join(out, f"{tag}_summary.csv"), index=False)
 np.savez(os.path.join(out, f"{tag}_grid.npz"), mus=mus, sigs=sigs, mu0=mu0, sig0=sig0)
