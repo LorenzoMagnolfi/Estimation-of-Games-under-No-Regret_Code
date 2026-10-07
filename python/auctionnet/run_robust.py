@@ -21,6 +21,8 @@ import time
 
 import pandas as pd
 
+from provenance import code_commit
+
 root = sys.argv[1]
 ridx = int(sys.argv[2])
 here = os.path.dirname(os.path.abspath(__file__))
@@ -34,6 +36,7 @@ work = os.path.join(da, "robust", f"role{role}")
 os.makedirs(work, exist_ok=True)
 env_files = sorted(glob.glob(os.path.join(envd, "period-*_env.npz")))
 log = []
+skipped = []
 
 
 def run(cmd, tag):
@@ -59,7 +62,8 @@ variants = {
     "wide": (lam0, NV, "13,0.25,2.5,3"),
 }
 for name, (lam, nv, grid) in variants.items():
-    if name == "lamcat" and abs(lam_cat - lam0) < 1e-9:
+    if name == "lamcat" and abs(lam_cat - lam0) < 1e-9:   # category value equals the pooled one: the run would duplicate the base
+        skipped.append(name)
         continue
     vd = os.path.join(work, name); os.makedirs(os.path.join(vd, "figs"), exist_ok=True)
     env_out = os.path.join(vd, "env.npz"); run_out = os.path.join(vd, f"run_hedge_{N_MAIN}.npz"); pref = os.path.join(vd, f"inf_hedge_{N_MAIN}")
@@ -90,7 +94,9 @@ if not os.path.exists(stz_pref + "_sets.csv") and not glob.glob(stz_pref + "*.cs
     run([py, os.path.join(here, "sim", "sim_stz.py"), env_main, os.path.join(da, f"run_role{role}_hedge_{N_MAIN}.npz"), N_MAIN,
          os.path.join(da, f"coverage_role{role}_hedge_{N_COV}"), N_COV, stz_pref], "stz")
 
+commit, dirty = code_commit()
 with open(os.path.join(work, "MANIFEST.json"), "w") as f:
-    json.dump(dict(timestamp=time.strftime("%Y-%m-%d %H:%M:%S"), role=role, lambda0=lam0, lambda0_category=lam_cat,
-                   variants={k: dict(lambda0=v[0], NV=v[1], grid=v[2]) for k, v in variants.items()}, log=log), f, indent=1)
+    json.dump(dict(timestamp=time.strftime("%Y-%m-%d %H:%M:%S"), role=role, lambda0=lam0, lambda0_category=lam_cat, code_commit=commit, code_dirty=dirty,
+                   variants={k: dict(lambda0=v[0], NV=v[1], grid=v[2]) for k, v in variants.items() if k not in skipped},
+                   skipped=skipped, log=log), f, indent=1)
 print("ROBUST_DONE", flush=True)

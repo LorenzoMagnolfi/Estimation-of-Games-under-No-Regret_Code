@@ -86,11 +86,8 @@ for role, lam0, env_out in runs:
         if not os.path.exists(os.path.join(cov_dir, "coverage_hedge_P.csv")):
             print(run([py, os.path.join(here, "sim", "sim_coverage.py"), env_out, cov_dir, "hedge", N_COV, str(N_SEEDS), "101"], f"coverage role {role}").strip().splitlines()[-12:])
 # manifest
-try:
-    commit = subprocess.run(["git", "-C", here, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
-    dirty = subprocess.run(["git", "-C", here, "status", "--porcelain", "python/auctionnet"], capture_output=True, text=True).stdout.strip() != ""
-except Exception:
-    commit, dirty = "unknown", True
+from provenance import code_commit   # STAGED_COMMIT.txt on Unity (git archive), git otherwise
+commit, dirty = code_commit()
 manifest = dict(timestamp=time.strftime("%Y-%m-%d %H:%M:%S"), code_commit=commit, code_dirty=dirty, params=dict(N_MAIN=N_MAIN, N_BANDIT=N_BANDIT, N_COV=N_COV, N_SEEDS=N_SEEDS, NV=NV),
                 env_files={os.path.basename(f): sha(f) for f in env_files}, selection=sel.to_dict(orient="records"), log=log)
 with open(os.path.join(da, "MANIFEST.json"), "w") as f:
