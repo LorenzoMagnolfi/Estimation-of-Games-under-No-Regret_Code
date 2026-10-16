@@ -27,7 +27,7 @@ def maximum_own_profit(c,offset,b,gp,gn,rival,cap):
 
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--reference-loading',type=float,default=0.);ap.add_argument('--seller',default='UPGRADE SOLUTION INC');ap.add_argument('--single-inventory',action='store_true');ap.add_argument('--price-cap',type=float,default=350.);args=ap.parse_args();suffix='' if args.seller=='UPGRADE SOLUTION INC' and not args.single_inventory else '_'+''.join(x if x.isalnum() else '_' for x in args.seller)+'_single'+str(int(args.single_inventory))
+ ap=argparse.ArgumentParser();ap.add_argument('--cost-file');ap.add_argument('--reference-loading',type=float,default=0.);ap.add_argument('--seller',default='UPGRADE SOLUTION INC');ap.add_argument('--single-inventory',action='store_true');ap.add_argument('--price-cap',type=float,default=350.);args=ap.parse_args();suffix='' if args.seller=='UPGRADE SOLUTION INC' and not args.single_inventory else '_'+''.join(x if x.isalnum() else '_' for x in args.seller)+'_single'+str(int(args.single_inventory))
  s=terminal_status_data();s=s[s.Seller.eq(args.seller)].sort_values(['Code','date']).reset_index(drop=True);fit=joblib.load(OUT/'multiproduct_initial_terminal.joblib')
  s['cost_factor']=(1-args.reference_loading)+args.reference_loading*s.Ref_Price/s.initial_reference
  assert 0<=args.reference_loading<=1
@@ -46,7 +46,9 @@ def main():
  absent=diagonal<=1e-14;diagonal[absent]=1;rhs[absent]=.7*anchor[absent]
  foc=spsolve(diags(diagonal)+coo_matrix((vv,(rr,cc)),shape=(L,L)).tocsr(),rhs);foc=np.clip(foc,0,cmax)
  candidates=[('unrestricted_foc_initialization',foc)]
- for rho,delta in ([((.69),5),(.7,10),(.75,15),(.75,25)] if args.seller=='UPGRADE SOLUTION INC' else []):
+ if args.cost_file:
+  candidate=pd.read_csv(args.cost_file).set_index('Code').cost.reindex(codes).to_numpy();assert np.all((candidate>=0)&(candidate<=cmax+1e-8));candidates=[('supplied_costs',candidate)];suffix+='_supplied'
+ for rho,delta in ([((.69),5),(.7,10),(.75,15),(.75,25)] if args.seller=='UPGRADE SOLUTION INC' and not args.cost_file else []):
   low=np.maximum(0,rho*anchor-delta);high=np.minimum(cmax,rho*anchor+delta)
   if np.all(low<=high):candidates.append((f'rho{rho}_delta{delta}',np.clip(foc,low,high)))
  records=[]

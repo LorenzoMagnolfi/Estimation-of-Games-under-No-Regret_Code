@@ -30,7 +30,7 @@ def main():
  fitname='multiproduct_initial_terminal.joblib' if args.demand=='initial_control' else ('multiproduct_demand.joblib' if args.outcome=='sale_last_seen' else f'multiproduct_{args.outcome}.joblib')
  fit=joblib.load(OUT/fitname)
  active=s.since_seen.gt(0).to_numpy() if args.continuation_only else np.ones(len(s),bool)
- suffix='' if args.demand=='baseline' and not args.continuation_only else f'_{args.demand}_continuation' 
+ suffix='' if args.demand=='baseline' and not args.continuation_only else f'_{args.demand}_continuation'
  codes,idx=np.unique(s.Code,return_inverse=True);L=len(codes);N=len(s);anchor=s.groupby('Code',sort=True).initial_reference.first().to_numpy();cmax=s.groupby('Code',sort=True).Price.min().to_numpy()
  p=s.Price.to_numpy();ref=s.Ref_Price.to_numpy();rival=s.rival_min.to_numpy();qa=fit.predict(s);actual_logit=fit.logit(s);n=s.own_n.to_numpy();groups=list(s.groupby('market_id',sort=False).indices.values())
  ef=fit.effects();b=(ef['own']+ef['price_ref_interaction']*np.log(ref/500))/100;gp=ef['gap_positive']/100;gn=ef['gap_negative']/100;bp=ef['own_peer_price']/100
