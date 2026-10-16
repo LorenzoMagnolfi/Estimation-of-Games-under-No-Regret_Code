@@ -146,3 +146,13 @@ Next gates, in order:
 6. Separate empirical inventory/replacement value from procurement cost, posted receipts from net receipts, and empirical sale-weighted targets from population transaction-cost claims. No fees have been invented and no first-order-condition point estimate is substituted for the learning bounds.
 
 The temporary keep-awake helper PID 26428 was reverified alive, with API success and expiration October 19 20:29:23 UTC. The two-hour heartbeat remains the continuation mechanism, subject to its October 19 cutoff. Local work has consisted of modest pilots; no OSC or Unity job has been submitted in this pass.
+
+## Fourth research pass: uncertainty and state-aware learning
+
+Read `SWAPPA_UNCERTAINTY_ORACLE.md` for the current proof, statistical qualifications, results, and next steps. The narrow fitted-demand Upgrade ranges did not survive conservative first-stage propagation. Added correlated relative-demand bounds, continuous-cost coupled LPs, state-aware price-policy witnesses, and a profit-normalized extension retaining the original ANR expert family. Twenty-nine tests passed. No final credible estimate has been declared.
+
+The current candidate worth following is SaveGadget in single-owned-listing product markets, with initial-controlled continuation pricing and arbitrary persistent listing costs. At 120 cells, its continuation-sale gross-margin lower bound is about $20.9, compared with a prior-only floor of $.20. The cost range remains broad. The 480-cell refinement and fitted-demand event witness are in `normalized_single_savegadget_c480.log` and `oracle_witness_single_savegadget.log`; inspect them before making claims. D=10 remains nearly uninformative. The new note explains that this is a stronger information/learning model and an extension of the witness argument, not an unqualified application of the original scalar-envelope theorem.
+
+No OSC jobs were launched. A read-only budget check found substantial activity in another project and unreconciled future driver waves; do not submit a large batch based only on currently queued charges. The awake helper and two-hour continuation heartbeat remain the previously authorized mechanisms.
+
+Update: SaveGadget's 480-cell continuation-sale range is [305.422,452.186], gross margins [46.305,193.069], but the fitted-demand witness search fails substantially (optimized continuous-oracle log wealth 170.861 versus 27.822). Therefore this is not yet a successful application. Reference-price depreciation did not fix the initial witness. Read the final update in SWAPPA_UNCERTAINTY_ORACLE.md. Upgrade's smaller witness gap and stable price paths make its finer-cell and joint-cost checks a better immediate priority.

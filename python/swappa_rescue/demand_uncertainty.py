@@ -4,6 +4,7 @@ Listing and calendar-day cluster scores allow repeated-unit and common-date
 variation. A PSD projection is recorded explicitly. No application coverage is
 claimed from this covariance alone, and causal identification is separate.
 """
+import argparse
 import json
 import joblib
 import numpy as np
@@ -15,7 +16,10 @@ from audit_panel import OUT
 
 
 def main():
-    d=data();fit=joblib.load(OUT/'multiproduct_demand.joblib');n=len(d);q=fit.predict(d);y=d.sale_last_seen.to_numpy();r=y-q
+    ap=argparse.ArgumentParser();ap.add_argument('--variant',choices=['baseline','terminal','initial'],default='baseline');args=ap.parse_args()
+    from demand_timing_sensitivity import terminal_status_data
+    d=data() if args.variant=='baseline' else terminal_status_data();fitname={'baseline':'multiproduct_demand.joblib','terminal':'multiproduct_sale_terminal_status.joblib','initial':'multiproduct_initial_terminal.joblib'}[args.variant];fit=joblib.load(OUT/fitname);n=len(d);q=fit.predict(d);y=d['sale_last_seen' if args.variant=='baseline' else 'sale_terminal_status'].to_numpy();r=y-q
+    stem='demand_cluster' if args.variant=='baseline' else f'demand_cluster_{args.variant}'
     continuous=fit.scaler.transform(fit.continuous(d));cat=fit.encoder.transform(fit.cat(d))
     X=hstack([csr_matrix(np.ones((n,1))),csr_matrix(continuous),cat],format='csr');p=X.shape[1]
     H=(X.T@diags(q*(1-q))@X).toarray();pen=np.ones(p)/fit.model.C;pen[0]=0;H+=np.diag(pen);bread=np.linalg.inv(H)
@@ -38,7 +42,7 @@ def main():
     for name,terms in specs.items():
         g=grad(terms);estimate=float(g@theta);se=float(np.sqrt(max(0,g@cov@g)))
         rows.append({'parameter':name,'estimate':estimate,'two_way_se':se,'listing_se':float(np.sqrt(max(0,g@covl@g))),'day_se':float(np.sqrt(max(0,g@covd@g))),'normal_95_low':estimate-1.96*se,'normal_95_high':estimate+1.96*se})
-    report={'n':n,'parameters':p,'listing_clusters':gl,'date_clusters':gd,'negative_meat_eigenvalues':int((evals<0).sum()),'minimum_meat_eigenvalue':float(evals.min()),'maximum_meat_eigenvalue':float(evals.max()),'hessian_condition':float(np.linalg.cond(H)),'interpretation':'Two-way cluster robust asymptotic covariance, PSD-projected meat, penalized Hessian. These are diagnostic marginal intervals; not a simultaneous demand confidence set or causal validation.','contrasts':rows}
-    (OUT/'demand_cluster_uncertainty.json').write_text(json.dumps(report,indent=2));pd.DataFrame(rows).to_csv(OUT/'demand_cluster_contrasts.csv',index=False);np.savez_compressed(OUT/'demand_cluster_covariance.npz',theta=theta,covariance=cov,listing_covariance=covl,day_covariance=covd,hessian=H)
+    report={'variant':args.variant,'fit':fitname,'n':n,'parameters':p,'listing_clusters':gl,'date_clusters':gd,'negative_meat_eigenvalues':int((evals<0).sum()),'minimum_meat_eigenvalue':float(evals.min()),'maximum_meat_eigenvalue':float(evals.max()),'hessian_condition':float(np.linalg.cond(H)),'interpretation':'Two-way cluster robust asymptotic covariance, PSD-projected meat, penalized Hessian. These are diagnostic marginal intervals; not a simultaneous demand confidence set or causal validation.','contrasts':rows}
+    (OUT/f'{stem}_uncertainty.json').write_text(json.dumps(report,indent=2));pd.DataFrame(rows).to_csv(OUT/f'{stem}_contrasts.csv',index=False);np.savez_compressed(OUT/f'{stem}_covariance.npz',theta=theta,covariance=cov,listing_covariance=covl,day_covariance=covd,hessian=H)
     print(json.dumps(report,indent=2),flush=True)
 if __name__=='__main__':main()
