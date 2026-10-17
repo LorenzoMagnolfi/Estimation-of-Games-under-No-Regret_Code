@@ -30,6 +30,7 @@ def terminal_status_data():
         assert d.fullsource_prepared.all()
         d=d[d.Ref_Price.notna()].copy()
     d=d[d.rival_n.gt(0)&d.date.lt(d.date.max())].copy().reset_index(drop=True)
+    if 'outcome_observed' in d:d=d[d.outcome_observed].copy().reset_index(drop=True)
     top=d.groupby('Seller').Code.nunique().nlargest(20).index
     d['seller_group']=np.where(d.Seller.isin(top),d.Seller,'Other')
     return d

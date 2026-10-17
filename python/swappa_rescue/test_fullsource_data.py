@@ -29,4 +29,13 @@ class FullSourceTests(unittest.TestCase):
 class ReferenceScreenedTests(FullSourceTests):
  folder=FULL/'reference_screened'
 
+@unittest.skipUnless((FULL/'reference_screened/known_status/panel.parquet').exists(),'Requires unknown-terminal censoring')
+class KnownStatusTests(FullSourceTests):
+ folder=FULL/'reference_screened/known_status'
+ def test_only_unknown_terminal_outcomes_are_censored(self):
+  d=self.d;last=d.groupby('Code').date.transform('max');expected=~(d.Real_Sold.isna()&d.date.eq(last));np.testing.assert_array_equal(d.outcome_observed,expected)
+  import demand_timing_sensitivity as timing
+  with patch.object(timing,'OUT',self.folder):selected=timing.terminal_status_data()
+  self.assertTrue(selected.outcome_observed.all());self.assertEqual(int((~d.outcome_observed).sum()),3)
+
 if __name__=='__main__':unittest.main()
