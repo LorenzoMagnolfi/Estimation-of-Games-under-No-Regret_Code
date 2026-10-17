@@ -120,3 +120,17 @@ The observed clock remains a substantive limitation: Upgrade has 6,282 continuat
 Next computation: finish the immutable OSC baseline profile; separately freeze the corrected-grid, selection-adjusted version before any new cluster batch. A bounded local search of the predeclared delta=20 class is in askgrid_structured_delta20.log. Do not infer global feasibility from an accepted outer LP box, or global bounds from an incomplete rho profile. No manuscript or referee response has been edited.
 
 The delta=20 full-grid cost search has completed. A witness at rho=.75 passes, with log wealth 25.5410 against 26.3609; the independent full-menu audit reproduces it. Other tried rho values .60, .65, .70, and .80 failed these candidate searches, which does not certify their exclusion. All searches stopped at 250 iterations. Canonical witness: askgrid_structured_delta20_rho0.75_costs.csv; independent audit: ask_grid_witness_common_delta20_rho075.json, including the cost-file hash. No global cost bound follows from this witness alone.
+
+
+### First complete global baseline cost-reference profile
+
+All sixty rho boxes for delta=20 in the original OSC campaign are accounted for, with no solver failures. Under the earlier displayed-price payoff, single-seller demand band, and persistent |c_l-rho*Ref_l,first|<=20 restriction, the continuation-sale bounds are:
+
+| Learners D | Cost lower | Cost upper | Margin lower | Margin upper |
+|---|---:|---:|---:|---:|
+| 1 | 82.659 | 128.966 | 12.032 | 58.339 |
+| 2 | 73.311 | 131.062 | 9.936 | 67.688 |
+| 5 | 54.826 | 134.448 | 6.550 | 86.172 |
+| 10 | 33.022 | 137.151 | 3.847 | 107.976 |
+
+The prior alone gives cost [0,140.332] and margin floor .667, at mean displayed price 140.999. Thus the precision is not a direct consequence of a narrow prior mean-cost interval, although the common-reference restriction is substantively important. These are global rho-profile outer bounds, unlike the earlier conditional canary. Source: osc_campaign/swappa_1e112e66_20261016/global_profile_bounds.csv, producing commit 1e112e66a354b0d6bde6124d823dd113ca11c9f2. These baseline values still require the corrected price-grid and twenty-seller uncertainty treatment. The corrected array 15597781 is running; its results must be reported separately. No final estimate is declared from this baseline.
