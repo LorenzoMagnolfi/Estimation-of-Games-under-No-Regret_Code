@@ -18,7 +18,7 @@ from ask_price_grid import recover_receipts
 
 
 def peer_changes(delta,groups):
- result=np.zeros_like(delta)
+ result=np.zeros_like(delta,dtype=float)
  for ids in groups:
   if len(ids)>1:result[ids]=(delta[ids].sum(axis=0,keepdims=True)-delta[ids])/(len(ids)-1)
  return result
