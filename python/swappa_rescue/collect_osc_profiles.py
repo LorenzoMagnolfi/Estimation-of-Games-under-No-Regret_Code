@@ -38,10 +38,11 @@ def main():
    if p.exists():d=pd.read_csv(p);d['task']=task;frames.append(d)
    else:assert statusmap[task]['infeasible_prior']
   d=pd.concat(frames,ignore_index=True)
+  assert d.groupby(['task','copies']).solver_status.nunique().max()==1,'Contradictory objective feasibility statuses; resolve before aggregation'
   for (copies,estimand),group in d.groupby(['copies','estimand']):
    assert set(group.solver_status.unique())<=set([0,2]),'Unresolved solver failure; do not report a global interval'
    accepted=group[group.success];low=accepted.loc[accepted.direction.eq('low'),'cost_bound'];high=accepted.loc[accepted.direction.eq('high'),'cost_bound'];price=float(group.mean_observed_price.iloc[0]);cl=float(low.min()) if len(low) else None;ch=float(high.max()) if len(high) else None
-   records.append({'delta':delta,'copies':int(copies),'estimand':estimand,'all_rho_boxes_accounted_for':True,'accepted_boxes':int(accepted.task.nunique()),'cost_low':cl,'cost_high':ch,'gross_margin_low':price-ch if ch is not None else None,'gross_margin_high':price-cl if cl is not None else None,'prior_cost_low':float(group.prior_cost_low.min()),'prior_cost_high':float(group.prior_cost_high.max()),'mean_price':price})
+   records.append({'run_id':args.run_id,'code_commit':m['code_commit'],'model':str(group.model.iloc[0]),'critical':float(group.critical.iloc[0]),'alpha_R':float(group.alpha_R.iloc[0]),'cells':int(group.cells.iloc[0]),'delta':delta,'copies':int(copies),'estimand':estimand,'all_rho_boxes_accounted_for':True,'accepted_boxes':int(accepted.task.nunique()),'cost_low':cl,'cost_high':ch,'gross_margin_low':price-ch if ch is not None else None,'gross_margin_high':price-cl if cl is not None else None,'prior_cost_low':float(group.prior_cost_low.min()),'prior_cost_high':float(group.prior_cost_high.max()),'mean_price':price})
  if records:pd.DataFrame(records).to_csv(campaign/'global_profile_bounds.csv',index=False)
  summary={'downloaded_profile_tasks':len(done),'expected_profile_tasks':180,'complete_deltas':sorted(set(x['delta'] for x in records)),'failed_tasks':[x['task'] for x in statuses if x['returncode']!=0]};print(json.dumps(summary),flush=True)
  if len(done)==180 and not summary['failed_tasks']:m['status']='profile_results_collected';mp.write_text(json.dumps(m,indent=2))
