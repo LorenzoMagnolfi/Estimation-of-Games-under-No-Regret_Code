@@ -1,6 +1,18 @@
 # Swappa daily pricing: continuous endpoints and robustness
 
-Internal research record, October 17, 2026 UTC. The rescue goal remains active. No manuscript, response letter, or remote publication is changed by this note.
+Internal research record, October 17, 2026 UTC. The shared-learner analysis and its planned computational validation are complete. No manuscript, response letter, or remote publication is changed by this note.
+
+## Current conclusion and entry point
+
+A conditional version of the Swappa application is now informative under the newest normalized-wealth method. It treats Upgrade as one learner across daily SKU pricing rounds, allows sale probabilities to depend on the lowest competing price and owned inventory, and estimates separate cost levels across product groups. The result is an extension with an explicit learner and feedback restriction, not identification from unrestricted ANR alone.
+
+The preferred seller-specific demand specification gives mean receipt-equivalent replacement cost **[84.333,126.393]** with constant within-SKU costs, and **[75.147,134.498]** under a primitive within-SKU cost span of at most $5. At mean receipt $144.000149, the corresponding gross dollar margins are **[17.607,59.667]** and **[9.502,68.853]**. These are asymptotic conditional outer intervals, not point estimates or exact finite-sample confidence sets. The 20-seller allowance is part of these specifications. Allowing selection among 10,000 sellers, together with seller-specific demand and the $5 span, widens cost to **[61.125,139.274]** and gross margin to **[4.726,82.876]**.
+
+The $5-span prior alone gives costs [0,139.754540] and margins [4.245609,144.000149]. Thus the broad-selection result adds little to the positive margin floor, but substantially excludes low costs and high markups. The constant-cost prior alone gives costs [0,135.541082] and margins [8.459067,144.000149]. Report the prior comparison alongside the inference results.
+
+The maintained economic assumptions are structural conditional demand, the observed-availability and terminal-sale interpretation, no cross-SKU demand substitution, nonnegative costs and no observed below-cost prices, stable within-SKU replacement costs or the stated bounded span, and the shared learner's information, payoff range, and lifetime clock. Data do not establish causal price exogeneity, exact seller feedback, or the cost-span restriction. These are defensible modeling choices for a bulk dealer, not measured facts. Observation gaps remain. The results concern incremental replacement/opportunity cost represented in the profit model, not verified acquisition invoices. Scope, feedback, dependence, and selection sensitivities below make their consequences visible; they have not all been combined in one specification.
+
+Read the shared-learner and final-validation sections below for the current application. Earlier single-SKU sections preserve the less informative specifications and should not be presented as the main result. `daily_multisku_bounds.png` and `.pdf` compare the fitted bounds, uncertainty intervals, and exact cost-span priors. Source validation passed 62 tests; the whole-LP nonlinear diagnostics completed 60 draws per demand specification with no invalid draws. Seller-specific curvature remains material, so the asymptotic qualification cannot be omitted. No manuscript or referee response has been revised, and no result has been published remotely.
 
 ## Status and data
 
@@ -36,7 +48,7 @@ Increasing the learner's range normalizer widens the fitted intervals reported h
 
 ## Persistent cost heterogeneity without a cost distribution
 
-`daily_heterogeneous_cost.py` allows each persistent listing cost c_i to lie within delta of the empirical continuation-sale-weighted mean mu. Costs are nonnegative and no larger than any observed receipt for that listing. This is an explicit restriction, not something inferred from the descriptive condition label. The target remains mu; there is no extra +/-delta adjustment to the reported mean bounds.
+`daily_heterogeneous_cost.py` computes an outer relaxation in which each persistent listing cost c_i lies within delta of the empirical continuation-sale-weighted mean mu. A pre-outcome primitive that justifies this computation is max_i c_i - min_i c_i <= delta within each SKU. Every realized weighted mean lies between the minimum and maximum cost, so the mean-centered box contains every primitive-admissible vector on every outcome path. This is not arbitrary +/-delta variation around an unknown fixed external center, which can have span 2*delta. Costs are nonnegative and no larger than any observed receipt for that listing. This is an explicit restriction, not something inferred from the descriptive condition label. The target remains mu; there is no extra +/-delta adjustment to the reported mean bounds.
 
 For a trial mean, let l_i=max(0,mu-delta), h_i=min(listing receipt cap,mu+delta). For a common-price proposal, q'_i-q_i determines the adverse cost endpoint: h_i when the probability change is nonnegative, l_i otherwise. Sum these lower gains, including entry-item spillovers, and maximize over common prices at least as large as every active h_i. Every such proposal is feasible for all costs in the box. Relaxing the mean constraint and choosing costs separately across proposals only lowers regret, so the calculation is conservative.
 
@@ -78,14 +90,11 @@ A separate covariance sensitivity clusters by listing and calendar week, subtrac
 
 No ledger issue has been marked resolved, and no response claims an unmade manuscript change.
 
-## Validation and next gate
+## Historical validation before the shared-learner extension
 
 The stable source suite passed 58 tests in `tests_daily_endpoint_final.log`. This includes whole-cost interval enclosures, derivative certificates, integer-input peer means, scalar/heterogeneous equivalence at delta zero, persistent-cost witness containment, and seller-specific counterfactual reconstruction. The earlier full-source and two-phone joint-oracle tests also pass.
 
-The new `daily_multisku_profile.py` is an exploratory next step: one learner processes all daily SKU rounds, with a separate cost level for every SKU. Its continuous-cell LP relaxes the aggregate wealth inequality; fractional cost mixtures are outer bounds only. Every observed SKU in the fixed 27-category universe is included, so favorable SKUs are not chosen after seeing results. This is a stronger shared-learning restriction than separate SKU learners. First-stage inference and the LP relaxation still require validation before this direction can support a final application.
-
-Keep the goal active. The numerical work has produced informative conditional intervals, but the main lower-margin result is sensitive to demand pooling and cost heterogeneity. The next priority is to test the shared learner across products and propagate demand uncertainty coherently, while retaining these adverse results.
-
+The single-SKU results motivated the shared-learner extension documented and validated below. Their weaker margin information is retained as an unfavorable comparison.
 
 ## Shared learner across product groups: current promising extension
 
@@ -106,7 +115,7 @@ For each SKU, the code partitions its continuous mean-cost support and records a
 
 The .2-dollar cell profiles are `daily_multisku_common_d0_h02.json`, `daily_multisku_common_d5_h02.json`, `daily_multisku_seller_d0_h02.json`, and `daily_multisku_seller_d5_h02.json`. Their inference files append `_inference`. The common-demand delta=10 fitted outer interval is [72.118,130.284], but its active own-profit tie check failed even after limiting the audit to the denominator branch actually used. No regular Gaussian endpoint interval is reported for that case. Do not bypass the gate.
 
-Two additional tests pass: actual cost-vector witnesses remain inside the joint LP bounds, and all active cell coefficients for the four reported inference models pass their regularity audit. A tenfold gradient-step check for the seller-specific delta=5 result is running in `daily_multisku_seller_d5_h02_h1e4.log`. Further required checks include nonlinear first-stage perturbations, the strength of shared learning/normalization, feasible price-domain sensitivity, and the economic interpretation of bounded replacement-cost dispersion. The result is promising but the goal remains active.
+Two additional tests pass: actual cost-vector witnesses remain inside the joint LP bounds, and all active cell coefficients for the four reported inference models pass their regularity audit. The completed gradient-step, nonlinear, normalization, advice-menu, and cost-span checks are recorded below.
 
 
 ### Independent feasibility and dependence follow-up
@@ -117,14 +126,14 @@ The tenfold gradient-step replication changes the seller-specific delta=5 lower 
 
 Weekly dependence and seller-specific demand can now be combined. The covariance reweighting checks that the alternative covariance lies in the recorded gradient's estimable subspace, with relative projection residuals below 5.3e-8. For common demand and delta=5 the weekly interval is [72.965,129.164]; for seller-specific demand and delta=5 it is [76.251,134.124]. The latter implies gross margins [9.876,67.749]. The day-cluster seller-specific upper cost 134.498 remains slightly more conservative. These are asymptotic sensitivities with only 24 weekly clusters, not exact small-sample coverage results.
 
-`daily_multisku_gaussian_check.py` now prepares a nonlinear diagnostic that re-solves the entire cost LP under coherent Gaussian perturbations. It checks the local envelope approximation, never treats draw quantiles as confidence intervals, and records invalid slope or infeasible draws rather than dropping them. Inspect its progress artifacts before drawing conclusions about finite-sample curvature. The goal remains active pending that diagnostic and the remaining economic scope checks.
+`daily_multisku_gaussian_check.py` implements a nonlinear diagnostic that re-solves the entire cost LP under coherent Gaussian perturbations. It checks the local envelope approximation, never treats draw quantiles as confidence intervals, and records invalid slope or infeasible draws rather than dropping them. Its completed diagnostics and their limitations are recorded in the final-validation section.
 
 
 ### Scope and approximate-information sensitivities
 
 `daily_scope.py` can restrict advice to displayed prices between .8 and 2 times the current lowest rival price, together with the highest feasible ask as a predeclared fallback. It never uses the observed continuation action to choose the menu. The fallback preserves feasibility and domination of negative-margin common-price proposals. The full action range remains in the payoff certificate. With delta=5 and .5-dollar cells, this advisor gives fitted cost [78.348,125.266] and asymptotic cost [69.487,129.074], gross margins [14.927,74.513]. It is a weaker benchmark, not a claim to have estimated the optimal price of an arbitrary new listing outside the observed market.
 
-A 1.25 range-scale sensitivity gives fitted cost [78.105,126.413]; its uncertainty result is in `daily_multisku_scale125_d5_h05_inference.json`. The broad 10,000-seller allowance gives fitted cost [77.205,126.526] and asymptotic cost [62.845,132.214], gross margins [11.786,81.155]. There are 5,828 distinct sellers in the rebuilt panel. The broader allowance makes the finite-roster assumption explicit; it still does not provide unlimited protection over arbitrary models chosen after inspecting results. Upgrade had 87 listings and ranked fourth in inventory on the first observed date, July 11, 2023. This supports its status as a bulk dealer but is not a substitute for the stated selection correction. The combined seller-specific, 10,000-seller result is running separately.
+A 1.25 range-scale sensitivity gives fitted cost [78.105,126.413]; its uncertainty result is in `daily_multisku_scale125_d5_h05_inference.json`. The broad 10,000-seller allowance gives fitted cost [77.205,126.526] and asymptotic cost [62.845,132.214], gross margins [11.786,81.155]. There are 5,828 distinct sellers in the rebuilt panel. The broader allowance makes the finite-roster assumption explicit; it still does not provide unlimited protection over arbitrary models chosen after inspecting results. Upgrade had 87 listings and ranked fourth in inventory on the first observed date, July 11, 2023. This supports its status as a bulk dealer but is not a substitute for the stated selection correction. The combined seller-specific, 10,000-seller result is reported below.
 
 `daily_proxy_error.py` gives a direct relaxation of exact expected-payoff feedback. Suppose the learner receives normalized payoff forecasts u_tilde in [0,1], with uniform absolute error at most epsilon over feasible joint actions. If it includes the best full-joint proxy-payoff advisor, proxy-oracle regret r_tilde is nonnegative, while any true advisor regret r is at most r_tilde+2epsilon. Therefore, for eta=.99,
 
@@ -134,7 +143,37 @@ Over N observed SKU rounds, add N*log(1+2*.99*epsilon) to the wealth threshold. 
 
 At epsilon=.005, the additional allowance is 10.156707 and the fitted delta=5 cost interval is [73.755,127.219]. The epsilon=.01 fitted result and both uncertainty runs are in files beginning `daily_multisku_proxy`. Do not label these as ordinary ANR results or as requiring only the common-price proxy expert: the proof uses the nonnegative regret of the full proxy oracle.
 
-The two nonlinear Gaussian diagnostic processes use the immutable code loaded from commit bb9543e and reprofile all cost cells for 60 draws each. At the latest check, both had completed twenty draws, all structurally valid; these partial diagnostics are not a final validation result. Progress is saved after every draw. Their loaded Python modules are unaffected by later scope-script edits. No OSC job is active.
-
-
 Completed scope results: the 1.25 normalizer gives asymptotic cost [68.359,130.133]. Combining seller-specific demand with the 10,000-seller allowance gives [61.125,139.274], gross margins [4.726,82.876]. The exact-feedback, twenty-seller result remains narrower; both must be shown rather than silently selecting the favorable correction. The .005 proxy-error extension gives asymptotic cost [63.841,130.861] under common demand, gross margins [13.139,80.159]. These sensitivity dimensions have not all been imposed simultaneously. The full stable suite now passes 62 tests (`tests_scope_checkpoint.log`).
+
+
+## Final validation, adverse results, and interpretation
+
+### Nonlinear first-stage diagnostics
+
+Both 60-draw coherent Gaussian diagnostics finished under source commit bb9543e. Every draw re-solved the entire continuous-cell LP; none violated the structural conditions or failed feasibility. Common-demand lower/upper endpoint residuals relative to the linear approximation have means [-.161,-.143], RMS values [.343,.204], and observed ranges [-1.520,.126] and [-.882,-.031]. Seller-specific residuals have means [-.713,-.381], RMS values [1.456,.685], and ranges [-8.098,.091] and [-3.756,-.032]. The seller-specific endpoint standard errors are [4.958,2.160]. Curvature is therefore noticeable, especially in the lower tail; this diagnostic supports computation of the functional but does not establish finite-sample accuracy of the Gaussian confidence approximation. Sixty draws cannot validate the extreme tails required by the seller-selection adjustment. Do not use these quantiles as calibrated confidence bounds or silently inflate/shift the reported intervals using their extrema. Artifacts: `daily_multisku_common_d5_h02_gaussian_diagnostic.json` and `daily_multisku_seller_d5_h02_gaussian_diagnostic.json`.
+
+### Primitive cost span and exact prior
+
+The heterogeneity calculations use a necessary mean-centered box, justified pathwise by a primitive total within-SKU cost span. For listing receipt caps b_i and cost span d, every admissible c_i is at most min(b_i,min_j b_j+d). This vector is itself admissible, hence its empirical sale-weighted average is the exact prior upper bound. `daily_cost_span_prior.py` records [0,135.541082], [0,139.754540], [0,142.070473], and [0,143.452052] for spans 0,5,10,20. The estimator's internal box prior is slightly looser; the figure uses the exact primitive prior. The reported main uncertainty endpoints all lie inside it. No cost dispersion is estimated from the data.
+
+### A failed time-varying cost model
+
+`daily_multisku_profile.py --index reference --delta 0 --step .2` tests costs proportional to each SKU's public reference quote, normalized at the first observation. The target weights account for the sales-weighted index multiplier. The continuous-cell lower bound on total wealth is 25.215851, exceeding 23.495855, so the entire fitted-demand outer relaxation is empty. Artifact: `daily_multisku_reference_d0_h02.json`. This is a fixed-demand failure of that exact cost schedule, not a statistical rejection after first-stage uncertainty. Do not change the learning threshold solely to make this specification pass. Public retail quotes need not track wholesale replacement costs. The default constant-cost regression profile is unchanged to 1e-8 after adding indexed support.
+
+### Feedback and learner versions
+
+The common-price-advisor learner and the full-joint-oracle learner can be alternative model versions, each allocating prior 1/4 to its designated normalized expert. Do not assign both 1/4 while also retaining a half-prior legacy mixture without checking the resulting allocation. Under the stronger full-oracle version, the common-price wealth screen remains necessary because its regret is no larger than full-oracle regret. The certified full-oracle witness establishes nonemptiness of this stronger fitted event, not that a named algorithm reproduces the observed prices.
+
+The approximate-feedback extension requires the full proxy oracle. At normalized forecast error .005, common-demand span-5 cost inference is [63.841,130.861]; at .01 it is [54.121,132.229]. This establishes informative conditional bounds even with a modest explicit error allowance, but persistent positive forecast error changes exact true-payoff ANR into an approximate-learning restriction. These errors are relative to the prescribed payoff normalizer, not percentage errors in sale probabilities.
+
+### Monetary units and fee conversion
+
+Reported receipts equal 1.03 times integer ask, before sales tax and display rounding. They are not net seller payouts. Under an illustrative constant schedule with 3% buyer and seller fees, PayPal processing of 3.49% plus $.49, and a constant expected tax rate between 0 and .10, net payout is a*r-.49 with a in [.9033576,.9068476]. Then net cost is a*c-.49 and the operating margin is a*(r-c); normalized learning is unchanged by the common positive scale. Subtracting fees again from that margin would double count them.
+
+`daily_fee_conversion.json` gives conditional net cost [75.693,114.129] and operating margin [15.906,54.109] for seller-specific constant SKU costs; for span 5 it gives [67.394,121.479] and [8.584,62.440]. Combining span 5 with the broad seller allowance gives [54.727,125.811] and [4.269,75.156]. Mean net receipts under this schedule are [129.594,130.096]. These are illustrations, not observed transaction-specific fees, payout records, or acquisition invoices. The cost includes all per-sale incremental costs represented in the model. Sources: Swappa's [fee discussion](https://swappa.com/blog/swappa-fees/) and [PayPal refund discussion](https://swappa.com/blog/who-pays-the-fees-when-issuing-a-paypal-refund/). Publication dates on current pages do not verify their historical contents or the seller's actual schedule.
+
+### Reproduction and remaining research choices
+
+Set `SWAPPA_DATA_VERSION=fullsource_refscreen_known` before running any current script. For the seller-specific span-5 result run `daily_multisku_profile.py --delta 5 --step .2 --fit-name continuation_seller_full_1.joblib --cov-name demand_cluster_seller_covariance.npz --tag daily_multisku_seller_d5_h02`, then `daily_multisku_inference.py --profile daily_multisku_seller_d5_h02.json --cov-name demand_cluster_seller_covariance.npz`. Add `--seller-family 10000` and use step .5 with a distinct tag for the broad-selection version. Constant-cost results use delta 0. The diagnostics, prior calculation, fee conversion, and figure have separate named scripts. Outputs retain hashes of their actual producing sources; later source commits do not retroactively change provenance.
+
+The requested search has found an informative, internally consistent conditional application. Choosing which assumptions to defend in the manuscript, obtaining invoice or payout validation, and developing a stronger finite-sample first-stage procedure are subsequent research decisions. None is represented as already resolved by these estimates. The current code and results preserve the failed specifications, the stronger shared-learning restriction, the nonlinear diagnostic caveat, and the contribution of the prior to positive margins. Referee mappings above identify concrete progress rather than completed responses.
