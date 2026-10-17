@@ -1,5 +1,7 @@
 # Swappa: first-stage uncertainty and state-aware policies
 
+**CURRENT DATA STATUS (October 17 UTC): prior numerical results below are superseded as empirical estimates.** The inherited raw_data_cleaned.dta had already selected observations on reference-price availability and price filters. Reconstructing competition and terminal sale dates after that selection omitted rivals and moved 174 Upgrade listing endpoints earlier than the raw source. Owned OSC arrays 15597136 and 15597781 were cancelled and verified terminal; completed results are diagnostic only. Rebuild from full raw_swappa.dta in output/swappa_rescue_20261016/fullsource/. Read the newest source-audit update at the end of this note before resuming.
+
 Internal research checkpoint, 2026-10-16. This is an exploratory code-repository note. No manuscript or response claim is authorized by these results. The research goal remains open.
 
 ## Evidence status and returns
@@ -134,3 +136,62 @@ All sixty rho boxes for delta=20 in the original OSC campaign are accounted for,
 | 10 | 33.022 | 137.151 | 3.847 | 107.976 |
 
 The prior alone gives cost [0,140.332] and margin floor .667, at mean displayed price 140.999. Thus the precision is not a direct consequence of a narrow prior mean-cost interval, although the common-reference restriction is substantively important. These are global rho-profile outer bounds, unlike the earlier conditional canary. Source: osc_campaign/swappa_1e112e66_20261016/global_profile_bounds.csv, producing commit 1e112e66a354b0d6bde6124d823dd113ca11c9f2. These baseline values still require the corrected price-grid and twenty-seller uncertainty treatment. The corrected array 15597781 is running; its results must be reported separately. No final estimate is declared from this baseline.
+
+
+## Corrected full-source candidate and coupled own-profit certificate
+
+All empirical results above predate the full-source correction unless explicitly labeled otherwise. The current candidate is `SWAPPA_DATA_VERSION=fullsource_refscreen`, whose outputs are under `output/swappa_rescue_20261016/fullsource/reference_screened`. Full raw inventory, endpoints, and initial-price controls are constructed before reference matching. The source hashes and selection audit are in `fullsource/source_audit.json`.
+
+The reference index contains extreme within-SKU jumps, including SE2 64GB Mint quotes of 1039.99 dollars. A separately preserved sensitivity screens a daily SKU quote only after seven earlier accepted quotes exist and only when it falls outside [0.5,2] times their median. Rejected quotes are unavailable for constructing the index; the latest earlier accepted quote is carried forward. This flags 269 daily SKU quotes and directly affects 32 focal listing rows. It removes no Swappa observations. The screen is a transparent measurement assumption, not independent verification that each flagged quote is erroneous. Quote availability, age, rejection, and missing entry reference are demand controls. The mean reference index is not an executable procurement offer.
+
+The screened sample has 10,301 Upgrade observations, 1,017 listings, 950 terminal-status sales and 804 continuation sales. Mean continuation-sale unrounded receipt is 144.000149 dollars. A 5,000-draw, twenty-seller Gaussian-band allocation gives critical value 6.12982948; alpha_R=.00025. These remain asymptotic demand-uncertainty bounds conditional on the causal demand model, not finite-sample unconditional confidence intervals.
+
+The full-grid joint-cost witness has log wealth 14.962988. A witness constrained to at most 20 dollars from an unrestricted center for each model/storage/condition group independently passes the full-grid audit with log wealth 15.016207 <= 26.360909. Its continuation-sale cost is 108.683744 and margin 35.316406. Those are feasible-event witness values, NOT point estimates or confidence bounds. Cost-file SHA256: c68c209afb017687a7d9a751f662b2bf07cc4a449c456001d147bf53188e6c10. There are sixteen groups. A common reference-cost ratio is poorly suited to the corrected source: one Fair-grade reference is 259.99 while its listing price is 123, and the tested rho values .60 through .80 are prior-infeasible at delta=20. Do not reuse the earlier common-ratio results.
+
+### Sharper enclosure without changing the maintained learning class
+
+Let q(a) be focal sale probability at displayed price a, x be the unrounded observed receipt, c its cost, and P=350 the integer displayed-price cap. Let U=max_{a in [c,P]}(a-c)q(a) be the continuous own-profit maximum. For peers j, with nonnegative margins m_j, define R=sum_j m_j[q_j(P)-q_j(c)] and L=sum_j m_j[q_j(p_observed)-q_j(c)]. The existing range certificate is C=U+R. The best feasible integer-ask total-profit gain r* satisfies
+
+    r* >= max(0, gamma U - (x-c)q(p_observed) - L).
+
+To see the grid correction, let k_max bound the magnitude of the negative piecewise-logit slope. The continuous optimum has margin at least min(1/k_max,P-c), since own profit increases at every smaller margin. Round the optimum DOWN in integer ask units: receipt loss is less than 1.03 and displayed-price increase less than one dollar. When the lower margin bound exceeds 1.03, this action remains above cost. Thus grid own profit is at least gamma U, where gamma=max(0,1-1.03/min(1/k_max,P-c))*exp(-k_max). When gamma=0 the claim is trivial. Monotone nonnegative peer effects ensure the grid action's peer-profit change is bounded below by -L.
+
+Divide all terms by the same observed q. Set u=U/q, h=(x-c)+L/q, r=R/q. The fraction (gamma u-h)/(u+r) is increasing in u, with derivative (gamma r+h)/(u+r)^2. Therefore a valid cost-cell lower bound on normalized regret is
+
+    max(0, gamma_lower*u_lower - (x-c_lower) - L_upper)
+    / (u_lower + R_upper).
+
+Here u_lower uses fixed feasible grid proposals and correlated probability-ratio lower bounds; L_upper and R_upper use the existing normalized peer-difference rectangle enclosures. gamma_lower uses the upper slope magnitude and upper cell cost. This keeps the SAME U in the gain and range. It does not change C, strengthen the learning assumption, or require another probability allowance. The maximum of this bound and the old separate gain/range bound is valid on the same nuisance event.
+
+Independent checks passed for 10,000 random piecewise-logit profit problems and for joint sampled demand/cost parameters compared against enumeration of every feasible integer ask with all own-inventory spillovers. The current calculation has the distinct `normalized_askgrid_jointU_` output prefix, preserving the separate-bound outputs. A passing test supports implementation, not the economic validity of the learner or demand assumptions.
+
+### Full-inventory continuity evidence
+
+The full raw Upgrade panel has 1,038 listings, 10,584 rows, 159 within-listing price changes on 32 dates, and maximum observed change 13 dollars. There are 666 transitions with gaps longer than one day across 306 listings, representing 1,684 missing interior listing-days (13.73% of total listing spans). Every missing interior day still has observations of the same model/storage/condition from other listings. These are not whole-SKU collection outages. They might be temporary unavailability or selective collection failures; the data alone do not distinguish them. Do not impute them as active inventory or silently equate daily snapshots with complete inventory.
+
+Over interior dates, mean listing arrivals and known terminal sales are both about 6.14 per day, but inventory trends downward by .397 listings per day. This is suggestive of ongoing replacement activity, not a verification that the cost parameter equals procurement cost or that inventory constraints are absent. There are also three raw listings with unknown sold status (33 first-stage rows). Their terminal exposures need explicit censoring in a final first stage; current pilot outputs retain the old zero label. No Upgrade listing has missing sold status.
+
+
+### Shared-slope uncertainty and center profiling
+
+The first joint-U run completed all 24 optimizations but hit the Windows filename limit when saving coefficients. Its CSV and log are intact. Repeating with the shorter `jointU_c120_family20` tag saved both bounds and coefficients successfully. At D=1, unrestricted continuation cost is [12.9786,131.9691]; the improvement over the separate bound is small.
+
+A sharper statistical allocation treats common own-price slopes and the common peer-price coefficient as shared parameters. A four-dimensional Gaussian ellipsoid at alpha=.005 has radius 3.85490065 and simultaneously covers every linear price-slope/price-contrast direction for every seller. A two-sided normal event at alpha=.001 has critical value 3.29052673 for the shared peer coefficient. Absolute logits and within-inventory relative levels retain the existing 5,000-draw maximum critical value 6.12982948. That maximum also covers tail probability .00175 with Monte Carlo failure at most (1-.00175)^5000 < .0002. The total failure allocation is .005+.001+20*(.00175+.0002+.00025)=.05, including regret. This is an asymptotic Gaussian calibration under the same structural demand assumptions; it does not repair model selection or endogeneity. Numerical bounds intersect these events rather than reducing the absolute-logit band.
+
+The shared-slope unrestricted continuation ranges are: D=1 costs [32.3013,129.6946], margins [14.3056,111.6988]; D=2 costs [23.4835,132.5050]; D=5 [11.5470,137.0943]; D=10 [3.4359,140.7887]. Source: jointU_shared_c120.csv. These remain wide pilot bounds.
+
+The first SKU-center profile holds the existing cell coefficients fixed, partitions each unrestricted group center into one-dollar covering intervals, and permits costs within delta=20. For each nonnegative multiplier lambda, the sum over groups of the minimum center-conditional sum of cost-plus-lambda-wealth, minus lambda times the wealth budget, is a valid lower bound. Numerical maximization merely chooses among valid bounds; it cannot create false exclusion through a local solver. Applying the same argument to negative cost gives an upper bound. All continuous cost and center points are covered. This yields D=1 cost [45.5688,129.6863], D=2 [36.1460,132.4955], D=5 [17.4038,137.0903], D=10 [5.3118,140.7750]. Prior-only cost remains [0,143.9271]. Source: shared_profile_d20_h1_c120.csv. This does not yet exploit the center restriction when bounding each owned peer's payoff; sku_peer_profile.py recomputes those conditional enclosures.
+
+Approximate policy advice is an explicitly different learning assumption: the advisor's gain is at least r* - epsilon C on each active round. The algebra log(1+.99(r-epsilon)) >= log(1+.99r)+log(1-.99epsilon) for r>=0 gives a conservative extra wealth allowance -N log(1-.99epsilon). Profiles report epsilon=0,.001,.005 separately. This relaxes exact advice, not full expected-payoff feedback. No claim of a bandit-feedback guarantee follows.
+
+### Aggregate sales diagnostic, not a cost interval
+
+A separate all-zero-cost diagnostic partitions each focal baseline sale probability into fifty bins and checks the full owned-inventory gain. Under sequential Bernoulli conditional means, a fixed lambda=.25 exponential supermartingale gives Q <= [lambda S+log(1/alpha)]/[1-exp(-lambda)], where S=804, Q is the sum of predictable sale probabilities, and alpha=.00005. The upper bound is 953.455. This requires a joint sales process compatible with those sequential conditional means, such as conditional independence within a day; marginal logits alone do not imply it.
+
+An alternative allows arbitrary within-day dependence. For daily sales Y_d in [0,n_d] with predictable n_d, Hoeffding's conditional lemma at FIXED lambda=.01 gives Q <= S+log(1/alpha)/lambda+lambda*sum(n_d^2)/8 = 2650.838. Do not optimize lambda after observing inventory without an additional simultaneous allowance. The earlier diagnostic log used a data-optimized square-root expression; the authoritative zero_cost_sales_calibration.json was recomputed from cached coefficients with the fixed-lambda bound.
+
+The all-zero-cost model has wealth lower bounds 1251.452 (sequential Bernoulli) and 1028.951 (day-block bound) against threshold 29.5798 at alpha_R=.0002. This is only a diagnostic: all peer costs are also zero. It does NOT imply that a low average cost is excluded when peer costs vary. Adding the sales event to the shared-slope allocation uses regret .004/20 and sales .001/20, retaining total .05. A fully calibrated cost interval would require recomputing the joint cost/probability optimization. In particular, the large rejection here revealed how much the current individual-cell calculation loses by letting peer-cost intervals vary independently.
+
+The conditional-peer profile is now running locally at two threads, delta=20, five-dollar center intervals and twenty cost cells within each conditional interval. Each group's output is saved separately with source/input hashes and can be reused only with identical provenance. Full raw Upgrade product identities are constant within listing, and each owned peer market is within one such product group, so the group decomposition preserves all modeled within-SKU substitution. Cross-SKU substitution remains excluded by assumption. Inspect sku_peer_profile_d20.log and the sku_peer_d20_h5_g20 manifest/results before making any numerical claim.
+
+Validation: 39 full-suite tests passed after the shared-slope and probability-bin changes; two additional tests independently enumerate center-dependent group coefficients and check the approximate-advice inequality. No final credible marginal-cost estimate is declared. Unknown-status censoring, observation gaps, the learning clock, first-stage causal validity, and replacement-cost interpretation remain open.

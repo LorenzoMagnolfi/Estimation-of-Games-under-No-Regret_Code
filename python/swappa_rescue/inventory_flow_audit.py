@@ -1,0 +1,19 @@
+"""Listing continuity and replenishment diagnostics; not causal cost evidence."""
+import json
+import numpy as np,pandas as pd
+from audit_panel import OUT,KEYS
+from demand_timing_sensitivity import terminal_status_data
+
+SELLERS=['AMS Traders Inc.','GadgetPickup','UPGRADE SOLUTION INC','Certified Cell, Inc','SaveGadget']
+def main():
+ d=pd.read_parquet(OUT/'panel.parquet');assert 'fullsource_prepared' in d and d.fullsource_prepared.all();dates=pd.date_range(d.date.min(),d.date.max(),freq='D');records=[];flows=[];products=[]
+ for seller in SELLERS:
+  s=d[d.Seller.eq(seller)].sort_values(['Code','date']).copy();listing=s.groupby('Code').agg(first=('date','min'),last=('date','max'),rows=('date','size'),sold=('sale_terminal_status','sum'),created=('Created','first'),reference_first=('Ref_Price','first'),reference_last=('Ref_Price','last'))
+  daygap=s.groupby('Code').date.diff().dt.days;listing['span']=(listing['last']-listing['first']).dt.days+1;listing['missing_days']=listing.span-listing.rows
+  entry=listing['first'].value_counts().reindex(dates,fill_value=0);exit=listing['last'].value_counts().reindex(dates,fill_value=0);sales=listing.loc[listing.sold.eq(1),'last'].value_counts().reindex(dates,fill_value=0);inventory=s.groupby('date').Code.size().reindex(dates,fill_value=0)
+  daily=pd.DataFrame({'date':dates,'seller':seller,'new_listings':entry.to_numpy(),'last_seen':exit.to_numpy(),'known_sales':sales.to_numpy(),'inventory':inventory.to_numpy()});daily['stock_identity_residual']=daily.inventory.diff()-daily.new_listings+daily.last_seen.shift(1);flows.append(daily)
+  interior=daily.iloc[14:-14];t=np.arange(len(interior));trend=np.polyfit(t,interior.inventory,1)[0];seen_before=listing.created.lt(listing['first']);duration=listing.loc[listing.sold.eq(1),'rows'];refdrop=listing.reference_last/listing.reference_first-1
+  byproduct=s.groupby(['device_id','Storage','Condition']).agg(rows=('Code','size'),listings=('Code','nunique'),sales=('sale_terminal_status','sum'),mean_price=('Price','mean'));byproduct['seller']=seller;products.append(byproduct.reset_index())
+  record={'seller':seller,'listing_count':len(listing),'days_with_inventory':int((daily.inventory>0).sum()),'missing_listing_day_share':float(listing.missing_days.sum()/listing.span.sum()),'listings_with_gaps':int(listing.missing_days.gt(0).sum()),'continuation_transitions':int(daygap.notna().sum()),'transitions_with_gap_gt1':int(daygap.gt(1).sum()),'stock_identity_residual_abs_sum':float(daily.stock_identity_residual.abs().sum()),'created_before_first_observation_fraction':float(seen_before.mean()),'created_to_first_median_days':float((listing['first']-listing.created).dt.days.median()),'sold_observation_duration_median':float(duration.median()),'sold_observation_duration_q90':float(duration.quantile(.9)),'interior_days':len(interior),'interior_mean_inventory':float(interior.inventory.mean()),'interior_mean_new_listings':float(interior.new_listings.mean()),'interior_mean_known_sales':float(interior.known_sales.mean()),'interior_inventory_daily_trend':float(trend),'interior_new_to_known_sale_ratio':float(interior.new_listings.sum()/interior.known_sales.sum()),'reference_change_median':float(refdrop.median()),'reference_change_q10':float(refdrop.quantile(.1)),'reference_change_q90':float(refdrop.quantile(.9)),'interpretation':'Daily listing arrivals/exits and continuity only. New listings need not be newly acquired physical units. Replenishment costs and an absence of inventory constraints are not observed.'};records.append(record);print(json.dumps(record),flush=True)
+ pd.concat(flows,ignore_index=True).to_csv(OUT/'inventory_daily_flows.csv',index=False);pd.concat(products,ignore_index=True).to_csv(OUT/'inventory_product_composition.csv',index=False);(OUT/'inventory_flow_audit.json').write_text(json.dumps(records,indent=2))
+if __name__=='__main__':main()

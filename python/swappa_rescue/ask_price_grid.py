@@ -34,7 +34,7 @@ class AskGridBand(NormalizedBand):
         dc,err,_=self.displacement(cl[:,None]);dc=(dc+err)[:,0]
         stationary=np.clip(np.log(np.maximum(dc-1,1e-300)),self.zlo,self.zhi)
         vals=[lambertw(np.exp(z+dc-1)).real/self.kminlo/ expit(z) for z in [self.zlo,self.zhi,stationary]]
-        ranhi=np.minimum((cap-cl)/self.qlo,np.maximum.reduce(vals));spill=np.zeros_like(ownlo)
+        ranhi=np.minimum((cap-cl)/self.qlo,np.maximum.reduce(vals));spill=np.zeros_like(ownlo);peer_range_hi=np.zeros(self.N);peer_loss_hi=np.zeros(self.N);own_max_lo=np.maximum(0,((x-ch[:,None])*ratio).max(axis=1))
         for ids,dlo,dhi in self.pair_data:
             m=len(ids);ni=int(n[ids[0]]);assert ni==m
             mask=1-np.eye(m);zflo=self.zlo[ids][:,None];zfhi=self.zhi[ids][:,None]
@@ -44,5 +44,15 @@ class AskGridBand(NormalizedBand):
                 margins=np.where(lower>=0,(receipt[ids]-peer_ch[ids])[None,:],(receipt[ids]-peer_cl[ids])[None,:]);spill[ids,a]=(lower*margins*mask).sum(1)
             left=self.bphi*(cl[ids]-self.p[ids])[:,None]/(ni-1);right=self.bphi*(cap-self.p[ids])[:,None]/(ni-1)
             _,upper=normalized_difference_bounds(zflo,zfhi,dlo,dhi,left,right)
-            ranhi[ids]+=(upper*(receipt[ids]-peer_cl[ids])[None,:]*mask).sum(1)
+            peer_range_hi[ids]=(upper*(receipt[ids]-peer_cl[ids])[None,:]*mask).sum(1);ranhi[ids]+=peer_range_hi[ids]
+            _,loss_upper=normalized_difference_bounds(zflo,zfhi,dlo,dhi,left,0.)
+            peer_loss_hi[ids]=(loss_upper*(receipt[ids]-peer_cl[ids])[None,:]*mask).sum(1)
+        # Couple the own-profit maximum in the gain and range. Rounding the
+        # continuous optimum DOWN to an integer ask loses <1.03 in receipts
+        # and raises displayed price by <1, so grid profit >= gamma*U.
+        assert cap==int(cap)
+        minimum_optimal_margin=np.minimum(1/self.kmaxhi,cap-ch)
+        gamma=np.maximum(0,1-np.divide(1.03,minimum_optimal_margin,out=np.full(self.N,np.inf),where=minimum_optimal_margin>0))*np.exp(-self.kmaxhi)
+        numerator=np.maximum(0,gamma*own_max_lo-(receipt-cl)-peer_loss_hi)
+        self.last_joint_fraction_lower=np.divide(numerator,own_max_lo+peer_range_hi,out=np.zeros(self.N),where=(own_max_lo+peer_range_hi)>0)
         return ownlo+spill,ranhi

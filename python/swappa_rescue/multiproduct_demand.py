@@ -22,6 +22,11 @@ class MultiproductDemand(EnhancedQualityDemand):
         peers=np.divide(d.own_total.to_numpy()-d.Price.to_numpy(),n-1,out=np.zeros(len(d)),where=present)
         z['own_peer_price']=np.where(present,(peers-d.Ref_Price.to_numpy())/100,0.)
         z['own_peer_present']=present.astype(float)
+        if 'fullsource_prepared' in d:
+            z['reference_observed']=d.reference_observed.to_numpy(dtype=float)
+            if 'reference_quote_rejected' in d:z['reference_quote_rejected']=d.reference_quote_rejected.to_numpy(dtype=float)
+            z['log_reference_quote_age']=np.log1p(d.reference_age_days.to_numpy())
+            z['initial_reference_missing']=d.initial_reference_missing.to_numpy(dtype=float)
         return z
 
 def main():

@@ -3,6 +3,7 @@
 Outputs are exploratory data diagnostics, not structural estimates.
 """
 from __future__ import annotations
+import os
 import hashlib
 import json
 from pathlib import Path
@@ -11,7 +12,11 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[2]
+DATA_VERSION = os.environ.get('SWAPPA_DATA_VERSION', 'legacy')
+assert DATA_VERSION in ['legacy','fullsource','fullsource_refscreen']
 OUT = ROOT / 'output' / 'swappa_rescue_20261016'
+if DATA_VERSION in ['fullsource','fullsource_refscreen']: OUT = OUT / 'fullsource'
+if DATA_VERSION == 'fullsource_refscreen': OUT = OUT / 'reference_screened'
 KEYS = ['device_id', 'Storage', 'Condition', 'date']
 
 def build_panel():

@@ -25,7 +25,7 @@ def own_gain_z_extrema(zlo,zhi,shift,new_margin,old_margin):
 
 
 class LogitBand:
-    def __init__(self,fit,d,covariance,critical):
+    def __init__(self,fit,d,covariance,critical,slope_critical=None,peer_critical=None):
         from scipy.sparse import csr_matrix,hstack
         self.p=d.Price.to_numpy();self.rival=d.rival_min.to_numpy();self.ref=d.Ref_Price.to_numpy();self.fit=fit;self.cov=covariance;self.critical=critical;self.N=len(d)
         X=hstack([csr_matrix(np.ones((self.N,1))),csr_matrix(fit.scaler.transform(fit.continuous(d))),fit.encoder.transform(fit.cat(d))],format='csr').toarray()
@@ -33,20 +33,22 @@ class LogitBand:
         theta=np.r_[fit.model.intercept_[0],fit.model.coef_[0]];self.z=X@theta;self.var=np.einsum('ij,jk,ik->i',X,covariance,X,optimize=True)
         names=['own','gap_positive','gap_negative','price_ref_interaction'];self.cols=np.array([fit.names.index(x)+1 for x in names]);self.scales=fit.scaler.scale_[self.cols-1];self.C=covariance[np.ix_(self.cols,self.cols)];self.basecross=X@covariance[:,self.cols];self.theta=theta[self.cols]
         self.zlo=self.z-critical*np.sqrt(np.maximum(self.var,0));self.zhi=self.z+critical*np.sqrt(np.maximum(self.var,0));self.qlo=expit(self.zlo);self.qhi=expit(self.zhi)
+        self.slope_critical=critical if slope_critical is None else min(critical,slope_critical)
+        self.peer_critical=critical if peer_critical is None else min(critical,peer_critical)
         pricevec=np.zeros((self.N,4));pricevec[:,0]=1;pricevec[:,3]=np.log(self.ref/500)
         limits=[]
         for j in [1,2]:
-            v=pricevec.copy();v[:,j]=1;v=v/(100*self.scales);point=-(v@self.theta);se=np.sqrt(np.maximum(np.einsum('ij,jk,ik->i',v,self.C,v,optimize=True),0));limits.append((point-critical*se,point+critical*se))
+            v=pricevec.copy();v[:,j]=1;v=v/(100*self.scales);point=-(v@self.theta);se=np.sqrt(np.maximum(np.einsum('ij,jk,ik->i',v,self.C,v,optimize=True),0));limits.append((point-self.slope_critical*se,point+self.slope_critical*se))
         self.kminlo=np.minimum(limits[0][0],limits[1][0]);self.kminhi=np.minimum(limits[0][1],limits[1][1]);self.kmaxhi=np.maximum(limits[0][1],limits[1][1]);assert self.kminlo.min()>0
         j=fit.names.index('own_peer_price')+1;scale=100*fit.scaler.scale_[j-1];point=theta[j]/scale;se=np.sqrt(max(0,covariance[j,j]))/scale
-        assert point+critical*se>=0
-        self.bplo=max(0,point-critical*se);self.bphi=point+critical*se
+        assert point+self.peer_critical*se>=0
+        self.bplo=max(0,point-self.peer_critical*se);self.bphi=point+self.peer_critical*se
     def displacement(self,price):
         delta=price-self.p[:,None];rival=self.rival[:,None];actual=self.p[:,None]
         D=np.stack([delta,np.maximum(price-rival,0)-np.maximum(actual-rival,0),np.minimum(price-rival,0)-np.minimum(actual-rival,0),delta*np.log(self.ref[:,None]/500)],axis=2)/(100*self.scales)
         center=D@self.theta;var=np.maximum(np.einsum('nai,ij,naj->na',D,self.C,D,optimize=True),0);se=np.sqrt(var)
         varfull=np.maximum(self.var[:,None]+2*np.einsum('nai,ni->na',D,self.basecross)+var,0)
-        return center,self.critical*se,self.critical*np.sqrt(varfull)
+        return center,getattr(self,'slope_critical',self.critical)*se,self.critical*np.sqrt(varfull)
     def logits(self,price):
         delta,err,abs_err=self.displacement(price);center=self.z[:,None]+delta
         low=np.maximum(center-abs_err,self.zlo[:,None]+delta-err);high=np.minimum(center+abs_err,self.zhi[:,None]+delta+err)

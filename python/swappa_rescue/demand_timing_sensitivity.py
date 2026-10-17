@@ -20,10 +20,15 @@ from audit_panel import OUT
 
 def terminal_status_data():
     d=pd.read_parquet(OUT/'panel.parquet').sort_values(['Code','date']).copy()
-    lastdate=d.groupby('Code').date.transform('max')
-    d['sale_terminal_status']=(d.Real_Sold.eq(1)&d.date.eq(lastdate)).astype(int)
-    d['initial_residual']=d.groupby('Code').residual.transform('first')
-    d['initial_reference']=d.groupby('Code').Ref_Price.transform('first')
+    if 'fullsource_prepared' not in d:
+        lastdate=d.groupby('Code').date.transform('max')
+        d['sale_terminal_status']=(d.Real_Sold.eq(1)&d.date.eq(lastdate)).astype(int)
+        d['initial_residual']=d.groupby('Code').residual.transform('first')
+        d['initial_reference']=d.groupby('Code').Ref_Price.transform('first')
+    else:
+        # Endpoints and entry controls were set on the FULL raw histories.
+        assert d.fullsource_prepared.all()
+        d=d[d.Ref_Price.notna()].copy()
     d=d[d.rival_n.gt(0)&d.date.lt(d.date.max())].copy().reset_index(drop=True)
     top=d.groupby('Seller').Code.nunique().nlargest(20).index
     d['seller_group']=np.where(d.Seller.isin(top),d.Seller,'Other')

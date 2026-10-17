@@ -1,5 +1,7 @@
 # Swappa OSC campaign, 2026-10-16
 
+**CURRENT DATA STATUS (October 17 UTC): prior numerical results below are superseded as empirical estimates.** The inherited raw_data_cleaned.dta had already selected observations on reference-price availability and price filters. Reconstructing competition and terminal sale dates after that selection omitted rivals and moved 174 Upgrade listing endpoints earlier than the raw source. Owned OSC arrays 15597136 and 15597781 were cancelled and verified terminal; completed results are diagnostic only. Rebuild from full raw_swappa.dta in output/swappa_rescue_20261016/fullsource/. Read the newest source-audit update at the end of this note before resuming.
+
 Submission owner: this Swappa goal chat, 01a14662-bc4d-7902-b104-04742ceb3ca5. User authorized research computation; no other campaign is modified. Status at source checkpoint: prepared, no Swappa submission yet. Job IDs and immutable code/input hashes will be stored in the ignored run manifest under output/swappa_rescue_20261016/osc_campaign/.
 
 Planned work: one frozen-input validation task at delta=35, rho [.74,.76], 30 cells; after successful remote/local agreement, a capped array profiling delta=20,35,50 and rho boxes covering [0,1.2] at width .02, using 60 continuous-cost cells. The same coefficients supply D=1,2,5,10 results. Bounds cover all rho values, not just grid points. The largest prior-feasible rho is .82505, .91159, and .99814 at the three deltas, so [0,1.2] covers every feasible nonnegative rho for these assumptions.
@@ -33,3 +35,5 @@ Local manifest: output/swappa_rescue_20261016/osc_campaign/swappa_askgrid_9005a1
 
 
 Corrected-grid canary 15597746 completed 0:0 in 39 seconds, peak RSS 141596 KiB. Remote/local endpoint difference is 4.61e-11 and coefficient difference 7.82e-10, with hashes verified. Frozen/direct local differences are below 6e-14 for endpoints. Corrected profile array **15597781**, tasks **1-180%4**, is now submitted with two CPUs, 2 GB, and five-minute limits. Fresh budget check at 2026-10-17 00:19:58 UTC remains $960 ACTIVE; the combined Swappa envelope and $269 conservative headroom remain unchanged. Do not submit a duplicate. The collector now rejects contradictory feasibility statuses across objectives and includes run, source commit, model, critical value, alpha, and cell count in global result tables.
+
+Source-audit stop: both profile arrays were cancelled after the fuller raw-source audit showed omitted competitors and shifted endpoints. sacct confirms no owned RUNNING, PENDING, or COMPLETING tasks. See osc_superseded_profile_accounting.txt and each manifest stop_reason. Do not restart these arrays or present their results as corrected empirical estimates.
