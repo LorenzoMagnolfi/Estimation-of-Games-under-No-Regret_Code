@@ -37,15 +37,9 @@ def main():
  if not args.bundle:
   if args.shared_slope_band:
    assert args.output_tag, 'Use a distinct output tag for the shared-slope calibration'
-   from scipy.stats import chi2,norm
-   # A common four-coefficient ellipsoid covers slope directions for ALL
-   # sellers at once. The peer scalar is also shared, so neither global
-   # allowance is multiplied by the twenty-seller selection family.
-   assert args.critical is None and args.alpha_regret<=.00025
-   assert len(data['maxima'])>=5000 and float(data['critical'])==float(data['maxima'].max())
-   assert (1-.00175)**len(data['maxima'])<=.0002
-   sc=float(np.sqrt(chi2.ppf(.995,4)));pc=float(norm.ppf(1-.001/2))
-   calibration={'shared_slope_band':True,'slope_critical':sc,'peer_critical':pc,'global_slope_alpha':.005,'global_peer_alpha':.001,'seller_band_alpha':.00175,'seller_MC_alpha':.0002,'seller_regret_alpha':args.alpha_regret,'family_size':20,'total_failure_allocation':.005+.001+20*(.00175+.0002+args.alpha_regret)}
+   from shared_slope_calibration import calibration as calibrate_shared_slopes
+   assert args.critical is None
+   calibration=calibrate_shared_slopes(data,args.alpha_regret);sc=calibration['slope_critical'];pc=calibration['peer_critical']
    band=NormalizedBand(fit,s,data['covariance'],critical,slope_critical=sc,peer_critical=pc)
   else:band=NormalizedBand(fit,s,data['covariance'],critical)
  codes,idx=np.unique(s.Code,return_inverse=True);L=len(codes);N=len(s);G=args.cells;upper=all_minimum.reindex(codes).to_numpy();lower=np.zeros(L)
