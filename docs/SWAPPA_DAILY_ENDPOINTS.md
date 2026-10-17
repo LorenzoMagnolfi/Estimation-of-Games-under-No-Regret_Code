@@ -32,7 +32,7 @@ The files with `peerfix` in their names supersede the earlier `certified` versio
 
 The common-cost prior is [0,123.6]. Its margin floor is already $6.658305 before using learning. Do not attribute that portion of a reported lower margin to the method.
 
-Increasing the learner's range normalizer weakens the restriction. At T=1,500, a factor 1.25 gives cost [41.604,119.772] after uncertainty; factor 2 gives [15.109,122.668]. Their fitted sets are [59.939,116.199] and [40.264,119.769]. The main result therefore also uses a substantive normalization choice. Files: `daily_scale1.25_T1500.json` and `daily_scale2_T1500.json`.
+Increasing the learner's range normalizer widens the fitted intervals reported here. This is a sensitivity, not a general set-inclusion claim when common-advisor regret can be negative. At T=1,500, a factor 1.25 gives cost [41.604,119.772] after uncertainty; factor 2 gives [15.109,122.668]. Their fitted sets are [59.939,116.199] and [40.264,119.769]. The main result therefore also uses a substantive normalization choice. Files: `daily_scale1.25_T1500.json` and `daily_scale2_T1500.json`.
 
 ## Persistent cost heterogeneity without a cost distribution
 
@@ -118,3 +118,23 @@ The tenfold gradient-step replication changes the seller-specific delta=5 lower 
 Weekly dependence and seller-specific demand can now be combined. The covariance reweighting checks that the alternative covariance lies in the recorded gradient's estimable subspace, with relative projection residuals below 5.3e-8. For common demand and delta=5 the weekly interval is [72.965,129.164]; for seller-specific demand and delta=5 it is [76.251,134.124]. The latter implies gross margins [9.876,67.749]. The day-cluster seller-specific upper cost 134.498 remains slightly more conservative. These are asymptotic sensitivities with only 24 weekly clusters, not exact small-sample coverage results.
 
 `daily_multisku_gaussian_check.py` now prepares a nonlinear diagnostic that re-solves the entire cost LP under coherent Gaussian perturbations. It checks the local envelope approximation, never treats draw quantiles as confidence intervals, and records invalid slope or infeasible draws rather than dropping them. Inspect its progress artifacts before drawing conclusions about finite-sample curvature. The goal remains active pending that diagnostic and the remaining economic scope checks.
+
+
+### Scope and approximate-information sensitivities
+
+`daily_scope.py` can restrict advice to displayed prices between .8 and 2 times the current lowest rival price, together with the highest feasible ask as a predeclared fallback. It never uses the observed continuation action to choose the menu. The fallback preserves feasibility and domination of negative-margin common-price proposals. The full action range remains in the payoff certificate. With delta=5 and .5-dollar cells, this advisor gives fitted cost [78.348,125.266] and asymptotic cost [69.487,129.074], gross margins [14.927,74.513]. It is a weaker benchmark, not a claim to have estimated the optimal price of an arbitrary new listing outside the observed market.
+
+A 1.25 range-scale sensitivity gives fitted cost [78.105,126.413]; its uncertainty result is in `daily_multisku_scale125_d5_h05_inference.json`. The broad 10,000-seller allowance gives fitted cost [77.205,126.526] and asymptotic cost [62.845,132.214], gross margins [11.786,81.155]. There are 5,828 distinct sellers in the rebuilt panel. The broader allowance makes the finite-roster assumption explicit; it still does not provide unlimited protection over arbitrary models chosen after inspecting results. Upgrade had 87 listings and ranked fourth in inventory on the first observed date, July 11, 2023. This supports its status as a bulk dealer but is not a substitute for the stated selection correction. The combined seller-specific, 10,000-seller result is running separately.
+
+`daily_proxy_error.py` gives a direct relaxation of exact expected-payoff feedback. Suppose the learner receives normalized payoff forecasts u_tilde in [0,1], with uniform absolute error at most epsilon over feasible joint actions. If it includes the best full-joint proxy-payoff advisor, proxy-oracle regret r_tilde is nonnegative, while any true advisor regret r is at most r_tilde+2epsilon. Therefore, for eta=.99,
+
+    log(1+eta*r) <= log(1+eta*r_tilde) + log(1+2*eta*epsilon).
+
+Over N observed SKU rounds, add N*log(1+2*.99*epsilon) to the wealth threshold. This is an explicit approximate-learning extension. For positive persistent epsilon it does NOT establish exact ANR for true payoffs. The uniform normalized error is an assumption about the seller's payoff forecasts; it is not the analyst's first-stage standard error, and the two allowances are separate. Randomized tests verify the pathwise inequality.
+
+At epsilon=.005, the additional allowance is 10.156707 and the fitted delta=5 cost interval is [73.755,127.219]. The epsilon=.01 fitted result and both uncertainty runs are in files beginning `daily_multisku_proxy`. Do not label these as ordinary ANR results or as requiring only the common-price proxy expert: the proof uses the nonnegative regret of the full proxy oracle.
+
+The two nonlinear Gaussian diagnostic processes use the immutable code loaded from commit bb9543e and reprofile all cost cells for 60 draws each. At the latest check, both had completed twenty draws, all structurally valid; these partial diagnostics are not a final validation result. Progress is saved after every draw. Their loaded Python modules are unaffected by later scope-script edits. No OSC job is active.
+
+
+Completed scope results: the 1.25 normalizer gives asymptotic cost [68.359,130.133]. Combining seller-specific demand with the 10,000-seller allowance gives [61.125,139.274], gross margins [4.726,82.876]. The exact-feedback, twenty-seller result remains narrower; both must be shown rather than silently selecting the favorable correction. The .005 proxy-error extension gives asymptotic cost [63.841,130.861] under common demand, gross margins [13.139,80.159]. These sensitivity dimensions have not all been imposed simultaneously. The full stable suite now passes 62 tests (`tests_scope_checkpoint.log`).

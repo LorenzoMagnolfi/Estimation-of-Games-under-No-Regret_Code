@@ -26,7 +26,7 @@ def audit_active_cell(model,left,right):
         assert not np.any(used_ties&model.active), 'Distinct own-profit optima tied in used range branch'
         denominator=np.where(best>=0,model.vector_range(low),model.vector_range(high))
     else:
-        endpoint_gap=abs((pl-ph)[days,choice]);assert np.all(endpoint_gap[nonzero]>1e-10), 'Active lower gain ties cost endpoints'
+        endpoint_gap=abs(pl[days,choice]-ph[days,choice]);assert np.all(endpoint_gap[nonzero]>1e-10), 'Active lower gain ties cost endpoints'
         report['minimum_nonstructural_cost_endpoint_gap']=float(endpoint_gap[nonzero].min()) if nonzero.any() else None
         left_ties=model.own_optimum_probabilities(left)[3];right_ties=model.own_optimum_probabilities(right)[3]
         used_ties=np.where(best[model.day]>=0,left_ties,right_ties)
