@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-20",
+  "timing": "Specified after model-specific aggregate fits leave iPhone 6s Plus incompatible, before seller-wide results. No product is deleted.",
+  "motivation": "GadgetPickup is the decision maker. Model-specific performance is an extra restriction; a seller-wide aggregate comparison should permit offsets across all models while retaining heterogeneous unknown K_g.",
+  "restrictions": "Sum_change H>=sum_g C_g K_g; for each shift sum_inaction G_k<=sum_g I_g K_g; seller aggregate participation. Complete-menu variant adds sum_change G_k<=0. All listing costs and K_g nonnegative and otherwise unrestricted. No common adjustment cost assumption.",
+  "inputs": "All previously fixed horizons and demand models; same eligible reviews and review-exposure target.",
+  "interpretation": "Maintained seller-wide aggregate net performance; data discipline the dollar allowance conditionally. The weakest version need not exclude zero cost; do not add common K or discard products to obtain tightness."
+}
