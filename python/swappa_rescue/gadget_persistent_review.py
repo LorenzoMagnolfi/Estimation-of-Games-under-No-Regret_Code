@@ -27,6 +27,7 @@ def probability(q,horizons):
 
 
 def main():
+    run_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     old=pd.read_parquet(RUN/'repricing_performance_predictions.parquet')
     base=pd.read_parquet(RUN/'performance_predictions.parquet')
     d=terminal_status_data();s=d[d.Seller.eq('GadgetPickup')].merge(base[['Code','date','fold']],on=['Code','date'],validate='one_to_one').sort_values(['Code','date']).reset_index(drop=True)
@@ -108,7 +109,7 @@ def main():
                 summary=dict(spec=spec,horizon=horizon,complete_menu=complete,models=len(subset),eligible_model_reviews=sum(a['reviews'] for a in subset),review_listing_rows=len(z),expected_review_sales=total,expected_receipt=sum(a['expected_review_sales']*a['expected_receipt'] for a in subset)/total,infeasible_models=[a['model'] for a in subset if not a['feasible']],joint_feasible=feasible,cost_lower=sum(a['expected_review_sales']*a['cost_lower'] for a in subset)/total if feasible else None,cost_upper=sum(a['expected_review_sales']*a['cost_upper'] for a in subset)/total if feasible else None,restricted_regret_upper=sum(a['inaction_reviews']*a['adjustment_upper'] for a in subset) if feasible and complete and all(a['adjustment_upper'] is not None for a in subset) else None)
                 summaries.append(summary);print('PERSISTENCE RESULT',spec,horizon,complete,len(summary['infeasible_models']),flush=True)
     assert identity_error<1e-8
-    out=dict(code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),design_sha256=hashlib.sha256(DESIGN.read_bytes()).hexdigest(),preperiod_batch_dates=[str(x.date()) for x in prior],gap_distribution=gaps,gap_mean=float(np.mean(gaps)),gap_median=float(np.median(gaps)),fits=fits,profit_identity_max_error=identity_error,summaries=summaries,models=records,interpretation='Persistent stationary-hazard conditional review model. Unknown listing opportunity costs and adjustment costs; no calibrated empirical regret bound or confidence region unless all economic/demand restrictions are established. Review-exposure target differs from prior daily target.')
+    out=dict(code_commit=run_commit,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),design_sha256=hashlib.sha256(DESIGN.read_bytes()).hexdigest(),preperiod_batch_dates=[str(x.date()) for x in prior],gap_distribution=gaps,gap_mean=float(np.mean(gaps)),gap_median=float(np.median(gaps)),fits=fits,profit_identity_max_error=identity_error,summaries=summaries,models=records,interpretation='Persistent stationary-hazard conditional review model. Unknown listing opportunity costs and adjustment costs; no calibrated empirical regret bound or confidence region unless all economic/demand restrictions are established. Review-exposure target differs from prior daily target.')
     (ROOT/'docs/evidence/gadgetpickup_persistent_review_results_20261020.json').write_text(json.dumps(out,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     print('PERSISTENT_REVIEW_COMPLETE',flush=True)
 
