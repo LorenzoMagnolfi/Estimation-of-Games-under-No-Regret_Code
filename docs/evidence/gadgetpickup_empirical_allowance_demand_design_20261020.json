@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-20",
+  "purpose": "Investigate the magnitude of a performance allowance and the credibility of the demand response. Designs fixed before new results; prior analyses known.",
+  "demand_specs": [
+    "cached_corrected_additive",
+    "category_week_C1",
+    "category_week_C10",
+    "additive_no_initial"
+  ],
+  "demand_choices": "Same corrected sample and five whole-listing SHA256 folds. Alternative category-week interactions already motivated in prior audits; C10 tests shrinkage. No-initial tests reliance on initial-price quality controls.",
+  "counterfactual": "Exact integer ask shifts -10,-5,+5,+10 on continuation listings, include own-peer and entrant spillovers.",
+  "linear_probability_diagnostics": [
+    "category+date",
+    "category_week+date",
+    "listing+date"
+  ],
+  "linear_probability_controls": "Same continuous regressors as baseline; absorb listed effects exactly; cluster by product category and date. Descriptive checks, not causal identification or probability models for cost inversion.",
+  "support": "For each shift compare proposed price to observed GP category-week min/max. Report exposure and counterfactual quantity-change shares outside this range. This is a diagnostic; min/max membership is not conditional overlap.",
+  "calibration": "Seven-calendar-day block bootstrap of fixed out-of-fold predictions for sales count and mean-receipt discrepancies. Descriptive conditional-on-fit intervals, not demand parameter confidence sets.",
+  "adjustment_model": "Unknown nonnegative constant dollar adjustment cost K_g per phone-model review, estimated jointly with unrestricted nonnegative listing costs. Actual adjustment gain against previous fresh quote >= K_g; ignored simple price change gain on inaction dates <= K_g. Plus model aggregate nonnegative contribution. No arbitrary regret percentage.",
+  "review_schedules": [
+    "all_retained_dates",
+    "seller_batch_dates_at_least_10_changed_listing_quotes_across_3_models"
+  ],
+  "eligible_model_days": "Every retained current listing has a consecutive fresh prior quote. This excludes entrants/gaps and November-19-as-previous. Repricing means any current price differs from prior. Batch schedule is a proxy for review opportunity, not a fact.",
+  "adjustment_scope": "Calibrate K_g using observed changes on qualifying review dates, and inaction on qualifying review dates. Models without both an observed change and inaction do not have a data-disciplined K_g; report separately.",
+  "limitations": "No source can establish a finite upper regret allowance just by reporting average revenue improvements. A price adjustment model is an additional economic restriction and may be rejected. Do not relax it after seeing infeasibility."
+}
