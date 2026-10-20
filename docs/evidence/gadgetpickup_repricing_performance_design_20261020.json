@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-20",
+  "status": "Exploratory alternative motivated after pooled relative-efficiency results, before computing repricing payoffs.",
+  "assumption": "Cumulative conditional expected profit from actual repricing is at least the payoff from retaining the previous fresh daily quote. No optimality among all prices or numerical regret allowance.",
+  "primary": "Undo all actual changes in one joint comparison. Stronger alternatives separately undo cuts and increases, and impose comparisons per device model.",
+  "previous_price": "Same listing present at the immediately preceding calendar day, with both snapshots fresh; November 19 is not a fresh previous date. Otherwise no rollback.",
+  "windows": [
+    "full",
+    "novdec"
+  ],
+  "response_scales": [
+    0.5,
+    0.75,
+    1
+  ],
+  "payoffs": "Include owned-inventory spillovers on every retained listing; entrants and noneligible prices stay fixed. Same corrected five-fold additive fit, no refitting choices.",
+  "costs": "Nonnegative unrestricted persistent listing opportunity costs; baseline pooled nonnegative contribution, separately label device participation/performance.",
+  "qualification": "Purposeful repricing is suggestive, not established. Expected profitability refers to researcher-maintained true conditional demand, so private signals or model errors can invalidate it. Splitting by sign or device adds conditional performance restrictions. Cost not known or calibrated."
+}
