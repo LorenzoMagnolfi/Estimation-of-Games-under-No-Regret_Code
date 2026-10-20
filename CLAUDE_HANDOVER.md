@@ -1,8 +1,16 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
-## Active GadgetPickup demand and regret investigation, October 20, 2026
+## GadgetPickup demand and regret investigation, October 20, 2026
 
-Current writer: this Codex chat, restricted to new `gadget*` analysis scripts/results and research documentation. Prior artifacts remain fixed. User requests demand diagnosis followed by an empirically defensible finite-sample performance bound; no arbitrary allowance is authorized as the final result. Design: `docs/evidence/gadgetpickup_demand_design_20261020.json`.
+Current writer: none; this computational pass is complete. The user's research goal remains active and unresolved. No background process remains. Next writer should claim only the new GadgetPickup analysis paths before editing.
+
+- Governing record: `docs/gadgetpickup-demand-regret-note-2026-10-20.md`. It supersedes earlier demand-validation status and contains the expanded seller-source search, all models, a proposed uncertainty-based regret guarantee with proof, and the finite-prefix ANR argument.
+- Gadget-only listing-disjoint additive demand predicts November–December mean receipt 412.65 vs 392.61 observed (old pooled fit 466.16); 601.45 predicted sales vs 585. Category/time interactions worsen count calibration. Future-period forecasts remain unstable. No causal demand identification or new cost inversion.
+- Within category/week residual price RMS is 7.07 dollars; category/day RMS is 2.33. Common prices, sparse changes, and batched inventory do not establish learner adoption or independent learning rounds.
+- Sequential sales-information audit on five categories uses prior dates only and simultaneous Hoeffding and mixture bounds. Under the explicit constant conditional mean approximation, zero cost is not demonstrably inferior on any evaluated date, even with the sharper mixture bounds and individual-exposure assumption. The model omits pre-October experience; this is an information diagnostic, not a claim that the seller restarted.
+- Expanded public search finds a dated November 2023 procurement/valuation announcement and a September–October 2023 seller comment linked to raw listing LXKC36753. No repricer or finite-sample guarantee verified. User confirms no extra private records and asks for extensive public research. Do not repeat searches without a new lead.
+- Scripts: `gadget_demand_audit.py`, `gadget_demand_extension.py`, `gadget_demand_crossfit.py`, `gadget_demand_time_controls.py`, `gadget_feedback_audit.py`. Designs/results and hash manifest are tracked in `docs/evidence`; detailed predictions remain in the ignored `gadget_demand_20261020` output folder. Three focused confidence-bound tests pass.
+- Next executable work: distinguish replenishment/replacement opportunity costs from fixed-stock continuation values using listing arrivals, sales, cancellations, and inventory dynamics. Independently seek a causal demand restriction. No arbitrary allowance, cost cap, common-cost span, or particular learner is authorized as a supported empirical conclusion. Unknown costs remain the estimand.
 
 ## Swappa rule tests and cost inversion, October 20, 2026
 

@@ -1,0 +1,204 @@
+{
+  "date": "2026-10-20",
+  "machine": "ASCECN-NC330225",
+  "code_head_before_documentation_commit": "08511033a0a1bd4270ed08f8426a44a06e84eed6",
+  "note": "Hashes at documentation time. Producing code/script hashes remain in each original result; no historical result is rewritten.",
+  "files": {
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/panel.parquet": {
+      "bytes": 13160530,
+      "sha256": "ae905e6ab10aa547f1ac174b54e079cd74f663d02fdd40357401409c284e536f"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/continuation_seller_full_1.joblib": {
+      "bytes": 7520,
+      "sha256": "7a9a7d792f46917bb07d32800fa9de06ad2121e371b30693bdf063041403e076"
+    },
+    "python/swappa_rescue/gadget_demand_audit.py": {
+      "bytes": 8564,
+      "sha256": "2aedf8c635a55dc2806e43d680ae7979faf85c28d7773784b001d7527c6ac184"
+    },
+    "python/swappa_rescue/gadget_demand_crossfit.py": {
+      "bytes": 5466,
+      "sha256": "8c41bb093fcff38c24893d7452897b5a46182c87c1273a5ceb1e848b0dab958a"
+    },
+    "python/swappa_rescue/gadget_demand_extension.py": {
+      "bytes": 5239,
+      "sha256": "986838b458ecdea11e2ce125547583e23e85154c5f20fe34bcad21bf5f8ba61c"
+    },
+    "python/swappa_rescue/gadget_demand_time_controls.py": {
+      "bytes": 4133,
+      "sha256": "f2c4fbcde61f609ad35d854f1090c2eab64221e632a78340154a3131e23c1122"
+    },
+    "python/swappa_rescue/gadget_feedback_audit.py": {
+      "bytes": 3991,
+      "sha256": "4b840ae70a5866d97f0360870cb3d752c54eb41f95e23a01861aa00790df2d41"
+    },
+    "docs/evidence/gadgetpickup_cost_attribution_20261020.json": {
+      "bytes": 14558,
+      "sha256": "6a7f3e4536b9da2cb8f0bc0aa9e4b14baad26425f820de7c7a678d82f5c7c566"
+    },
+    "docs/evidence/gadgetpickup_crossfit_design_20261020.json": {
+      "bytes": 960,
+      "sha256": "d720d2e301ac9ca0ed15749cb8ed305141b6f161582b0766def59a5f88d84ac6"
+    },
+    "docs/evidence/gadgetpickup_crossfit_results_20261020.json": {
+      "bytes": 24451,
+      "sha256": "95857c681458be1f140e66dad376d4eb6c3d50d77170b1dfe2ed55d3aaadb448"
+    },
+    "docs/evidence/gadgetpickup_demand_audit_20261020.json": {
+      "bytes": 216199,
+      "sha256": "2705061ce23c0b894e2a6f58d5787972e9aec94177d69d99f0a2869ed7b44a61"
+    },
+    "docs/evidence/gadgetpickup_demand_design_20261020.json": {
+      "bytes": 2674,
+      "sha256": "b7c4475cea8e45fd3abb53f4c0ef49da5930757a0407c2dd1edeafa3886b0cc9"
+    },
+    "docs/evidence/gadgetpickup_demand_extension_20261020.json": {
+      "bytes": 980,
+      "sha256": "b0afd3e0ab6be0a6b9f861bbc3d0337a75ac3e493d1b5757be6a7f1697dcc7fe"
+    },
+    "docs/evidence/gadgetpickup_demand_extension_results_20261020.json": {
+      "bytes": 6239,
+      "sha256": "efb43ae1847dd9a22cc23b99c3d57a3504c5b105ca83705e0797258b4ed3c76a"
+    },
+    "docs/evidence/gadgetpickup_expected_cost_design_20261020.json": {
+      "bytes": 1068,
+      "sha256": "ab92f0ea66abe5cc1b18d7709a24ab70418f15d3fb5b8bf30a33dda59c5c1b3e"
+    },
+    "docs/evidence/gadgetpickup_expected_frontier_20261020.json": {
+      "bytes": 91494,
+      "sha256": "a6af225ba862d84d6ae43d436ca30729271dcebd463f396a76eaef20eef152c2"
+    },
+    "docs/evidence/gadgetpickup_feedback_design_20261020.json": {
+      "bytes": 1750,
+      "sha256": "11e00b2a069b933005cf25155f6b4e01c66203a42c36060ca5b22504f863f0e7"
+    },
+    "docs/evidence/gadgetpickup_feedback_results_20261020.json": {
+      "bytes": 9829,
+      "sha256": "61865253b69cb22aeed6ef241f07c8f8f991117f813019de3fac207be8628050"
+    },
+    "docs/evidence/gadgetpickup_policy_cost_frontier_20261020.json": {
+      "bytes": 67201,
+      "sha256": "2afa522e4613bb75db46faf75fe8ab30f2a5ba9b5c82d58d468aef5a853e3322"
+    },
+    "docs/evidence/gadgetpickup_rule_design_20261020.json": {
+      "bytes": 2789,
+      "sha256": "2823d6f4cac3ddb15876e30a5ee17ff87e7d84366bd71cf512c5e9b1cbecf0b8"
+    },
+    "docs/evidence/gadgetpickup_rule_validation_20261020.json": {
+      "bytes": 63413,
+      "sha256": "0a6eadaa369d00141fe96798bbcc8d7bb061429693de4f03cb5391578598b7ee"
+    },
+    "docs/evidence/gadgetpickup_time_controls_design_20261020.json": {
+      "bytes": 688,
+      "sha256": "1b89d0b1ad53184fad15aa8cf653162d4953f0422b82353a52fc17c2b237711c"
+    },
+    "docs/evidence/gadgetpickup_time_controls_results_20261020.json": {
+      "bytes": 26301,
+      "sha256": "2a6519100c08bc8d53f03bdfc0fc250ec9b51ffc5320d5e1724174df3182c6f9"
+    },
+    "docs/evidence/gadgetpickup_withdrawal_design_20261020.json": {
+      "bytes": 2219,
+      "sha256": "3264111682fc2270b813e4c95a14f12003e933d556707bba88c48945291647c5"
+    },
+    "docs/evidence/gadgetpickup_withdrawal_frontier_20261020.json": {
+      "bytes": 62387,
+      "sha256": "0a2e62f2022ab78e5b4ac1736d55ff153e6ba430a49f825306097e058ccc5d2c"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/category_days.parquet": {
+      "bytes": 37700,
+      "sha256": "20a23d688e73b03991fbcb8de301eaf048e2216bcd356be5b130510869a88e15"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/chronological_predictions.parquet": {
+      "bytes": 573908,
+      "sha256": "9b85c4e322e64a5e4bddeedc14ce51def1beaac01851cfc459af5be2812f30ab"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit.json": {
+      "bytes": 24451,
+      "sha256": "95857c681458be1f140e66dad376d4eb6c3d50d77170b1dfe2ed55d3aaadb448"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit_additive_folds.json": {
+      "bytes": 6679,
+      "sha256": "a2b931996223439c32f9a6ddda9b83269e7d27671b2250867df66f5baf558f78"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit_calibration.csv": {
+      "bytes": 5026,
+      "sha256": "505a79cd751103f63d9bb0c6b6e659b1706e7f50f2403ae3bf184614b37785bf"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit_category_folds.json": {
+      "bytes": 6672,
+      "sha256": "a84fc8f92d682ea4d18c14fdee1b75e658b15537e8b0c495a38d1109a1cd0656"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit_category_spline_folds.json": {
+      "bytes": 7617,
+      "sha256": "1ee08833fbd9254cafb2eb350a798bef55b45b36caebf5aa3e6e82b3908b9f98"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/crossfit_predictions.parquet": {
+      "bytes": 1843734,
+      "sha256": "7064020bd2caf68927f21dbffb468f77a6db973e3c114e84fa7482a0cce737bf"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/cut_dates.csv": {
+      "bytes": 1339,
+      "sha256": "3c1317cd2132b097772b46d618ebad3a26b7949957e5dd733795abc7b390b007"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/demand_audit.json": {
+      "bytes": 216199,
+      "sha256": "2705061ce23c0b894e2a6f58d5787972e9aec94177d69d99f0a2869ed7b44a61"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/existing_calibration.csv": {
+      "bytes": 55828,
+      "sha256": "9bf62f5a0e182bb48cdfe02ac898b66bb1df03c7f2285a8ff3c29926f57e6ffd"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/extension.json": {
+      "bytes": 6239,
+      "sha256": "efb43ae1847dd9a22cc23b99c3d57a3504c5b105ca83705e0797258b4ed3c76a"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/feedback_audit.json": {
+      "bytes": 9829,
+      "sha256": "61865253b69cb22aeed6ef241f07c8f8f991117f813019de3fac207be8628050"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/feedback_intervals.csv": {
+      "bytes": 146221,
+      "sha256": "a8504e9e971ef35a41926132c2e2984fce7d5727c7591087c461421c90ef59a7"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/forecast_category_no_trend.parquet": {
+      "bytes": 81066,
+      "sha256": "4f9ed869336d8ee76a388f3c3d10cfed20dd8187aa7eb2b36c25f155d867766d"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/forecast_tree.parquet": {
+      "bytes": 76882,
+      "sha256": "ddb4bf331504ebaf7ce9b9d4da9bce4f5af6ab66c5138e6c5c6a8f33da77553b"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_additive_oct31.joblib": {
+      "bytes": 11534,
+      "sha256": "5f7ee0c193ac2dd730102f212850adafc871b081ca5718c5ca0149a3687e7c87"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_category_age_oct31.joblib": {
+      "bytes": 32776,
+      "sha256": "aa8976042c0128cc081241c4a48186b5513c54047d631eef27d6bbfecbcdee3a"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_category_no_trend_oct31.joblib": {
+      "bytes": 15939,
+      "sha256": "9b89b7d8bf6437333d497d7989bb0770710505d15841cdaeab629f7751e09454"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_category_oct31.joblib": {
+      "bytes": 15998,
+      "sha256": "c23bd1a979f1929a4646ee7378723810153ceb5171956f75fa9bf1cd39dbaff6"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_category_spline_oct31.joblib": {
+      "bytes": 16269,
+      "sha256": "d2bcb1e8690701efc64a5b2b0d718572a9b995ca7aba93bbea5096d67ea9ecbc"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/gadget_tree_oct31.joblib": {
+      "bytes": 248283,
+      "sha256": "802c5396564858645c3be93b16272f1c24033f799296acb935f2636b9b8e28de"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/time_controls.json": {
+      "bytes": 26301,
+      "sha256": "2a6519100c08bc8d53f03bdfc0fc250ec9b51ffc5320d5e1724174df3182c6f9"
+    },
+    "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/time_controls_predictions.parquet": {
+      "bytes": 1234285,
+      "sha256": "01a411bbf49fb6419c7d27e02c3c69fbd3a00344cee8c69096b94a6f84efa528"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 # Swappa rule tests and cost inversion: implementation record
 
+**Subsequent demand and regret work:** `gadgetpickup-demand-regret-note-2026-10-20.md` records the completed demand audits and sequential sales-information calculation. It supersedes this note's prospective demand-validation status; the original conditional cost results below remain unchanged.
+
 Date: 2026-10-20. Status: chronological rule validation and exact fitted-demand cost sensitivity calculations complete. No empirically validated confidence interval is claimed. The human note in the paper sibling, `JPE Revision/swappa-rule-tests-note-2026-10-20.tex`, governs economic interpretation and mathematics. This record governs implementation and provenance. Earlier source research remains in `SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`; the old learner remains closed under `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md`.
 
 ## Decision and user correction
