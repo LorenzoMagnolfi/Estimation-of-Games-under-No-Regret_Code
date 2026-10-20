@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-20",
+  "motivation": "After the demand-support and within-listing checks, compare contemporaneous price with predetermined previous fresh quote. Official Swappa negotiation workflow permits price changes following an offer; direction of causality remains uncertain.",
+  "specifications": [
+    "current_price",
+    "lagged_own_price_vector",
+    "current_plus_lagged_own_residual"
+  ],
+  "fixed_effects": [
+    "category_week+date",
+    "listing+date"
+  ],
+  "sample": "Corrected current one-day sample with previous fresh quote on immediately preceding calendar day. Evaluate all specifications on the same rows.",
+  "method": "Descriptive absorbed linear probability models, same continuous covariates, two-way category/date clusters. Changing lagged prices is a predictor contrast, not the causal effect of changing current prices.",
+  "raw_summary": "Compare sale rates on isolated and coordinated price-change dates, conditioning only on contemporaneous and past observations. No future-price placebo conditioned on listing survival."
+}
