@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-20",
+  "seller": "GadgetPickup",
+  "status": "Declared before new demand audit and refits; November-December outcomes were inspected in the preceding research pass and are not a fresh confirmatory holdout.",
+  "purpose": "Diagnose predicted sales composition and evaluate candidate demand models without loading cost bounds or choosing performance tolerances.",
+  "audit": [
+    "Calibration by device model-storage-condition, displayed-price bin, listing age, calendar month, and new/continuing listings",
+    "Compare prediction errors within and across categories",
+    "Audit missing outcomes, date gaps, price changes near terminal sales, and available feedback fields"
+  ],
+  "price_bins": [
+    0,
+    200,
+    400,
+    600,
+    800,
+    1000,
+    10000
+  ],
+  "age_bins": [
+    -1,
+    0,
+    2,
+    7,
+    14,
+    30,
+    60,
+    10000
+  ],
+  "chronological_splits": [
+    [
+      "2023-08-31",
+      "2023-09-01",
+      "2023-09-30"
+    ],
+    [
+      "2023-09-30",
+      "2023-10-01",
+      "2023-10-31"
+    ],
+    [
+      "2023-10-31",
+      "2023-11-01",
+      "2023-12-22"
+    ]
+  ],
+  "models": [
+    "existing_fullsample_seller_fit_diagnostic_only",
+    "gadget_additive_refit",
+    "gadget_category_interactions",
+    "gadget_category_age_interactions",
+    "gadget_category_price_splines"
+  ],
+  "regularization_C": 1.0,
+  "category_min_frequency": 1,
+  "calendar": "Day of week categories plus linear elapsed calendar time; no unknown future week indicators in new cell models.",
+  "selection": "Report every declared model in every split; log loss and calibration are primary predictive criteria. Do not select by cost bounds. Any later extension must be labeled exploratory.",
+  "causal_checks": [
+    "Compare counts and outcomes around large common price cuts, including pre-change sales rates",
+    "Record feedback/initialization/adoption evidence separately from pricing fit",
+    "Do not infer price exogeneity from predictive improvement or from a failed placebo test"
+  ],
+  "regret_routes": [
+    "Known-algorithm finite-sample guarantees with feedback, normalization, initialization and adoption checks",
+    "Variation-based or short-window guarantees only with a complete proof and separately supported assumptions",
+    "Direct empirical policy evaluation: distinguish estimation of candidate-cost regret from an independently justified behavioral ceiling"
+  ],
+  "prohibition": "Do not label cost intervals credible unless both the structural demand uncertainty and the observed-window performance event are supported; preserve negative results."
+}

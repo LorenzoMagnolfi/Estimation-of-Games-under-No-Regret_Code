@@ -1,5 +1,9 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+## Active GadgetPickup demand and regret investigation, October 20, 2026
+
+Current writer: this Codex chat, restricted to new `gadget*` analysis scripts/results and research documentation. Prior artifacts remain fixed. User requests demand diagnosis followed by an empirically defensible finite-sample performance bound; no arbitrary allowance is authorized as the final result. Design: `docs/evidence/gadgetpickup_demand_design_20261020.json`.
+
 ## Swappa rule tests and cost inversion, October 20, 2026
 
 - Governing implementation: `docs/SWAPPA_RULE_TESTS_2026-10-20.md`. Governing exposition: paper sibling `JPE Revision/swappa-rule-tests-note-2026-10-20.tex`. This section supersedes the earlier "next step: freeze and validate" status below.
