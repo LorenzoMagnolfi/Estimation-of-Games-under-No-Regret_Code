@@ -17,5 +17,6 @@
     "No cross-price or cross-category transfer; separate arms."
   ],
   "report": "all categories, prior positive lower-bound coverage, interval widths, zero-cost non-dominance against previously seen prices; not actual seller regret",
-  "scope": "Failure of this confidence construction is not an impossibility result for all learners or confidence bounds."
+  "scope": "Failure of this confidence construction is not an impossibility result for all learners or confidence bounds.",
+  "additional_confidence_method_before_any_results": "Beta(1/2,1/2) mixture betting process for bounded observations, inverted at alpha=.05/(5*j*(j+1)); uniform over all sample sizes without further time union. Report alongside Hoeffding to avoid relying only on conservative range bounds."
 }
