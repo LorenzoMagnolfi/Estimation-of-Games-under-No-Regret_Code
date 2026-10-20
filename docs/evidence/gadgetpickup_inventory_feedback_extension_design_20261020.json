@@ -1,0 +1,22 @@
+{
+  "status": "Declared before new computation; descriptive inventory audit and conditional information diagnostic, no cost estimates",
+  "inventory_input": "Fullsource reference_screened panel, including missing-reference rows; no outcome/ref/rival filtering. First/last dates before filtering. Final date censored.",
+  "inventory_reports": [
+    "Stock identity with new listings, final exits, gap returns and gap starts",
+    "Category-specific new listing counts in 1/3/7/14 days before and after sales and nonsale exits, interior dates only, listing-weighted and category-day baseline; descriptive, not causal",
+    "New entrant price equality with continuing same-category stock on days with a unique continuing price; entrant battery and inventory-age differences not assumed absent",
+    "Category stockout duration and total observed entry/sales balance"
+  ],
+  "feedback_input": "Same terminal-status retained panel as previous diagnostic; all available dates before December 23, accumulated before each day; evaluate October 1 through December 22",
+  "feedback_categories": "Simultaneous across all categories with category index i assigned by first observed common-price date, ties lexical. Price j ordered by introduction in each category. alpha_ij=.05/[i(i+1)j(j+1)], no retrospective five-category allocation. Report five categories selected by exposure through September 30 and aggregate all.",
+  "feedback_units": [
+    "Daily bounded sales fraction",
+    "Individual exposures: stronger within-day conditional mean model"
+  ],
+  "feedback_methods": [
+    "Exact-price beta mixture bands",
+    "Same bands intersected with nonincreasing category demand in price: lower(p)=max lower(a) for a>=p, upper(p)=min upper(a) for a<=p"
+  ],
+  "feedback_reporting": "Mean widths, empty shape sets, candidate cost zero dominated by previous prices plus withdrawal. Report all, no arbitrary regret allowance. Stationarity across calendar/stock/competition remains strong and unverified. Omitting presample July experience is not an asserted seller restart.",
+  "economic_derivation": "Separate acquisition/replacement expense and continuation marginal value; common posted price is not common cost; instantaneous refill requires explicit model."
+}
