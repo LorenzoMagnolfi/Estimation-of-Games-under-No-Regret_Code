@@ -1,0 +1,66 @@
+{
+  "purpose": "Algorithm-free finite-performance restrictions for GadgetPickup; exploratory model comparison, not a preregistered causal analysis.",
+  "date": "2026-10-20",
+  "base_commit": "503e8b8",
+  "demand": "Unchanged observation-corrected additive model, five SHA256 whole-listing folds, exact ask-grid counterfactuals.",
+  "windows": [
+    "full",
+    "novdec"
+  ],
+  "shifts_integer_ask": [
+    -10,
+    -5,
+    5,
+    10
+  ],
+  "eligible": "Continuation listings (since_seen>0); joint changes update all own-peer price terms; entrants held unchanged, including their profit spillovers.",
+  "performance": "Pi0(c) >= (1-rho)*max(0,Pi_k(c):k in comparison family). Thus participation plus limited approximate local optimality. rho is an assumption, not estimated.",
+  "rho_grid": [
+    0,
+    0.01,
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.125,
+    0.15,
+    0.2,
+    0.3
+  ],
+  "demand_response_scales": [
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.25
+  ],
+  "demand_sensitivity": "Multiply only counterfactual log-odds displacement by scale; factual fitted probabilities unchanged. This is a transparent stress test, not a confidence set.",
+  "costs": "Nonnegative, persistent within listing, heterogeneous across listings, no upper cap or equality imposed.",
+  "targets": [
+    "expected-sale-weighted mean opportunity cost",
+    "realized-sale-weighted mean cost"
+  ],
+  "families": {
+    "markdown10": [
+      -10
+    ],
+    "markup10": [
+      10
+    ],
+    "symmetric10": [
+      -10,
+      10
+    ],
+    "symmetric5": [
+      -5,
+      5
+    ],
+    "four_shifts": [
+      -10,
+      -5,
+      5,
+      10
+    ]
+  },
+  "interpretation": "One-step conditional expected-payoff comparisons on retained observed histories. Current-action shifts are restricted swap deviations, not consequences of contextual external ANR. No automatic path-counterfactual, finite-sample statistical coverage, acquisition-cost claim, or calibrated numerical rho."
+}
