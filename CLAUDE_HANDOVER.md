@@ -2,7 +2,7 @@
 
 ## GadgetPickup demand and regret investigation, October 20, 2026
 
-Current writer: none; the inventory and full-history feedback extension is complete. The user's research goal remains active and unresolved. No background process remains. Next writer should claim only the new GadgetPickup analysis paths before editing.
+Current writer: Codex, ASCECN-NC330225; raw displayed-order and timing audit, October 20, 2026. Inventory and full-history feedback extension complete. The user's research goal remains active and unresolved. No background process remains. Next writer should claim only the new GadgetPickup analysis paths before editing.
 
 - Governing record: `docs/gadgetpickup-demand-regret-note-2026-10-20.md`. It supersedes earlier demand-validation status and contains the expanded seller-source search, all models, a proposed uncertainty-based regret guarantee with proof, and the finite-prefix ANR argument.
 - Gadget-only listing-disjoint additive demand predicts November–December mean receipt 412.65 vs 392.61 observed (old pooled fit 466.16); 601.45 predicted sales vs 585. Category/time interactions worsen count calibration. Future-period forecasts remain unstable. No causal demand identification or new cost inversion.

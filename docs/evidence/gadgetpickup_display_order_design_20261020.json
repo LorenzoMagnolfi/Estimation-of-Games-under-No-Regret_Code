@@ -1,0 +1,18 @@
+{
+  "status": "Exploratory source audit, fixed before full extraction. No demand coefficient or cost inversion selected.",
+  "discovery": "December 22 raw spreadsheet has # and physical row order that cleaning dropped; preliminary Updated-last gap counts inspected and will be reproduced.",
+  "source": "Every data/Swappa_Daily_Data/*.xlsx workbook; first sheet; capture device, Code, date, row counter within device, original #, posted Price. Do not use archived scraper credentials or run the original notebook.",
+  "reports": [
+    "File coverage, duplicate listing/date rows, order resets, numeric rank agreement",
+    "Within-device adjacent price inversions and whether row order is consistent with price sorting",
+    "GadgetPickup lowest same-category rival versus actual displayed device-wide position; tied prices, repeated tie order and transitions",
+    "GadgetPickup terminal-date Updated gaps, censor final date; no claim Updated is transaction time",
+    "Count price versus rival-minimum crossings and own/rival contribution at continuous listings; descriptive support for rank-based variation, not exogeneity"
+  ],
+  "identification": "Price rank is a function of own price and rival offers; featured placement, filters, within-day timing and seller/buyer information may confound. Same-price tie order needs verified mechanism before an instrument claim.",
+  "public_sources": [
+    "https://swappa.com/blog/swappa-how-to-buy/",
+    "https://swappa.com/blog/a-faster-way-to-shop-swappa-listings/"
+  ],
+  "source_dates": "Older guide search-index extract describes featured-first and ascending price; direct fetch error. October 2026 redesigned cards cannot be backdated to 2023."
+}
