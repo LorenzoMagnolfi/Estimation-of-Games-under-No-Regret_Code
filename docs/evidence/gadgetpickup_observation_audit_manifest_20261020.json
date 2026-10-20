@@ -1,0 +1,68 @@
+{
+  "extraction_commit": "1714d4f",
+  "order_summary_commit": "758951f",
+  "calendar_commit": "2ae290f",
+  "source_hashes_location": "gadgetpickup_display_order_results_20261020.json, source_files",
+  "files": [
+    {
+      "path": "python/swappa_rescue/gadget_display_order_audit.py",
+      "sha256": "832e242d8e124335f680556635b31b78e884d666f4b1d21fe4ecdf2dcdcd14bd",
+      "bytes": 8828
+    },
+    {
+      "path": "python/swappa_rescue/gadget_snapshot_calendar.py",
+      "sha256": "339e1c9d3f86073862139ca121d371c498ddf286a357db511057f1b7942d7edc",
+      "bytes": 3738
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_display_order_design_20261020.json",
+      "sha256": "784b670c2a1005457789e6ac1f1c36ec797e2dd9570a010ec9d48483555709d2",
+      "bytes": 1718
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_display_order_results_20261020.json",
+      "sha256": "1a02c31e74ddd11fd2876b9992a47585c52c02ba27d22c4c18ac9052ec64631c",
+      "bytes": 35974
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_closed_date_validation_design_20261020.json",
+      "sha256": "f8f22c064584bb046f5262d3e38edd387da1b98c749da96cdb968d0185979a6a",
+      "bytes": 2694
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_closed_date_validation_results_20261020.json",
+      "sha256": "786430fa896e2fcc8aa89969127d54bef6d1cf356f7be7dbeaf283f3d98d5cf4",
+      "bytes": 6393
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_snapshot_calendar_results_20261020.json",
+      "sha256": "5b6cc799b89b963c072e2bbb99a4acb475e13ea945ba7eafc5d79e39c974d554",
+      "bytes": 1740
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/historical_display_order.parquet",
+      "sha256": "7f36434e6b637cdba81c2415b28171749dc25375ac0a43795516ebdcc1669e75",
+      "bytes": 2581251
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/display_order_matched.parquet",
+      "sha256": "f66e9c9db5f924e9c8cace9677685377cf914e4df872781a43e5cfbbf1779f27",
+      "bytes": 1909345
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/display_order_audit.json",
+      "sha256": "1a02c31e74ddd11fd2876b9992a47585c52c02ba27d22c4c18ac9052ec64631c",
+      "bytes": 35974
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/snapshot_calendar.csv",
+      "sha256": "c14fac94a6e0c89a6133b7a3579053f2fc513ca969e732a02cc688f6b61cc085",
+      "bytes": 6388
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/snapshot_transition_audit.csv",
+      "sha256": "fa98c433cc73cbc1bae97419c29f74d8f49aaebe081fd22e9a4211fb6cdf8332",
+      "bytes": 9849
+    }
+  ]
+}

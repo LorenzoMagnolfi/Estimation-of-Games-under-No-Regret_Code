@@ -1,0 +1,1134 @@
+{
+  "extraction_commit": "1714d4f816d2ca82dffa067901507c3f865b94a5",
+  "code_commit": "758951f99b38f6849d8dae0c1f7018fe759dba71",
+  "script_sha256": "832e242d8e124335f680556635b31b78e884d666f4b1d21fe4ecdf2dcdcd14bd",
+  "design_sha256": "784b670c2a1005457789e6ac1f1c36ec797e2dd9570a010ec9d48483555709d2",
+  "summary": {
+    "files": 166,
+    "file_errors": [],
+    "extracted_rows": 469021,
+    "dates": 166,
+    "duplicate_rows": 6242,
+    "duplicate_listing_days": 3121,
+    "duplicate_copy_counts": {
+      "2": 3121
+    },
+    "duplicate_same_price_fraction": 1.0,
+    "duplicate_cross_50_row_boundary_fraction": 1.0,
+    "gadget_duplicate_listing_days": 195,
+    "matched_rows": 465900,
+    "unmatched_unique_rows": 0,
+    "numeric_display_fraction": 1.0,
+    "display_equals_position_fraction": 1.0,
+    "source_price_mismatch_rows": 0,
+    "adjacent_price_inversions": 5035,
+    "device_dates": 5265,
+    "device_dates_with_inversion": 5035,
+    "gadget_position": [
+      {
+        "group": "all",
+        "rows": 21322,
+        "sales": 1642,
+        "position_median": 28.0,
+        "position_q90": 97.0,
+        "position_first_share": 0.01674326986211425,
+        "position_top10_share": 0.18806866147640935
+      },
+      {
+        "group": "at_or_below_same_category_rival_min",
+        "rows": 2721,
+        "sales": 246,
+        "position_median": 20.0,
+        "position_q90": 79.0,
+        "position_first_share": 0.07680999632488056,
+        "position_top10_share": 0.32157295112091144
+      },
+      {
+        "group": "above_same_category_rival_min",
+        "rows": 18399,
+        "sales": 1383,
+        "position_median": 29.0,
+        "position_q90": 98.0,
+        "position_first_share": 0.007283004511114735,
+        "position_top10_share": 0.16821566389477688
+      }
+    ],
+    "gadget_tied_groups": 4471,
+    "gadget_same_price_pair_transitions": 24355,
+    "gadget_same_price_pair_order_reversals": 9360,
+    "gadget_tie_creation_order": {
+      "older_first": 7780,
+      "newer_first": 6886,
+      "same_created_date": 14141
+    },
+    "rival_min_crossings": 1237,
+    "crossing_sources": [
+      {
+        "own_price_changed": false,
+        "rival_min_changed": true,
+        "rows": 907
+      },
+      {
+        "own_price_changed": true,
+        "rival_min_changed": false,
+        "rows": 213
+      },
+      {
+        "own_price_changed": true,
+        "rival_min_changed": true,
+        "rows": 117
+      }
+    ],
+    "updated_gap_counts": [
+      {
+        "sold": 0.0,
+        "update_gap": 0.0,
+        "listings": 192
+      },
+      {
+        "sold": 0.0,
+        "update_gap": 1.0,
+        "listings": 96
+      },
+      {
+        "sold": 0.0,
+        "update_gap": 2.0,
+        "listings": 4
+      },
+      {
+        "sold": 0.0,
+        "update_gap": null,
+        "listings": 9
+      },
+      {
+        "sold": 1.0,
+        "update_gap": -1.0,
+        "listings": 11
+      },
+      {
+        "sold": 1.0,
+        "update_gap": 0.0,
+        "listings": 972
+      },
+      {
+        "sold": 1.0,
+        "update_gap": 1.0,
+        "listings": 630
+      },
+      {
+        "sold": 1.0,
+        "update_gap": 2.0,
+        "listings": 25
+      },
+      {
+        "sold": 1.0,
+        "update_gap": 3.0,
+        "listings": 1
+      },
+      {
+        "sold": 1.0,
+        "update_gap": 24.0,
+        "listings": 1
+      }
+    ]
+  },
+  "source_files": [
+    {
+      "file": "Swappa_Scrape_0711_sale.xlsx",
+      "sha256": "28066b74ed83388dcd7189b8386ff006a59998767ff137bc5d294621124e9879",
+      "rows": 1885,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0712_sale.xlsx",
+      "sha256": "2c9ed09e496fe9126a1114a6b4770da7ba6e30b8fe008e9ab87a00a71fb12552",
+      "rows": 1946,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0713_sale.xlsx",
+      "sha256": "01c2136fe1547b38a6f5a515aab0bb2f56d9a9a31ffc08673d3c8afeda622cb8",
+      "rows": 1961,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0714_sale.xlsx",
+      "sha256": "6c91249edf0218f1f71e63819fe420baffe9b6def88b0b33b2595d57f0ebe2fb",
+      "rows": 1903,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0715_sale.xlsx",
+      "sha256": "ba65bdeb731121e9a7669ad2431d60985fbfd1ef7fb4fa91bc9b4ba55acb7b3a",
+      "rows": 1985,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0716_sale.xlsx",
+      "sha256": "73ed1fbd7d25512a1deff82fcb6800faf3a565cb07df5cfe3ce4ae6242555a7d",
+      "rows": 1880,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0717_sale.xlsx",
+      "sha256": "7ce3da6dab0a6ace6ad0816b7a886eada0d2017eeec99c727a359c19cf290534",
+      "rows": 1832,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0718_sale.xlsx",
+      "sha256": "c04b7024e367c6461aaaee2693401430e630780a10b3412ba9b958a048d795ee",
+      "rows": 1831,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0719_sale.xlsx",
+      "sha256": "1c5e1421d47c2c84c0041aaa8d7f4c1bcdb5e00cce3107aae28984351be0bf4e",
+      "rows": 1957,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0720_sale.xlsx",
+      "sha256": "dc898bf043e187316fb3b70f865e9a35718c2e37078dcb713fcbb91db3b61caf",
+      "rows": 1935,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0721_sale.xlsx",
+      "sha256": "2e6a1428173d64e9999bfaa66f6d8f06539434717dd232b26291229d85491975",
+      "rows": 1949,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0722_sale.xlsx",
+      "sha256": "5af496cb8cbc708ff13fad5f907605a5b30211c621243b0db8a69dc5214ddf19",
+      "rows": 1986,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0723_sale.xlsx",
+      "sha256": "c8443f9615698dc666e80dcedc01bfd10f9883eadd5cfb5bc73c6243e6ad110a",
+      "rows": 1911,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0724_sale.xlsx",
+      "sha256": "a52eeab1ad36e93076aca34527ba7997d2b3df11af0a6e2011f47550f7ac8e69",
+      "rows": 1786,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0725_sale.xlsx",
+      "sha256": "bb2123f30c5dcffd228dcad69d2a8aaa2fd33242934afe0c28c76059b5c2464f",
+      "rows": 1819,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0726_sale.xlsx",
+      "sha256": "c534f5ecf72a72a343a9a25858273f6aa5b08496945e5e44b600bbab6a30d52d",
+      "rows": 1802,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0727_sale.xlsx",
+      "sha256": "41e8caa618afc94250e536abbaa578584fbfd14f22ae81c085e6c6fd8671d161",
+      "rows": 1942,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0728_sale.xlsx",
+      "sha256": "2a92c894ee26b322a3c9959419317d03d0bd590702034a5c6925d4baa8a1000e",
+      "rows": 2122,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0729_sale.xlsx",
+      "sha256": "c7d5229aac4d3d6b5f04dba3cfc602ce3b3dcbaf25c97923351a85693bd740df",
+      "rows": 2180,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0730_sale.xlsx",
+      "sha256": "95650bbeb6a9adbd931046a494fd67b03cca181c397caa0211bffc0d0d7c8e10",
+      "rows": 2109,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0731_sale.xlsx",
+      "sha256": "9fdbb1d6706dbb906e307c258cf7d01250545caab534ffa1f5f518537427b515",
+      "rows": 2011,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0801_sale.xlsx",
+      "sha256": "2272c176defeca709449937fc70505f63d6b8643c5c2df7f2976fa7710bc1549",
+      "rows": 1999,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0802_sale.xlsx",
+      "sha256": "7bb7b40f6c94278236c5d46983d98a48f0bea381fd4b42a5fb8cbdd873918db2",
+      "rows": 1967,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0803_sale.xlsx",
+      "sha256": "1ae19229e5b5f20adf051fc0f7855fc3245c7804f6d3f42b916e09673a5e7fa9",
+      "rows": 1985,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0804_sale.xlsx",
+      "sha256": "10d5bcab74b09d21dd070ea5dbf6cb29fe2f51cc1e54dd413a49f15aeed12e14",
+      "rows": 1949,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0805_sale.xlsx",
+      "sha256": "94cdc93912e6fed24b6eb84b80d1f1eb96fc7e11fc1160380e0cca9bc2f43ca1",
+      "rows": 2064,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0806_sale.xlsx",
+      "sha256": "9996bb4c535f83699f6e16027e71c9614b2c484d6c07956884b36efdac58aa77",
+      "rows": 2047,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0807_sale.xlsx",
+      "sha256": "c53849acbf207237f925695e6dc2236b9ebd061594130abced52d14c99262ea0",
+      "rows": 1970,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0808_sale.xlsx",
+      "sha256": "f5621205a096b2f6005821f01301611a2fd41ac5336e7b231aeba9b023ff1524",
+      "rows": 1985,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0809_sale.xlsx",
+      "sha256": "f72c5bc187aecc4af38eef33eb855c717129ad6bd6f45c6e49d85667291f3d8f",
+      "rows": 2004,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0810_sale.xlsx",
+      "sha256": "3cb0c422591dcee97027bb67570ee4f8194d271134a6a9bc9711bbd6406e9b2f",
+      "rows": 2176,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0811_sale.xlsx",
+      "sha256": "a7413b146b6ac4de06a62db7fc3b242c5a2ab84f4e423b6919309e4bd9da60bd",
+      "rows": 2285,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0812_sale.xlsx",
+      "sha256": "7fa3e5e3e9f13e2d92952c1f0d9bb7c4bccee73e0092779fb8d9966a79f9d168",
+      "rows": 2336,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0813_sale.xlsx",
+      "sha256": "27a2bd1eccebea934246a376da13422470fdc32696d6df067ae86119b4876b77",
+      "rows": 2234,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0814_sale.xlsx",
+      "sha256": "b452340914dfe68e5971a07039bd56a109d1c4354f830bc060f25b08022accc2",
+      "rows": 2262,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0815_sale.xlsx",
+      "sha256": "e8e6c33f4d727e3d634d28f0af4567580f359456c850981a31f41cd5ed95d0d3",
+      "rows": 2251,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0816_sale.xlsx",
+      "sha256": "7231def685e87171f2cb4df59a04137935caae6098816a607c9406b76a00fe38",
+      "rows": 2235,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0817_sale.xlsx",
+      "sha256": "323e665fc18669efd9babe8fdc80a253c51a69f889a6938ecf1304513b354f9c",
+      "rows": 2290,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0818_sale.xlsx",
+      "sha256": "df27bc126256d5c54f0f2b4c00911034518c6b301dd637f751d09f8a0d9b634b",
+      "rows": 2343,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0819_sale.xlsx",
+      "sha256": "acbca3656d435a30a42883c8f8c49c35ef16aa295e055e05892977395f370c77",
+      "rows": 2389,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0820_sale.xlsx",
+      "sha256": "9f3f38deb6d3d5124cd7b23a24d325768043905c50c9d409866cf9c80bb32fa6",
+      "rows": 2354,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0821_sale.xlsx",
+      "sha256": "56fabea831c4fa1f2ceb0e1bce1d50533de385b933ada7e80a4d78f2b73cedc5",
+      "rows": 2291,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0822_sale.xlsx",
+      "sha256": "cc2b4bbd1a7ab0382d3ad6cb044138be501cd7d4aea0c15e6acace6ad49660c0",
+      "rows": 2175,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_0823_sale.xlsx",
+      "sha256": "753846949e53767079747641512fa6d9861cb065acd80d633fd5dc966f597297",
+      "rows": 2242,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0824_sale.xlsx",
+      "sha256": "25411f716d75dabfb5e6a681d43b3d853ac1b137c61921a695e30dbc7bbb3ea8",
+      "rows": 2447,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0825_sale.xlsx",
+      "sha256": "a6d8c1a7a19237a964e5856783881029126edc69529ed03612a83415b7f0e328",
+      "rows": 2367,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0826_sale.xlsx",
+      "sha256": "86466245f97be22d7e2aa83e89181211137a79e7b7ea120571ca02726bcf58ed",
+      "rows": 2429,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0827_sale.xlsx",
+      "sha256": "9000ebac84cbfa49cb9bfc343be20f7bf92d42163ba03e5c1de22475e7dabe2f",
+      "rows": 2384,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0828_sale.xlsx",
+      "sha256": "1ed8e328388b9fd8588e9225553e0abc6433155de1bb6e5f3bae8100a22895bf",
+      "rows": 2397,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0829_sale.xlsx",
+      "sha256": "cb61c120f801b966bfea78dc4dbdcf3c5b9067d73146b694c7a5dd9bb9cd0cd5",
+      "rows": 2411,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0830_sale.xlsx",
+      "sha256": "92d5de2bac0619751be0c3188eddbae96b79ca92a483fc86de87f6498ece4fab",
+      "rows": 2644,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0831_sale.xlsx",
+      "sha256": "b8e7d005e723069c4263e9e4c24acad0908ac11809ab36b9804691b541191141",
+      "rows": 2649,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0901_sale.xlsx",
+      "sha256": "511cd409e65cfdc8a30541051076a165602d78b0b1e4284857b600b18143a5c1",
+      "rows": 2656,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0902_sale.xlsx",
+      "sha256": "4fcebca61ae46ece63226bcfd907d981b04b439407b0615fcec6e4ef4d3e4dcb",
+      "rows": 2757,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0903_sale.xlsx",
+      "sha256": "955836d1efa2fb0540a8e9d474c60b187503f8b39b1ab52a6a53cadfc8eb5b42",
+      "rows": 2630,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0904_sale.xlsx",
+      "sha256": "d837f782e6f78e3691dfccc570882d2087ef8878eb6414977606f772c4e35942",
+      "rows": 2539,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0905_sale.xlsx",
+      "sha256": "6bb6dfa325daf6b6a13ebf8302d86ed6ae8125e71f85ada3e0580e1d4288a09b",
+      "rows": 2461,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0906_sale.xlsx",
+      "sha256": "db8b102a314e47f0a3653f0503bde2f5a595a60879ca1f2af6d4a5080371cecf",
+      "rows": 2486,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0907_sale.xlsx",
+      "sha256": "3b7f0f3414dc1be86fd14b2a5fd8f3fa7382439c4f1e3f2e35a598f99cf44f12",
+      "rows": 2596,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0908_sale.xlsx",
+      "sha256": "77937bef4a2dfad28fad345458cf1727c8b9948b9e41da3103eaec96472f2d16",
+      "rows": 2727,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0909_sale.xlsx",
+      "sha256": "322a5dc397729d8647689729016cd07b591f40fb772e1a653a6ff215c98a84f2",
+      "rows": 2599,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0910_sale.xlsx",
+      "sha256": "1645c44cbd4c81551b2f77e876899a76e9bb71f1af37422d4dacbf8f2f919316",
+      "rows": 2590,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0911_sale.xlsx",
+      "sha256": "3bf7d3870d1f72fc165976f9eceece9e60ae4757ef4e339a6291b6f85064d7f8",
+      "rows": 2435,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0912_sale.xlsx",
+      "sha256": "dc706abf9f6f7f4fa3305ac070f5e09ec429a701aa2132b6b8eef4ab9ce591c0",
+      "rows": 2402,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0913_sale.xlsx",
+      "sha256": "37c62f6b483d1386c652ae1b68477295b894da10246ad0345d7ba39be9f29125",
+      "rows": 2314,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0914_sale.xlsx",
+      "sha256": "10eea9ca90f52554128d39b4dd1eced628890d90bd07e94c1995b1130392fb78",
+      "rows": 2513,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0915_sale.xlsx",
+      "sha256": "557b7c3280264c85d6301b09c6aa995a1ce43b1836ca1a3c6cb8066a81ee416e",
+      "rows": 2471,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0916_sale.xlsx",
+      "sha256": "d6dff1c895dc98a2c0c6eb5171c9120c7f5adbd55f1d26c799f58d641865b030",
+      "rows": 2464,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0917_sale.xlsx",
+      "sha256": "1c8de610d852892503783c459e1fe04ba2be39be2f9b4f292954e9e88e68abf0",
+      "rows": 2427,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0918_sale.xlsx",
+      "sha256": "9acc7278ab013fdec7f42014af8d2eeda5348db1f0487aaa2976a6d7db628e6c",
+      "rows": 2418,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0919_sale.xlsx",
+      "sha256": "fd08a994402dd772ce1c5640fc2da3325698644f9df80d097333f1e8e5d018ef",
+      "rows": 2417,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0920_sale.xlsx",
+      "sha256": "5e52214f98f4245d7f840a7beddc99eb158b7cf31c8007c23314e37591282127",
+      "rows": 2553,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0921_sale.xlsx",
+      "sha256": "a010b17965f1ed61b62567062cdb96f4d0e0d1bbca50c3c4f7ece01ad8f7c93b",
+      "rows": 2588,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0922_sale.xlsx",
+      "sha256": "46ba1f8ba5dc8d8c46661a60030726eb5f4b73e9a48f6f1e60ee5ef4eba5a1c3",
+      "rows": 2607,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0923_sale.xlsx",
+      "sha256": "5aa009c6553b868502ef1d53a1112d9ef3f228fd3e14fe271b03120ab5565d34",
+      "rows": 2760,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0924_sale.xlsx",
+      "sha256": "5e97f3356dc672535bddd3fe355ad2c5ebe8eea55d6fafc456f0113acd14d642",
+      "rows": 2785,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0925_sale.xlsx",
+      "sha256": "ce19f01fa9990a1bd4cd7a28472c2774f857c9bd64d8266bb80c42e4bca4db1c",
+      "rows": 2844,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0926_sale.xlsx",
+      "sha256": "629b8652b3d7b29fe256aeda9ad9cc4a315ab6fda02a13e8f545c7f79f36ee34",
+      "rows": 2852,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0927_sale.xlsx",
+      "sha256": "47628fc2dd9445e9f5799f47a425b4328c76a6817aa3682f59169ef9570256b7",
+      "rows": 2936,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0928_sale.xlsx",
+      "sha256": "93034715819766608e56725c2bc88e9a53b1b7c60553d9b4126271960874d276",
+      "rows": 2935,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0929_sale.xlsx",
+      "sha256": "bc8baaf0114c545f50f78fa2d07206314752645d458dadc4dd94e19baf9b4af0",
+      "rows": 3091,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_0930_sale.xlsx",
+      "sha256": "cbe1bc6a8dfa217d88198fd48fecbb47607c9ba9e03ce54ffda21dfd637d5bd0",
+      "rows": 3192,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1001_sale.xlsx",
+      "sha256": "406b98d1fa610a8c37df4fb075b188cc510166d66830c64e1e37b73d973b0115",
+      "rows": 3110,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1002_sale.xlsx",
+      "sha256": "18059a419b9cb2d612a2aeec350b93f599a7704dfaaac8ac6fb9d0ca0eb6c0d6",
+      "rows": 3069,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1003_sale.xlsx",
+      "sha256": "903a78c1dffcb2e280c6704676b809bd3a72f87a810d3d9a301af46f5db3337d",
+      "rows": 3092,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1004_sale.xlsx",
+      "sha256": "c721ac22ec2f5dd3240d66be51d1237cacf89c20406e1ffa877cdf898bdd5a56",
+      "rows": 3210,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1005_sale.xlsx",
+      "sha256": "7b8746a254904706bfa4be850438284b930764acfeb3de51c42cb35dddcc0401",
+      "rows": 3180,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1006_sale.xlsx",
+      "sha256": "0e63d09ae4013b66d3cbd6707ed560e27e2b22a78dc6a7cc737fe2d0cd36db12",
+      "rows": 3297,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1007_sale.xlsx",
+      "sha256": "8ba608e09493bc0e65def86f755b594a374c1a2b1b3492bb3074e7816094e775",
+      "rows": 3240,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1008_sale.xlsx",
+      "sha256": "32dce60445733e054a4dcbb612b216ae123c54c9b3bb0620a93ba9aa20d4e812",
+      "rows": 3165,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1009_sale.xlsx",
+      "sha256": "848290d0a636fa9b26a11c2c5056d4e457e8d291a1777452da67d8374339489e",
+      "rows": 2984,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1010_sale.xlsx",
+      "sha256": "7f4260c2c63a50f1133b036eaf31bd95b3b4005e977830689af4997b3148031e",
+      "rows": 2964,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1011_sale.xlsx",
+      "sha256": "48996d4affee70065f8e20667c2ea4fd2cd8aa7ab843984a17ce426384be6d74",
+      "rows": 2946,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1012_sale.xlsx",
+      "sha256": "72e5e45d7228dbaeab2f89e954c0cb044d0b7e524ef71075fd72ebd66525c2b6",
+      "rows": 3178,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1013_sale.xlsx",
+      "sha256": "da5ad8665b58de6737a2d4a67383580bd4193fee275be15069d4a8b6194b1cc9",
+      "rows": 3324,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1014_sale.xlsx",
+      "sha256": "4d182aacb0dbbe4a65dbae5da125b282ea17a0bf04d58b9accd5db9c442bb109",
+      "rows": 3364,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1015_sale.xlsx",
+      "sha256": "ee310f87d51a811e390d9c5edc465c265f54c73cbc0288968818304388972f97",
+      "rows": 3347,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1016_sale.xlsx",
+      "sha256": "1689dc05351f047dc0cdc64dd5a62dedb6d7c86649a412f75b11e01249d33262",
+      "rows": 3246,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1017_sale.xlsx",
+      "sha256": "850622926b80e1bc3451e2cdfd994408903ad495cbc8118e1c673a8deed3ad59",
+      "rows": 3252,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1018_sale.xlsx",
+      "sha256": "dad0254028b50fb6fb0fc966d7f25f09d1be1aae516066f59830ebfcfc785229",
+      "rows": 3186,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1019_sale.xlsx",
+      "sha256": "af0f3571398577e80744a5f474b2e21512af56959ec6a94a2f80097f135da809",
+      "rows": 3319,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1020_sale.xlsx",
+      "sha256": "7cab7aec030e882b79db24f804209e6bec26906eabe5a550931312ed72aaecac",
+      "rows": 3388,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1021_sale.xlsx",
+      "sha256": "44db0fa2fc637c3c260d5f45ee1a9a0826b02e7f234f5bf996685aa33b15682c",
+      "rows": 3377,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1022_sale.xlsx",
+      "sha256": "c4c77dad6228025dc29e16df102ac330ae3412d9e630dea509f3bd9cce0341ee",
+      "rows": 3367,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1023_sale.xlsx",
+      "sha256": "d2136e2798214aae88083558b460854d8c0b426fe904ab3756677ca6e815b746",
+      "rows": 3184,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1024_sale.xlsx",
+      "sha256": "0ef75757ec3dd935916de273096f1df3c1d53b1b03ec8a17c841a5a3d0745631",
+      "rows": 3216,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1025_sale.xlsx",
+      "sha256": "0e6d152875c99da81a911aedf35218e013feec416e9e30391c26cd34af8bf7d2",
+      "rows": 3184,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1026_sale.xlsx",
+      "sha256": "9c584d985d81d0ef6fa66804a10f2fd89108744f0c6dbcb4cbdafa6c9b309818",
+      "rows": 3441,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1027_sale.xlsx",
+      "sha256": "9662160f14f9fff30540f2dcdce2ed1f2d2a033187aae0f433efac04eada0c13",
+      "rows": 3552,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1028_sale.xlsx",
+      "sha256": "02c89d78943246928904fc9dd33c6fd7de685a77c65180f4706157e8130ef8ee",
+      "rows": 3465,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1029_sale.xlsx",
+      "sha256": "8833d3ca55ce0ee20d85ed42b0a99bd0098633b23e53fb3eeb43c677a9a7fe56",
+      "rows": 3476,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1030_sale.xlsx",
+      "sha256": "ad33be9dda649e39f9057147f03e3b28a9661b5a95446d277125eb9a7c3a1078",
+      "rows": 3426,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1031_sale.xlsx",
+      "sha256": "f2057534082cb5ea51bc7c34766444a1370955f1d0750ce5ac20e7f2da8140c7",
+      "rows": 3378,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1101_sale.xlsx",
+      "sha256": "2994ea4f0b7b9a7b78568f3ec6af6aa21ad237a5a7a1b28f8362dbfeb83ffae4",
+      "rows": 3387,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1102_sale.xlsx",
+      "sha256": "ee141350f60b1837e426fb720ae6136b146856f356b389072a2b6ff4b2e49c57",
+      "rows": 3484,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1103_sale.xlsx",
+      "sha256": "059b583ef3d12835a119b030c7ef3df106d68d3c054ce3455027d3cb2c0ead04",
+      "rows": 3523,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1104_sale.xlsx",
+      "sha256": "55c6c237d4fb552281a920f25537b53eaa6b2c939666fe1a43f626674d661c17",
+      "rows": 3616,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1105_sale.xlsx",
+      "sha256": "68c387e90654b3b85c58794bccdeeead70abce0d10869ad684f723a7be14f9bd",
+      "rows": 3569,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1106_sale.xlsx",
+      "sha256": "fb6f044e14ca70443ed67f1920c4b19245f2ebc9964ca893b5ee8a24224e1a86",
+      "rows": 3557,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_scrape_1107_sale.xlsx",
+      "sha256": "72e18b5bc7fb320583f0d83144ad2880d5fa22fe0d6ebfd90b90ce7e593d28da",
+      "rows": 3528,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1108_sale.xlsx",
+      "sha256": "450b13b0d3aded3c1181688830235f45618fe1f36dce1120dff284c3ed7c2d83",
+      "rows": 3574,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1109_sale.xlsx",
+      "sha256": "bacac19396ea77f5d418707837159c191a823652adb85fb0f7dd51902e9962c3",
+      "rows": 3596,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1110_sale.xlsx",
+      "sha256": "faeec2ea167ec41bb6c21da5f0bcf513187c0ddfb86743d98b2034ae0350a49f",
+      "rows": 3474,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1111_sale.xlsx",
+      "sha256": "c6069b32d5f7e7b6cc6ca9556f271a515ace6aeba5a5ba37629819a94429d93f",
+      "rows": 3471,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1112_sale.xlsx",
+      "sha256": "e4c9060fd4dba2575d2fb3939c737fe96ec394447ca2622653ea60326c4681e5",
+      "rows": 3294,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1113_sale.xlsx",
+      "sha256": "48bd32e520ea6ca71fc37de7e4e28787a971b8d74c71414f83e60bfa18f01dfe",
+      "rows": 3384,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1114_sale.xlsx",
+      "sha256": "ce64742293c68e29b03c38b4cb31d7d9b1705e52445f62c5e3a406117ea82b84",
+      "rows": 3358,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1115_sale.xlsx",
+      "sha256": "c1376d7a4766c742665977b3f91921214ef9e0deec51c72c822959fcf96c70fd",
+      "rows": 3335,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1116_sale.xlsx",
+      "sha256": "363ec377bf0ced4d4439094d44d293c782e09c7e616764d317054137c587faec",
+      "rows": 3401,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1117_sale.xlsx",
+      "sha256": "857306ff3db6eb8e5aa660753c6ae4c6828001800d0eed5970f6bb1900cb112f",
+      "rows": 3451,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1118_sale.xlsx",
+      "sha256": "9d70556c5d57c5b99f9f5d0d7a3d0420e7b084c59d71edb03ed96735878b409b",
+      "rows": 3457,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1119_sale.xlsx",
+      "sha256": "c37828e29f57e6bd02c9cc6a015f3278a460c439ef5a175845f9547dfe1cc746",
+      "rows": 3457,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1120_sale.xlsx",
+      "sha256": "14a5cc80c851dae9e898656182e4ac7c6b3f66c0613693fb691f5bd30ce9ccae",
+      "rows": 3216,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1121_sale.xlsx",
+      "sha256": "0a299c6ac294038e48ecc7cd1193f2b8530bc0beff07ddfccebcff9e3760056e",
+      "rows": 3231,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1122_sale.xlsx",
+      "sha256": "85bdda69605519ad7f28dc9e46a7060edfad0000d79d28358a6be7cca9532973",
+      "rows": 3353,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1123_sale.xlsx",
+      "sha256": "02c9075a48a2bb0dc15569f750f12f14a720778c1b071ef9dd50f506593b6ed6",
+      "rows": 3428,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1124_sale.xlsx",
+      "sha256": "cfa933433d6ffafba4756005d93cc133e94bc993e1f030f8d873bce5ccc93de1",
+      "rows": 3122,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1125_sale.xlsx",
+      "sha256": "cdbc7b0a07eba7cd1f1d0674e0d44004feed91f6a7734b2aae10f6cc1a52e18a",
+      "rows": 3000,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1126_sale.xlsx",
+      "sha256": "0cd6e64fd22ec61cbfecbc4a1c67e59690026329badc72cf23a9b21cf1bb0126",
+      "rows": 3014,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1127_sale.xlsx",
+      "sha256": "4d659172343b01d83c5c50615689be46eafd862431167f77913659c8d2a732c6",
+      "rows": 2977,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1128_sale.xlsx",
+      "sha256": "e2f54310e47706c22b60e6acc952b9b00681a40a46f67892249c4c86c52280ae",
+      "rows": 2867,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1129_sale.xlsx",
+      "sha256": "efbd5bbf98e76155fe0431e05777b8ac7f72b73dd0285a7b2f27285c80ed242c",
+      "rows": 2880,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1130_sale.xlsx",
+      "sha256": "57d0fdc64f03a97aff9e254a1d6f2c72260504fabaf8fba2341ce62397a5dcca",
+      "rows": 2907,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1201_sale.xlsx",
+      "sha256": "4d4d20b1d28b978b8486ec50da3012861aa3ce2342a1b20621aeab6c1413c32a",
+      "rows": 3031,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1202_sale.xlsx",
+      "sha256": "34510a7affc3dcb90dd3f8cb8aa1cf45acbc3cf2ebf06ce715ad73d1998b6cb3",
+      "rows": 3071,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1203_sale.xlsx",
+      "sha256": "6e6b23c2de27b93d0497aa6bca8ad7511b49f781bc7cbd423449d14da5245b66",
+      "rows": 3001,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1204_sale.xlsx",
+      "sha256": "2a821d044068cc99d6647a679906bfa408761da18a62c4c990e9f57b86489700",
+      "rows": 3040,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1205_sale.xlsx",
+      "sha256": "455e3f0f2464a4372557ba567ab52ba85948a4f132a03e9b9008e42773ec9749",
+      "rows": 3017,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1206_sale.xlsx",
+      "sha256": "3a36871c5404f79206d7bb6eb4a549a98559f2e05955e0e4f8ce15206bba520d",
+      "rows": 3213,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1207_sale.xlsx",
+      "sha256": "c20e6ebc410f06e43c8c05e8fcbb47312574fe1307b6e7b63609c08290dc12da",
+      "rows": 3241,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1208_sale.xlsx",
+      "sha256": "52ec2e7dbf76d9aa0a83a1b624ba4c1f89f3b452f9ea2f0b2b8e17e2e67fa52b",
+      "rows": 3294,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1209_sale.xlsx",
+      "sha256": "2af4365dda404c79b81b01d5bfeac5c1e8c4efc542a7cb47f9b5d8fdf8a2f301",
+      "rows": 3280,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1210_sale.xlsx",
+      "sha256": "d26d969096f279450194395b3f96dc42264ab17ba94942b737df49fecb2620b8",
+      "rows": 3239,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1211_sale.xlsx",
+      "sha256": "10a7789d60608ecc83d8f7374a5eeeaf7e9d3f0e57b62ae462ad5d646a09b7aa",
+      "rows": 3288,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1212_sale.xlsx",
+      "sha256": "1ebca5020d4af90416bca314765752a05888e2e5b105a273981394e0faa3f9b6",
+      "rows": 3231,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1213_sale.xlsx",
+      "sha256": "21c92dac9b7618141e4376ab0993fc826e30d9b2f21795546f7885e86d08e9d9",
+      "rows": 3271,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1214_sale.xlsx",
+      "sha256": "a2b5fa4a16f67de8ffca798ac01a80d6ce6cee8b8366f8a3f511f87e9d612e86",
+      "rows": 3352,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1215_sale.xlsx",
+      "sha256": "4ab091c24a24d9f164f9c5344ecde578269611ae843553f42b52ee8958c68d4f",
+      "rows": 3648,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1216_sale.xlsx",
+      "sha256": "4ea9c3683f24fe056d47dd9a2ba2532bd5eb48d239c0d9d3ebf9ca5b17e42906",
+      "rows": 3758,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1217_sale.xlsx",
+      "sha256": "c7f2215e926650338e74b00dae47b661e0013275d15b37e90e73fb4f19d53e45",
+      "rows": 3509,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1218_sale.xlsx",
+      "sha256": "86835b3384bde8cdaf39ba53fe7db534e89e7881101ff4b5a727193a38233993",
+      "rows": 3643,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1219_sale.xlsx",
+      "sha256": "89170d3cbe17ba4ac9bb05e2ff6cf3dd29f7029324295183b688a82b6c09f23a",
+      "rows": 3670,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1220_sale.xlsx",
+      "sha256": "145fc6daf74f692152b52418d2a14ca1ae01f49b737cbdf2c8c080f697ca7664",
+      "rows": 3931,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1221_sale.xlsx",
+      "sha256": "0c0a1d611b62ff6ecced4afe2cebe2993aad5aafda144517008ba04394ddc489",
+      "rows": 3913,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1222_sale.xlsx",
+      "sha256": "4340ff14552c322fe47ac57fbe6f3387ffd4b3063e4b2b12cc3186a992e49f0d",
+      "rows": 4162,
+      "rank_column": "#"
+    },
+    {
+      "file": "Swappa_Scrape_1223_sale.xlsx",
+      "sha256": "c034648b7e2fd73d0daa2dba7efc18af1bbef7e9ef8949ac004345306b5c997c",
+      "rows": 4042,
+      "rank_column": "#"
+    }
+  ],
+  "interpretation": "Displayed table order is observed; featured flags and causal/random ordering are not established. Updated is not verified transaction time. No causal demand coefficient, instrument, regret bound or cost estimate."
+}

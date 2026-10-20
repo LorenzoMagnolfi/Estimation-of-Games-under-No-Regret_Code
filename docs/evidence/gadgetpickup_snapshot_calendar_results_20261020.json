@@ -1,0 +1,53 @@
+{
+  "gadget_one_day_interval_sample": {
+    "rows": 20096,
+    "sales": 1565,
+    "dates": 163,
+    "excluded_rows": 390,
+    "excluded_sales": 29
+  },
+  "code_commit": "2ae290f94cbd39b065d01a359ca29e935a2c7bd2",
+  "script_sha256": "339e1c9d3f86073862139ca121d371c498ddf286a357db511057f1b7942d7edc",
+  "copied_dates": [
+    "2023-11-19"
+  ],
+  "copy_checks": [
+    {
+      "previous": "2023-11-18",
+      "date": "2023-11-19",
+      "previous_rows": 3435,
+      "current_rows": 3435,
+      "shared": 3435,
+      "same_price": 3435,
+      "same_position": 3435,
+      "candidate_copy": true,
+      "all_nondate_cells_equal": true
+    }
+  ],
+  "gadget_copied_rows": 197,
+  "gadget_terminal_sales_on_copied_dates": 30,
+  "calendar_flags": [
+    {
+      "date": "2023-11-18 00:00:00",
+      "copied_previous_snapshot": false,
+      "next_fresh_date": "2023-11-20 00:00:00",
+      "days_to_next_fresh_snapshot": 2.0,
+      "one_day_observation_interval": false
+    },
+    {
+      "date": "2023-11-19 00:00:00",
+      "copied_previous_snapshot": true,
+      "next_fresh_date": null,
+      "days_to_next_fresh_snapshot": null,
+      "one_day_observation_interval": false
+    },
+    {
+      "date": "2023-12-23 00:00:00",
+      "copied_previous_snapshot": false,
+      "next_fresh_date": null,
+      "days_to_next_fresh_snapshot": null,
+      "one_day_observation_interval": false
+    }
+  ],
+  "interpretation": "Copied dates are not new observations. Removing them leaves a two-day interval; do not treat it as one daily sale exposure, silently move all sales to the earlier day, or claim observed seller feedback. The final date is also censored. No raw file or previous model overwritten."
+}

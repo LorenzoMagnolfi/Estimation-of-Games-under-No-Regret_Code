@@ -2,6 +2,8 @@
 
 Date: October 20, 2026. Audience: Lorenzo and future research agents. Status: empirical audits and a proposed sufficient regret restriction; no credible marginal-cost confidence interval has yet been established. This note governs the new diagnostics. `SWAPPA_RULE_TESTS_2026-10-20.md` remains the record of the earlier conditional cost calculations; its demand validation and next-step sections are superseded here. No existing demand object or cost result was replaced.
 
+> **Subsequent source-data finding:** `gadgetpickup-observation-audit-2026-10-20.md` documents an exact repeated November 19 snapshot, pagination duplicates, and public closure-date checks. The earlier daily-fit and feedback numbers below include the repeated date and remain historical diagnostics, not a corrected application. Follow the observation audit before further inference.
+
 ## Result and decision
 
 We improve the prediction of which GadgetPickup phones sell, but have not established the causal effect of its price changes. A seller-specific demand fit, evaluated on entire listing histories excluded from training, predicts a November–December sales-weighted receipt of $412.65, compared with $392.61 observed. The previous pooled fit predicted $466.16. More detailed category and time controls do not improve all validation measures, and future-period predictions remain unstable.
