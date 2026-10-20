@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-20",
+  "timing": "Specified after individual-review persistence failures and weaker aggregate rollback calculations, before aggregate adjustment-cost inversion.",
+  "motivation": "The new method concerns performance over a window; requiring every review choice to satisfy a gain threshold is unnecessarily strong. Aggregate comparable review decisions, with unrestricted errors across individual dates, rather than choose a numerical slack.",
+  "restrictions": "For each phone model with C change and I inaction reviews: sum_change(actual-old contribution)>=C*K; sum_inaction(shift-actual contribution)<=I*K for each of four shifts. K>=0 stable per model, unknown jointly with nonnegative listing costs. Aggregate actual review contribution nonnegative.",
+  "complete_menu_variant": "Additionally sum_change(shift-actual contribution)<=0 for each shift. Thus restricted total review regret <=sum_g I_g*K_g. Core already gives the same bound for deviations that change prices only on inaction reviews.",
+  "assumption_status": "These aggregate performance restrictions are maintained economic assumptions; the data do not prove zero net systematic loss or an error probability. They permit individual mistakes, require comparable payoff/review environments, and do not follow from finite-prefix ANR.",
+  "inputs_and_targets": "Reuse all three demand models, all five horizon laws, all 26 models and all 268 eligible reviews from persistent-review analysis; same distinct review-exposure expected-cost target. No horizon, product, or demand selection by resulting bounds.",
+  "allowance": "Project jointly over costs and K, report feasible ranges and supremum of sum I*K. Do not substitute one arbitrary estimated K into cost inversion or call conditional regions confidence intervals."
+}
