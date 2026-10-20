@@ -1,5 +1,7 @@
 # GadgetPickup: corrected diagnostics and identification status
 
+Revision: the user subsequently authorized suggestive empirical motivation and direct performance assumptions without verified algorithm adoption. The impasse conclusion below is superseded by `gadgetpickup-performance-assumptions-note-2026-10-20.md`. Observation and demand diagnostics remain valid.
+
 Date: October 20, 2026. Audience: Lorenzo and future research agents. Status: available-data investigation at an identification impasse. Informative, empirically defended cost and markup bounds have not been obtained. The research goal is not complete.
 
 ## What the correction changes

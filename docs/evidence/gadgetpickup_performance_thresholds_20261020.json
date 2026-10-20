@@ -1,0 +1,327 @@
+{
+  "code_commit": "9817edb4a5c62ad4d85ba3c8f087b26258bc5bcc",
+  "script_sha256": "8dfc2772e90dde85801fcc60e53bc7b1e186df95f198c65980a96b47eb8556a8",
+  "prediction_sha256": "6ff7015fae699916e6d521ad51240a38c0a91c9b4e44610f5f03593ea5f6bc0d",
+  "checks": [
+    "Analytic two-product endpoint",
+    "Direct profit versus constraint sign",
+    "Numerical zero-cost thresholds equal analytic revenue ratios"
+  ],
+  "thresholds": [
+    {
+      "response_scale": 0.5,
+      "level": "pooled",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.06382818803467671,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "pooled",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.03274257448720164,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "pooled",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "pooled",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "pooled",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "device",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.11457303792849416,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "device",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.055048105812602444,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "device",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.040387266180914594,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "device",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.025901175675244303,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "device",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.003565787021216238,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "category",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.16187042152523645,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "category",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.06450408611271996,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "category",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.048070970839035,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "category",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.03580793230503332,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.5,
+      "level": "category",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.02001241307152668,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "pooled",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.10361836314405082,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "pooled",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.057129535958665656,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "pooled",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.00045114741442375816,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "pooled",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "pooled",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "device",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.19650821229151916,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "device",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.09276699154361268,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "device",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.06913272074962151,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "device",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.05049530190444784,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "device",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.01973591341811698,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "category",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.254864854952757,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "category",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.10830350746982731,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "category",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.08349009483936243,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "category",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.06585122919204878,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 0.75,
+      "level": "category",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.04529832319531124,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "pooled",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.1418211180716753,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "pooled",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.0788618726473942,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "pooled",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.0034505055264162365,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "pooled",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "pooled",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.0,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "device",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.2721534360862279,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "device",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.1284973138499481,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "device",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.09663246198033448,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "device",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.07389259931369452,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "device",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.03537901286108536,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "category",
+      "mean_cost_ceiling": 0.0,
+      "minimum_shortfall_allowance": 0.34299598262805375,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "category",
+      "mean_cost_ceiling": 50.0,
+      "minimum_shortfall_allowance": 0.1503795593380346,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "category",
+      "mean_cost_ceiling": 100.0,
+      "minimum_shortfall_allowance": 0.11768083545030095,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "category",
+      "mean_cost_ceiling": 150.0,
+      "minimum_shortfall_allowance": 0.09452839265577495,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    },
+    {
+      "response_scale": 1.0,
+      "level": "category",
+      "mean_cost_ceiling": 200.0,
+      "minimum_shortfall_allowance": 0.069595837732777,
+      "interpretation": "Mean cost at or below ceiling is excluded when rho is strictly below this threshold."
+    }
+  ]
+}
