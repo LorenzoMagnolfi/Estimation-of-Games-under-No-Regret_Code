@@ -5,5 +5,6 @@
   "comparison": "Evaluate cached old additive crossfit predictions on exactly the same surviving rows. Full and Nov-Dec aggregate calibration, logloss, mean sale receipt, joint +/-10 price changes. No causal label.",
   "pagination_flag": "Raw device-date-exact-price group occupies positions on both sides of any 50-row boundary. A flag for potential unstable coverage, not proof individual row is wrong. Preserve all eligible rows; report separate calibration.",
   "gap_audit": "After dropping copied Nov19, enumerate consecutive appearances within listing using fresh-calendar index. Compare temporary observation gaps with preceding boundary flag and whether prices match at both ends. Future reappearance is a selection condition; descriptive only.",
-  "limits": "A one-day calendar interval is not proof of exact request times or complete inventory. Unobserved rival offers and private seller information remain. No new finite performance guarantee follows from this correction."
+  "limits": "A one-day calendar interval is not proof of exact request times or complete inventory. Unobserved rival offers and private seller information remain. No new finite performance guarantee follows from this correction.",
+  "additional_feedback_check_before_execution": "Reuse the previously declared full-history exact-price and monotone mixture calculation on the one-day calendar sample. Same predictable category/price error allocation and weak no-demonstrated-inferiority comparison. Save separately, do not overwrite old diagnostics."
 }
