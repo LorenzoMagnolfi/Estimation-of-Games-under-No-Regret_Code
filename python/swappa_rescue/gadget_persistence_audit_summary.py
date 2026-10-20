@@ -47,7 +47,7 @@ def main():
             for k in xx:
                 v=rec['coefficients'].get(str(k),{'estimate':0.,'se':0.});yy.append(v['estimate']*factor);ee.append(v['se']*factor*1.96 if v['se'] is not None else np.nan)
             ax.axhline(0,color='#777777',lw=.8);ax.axvline(-.5,color='#999999',ls=':',lw=1);ax.errorbar(xx,yy,yerr=ee,color='#164B73',fmt='o-',lw=1.4,ms=4,capsize=2);ax.set_xlabel('Days relative to the coordinated markdown');ax.set_ylabel(label);ax.set_xticks([-7,-5,-3,-1,1,3,5,7]);ax.grid(axis='y',alpha=.15)
-        axes[0].set_title('Prices remain lower after the markdown');axes[1].set_title('Sales are low on the comparison day')
+        axes[0].set_title('Prices remain lower after the markdown');axes[1].set_title('The sales response is less precise')
         fig.suptitle('Coordinated markdowns: comparison to the day before the cut',fontsize=14)
         fig.text(.5,.025,'29 batch dates; category and date effects within each event. Descriptive 95% clustered intervals; no causal claim.',ha='center',fontsize=9)
         fig.tight_layout(rect=[0,.06,1,.93]);fig.savefig(RUN/'persistent_review_demand_diagnostics.png',dpi=170);fig.savefig(RUN/'persistent_review_demand_diagnostics.pdf');plt.close(fig)
