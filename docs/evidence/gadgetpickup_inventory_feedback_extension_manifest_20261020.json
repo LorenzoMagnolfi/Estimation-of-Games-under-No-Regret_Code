@@ -1,0 +1,51 @@
+{
+  "producing_commit": "85e01d7",
+  "design_commit": "a25ab49",
+  "files": [
+    {
+      "path": "python/swappa_rescue/gadget_inventory_feedback_extension.py",
+      "sha256": "69f022385d2884d38d865896e22171e615e1836c1fceebaa254e9dad551a8cd5",
+      "bytes": 9859
+    },
+    {
+      "path": "python/swappa_rescue/test_gadget_inventory_feedback_extension.py",
+      "sha256": "b199308c84bd2b94799d7c66e095d7d3023c9a4c710c9e8f19b32e6b7a8624de",
+      "bytes": 1554
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_inventory_feedback_extension_design_20261020.json",
+      "sha256": "66e28a6546f9f8cbc56c53e86b63896333ddf0840d3881c437783b70f991a078",
+      "bytes": 2275
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_inventory_feedback_extension_results_20261020.json",
+      "sha256": "1c41620cce8ec4720c0c57dbead9e4940f7584802a95dd65dd3bc4da4a1f7b45",
+      "bytes": 220538
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/inventory_entry_windows.csv",
+      "sha256": "96ce17b15510b2d33168fc3fb72e7d97c2b1b54c5306aa2279d14a45c72f2200",
+      "bytes": 102810
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/inventory_entrant_prices.csv",
+      "sha256": "086ce6dc8d023f8d70a5e72088ade2b88aafea85d8a6bc8727896af355ec13b0",
+      "bytes": 270748
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/feedback_full_history.csv",
+      "sha256": "934aabd1de93f84cc90315c150db6d00d6ccb52bb3bc3c047b772662c765fbab",
+      "bytes": 2784174
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/inventory_feedback_extension.json",
+      "sha256": "1c41620cce8ec4720c0c57dbead9e4940f7584802a95dd65dd3bc4da4a1f7b45",
+      "bytes": 220538
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/inventory_feedback_extension.log",
+      "sha256": "6cde0ba458d40217e648ba186400bb322952aee5c8b6c3ddbec0855397c47fd5",
+      "bytes": 11958
+    }
+  ]
+}

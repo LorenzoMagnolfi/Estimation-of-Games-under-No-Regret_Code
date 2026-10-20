@@ -181,3 +181,84 @@ All new logistic folds converged without recorded convergence warnings. Exact fo
 The next empirical distinction is between replenished inventory and fixed-stock selling. Individual acquisition payments are sunk once a phone is in stock; a one-period payoff (price-cost) times sale probability then identifies a continuation or replacement opportunity cost only under an explicit economic reduction. GadgetPickup's procurement business and common category prices motivate investigating that reduction, but do not prove it. Audit listing arrivals, sales, cancellations, inventory levels, and repeated model-price cohorts before imposing common or stationary costs. Keep acquisition cost, replacement cost, and inventory continuation value separate.
 
 For demand, a future extension should use a declared causal restriction or instrument with an institutional argument, and carry its uncertainty into cost inference. For regret, investigate a behavior class with a proved envelope and an empirical implication beyond price persistence. Do not rerun the same vendor searches or append another arbitrary-epsilon frontier. The current result remains an improvement in diagnosis and a proved candidate route, rather than a completed rescue of the application.
+
+
+## Inventory and use of earlier feedback: subsequent pass
+
+**Status.** This pass adds evidence about the economic meaning of cost and strengthens the earlier information diagnostic. It does not supply a verified finite regret allowance. The design was committed at `a25ab49`; the producing implementation is `85e01d7`, `python/swappa_rescue/gadget_inventory_feedback_extension.py`. Results are in `docs/evidence/gadgetpickup_inventory_feedback_extension_results_20261020.json`. The old cost estimates and demand fits are unchanged.
+
+### What replenishment looks like in the listing panel
+
+The inventory calculation uses the prepared full-source reference-screened panel before the demand routine removes missing references, absent rivals, unknown outcomes, or the final date. It contains 21,322 GadgetPickup listing-days, 2,052 listing identifiers, and 191 model-storage-condition categories over 166 calendar dates. There are 1,640 terminal sales before the last date, 301 terminal nonsale exits, and 111 listings present on the last date. These counts differ from the demand sample because they precede its exclusions. Listing identity is observed; physical-device identity and warehouse inventory are not.
+
+Accounting for 126 returns after observation gaps reconciles daily stock changes exactly. The accounting identity is current stock minus prior stock equals new listings plus returns after gaps minus prior-day final exits and prior-day starts of gaps. Ignoring gaps would confuse observation interruptions with acquisitions and withdrawals.
+
+After removing fourteen dates at each edge, average listed stock is 133.73 phones. There are 1,640 newly observed listings and 1,396 sales over 138 dates. Sold listings are observed for a median of five dates and a ninetieth percentile of twenty-six dates. Thus the seller repeatedly brings phones to the market; the sample is not a single initial stock being liquidated without further entry.
+
+Aggregate entry is not one-for-one replenishment within a product category. The following entries occur strictly after the event date. Sale events are weighted by the number of sales on the category-day; nonsale exits use the analogous count.
+
+| Window after event | Sale followed by any same-category entry | Nonsale exit followed by any same-category entry |
+|---|---:|---:|
+| One day | 5.4% | 5.3% |
+| Three days | 15.7% | 17.7% |
+| Seven days | 39.3% | 38.3% |
+| Fourteen days | 64.5% | 62.6% |
+
+The calculation includes 1,396 sales and 243 nonsale exits in the interior. Entry and sale events may overlap across windows; these are descriptive proportions, not independent observations or estimates of a causal replenishment response. Earlier entries partly represent the same cohorts that subsequently sell, so the before/after asymmetry is not a treatment effect. Active-category-day comparisons also change the category weights. All before/after quantities and baseline counts are retained in `inventory_entry_windows.csv`.
+
+There are 563 observed spells with no listed stock between two dates with stock in the same category, with median duration nine days. These are absences from the panel, not verified warehouse stockouts. Of 1,930 new listings after the first sample date, 670 face continuing stock in their category. Continuing stock has one common price in 658 cases; 75.84% of those entrants receive that same price. The continuing phones in those matched cases have a mean observed age of 16.96 days. This is consistent with some category-level price coordination across differently aged listings. It does not establish a common acquisition cost, a price-independent marginal continuation value, or immediate replenishment.
+
+The additional public-source check was directed at procurement and inventory, rather than repeating repricer-name searches. GadgetPickup's announcement displaying November 12, 2023 describes quotes held for fourteen days and customer shipment of the device before payment. That describes a procurement pipeline with a shipping stage. It does not establish the timing or cost of replacement for a particular Swappa sale. The displayed publication date has not been independently archive-verified. Source: [GadgetPickup and BankMyCell partnership announcement](https://gadgetpickup.com/blog/gadgetpickup-bankmycell-team-up/). Searches for seller-specific wholesale arrangements and inventory software produced no additional verified 2023 contract or retail-pricing procedure.
+
+### The cost interpretation requires an economic restriction
+
+Unknown cost remains the object of inference. The issue here is which cost enters a sale decision, rather than whether the researcher observes its value.
+
+Consider first a single phone and a fixed current state. Let x be receipt from a sale net of any explicitly modeled sale-contingent expenses, q(p) the sale probability, and V_keep and V_sale the expected continuation values conditional on retaining or selling the phone. Suppose changing today's price affects the next state only through that sale outcome, and these two conditional continuation values do not otherwise depend on the price. Apart from a term common to prices, the expected current and discounted future payoff is
+
+    q(p) [x - c_eff],    c_eff = beta (V_keep - V_sale).
+
+Any additional expense incurred only on sale enters c_eff as well. With no replenishment, c_eff is the value of retaining the phone for future use or sale. The original purchase payment has already been incurred. Estimating c_eff therefore need not recover that historical payment.
+
+A sufficient replacement model instead assumes a sold unit can immediately be replaced for an unknown expense k, after which the distribution of next-period states is the same as if the unit had not sold. Conditional on the current state, k must not depend on today's proposed retail price. Expected profit then differs across prices by q(p)(x-k). In this special case the cost in the static expression is marginal replacement expense. The researcher need not know k. The new-method inversion would recover bounds on it if the other restrictions held.
+
+For a seller offering many phones, an additional issue arises. If D is the vector of sales and I is stock, continuation payoff generally includes beta V(I-D). Writing this as a sum of listing sale probabilities times fixed listing costs requires the relevant expected continuation loss to be additive in D, or another explicit restriction that yields that representation. Otherwise the marginal value of selling one phone can depend on which other phones sell, and therefore on the joint price vector. Common category prices and frequent aggregate arrivals do not establish additivity.
+
+The current evidence motivates a model of repeated procurement and coordinated prices. It does not justify immediate replacement, an unchanged next-period stock distribution, additive continuation values, or constant per-listing replacement expense. Inventory held outside the observed marketplace could make rapid replacement possible, so the observed entry gaps do not logically reject all replenishment models. They do prevent us from treating that particular reduction as an observed fact. Expanding the estimand to state-dependent opportunity costs is possible, but it also expands latent heterogeneity and requires a new identification calculation.
+
+### Earlier experience and monotonicity do not resolve the information problem
+
+The extension accumulates all available qualifying common-price category-days from the beginning of the retained sample, before each evaluated day from October 1 through December 22. It includes 158 categories and 4,724 evaluated category-days. It does not assume that the firm had no experience before the observation window. As before, categories with more than one current price do not supply observations to this simple arm calculation.
+
+To avoid using a retrospectively chosen set of categories for error allocation, category i is indexed at its first observed qualifying date, with a fixed lexical tie rule; price j is indexed when it first appears in that category. Set
+
+    alpha_ij = .05 / [i(i+1) j(j+1)].
+
+Use the same beta-mixture interval as above at alpha_ij. The sum of these budgets over all positive i and j is .05. Under predictable category-price introduction, the stated constant conditional mean assumption, and valid timely outcomes, the simultaneous event therefore covers every introduced arm at every sample size with probability at least .95. The adaptive allocation is fixed before the corresponding feedback. The larger category family changes error allocation relative to the original five-category calculation, so differences in interval widths are not the isolated effect of adding prior history.
+
+For the second version additionally maintain that q(p) is nonincreasing in price within a category throughout the observed period. If [l(a),u(a)] are the price-specific bands, the sharp marginal projections of their intersection with monotonicity are
+
+    l_mono(p) = max_{a >= p} l(a),
+    u_mono(p) = min_{a <= p} u(a),
+
+where p itself is among the introduced prices. If any lower endpoint exceeds its upper endpoint, the shape-restricted set is empty. No additional probability spending is needed: monotonicity is an extra maintained restriction, not an extra sample. The current-price probability widths for the previously reported five categories are:
+
+| Category | Daily-fraction model, exact price | Daily-fraction model, monotone | Exposure model, exact price | Exposure model, monotone |
+|---|---:|---:|---:|---:|
+| iPhone X, 256 GB, Good | .639 | .619 | .424 | .363 |
+| iPhone XS Max, 64 GB, Good | .919 | .916 | .602 | .594 |
+| iPhone 8, 128 GB, Good | .878 | .547 | .824 | .405 |
+| iPhone 11, 128 GB, Fair | .882 | .881 | .744 | .736 |
+| iPhone 11, 128 GB, Good | .944 | .942 | .871 | .843 |
+
+Across all evaluated categories, there are no empty shape intersections and no dates on which the weak no-demonstrated-inferiority comparison excludes cost zero, under either observation model and either price restriction. The comparator set consists of previously introduced prices plus withdrawal. This is an exact result of this diagnostic, not a universal lower bound on the information available to the firm or a finding that zero cost belongs to the full new-method set. In particular, the check is not a joint cost inversion with the paper's consistency restrictions, other deviations, and first-stage uncertainty.
+
+The exposure model imposes the same arm mean conditional on earlier outcomes within each daily batch. It is stronger than the daily bounded-fraction model and does not turn individual phones into separate price-setting rounds. Both versions require stationarity conditional on the exact category and price despite changes in rivals, inventory, device composition, and calendar time. Monotonicity further pools across different prices observed in different states. The existing demand diagnostics give reasons to question that pooling. Failure to reject a restriction with wide confidence bands is not evidence that the restriction holds.
+
+Three focused tests pass: equality with the earlier mixture routine at a common error budget, agreement of monotone marginal projections with independently solved linear programs on twelve generated feasible systems, and detection of an infeasible shape system. The stock identity is checked exactly in the producing script. A pytest cache-write warning occurred; all test calculations completed successfully.
+
+### Implication for the next step
+
+The strongest presently supported additions are coordinated prices for comparable stock, repeated listing entry, a procurement pipeline, and firm refusal of at least one dated buyer offer. None bounds finite-window profit regret by itself. The earlier-price information extension does not overcome that gap, even under its strong stationarity approximation.
+
+A credible implementation still needs two independent pieces: an institutionally supported causal restriction for counterfactual sales, and an economically supported finite performance restriction with a valid information and timing model. A precise replacement or continuation-value interpretation is also needed for the cost target. We should not replace these requirements with an arbitrary dollar allowance, an inferred software name, or a common-cost restriction chosen because it improves the endpoints. The next useful investigation is a direct audit of potentially identifying price variation and observation timing; further variants of stationary confidence intervals are not the priority.
