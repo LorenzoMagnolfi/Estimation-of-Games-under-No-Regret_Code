@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-20",
+  "verification_commit": "73596d6955cb677cf8824dcef6c0543ff1a90314",
+  "historical_provenance": [
+    {
+      "result": "docs/evidence/gadgetpickup_persistent_review_results_20261020.json",
+      "producing_commit": "e658fd5815ad427f5407eda8d553d73308867f47",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_batch_demand_results_20261020.json",
+      "producing_commit": "0b3663c4468a2edc5692a89cbaae50c5b53d7aaa",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_persistent_purposeful_results_20261020.json",
+      "producing_commit": "f228b43c615e8d70e3f5d18d1cd1fbe166a9ffb8",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_aggregate_review_results_20261020.json",
+      "producing_commit": "3645f49a0d5e5990514d45c577485acc32d6ac57",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_seller_aggregate_review_results_20261020.json",
+      "producing_commit": "9b505c2919ddee4961d2de6d2dce9eacb985d637",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_review_target_transfer_results_20261020.json",
+      "producing_commit": "9be4749b5719ec1a4444726b60cb452efd41f6e8",
+      "script_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_persistence_audit_summary_20261020.json",
+      "producing_commit": "73596d6955cb677cf8824dcef6c0543ff1a90314",
+      "script_hash_matches": [
+        "windows_checkout"
+      ]
+    }
+  ],
+  "checks": [
+    "All seven result script/design hashes match the historical producing commits, accounting explicitly for Windows CRLF checkout bytes.",
+    "All 180 target-transfer cases have feasible lower endpoints; original-target upper endpoints without daily participation are correctly unbounded.",
+    "All 30 review-target transfers reproduce the original seller-wide endpoints within 1e-6.",
+    "Complete-menu restrictions and added daily participation satisfy set nesting in every reported target comparison.",
+    "Every individually feasible model-review system remains feasible after model-wise aggregation.",
+    "Invalid event covariance summaries are suppressed; none is reported as a zero standard error.",
+    "Independent seller LP reconstruction and dual attribution reproduce the 58.704711 lower bound; removing adjustment-cost calibration leaves it unchanged.",
+    "Direct profit identities and survival-probability fixture pass; diagnostic PNG visually inspected."
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/gadgetpickup_aggregate_review_design_20261020.json",
+      "sha256": "0ef47cc302994c5ef5bc870d66e5eb99a1c42678518f96bbeb2325b640fcf97e",
+      "bytes": 1818
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_aggregate_review_results_20261020.json",
+      "sha256": "418d32eb294102af1606942732fad8890dc44f3f15622ea6fe6e8963ec15d477",
+      "bytes": 384515
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_batch_demand_results_20261020.json",
+      "sha256": "ba5a20a640e8afdf25619ee9bb4df4fc72e364f76ff452f498ecbf20042a6fa8",
+      "bytes": 52053
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_persistence_audit_summary_20261020.json",
+      "sha256": "aec397710a6cfab061c0a29c38343378e1ec8a7ebc42d386d9a60a610993a97f",
+      "bytes": 2388
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_persistent_purposeful_design_20261020.json",
+      "sha256": "2e9c0e1a80d7ecf54b9fb909e5a35f4f6be7dda93f15f060035920f23e223d4e",
+      "bytes": 1424
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_persistent_purposeful_results_20261020.json",
+      "sha256": "376a2660a22aa4dd77cc346da5ff7b9bb6608936b5be3751e14fd1d89026448c",
+      "bytes": 15826
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_persistent_review_design_20261020.json",
+      "sha256": "1441c10f12e911cf5ec21dd2426712265f65013a955a1ff647ea69bffe02d8de",
+      "bytes": 5002
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_persistent_review_results_20261020.json",
+      "sha256": "a357bbf45d6a9b355da089d54a89da21e497c005032f0a7e230f1bd4a67f0679",
+      "bytes": 459753
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_review_target_transfer_design_20261020.json",
+      "sha256": "31ffe265b8af5f07e40f8b47d31cd8dbb9fcebefb41f5d0ab1965ae832324667",
+      "bytes": 905
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_review_target_transfer_results_20261020.json",
+      "sha256": "99a4a0ee72bb0c8c94f740710647355eebf8d4279d808960916c55ba38dd48ec",
+      "bytes": 89184
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_seller_aggregate_review_design_20261020.json",
+      "sha256": "cb78f49299ff6c06e76c9d08e4c5d3ff323514f6261469e35004b1587f716286",
+      "bytes": 1035
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_seller_aggregate_review_results_20261020.json",
+      "sha256": "b7ba57dec3b5c6517658ca5b06e85cded7cb3571adb72412bf8832dcc00e18e0",
+      "bytes": 15890
+    },
+    {
+      "path": "docs/gadgetpickup-persistent-review-note-2026-10-20.md",
+      "sha256": "107671121e4a9baa3e20cdd6cea8da118388a8e6878d11ce4dffb578617da608",
+      "bytes": 26031
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/batch_demand_initial.json",
+      "sha256": "7181b53006339040195f2a20822b061b750d53a9c1251afaee90091003c54378",
+      "bytes": 50736
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/batch_event_stack.parquet",
+      "sha256": "8850e4f0f23e023d4defc89c43b52785c536357b08b815c91b4c142b3a45ee5c",
+      "bytes": 71948
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/demand_credibility_predictions.parquet",
+      "sha256": "3257267849ba00a207e26254b24f6f4f3c948118aa81430a31aa44af43a49a05",
+      "bytes": 4130536
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/performance_predictions.parquet",
+      "sha256": "6ff7015fae699916e6d521ad51240a38c0a91c9b4e44610f5f03593ea5f6bc0d",
+      "bytes": 1054681
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/persistent_review_demand_diagnostics.pdf",
+      "sha256": "f75e24c678a92927bb02590821b0d130cb3c19b7ae8f5fe833af2164e631d58e",
+      "bytes": 23634
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/persistent_review_demand_diagnostics.png",
+      "sha256": "0bf55778fe22ddefe2b14b1b4fb86ca8a8eb509ef1637c0d12f16143fa608616",
+      "bytes": 134153
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/persistent_review_predictions.parquet",
+      "sha256": "f9c834c56897aac69da0abb8c3d97d02070b1c33a7d6c7dc9b62f5db5a0d6c4f",
+      "bytes": 5552222
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/repricing_performance_predictions.parquet",
+      "sha256": "56ec5a9601dae871415982121090a938585e2d8ec3cd0dfd72e51ce74856122e",
+      "bytes": 868932
+    },
+    {
+      "path": "python/swappa_rescue/gadget_aggregate_review.py",
+      "sha256": "2263a22c2c12363efb46e54786a5a221a4be6e245b33eba8294541ecdff1aa76",
+      "bytes": 5213
+    },
+    {
+      "path": "python/swappa_rescue/gadget_batch_demand_audit.py",
+      "sha256": "8d1dbc1e1c6c1a57afa7d52cd0da20bf3ba391cb9ae0c9b223e759bbf4103b97",
+      "bytes": 10088
+    },
+    {
+      "path": "python/swappa_rescue/gadget_persistence_audit_summary.py",
+      "sha256": "b601d3c445de0e92a6e684760d7f563032aa73b943ca2141385efafa124be7a9",
+      "bytes": 6839
+    },
+    {
+      "path": "python/swappa_rescue/gadget_persistent_purposeful.py",
+      "sha256": "121d5e6c3b633ff2ded1ff98a2c514fe2956f21cb08ef0dfb8665bd81d6e7ffe",
+      "bytes": 3621
+    },
+    {
+      "path": "python/swappa_rescue/gadget_persistent_review.py",
+      "sha256": "b84f91e0d104d506d4b3d932fc701e895924420d8cdd1cc35357ac927c58952b",
+      "bytes": 9636
+    },
+    {
+      "path": "python/swappa_rescue/gadget_review_target_transfer.py",
+      "sha256": "ba94a48ccfa9772ddd4799e599754e4b8a240a4fb6f7e2a4bb074f7d26f86670",
+      "bytes": 5058
+    },
+    {
+      "path": "python/swappa_rescue/gadget_seller_aggregate_review.py",
+      "sha256": "32acfffd6b16c84002595a7ac87e03db4b03f902d9309bf0a08a36b7d9629761",
+      "bytes": 4981
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## Current Swappa research entry point (October 20, 2026)
 
-Read `docs/SWAPPA_RULE_TESTS_2026-10-20.md` and the top of `CLAUDE_HANDOVER.md`. Chronological rule tests and unknown-cost sensitivity programs are complete. The expected-sales target can be bounded without a cost cap, but a credible informative performance allowance and counterfactual demand remain unresolved. No active Swappa writer or background job remains from this pass.
+Read `docs/gadgetpickup-persistent-review-note-2026-10-20.md` for the latest persistence, aggregate-performance, demand, and original-target results; read the top of `CLAUDE_HANDOVER.md` for operational state. `docs/SWAPPA_RULE_TESTS_2026-10-20.md` retains the earlier rule tests. Conditional positive bounds have been traced to additional performance assumptions; an empirically calibrated informative allowance and credible original-target cost bounds remain unresolved. No active Swappa writer or background job remains.
 
 ## Purpose
 

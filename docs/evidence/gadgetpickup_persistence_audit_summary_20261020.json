@@ -1,0 +1,83 @@
+{
+  "code_commit": "73596d6955cb677cf8824dcef6c0543ff1a90314",
+  "script_sha256": "b601d3c445de0e92a6e684760d7f563032aa73b943ca2141385efafa124be7a9",
+  "cadence": {
+    "preperiod": {
+      "intervals": 17,
+      "mean": 6.117647058823529,
+      "median": 4.0
+    },
+    "novdec": {
+      "intervals": 16,
+      "mean": 2.9375,
+      "median": 2.5
+    }
+  },
+  "probability_fixture": {
+    "q": 0.2,
+    "H": 7,
+    "sale_probability": 0.7902848000000002,
+    "incorrect_linear_count": 1.4
+  },
+  "bound_attribution": [
+    {
+      "restrictions": "full",
+      "cost_lower": 58.704711235329164,
+      "cost_upper": 416.29951486640107,
+      "dual_nonzero": [
+        {
+          "row": "change:-5",
+          "multiplier": -0.007926429775572464
+        }
+      ],
+      "max_primal_violation": 0.0
+    },
+    {
+      "restrictions": "participation_and_changed_menu",
+      "cost_lower": 58.704711235329164,
+      "cost_upper": 416.299514866401,
+      "dual_nonzero": [
+        {
+          "row": "change:-5",
+          "multiplier": -0.007926429775572464
+        }
+      ],
+      "max_primal_violation": 0.0
+    },
+    {
+      "restrictions": "participation_rollback_changed_menu",
+      "cost_lower": 58.704711235329164,
+      "cost_upper": 416.29951486640107,
+      "dual_nonzero": [
+        {
+          "row": "change:-5",
+          "multiplier": -0.007926429775572464
+        }
+      ],
+      "max_primal_violation": 0.0
+    }
+  ],
+  "event_support": [
+    {
+      "window": "full",
+      "anchors": 29,
+      "missing_category_days": 603,
+      "potential_category_days": 5880,
+      "treated_category_episodes": 166,
+      "control_category_episodes": 226,
+      "treated_episodes_repriced_within_week": 49,
+      "control_episodes_repriced_within_week": 138
+    },
+    {
+      "window": "novdec",
+      "anchors": 12,
+      "missing_category_days": 288,
+      "potential_category_days": 1860,
+      "treated_category_episodes": 50,
+      "control_category_episodes": 74,
+      "treated_episodes_repriced_within_week": 21,
+      "control_episodes_repriced_within_week": 50
+    }
+  ],
+  "interpretation": "Independent primary-model LP reconstruction and attribution. Conditional lower bound source distinguished from empirically restricted adjustment allowance. Figure intervals are descriptive."
+}

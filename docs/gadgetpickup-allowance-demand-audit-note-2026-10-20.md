@@ -1,5 +1,7 @@
 # GadgetPickup: empirical allowance calibration and demand audit
 
+> Subsequent extension: `gadgetpickup-persistent-review-note-2026-10-20.md` evaluates survival-adjusted persistent prices, aggregate performance, the original cost targets, and coordinated markdown demand. This note retains the preceding daily-payoff audit.
+
 Date: October 20, 2026. Audience: future research agents. Status: completed exploratory computation and source review; no statistically validated cost region. This implementation note governs interpretation of the new allowance and demand checks. It supersedes the recommendation in `gadgetpickup-performance-assumptions-note-2026-10-20.md` to use model-specific 90 or 95 percent performance as the leading application specification. That note remains the record of the conditional cost frontiers and the new-method mapping.
 
 ## Decision
