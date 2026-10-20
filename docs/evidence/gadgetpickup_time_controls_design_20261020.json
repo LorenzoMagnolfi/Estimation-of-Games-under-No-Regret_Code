@@ -1,0 +1,12 @@
+{
+  "status": "Exploratory extension declared after crossfit results and before fitting; no cost inversion.",
+  "motivation": "Only $7 RMS price variation remains within product category and week. Check whether the price response relies on restrictive category time controls.",
+  "models": [
+    "category_week",
+    "category_week_no_initial_price"
+  ],
+  "folds": "same five stable listing hashes as crossfit design",
+  "C": 1,
+  "report": "all models and folds; +-10 joint-price continuation response, calibration, convergence",
+  "interpretation": "Neither time controls nor initial-price controls establish causal demand; show sensitivity without selecting on bounds."
+}

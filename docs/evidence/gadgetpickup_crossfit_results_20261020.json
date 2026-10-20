@@ -1,0 +1,806 @@
+{
+  "code_commit": "1d7b960f7ddd17b56584611757c41d5441f4d040",
+  "script_sha256": "8c41bb093fcff38c24893d7452897b5a46182c87c1273a5ceb1e848b0dab958a",
+  "design_sha256": "d720d2e301ac9ca0ed15749cb8ed305141b6f161582b0766def59a5f88d84ac6",
+  "records": [
+    {
+      "kind": "additive",
+      "window": "full",
+      "metrics": {
+        "rows": 20486,
+        "sales": 1594,
+        "predicted_sales": 1643.854077471679,
+        "mean_receipt_actual": 406.9986198243413,
+        "mean_receipt_predicted": 406.4130435949856,
+        "receipt_residual": -19327.938851292463,
+        "logloss": 0.23857128328073177,
+        "brier": 0.06499472138168018,
+        "auc": 0.7586739994171452
+      },
+      "continuation_rows": 18529,
+      "minus10_sales_change": 417.36643728733156,
+      "plus10_sales_change": -326.12089582468786,
+      "minus10_mean_logodds_change": 0.2963451484928249,
+      "positive_price_response_fraction": 0.0
+    },
+    {
+      "kind": "additive",
+      "window": "novdec",
+      "metrics": {
+        "rows": 6429,
+        "sales": 585,
+        "predicted_sales": 601.4490360758531,
+        "mean_receipt_actual": 392.61135042735043,
+        "mean_receipt_predicted": 412.65318438095085,
+        "receipt_residual": -18512.219979554153,
+        "logloss": 0.2534763392362126,
+        "brier": 0.0713849562048639,
+        "auc": 0.7895325470787484
+      },
+      "continuation_rows": 5695,
+      "minus10_sales_change": 135.17474448030342,
+      "plus10_sales_change": -107.59234505550275,
+      "minus10_mean_logodds_change": 0.2831020254416952,
+      "positive_price_response_fraction": 0.0
+    },
+    {
+      "kind": "category",
+      "window": "full",
+      "metrics": {
+        "rows": 20486,
+        "sales": 1594,
+        "predicted_sales": 1810.8297672592048,
+        "mean_receipt_actual": 406.9986198243413,
+        "mean_receipt_predicted": 410.48361456900227,
+        "receipt_residual": -94560.1482337033,
+        "logloss": 0.2423480910238639,
+        "brier": 0.06630330961818053,
+        "auc": 0.7541853003973454
+      },
+      "continuation_rows": 18529,
+      "minus10_sales_change": 439.0253892669018,
+      "plus10_sales_change": -352.7177720638708,
+      "minus10_mean_logodds_change": 0.29399938567676775,
+      "positive_price_response_fraction": 0.0
+    },
+    {
+      "kind": "category",
+      "window": "novdec",
+      "metrics": {
+        "rows": 6429,
+        "sales": 585,
+        "predicted_sales": 700.0789978632386,
+        "mean_receipt_actual": 392.61135042735043,
+        "mean_receipt_predicted": 416.6826207339201,
+        "receipt_residual": -62033.1115504308,
+        "logloss": 0.26205292812619496,
+        "brier": 0.07471071863828264,
+        "auc": 0.7815021031140128
+      },
+      "continuation_rows": 5695,
+      "minus10_sales_change": 150.75660334508865,
+      "plus10_sales_change": -124.0946091049947,
+      "minus10_mean_logodds_change": 0.28064377868749857,
+      "positive_price_response_fraction": 0.0
+    },
+    {
+      "kind": "category_spline",
+      "window": "full",
+      "metrics": {
+        "rows": 20486,
+        "sales": 1594,
+        "predicted_sales": 1810.2707127945748,
+        "mean_receipt_actual": 406.9986198243413,
+        "mean_receipt_predicted": 410.4901363169643,
+        "receipt_residual": -94342.47166565318,
+        "logloss": 0.2424195158238794,
+        "brier": 0.06631826559876344,
+        "auc": 0.7541511300714541
+      },
+      "continuation_rows": 18529,
+      "minus10_sales_change": 436.9999129834504,
+      "plus10_sales_change": -352.7299378284157,
+      "minus10_mean_logodds_change": 0.29399769006735166,
+      "positive_price_response_fraction": 0.0
+    },
+    {
+      "kind": "category_spline",
+      "window": "novdec",
+      "metrics": {
+        "rows": 6429,
+        "sales": 585,
+        "predicted_sales": 700.2254086580873,
+        "mean_receipt_actual": 392.61135042735043,
+        "mean_receipt_predicted": 417.19466705921445,
+        "receipt_residual": -62452.66623151318,
+        "logloss": 0.2620374810884493,
+        "brier": 0.07473457147089231,
+        "auc": 0.781642798223907
+      },
+      "continuation_rows": 5695,
+      "minus10_sales_change": 149.25010720645736,
+      "plus10_sales_change": -123.57352226227201,
+      "minus10_mean_logodds_change": 0.2793342513255597,
+      "positive_price_response_fraction": 0.0
+    }
+  ],
+  "calibration": [
+    {
+      "price_bin": "(0, 200]",
+      "rows": 2558,
+      "listings": 301,
+      "sales": 236,
+      "expected_sales": 246.81385215170053,
+      "actual_revenue": 32746.79,
+      "predicted_revenue": 34191.17361903782,
+      "mean_price": 141.147771696638,
+      "sale_residual": -10.81385215170053,
+      "revenue_residual": -1444.3836190378206,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(1000, 10000]",
+      "rows": 239,
+      "listings": 27,
+      "sales": 8,
+      "expected_sales": 6.133578243683291,
+      "actual_revenue": 8546.94,
+      "predicted_revenue": 6513.9609662932435,
+      "mean_price": 1089.55230125523,
+      "sale_residual": 1.8664217563167087,
+      "revenue_residual": 2032.979033706757,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 7259,
+      "listings": 793,
+      "sales": 680,
+      "expected_sales": 706.7669251961346,
+      "actual_revenue": 194889.39,
+      "predicted_revenue": 204299.58385092684,
+      "mean_price": 285.9012260641962,
+      "sale_residual": -26.766925196134594,
+      "revenue_residual": -9410.193850926822,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 4139,
+      "listings": 480,
+      "sales": 373,
+      "expected_sales": 370.1246830655013,
+      "actual_revenue": 186906.89,
+      "predicted_revenue": 185615.98682056402,
+      "mean_price": 501.9910606426673,
+      "sale_residual": 2.8753169344986986,
+      "revenue_residual": 1290.9031794359908,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 3767,
+      "listings": 318,
+      "sales": 209,
+      "expected_sales": 220.35560785298452,
+      "actual_revenue": 148067.65,
+      "predicted_revenue": 155149.02129563186,
+      "mean_price": 708.1077780727369,
+      "sale_residual": -11.35560785298452,
+      "revenue_residual": -7081.371295631863,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 2524,
+      "listings": 212,
+      "sales": 88,
+      "expected_sales": 93.65943096167476,
+      "actual_revenue": 77598.14,
+      "predicted_revenue": 82314.01229883872,
+      "mean_price": 884.857765451664,
+      "sale_residual": -5.659430961674758,
+      "revenue_residual": -4715.872298838716,
+      "kind": "additive",
+      "window": "full"
+    },
+    {
+      "price_bin": "(0, 200]",
+      "rows": 1225,
+      "listings": 209,
+      "sales": 148,
+      "expected_sales": 130.50158464407096,
+      "actual_revenue": 20734.93,
+      "predicted_revenue": 18571.033475036562,
+      "mean_price": 141.9338775510204,
+      "sale_residual": 17.49841535592904,
+      "revenue_residual": 2163.8965249634384,
+      "kind": "additive",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 1597,
+      "listings": 249,
+      "sales": 193,
+      "expected_sales": 207.43525927461286,
+      "actual_revenue": 55068.950000000004,
+      "predicted_revenue": 60278.35269774483,
+      "mean_price": 298.6468378209142,
+      "sale_residual": -14.43525927461286,
+      "revenue_residual": -5209.402697744823,
+      "kind": "additive",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 1204,
+      "listings": 171,
+      "sales": 131,
+      "expected_sales": 126.88431060464949,
+      "actual_revenue": 66691.47,
+      "predicted_revenue": 64829.40603292219,
+      "mean_price": 505.8064784053156,
+      "sale_residual": 4.115689395350515,
+      "revenue_residual": 1862.063967077811,
+      "kind": "additive",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 1268,
+      "listings": 135,
+      "sales": 71,
+      "expected_sales": 92.62100892542088,
+      "actual_revenue": 49887.020000000004,
+      "predicted_revenue": 65405.340395607636,
+      "mean_price": 705.5236593059936,
+      "sale_residual": -21.62100892542088,
+      "revenue_residual": -15518.320395607632,
+      "kind": "additive",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 1135,
+      "listings": 115,
+      "sales": 42,
+      "expected_sales": 44.00687262709883,
+      "actual_revenue": 37295.270000000004,
+      "predicted_revenue": 39105.72737824294,
+      "mean_price": 897.3497797356828,
+      "sale_residual": -2.0068726270988293,
+      "revenue_residual": -1810.457378242936,
+      "kind": "additive",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(0, 200]",
+      "rows": 2558,
+      "listings": 301,
+      "sales": 236,
+      "expected_sales": 280.8389028899427,
+      "actual_revenue": 32746.79,
+      "predicted_revenue": 39306.49080689406,
+      "mean_price": 141.147771696638,
+      "sale_residual": -44.83890288994269,
+      "revenue_residual": -6559.700806894056,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(1000, 10000]",
+      "rows": 239,
+      "listings": 27,
+      "sales": 8,
+      "expected_sales": 6.044708194850642,
+      "actual_revenue": 8546.94,
+      "predicted_revenue": 6455.84703460048,
+      "mean_price": 1089.55230125523,
+      "sale_residual": 1.9552918051493577,
+      "revenue_residual": 2091.092965399521,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 7259,
+      "listings": 793,
+      "sales": 680,
+      "expected_sales": 757.334099761525,
+      "actual_revenue": 194889.39,
+      "predicted_revenue": 220408.8457823211,
+      "mean_price": 285.9012260641962,
+      "sale_residual": -77.33409976152495,
+      "revenue_residual": -25519.455782321078,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 4139,
+      "listings": 480,
+      "sales": 373,
+      "expected_sales": 401.7434436114001,
+      "actual_revenue": 186906.89,
+      "predicted_revenue": 202155.2420849707,
+      "mean_price": 501.9910606426673,
+      "sale_residual": -28.743443611400096,
+      "revenue_residual": -15248.352084970684,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 3767,
+      "listings": 318,
+      "sales": 209,
+      "expected_sales": 258.67794462459506,
+      "actual_revenue": 148067.65,
+      "predicted_revenue": 181277.47744349216,
+      "mean_price": 708.1077780727369,
+      "sale_residual": -49.67794462459506,
+      "revenue_residual": -33209.82744349216,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 2524,
+      "listings": 212,
+      "sales": 88,
+      "expected_sales": 106.19066817689134,
+      "actual_revenue": 77598.14,
+      "predicted_revenue": 93712.04508142485,
+      "mean_price": 884.857765451664,
+      "sale_residual": -18.190668176891336,
+      "revenue_residual": -16113.905081424848,
+      "kind": "category",
+      "window": "full"
+    },
+    {
+      "price_bin": "(0, 200]",
+      "rows": 1225,
+      "listings": 209,
+      "sales": 148,
+      "expected_sales": 148.27394475448793,
+      "actual_revenue": 20734.93,
+      "predicted_revenue": 21173.0381221799,
+      "mean_price": 141.9338775510204,
+      "sale_residual": -0.2739447544879283,
+      "revenue_residual": -438.1081221798995,
+      "kind": "category",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 1597,
+      "listings": 249,
+      "sales": 193,
+      "expected_sales": 240.0321436002157,
+      "actual_revenue": 55068.950000000004,
+      "predicted_revenue": 69664.56632975156,
+      "mean_price": 298.6468378209142,
+      "sale_residual": -47.032143600215704,
+      "revenue_residual": -14595.616329751552,
+      "kind": "category",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 1204,
+      "listings": 171,
+      "sales": 131,
+      "expected_sales": 141.3136653236431,
+      "actual_revenue": 66691.47,
+      "predicted_revenue": 71844.99996833033,
+      "mean_price": 505.8064784053156,
+      "sale_residual": -10.313665323643107,
+      "revenue_residual": -5153.529968330331,
+      "kind": "category",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 1268,
+      "listings": 135,
+      "sales": 71,
+      "expected_sales": 118.27370785629081,
+      "actual_revenue": 49887.020000000004,
+      "predicted_revenue": 82287.90759216422,
+      "mean_price": 705.5236593059936,
+      "sale_residual": -47.27370785629081,
+      "revenue_residual": -32400.887592164217,
+      "kind": "category",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 1135,
+      "listings": 115,
+      "sales": 42,
+      "expected_sales": 52.18553632860106,
+      "actual_revenue": 37295.270000000004,
+      "predicted_revenue": 46740.23953800478,
+      "mean_price": 897.3497797356828,
+      "sale_residual": -10.18553632860106,
+      "revenue_residual": -9444.969538004778,
+      "kind": "category",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(0, 200]",
+      "rows": 2558,
+      "listings": 301,
+      "sales": 236,
+      "expected_sales": 271.54283680228644,
+      "actual_revenue": 32746.79,
+      "predicted_revenue": 38177.56722218825,
+      "mean_price": 141.147771696638,
+      "sale_residual": -35.542836802286445,
+      "revenue_residual": -5430.777222188248,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(1000, 10000]",
+      "rows": 239,
+      "listings": 27,
+      "sales": 8,
+      "expected_sales": 6.444639856808584,
+      "actual_revenue": 8546.94,
+      "predicted_revenue": 6902.90864232341,
+      "mean_price": 1089.55230125523,
+      "sale_residual": 1.5553601431914164,
+      "revenue_residual": 1644.0313576765902,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 7259,
+      "listings": 793,
+      "sales": 680,
+      "expected_sales": 766.7163235537911,
+      "actual_revenue": 194889.39,
+      "predicted_revenue": 223696.30541477463,
+      "mean_price": 285.9012260641962,
+      "sale_residual": -86.71632355379109,
+      "revenue_residual": -28806.915414774616,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 4139,
+      "listings": 480,
+      "sales": 373,
+      "expected_sales": 407.9896569108825,
+      "actual_revenue": 186906.89,
+      "predicted_revenue": 204867.6283311187,
+      "mean_price": 501.9910606426673,
+      "sale_residual": -34.9896569108825,
+      "revenue_residual": -17960.738331118686,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 3767,
+      "listings": 318,
+      "sales": 209,
+      "expected_sales": 253.7168434548725,
+      "actual_revenue": 148067.65,
+      "predicted_revenue": 177818.1641710977,
+      "mean_price": 708.1077780727369,
+      "sale_residual": -44.7168434548725,
+      "revenue_residual": -29750.51417109772,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 2524,
+      "listings": 212,
+      "sales": 88,
+      "expected_sales": 103.86041221593375,
+      "actual_revenue": 77598.14,
+      "predicted_revenue": 91635.69788415048,
+      "mean_price": 884.857765451664,
+      "sale_residual": -15.86041221593375,
+      "revenue_residual": -14037.557884150476,
+      "kind": "category_spline",
+      "window": "full"
+    },
+    {
+      "price_bin": "(0, 200]",
+      "rows": 1225,
+      "listings": 209,
+      "sales": 148,
+      "expected_sales": 143.89599291086873,
+      "actual_revenue": 20734.93,
+      "predicted_revenue": 20592.645365349308,
+      "mean_price": 141.9338775510204,
+      "sale_residual": 4.104007089131272,
+      "revenue_residual": 142.28463465069217,
+      "kind": "category_spline",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(200, 400]",
+      "rows": 1597,
+      "listings": 249,
+      "sales": 193,
+      "expected_sales": 241.5419071307506,
+      "actual_revenue": 55068.950000000004,
+      "predicted_revenue": 70320.32104225036,
+      "mean_price": 298.6468378209142,
+      "sale_residual": -48.54190713075059,
+      "revenue_residual": -15251.371042250357,
+      "kind": "category_spline",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(400, 600]",
+      "rows": 1204,
+      "listings": 171,
+      "sales": 131,
+      "expected_sales": 147.70902719331892,
+      "actual_revenue": 66691.47,
+      "predicted_revenue": 74915.64261539189,
+      "mean_price": 505.8064784053156,
+      "sale_residual": -16.709027193318917,
+      "revenue_residual": -8224.172615391886,
+      "kind": "category_spline",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(600, 800]",
+      "rows": 1268,
+      "listings": 135,
+      "sales": 71,
+      "expected_sales": 116.68874364101036,
+      "actual_revenue": 49887.020000000004,
+      "predicted_revenue": 81224.76934170797,
+      "mean_price": 705.5236593059936,
+      "sale_residual": -45.68874364101036,
+      "revenue_residual": -31337.749341707968,
+      "kind": "category_spline",
+      "window": "novdec"
+    },
+    {
+      "price_bin": "(800, 1000]",
+      "rows": 1135,
+      "listings": 115,
+      "sales": 42,
+      "expected_sales": 50.38973778213871,
+      "actual_revenue": 37295.270000000004,
+      "predicted_revenue": 45076.92786681364,
+      "mean_price": 897.3497797356828,
+      "sale_residual": -8.38973778213871,
+      "revenue_residual": -7781.657866813635,
+      "kind": "category_spline",
+      "window": "novdec"
+    }
+  ],
+  "price_variation": [
+    {
+      "window": "full",
+      "controls": [
+        "category"
+      ],
+      "rows": 20486,
+      "price_std": 254.6054049210478,
+      "residual_rms": 41.12385420227074,
+      "r_squared": 0.9739100297524108,
+      "zero_residual_share": 0.0023918773796739235
+    },
+    {
+      "window": "full",
+      "controls": [
+        "category",
+        "week"
+      ],
+      "rows": 20486,
+      "price_std": 254.6054049210478,
+      "residual_rms": 7.068673484283595,
+      "r_squared": 0.9992291643272109,
+      "zero_residual_share": 0.41457580786878845
+    },
+    {
+      "window": "full",
+      "controls": [
+        "category",
+        "date"
+      ],
+      "rows": 20486,
+      "price_std": 254.6054049210478,
+      "residual_rms": 2.332508623221684,
+      "r_squared": 0.9999160670517904,
+      "zero_residual_share": 0.9098896807575906
+    },
+    {
+      "window": "novdec",
+      "controls": [
+        "category"
+      ],
+      "rows": 6429,
+      "price_std": 271.17133737685987,
+      "residual_rms": 15.757695470169438,
+      "r_squared": 0.9966227329881919,
+      "zero_residual_share": 0.014932337844143724
+    },
+    {
+      "window": "novdec",
+      "controls": [
+        "category",
+        "week"
+      ],
+      "rows": 6429,
+      "price_std": 271.17133737685987,
+      "residual_rms": 7.082357708069685,
+      "r_squared": 0.9993177623112646,
+      "zero_residual_share": 0.3026909317156634
+    },
+    {
+      "window": "novdec",
+      "controls": [
+        "category",
+        "date"
+      ],
+      "rows": 6429,
+      "price_std": 271.17133737685987,
+      "residual_rms": 2.504942292060524,
+      "r_squared": 0.9999146555189227,
+      "zero_residual_share": 0.943381552340955
+    }
+  ],
+  "historical_listing": {
+    "code": "LXKC36753",
+    "in_panel_rows": 17,
+    "records": [
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-20 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-21 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-22 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-23 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-24 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-25 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-26 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-27 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-28 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-29 00:00:00",
+        "Price": 468,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-09-30 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-01 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-02 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-03 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-04 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-05 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      },
+      {
+        "Code": "LXKC36753",
+        "date": "2023-10-06 00:00:00",
+        "Price": 424,
+        "Real_Sold": 0.0,
+        "Updated": "2023-10-07 00:00:00",
+        "Seller": "GadgetPickup"
+      }
+    ]
+  },
+  "interpretation": "Retrospective listing-disjoint validation, not causal identification, independent time holdout, or seller information. Fold peers can share demand shocks."
+}
