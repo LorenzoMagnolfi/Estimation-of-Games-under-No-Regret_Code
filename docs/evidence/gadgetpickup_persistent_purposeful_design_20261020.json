@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-20",
+  "timing": "Specified after persistent stable-adjustment-cost models failed, before computing aggregate persistent purposeful-repricing bounds. Extends the previously studied daily no-harm comparison, not a newly selected numerical tolerance.",
+  "motivation": "A stable K and every-review decision restrictions may fail even when deliberate repricing improves contribution in aggregate. Do not infer anything about ignored changes.",
+  "restriction": "Actual persistent-review contribution >= retaining previous fresh quotes in aggregate; nonnegative actual contribution. Both seller-pooled and separately-by-phone-model versions. Unknown unrestricted nonnegative persistent listing costs. No adjustment cost or epsilon fitted.",
+  "payoffs_and_horizons": "Exactly the three demand fits and five horizon laws in gadgetpickup_persistent_review_design_20261020.json; reuse its predictions, eligibility, survival probabilities and review-exposure target.",
+  "guarantee_scope": "Zero aggregate regret only against the specified rollback of implemented changes, as a maintained economic assumption. Not an empirically measured zero loss, a bound against unimplemented shifts, or an ANR finite-sample theorem.",
+  "reporting": "Report all horizons/fits/groupings whether useful, empty, or broad. No causal demand confidence claims. Retain the original realized-sales target as unresolved."
+}
