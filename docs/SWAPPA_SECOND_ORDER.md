@@ -1,5 +1,8 @@
 # Second-order Swappa diagnostic: argument and limitations
 
+> **October 20, 2026 interpretation update:** The custom expected-profit learner is closed as a conditional construction, not a verified rescue of Swappa. Read `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` first. Earlier success language describes numerical informativeness under added assumptions; it does not establish their empirical credibility.
+
+
 Internal research record, 2026-10-16. Status: mathematical proposal and conditional computational diagnostic, not an application confidence statement. No manuscript edits are authorized by this note. Related implementation: `python/swappa_rescue/second_order_diagnostic.py`.
 
 ## Why this extension

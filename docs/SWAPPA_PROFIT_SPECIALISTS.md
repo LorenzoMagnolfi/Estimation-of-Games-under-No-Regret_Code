@@ -1,5 +1,8 @@
 # Swappa profit-sensitive learning: conditional research candidate
 
+> **October 20, 2026 interpretation update:** The custom expected-profit learner is closed as a conditional construction, not a verified rescue of Swappa. Read `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` first. Earlier success language describes numerical informativeness under added assumptions; it does not establish their empirical credibility.
+
+
 Internal research note, 2026-10-16. This is not manuscript text or a claim that the application has been rescued. No first-stage confidence region has yet been incorporated. Read this together with SWAPPA_ANY_WINDOW_REGRET.md and SWAPPA_RESCUE_CHECKPOINT.md.
 
 ## What changed

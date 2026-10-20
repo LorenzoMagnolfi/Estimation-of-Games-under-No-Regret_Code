@@ -1,5 +1,11 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+## Swappa exercise closure, October 20, 2026
+
+- Public-source research and the five-seller pricing audit are complete: `docs/SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`; reproducible script `python/swappa_rescue/pricing_practices_audit.py`, tracked result `docs/evidence/pricing_practices_audit_20261020.json`. No focal-seller repricer adoption verified. Actual-sales rule availability is documented by a May 2023 Repricer.com announcement; it is not Swappa adoption or a regret guarantee. No new cost estimates.
+
+Read `docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` before using the earlier rescue results. The constructed expected-profit learner has a conditional guarantee, but its adoption and information are unverified; no credible actual-sales learner has yet produced informative bounds. Cost-estimation artifacts remain unchanged at e58b319. Public-source research is now complete; the next step is to freeze and validate a small rule family before cost inversion. No new cluster job was submitted.
+
 <!--
   This file is for Claude session continuity. Update at the END of each session.
   Read this FIRST when resuming work on a project.

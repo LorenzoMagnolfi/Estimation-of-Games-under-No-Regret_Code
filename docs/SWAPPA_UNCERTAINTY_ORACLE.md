@@ -1,5 +1,8 @@
 # Swappa: first-stage uncertainty and state-aware policies
 
+> **October 20, 2026 interpretation update:** The custom expected-profit learner is closed as a conditional construction, not a verified rescue of Swappa. Read `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` first. Earlier success language describes numerical informativeness under added assumptions; it does not establish their empirical credibility.
+
+
 **CURRENT DATA STATUS (October 17 UTC): prior numerical results below are superseded as empirical estimates.** The inherited raw_data_cleaned.dta had already selected observations on reference-price availability and price filters. Reconstructing competition and terminal sale dates after that selection omitted rivals and moved 174 Upgrade listing endpoints earlier than the raw source. Owned OSC arrays 15597136 and 15597781 were cancelled and verified terminal; completed results are diagnostic only. Rebuild from full raw_swappa.dta in output/swappa_rescue_20261016/fullsource/. Read the newest source-audit update at the end of this note before resuming.
 
 Internal research checkpoint, 2026-10-16. This is an exploratory code-repository note. No manuscript or response claim is authorized by these results. The research goal remains open.
@@ -36,7 +39,7 @@ Post hoc local price comparisons can lower-bound r*_t. They must not be describe
 
 ## Learning certificates and coverage logic
 
-The earlier confidence-rated cap/rate experts use weights proportional to their current learning coefficient times wealth and update w by w(1+eta*r). Sharing injects prior weight at rate 1/(t+1). Total wealth is a nonnegative martingale under the learner's randomized action, because the weighted expected excess profits sum to zero. The resulting any-window log-wealth inequality includes log(Tmax), not a reset at the first observed day. Here Tmax=1,000,000 and alpha_R=.005.
+The earlier confidence-rated cap/rate experts use weights proportional to their current learning coefficient times wealth and update w by w(1+eta*r). Sharing injects prior weight at rate 1/(t+1). Correction: weighted expected excess profits sum to zero before additive sharing, but total weight itself is not generally a martingale after sharing. Lifetime times post-update total weight is a nonnegative submartingale with expectation equal to lifetime; see the closure note and human-note proof. The resulting any-window log-wealth inequality includes log(Tmax), not a reset at the first observed day. Here Tmax=1,000,000 and alpha_R=.005.
 
 For the standalone max(1,C) certificate, the strongest state-aware policy restriction is
 
@@ -44,7 +47,7 @@ sum_t log(1+.99*r*_t/max(1,C_t)) <= log(4*A)+log(Tmax)+log(1/alpha_R).
 
 The analogous plus-one learner replaces max(1,C) by 1+C. These are different learning classes. The plus-one certificate has an explicit dollar scale; its convenient fit must not be used to claim that the other class passed. Higher cap indices and smaller rates give smaller left sides and larger prior penalties, so the nonnegative state-aware policy at the smallest cap and largest rate dominates those constraints.
 
-A profit-normalized extension removes that dollar floor. Allocate half the prior to the old cap/rate family and half to normalized policy/rate copies with current coefficient eta_jt=.99*2^(-j)/C_t. Use policy prior 1/A and rate prior 1/[(j+1)(j+2)]. Choose actions proportional to the sum of current eta_jt times wealth of recommending copies. The same martingale identity applies to predictable, time-varying coefficients. At C_t=0 all gains are zero; normalized copies can be inactive. The normalized oracle at j=0 has prior 1/(4A), giving
+A profit-normalized extension removes that dollar floor. Allocate half the prior to the old cap/rate family and half to normalized policy/rate copies with current coefficient eta_jt=.99*2^(-j)/C_t. Use policy prior 1/A and rate prior 1/[(j+1)(j+2)]. Choose actions proportional to the sum of current eta_jt times wealth of recommending copies. The same conditional cancellation applies to predictable, time-varying coefficients; the valid maximal argument uses the corrected submartingale above. At C_t=0 all gains are zero; normalized copies can be inactive. The normalized oracle at j=0 has prior 1/(4A), giving
 
 sum_t log(1+.99*r*_t/C_t) <= log(4*A)+log(Tmax)+log(1/alpha_R).
 

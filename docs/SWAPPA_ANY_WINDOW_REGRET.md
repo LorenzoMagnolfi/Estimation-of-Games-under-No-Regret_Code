@@ -1,5 +1,8 @@
 # Any-window second-order regret with a shared prior
 
+> **October 20, 2026 interpretation update:** The custom expected-profit learner is closed as a conditional construction, not a verified rescue of Swappa. Read `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` first. Earlier success language describes numerical informativeness under added assumptions; it does not establish their empirical credibility.
+
+
 Internal derivation, 2026-10-16. This extends the randomized Prod argument in `SWAPPA_SECOND_ORDER.md`. It is not yet manuscript text. The purpose is to remove the sample-start reset assumption and make the benchmark genuinely asymptotically no-regret, rather than stopping at a finite fixed grid of learning rates.
 
 ## Learner

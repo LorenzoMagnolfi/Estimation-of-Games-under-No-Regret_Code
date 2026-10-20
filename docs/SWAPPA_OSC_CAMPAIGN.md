@@ -1,5 +1,8 @@
 # Swappa OSC campaign, 2026-10-16
 
+> **October 20, 2026 closure:** The Upgrade learning-rule exercise is complete as a conditional construction, not a verified empirical rescue. Start with `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` and `SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`. Historical campaign instructions below are a record, not authorization to restart computation.
+
+
 **CURRENT DATA STATUS (October 17 UTC): prior numerical results below are superseded as empirical estimates.** The inherited raw_data_cleaned.dta had already selected observations on reference-price availability and price filters. Reconstructing competition and terminal sale dates after that selection omitted rivals and moved 174 Upgrade listing endpoints earlier than the raw source. Owned OSC arrays 15597136 and 15597781 were cancelled and verified terminal; completed results are diagnostic only. Rebuild from full raw_swappa.dta in output/swappa_rescue_20261016/fullsource/. Read the newest source-audit update at the end of this note before resuming.
 
 Submission owner: this Swappa goal chat, 01a14662-bc4d-7902-b104-04742ceb3ca5. User authorized research computation; no other campaign is modified. Status at source checkpoint: prepared, no Swappa submission yet. Job IDs and immutable code/input hashes will be stored in the ignored run manifest under output/swappa_rescue_20261016/osc_campaign/.

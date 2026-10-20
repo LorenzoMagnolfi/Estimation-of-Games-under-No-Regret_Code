@@ -1,5 +1,8 @@
 # Economic payoff envelope for the Swappa rescue
 
+> **October 20, 2026 closure:** The Upgrade learning-rule exercise is complete as a conditional construction, not a verified empirical rescue. Start with `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` and `SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`. Historical campaign instructions below are a record, not authorization to restart computation.
+
+
 Internal technical record, 2026-10-16. Exploratory candidate; no manuscript or confidence claim. See `SWAPPA_SECOND_ORDER.md` for the randomized learner and initialization requirements. Implementation: `python/swappa_rescue/economic_envelope.py`.
 
 ## Primitive restrictions and payoff bound

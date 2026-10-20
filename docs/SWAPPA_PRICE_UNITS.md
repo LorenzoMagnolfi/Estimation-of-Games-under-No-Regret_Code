@@ -1,5 +1,8 @@
 # Swappa price units and fees
 
+> **October 20, 2026 closure:** The Upgrade learning-rule exercise is complete as a conditional construction, not a verified empirical rescue. Start with `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` and `SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`. Historical campaign instructions below are a record, not authorization to restart computation.
+
+
 Internal source audit, 2026-10-16. No fee-adjusted result has been promoted into the paper.
 
 The historical Swappa notebook reads the displayed listings_table. The Stata cleaner removes the dollar sign and destrings Price, without subtracting platform or payment fees. This supports a buyer-facing displayed-price interpretation. The historical rounding rule still requires verification. Do not execute the historical notebook, which contains obsolete request credentials; it is unnecessary for this audit and excluded from the OSC package.

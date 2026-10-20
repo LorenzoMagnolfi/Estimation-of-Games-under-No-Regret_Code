@@ -5,6 +5,12 @@ This repository is the working code home for two related goals:
 1. Reproduce the current paper as it exists now.
 2. Support revision-track code changes without losing the baseline.
 
+## Swappa research notes, October 20, 2026
+
+- [Upgrade exercise closeout](docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md): assumptions, exact guarantees, conditional estimates, and limitations. The exercise did not establish an empirically validated rescue.
+- [Empirical foundations](docs/SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md): dated software/platform evidence, sources, descriptive pricing audit, and candidate assumptions for further work.
+- [Reproducible descriptive results](docs/evidence/pricing_practices_audit_20261020.json).
+
 ## Repository status
 
 - First-round port completed from `C:\Users\lorem\Dropbox\DynFoundApplicationData\Replication_2025`.

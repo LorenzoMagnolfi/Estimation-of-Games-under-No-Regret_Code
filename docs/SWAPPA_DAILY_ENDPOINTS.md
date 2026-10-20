@@ -1,5 +1,8 @@
 # Swappa daily pricing: continuous endpoints and robustness
 
+> **October 20, 2026 interpretation update:** The custom expected-profit learner is closed as a conditional construction, not a verified rescue of Swappa. Read `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` first. Earlier success language describes numerical informativeness under added assumptions; it does not establish their empirical credibility.
+
+
 Internal research record, October 17, 2026 UTC. The shared-learner analysis and its planned computational validation are complete. No manuscript, response letter, or remote publication is changed by this note.
 
 ## Current conclusion and entry point
