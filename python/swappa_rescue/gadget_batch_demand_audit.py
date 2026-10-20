@@ -17,7 +17,7 @@ DESIGN=ROOT/'docs/evidence/gadgetpickup_persistent_review_design_20261020.json'
 
 def contrast(fit,weights):
     w=np.array([weights.get(k,0.) for k in fit.params.index]);v=float(w@fit.params.to_numpy());var=float(w@fit.cov.to_numpy()@w)
-    return dict(estimate=v,se=float(np.sqrt(max(0.,var))),negative_variance=var<0)
+    return dict(estimate=v,se=float(np.sqrt(var)) if var>=0 else None,negative_variance=var<0)
 
 
 def main():
@@ -51,7 +51,8 @@ def main():
         for outcome in ['rate','ask','logage','rival_min']:
             with warnings.catch_warnings(record=True) as logs:fit=AbsorbingLS(z[outcome],X,absorb=absorb,weights=z.weight,drop_absorbed=True).fit(cov_type='clustered',clusters=clusters,debiased=True)
             leads=[str(k) for k in range(-7,-1) if str(k) in fit.params.index];vc=fit.cov.loc[leads,leads].to_numpy();bb=fit.params[leads].to_numpy();rank=int(np.linalg.matrix_rank(vc));stat=float(bb@np.linalg.pinv(vc)@bb)
-            rec=dict(window=window,outcome=outcome,stacked_rows=len(z),anchors=int(z.anchor.nunique()),categories=int(z.category.nunique()),coefficients={str(k):contrast(fit,{str(k):1.}) for k in range(-7,8) if k!=-1},contrasts={name:contrast(fit,{str(k):1/len(ks) for k in ks}) for name,ks in [('leads',list(range(-7,-1))),('post_0_3',list(range(4))),('post_1_3',[1,2,3]),('post_4_7',[4,5,6,7])]},lead_wald_stat=stat,lead_wald_df=rank,lead_wald_p=float(chi2.sf(stat,rank)) if rank>0 and stat>=0 else None,lead_covariance_min_eigenvalue=float(np.linalg.eigvalsh(vc).min()),warnings=[str(w.message)[:200] for w in logs])
+            rec=dict(window=window,outcome=outcome,stacked_rows=len(z),anchors=int(z.anchor.nunique()),categories=int(z.category.nunique()),coefficients={str(k):contrast(fit,{str(k):1.}) for k in range(-7,8) if k!=-1},contrasts={name:contrast(fit,{str(k):1/len(ks) for k in ks}) for name,ks in [('leads',list(range(-7,-1))),('post_0_3',list(range(4))),('post_1_3',[1,2,3]),('post_4_7',[4,5,6,7])]},lead_wald_stat=stat,lead_wald_df=rank,lead_wald_p=float(chi2.sf(stat,rank)) if rank>0 and stat>=0 and np.linalg.eigvalsh(vc).min()>=-1e-12 else None,lead_covariance_min_eigenvalue=float(np.linalg.eigvalsh(vc).min()),warnings=[str(w.message)[:200] for w in logs])
+            rec['contrasts']['post_0_3_minus_leads']=contrast(fit,{**{str(k):.25 for k in range(4)},**{str(k):-1/6 for k in range(-7,-1)}})
             events.append(rec);print('BATCH EVENT',window,outcome,rec['contrasts'],flush=True)
     # Stable-quote and tight fixed-effect diagnostics, with the same shift vector.
     model=WeekDemand('additive');X0=model.continuous(s).astype(float);newprice=np.ceil(1.03*np.maximum(1,np.rint(s.ask)-10*s.since_seen.gt(0).to_numpy())-1e-9);DX=model.continuous(changed_data(s,newprice))-X0
