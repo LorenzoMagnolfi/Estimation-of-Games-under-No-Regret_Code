@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-20",
+  "verification_commit": "5d3c96c076f297c6c7b94733c723b29ed7c629b5",
+  "historical_result_provenance": [
+    {
+      "result": "docs/evidence/gadgetpickup_demand_credibility_results_20261020.json",
+      "producing_commit": "c0c090f32799ec1b0a4670bd6873599787a213e7",
+      "script_historical_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_historical_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_demand_timing_results_20261020.json",
+      "producing_commit": "a5219e0b64713786128cc6e3e0ec9ee6285302ed",
+      "script_historical_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_historical_hash_matches": [
+        "windows_checkout"
+      ]
+    },
+    {
+      "result": "docs/evidence/gadgetpickup_adjustment_cost_results_20261020.json",
+      "producing_commit": "fd27d4a6bcd2a6fd7dbbda5b6830e0d6cf90bbc6",
+      "script_historical_hash_matches": [
+        "windows_checkout"
+      ],
+      "design_historical_hash_matches": [
+        "windows_checkout"
+      ]
+    }
+  ],
+  "checks": "All three main script/design hashes match their producing commits under the recorded Windows checkout newline convention. Demand prediction output hash and independent-check script hash match. Independent 26-model LP feasibility and direct profit identities passed. Source-design amendment is preserved rather than rewriting earlier run provenance.",
+  "files": [
+    {
+      "path": "docs/evidence/gadgetpickup_adjustment_cost_results_20261020.json",
+      "sha256": "b9e5cce2c831c892e851e47485f40d73f9ecbec97459567242fbb8c1f3e1701f",
+      "bytes": 361015
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_allowance_audit_checks_20261020.json",
+      "sha256": "e328a190539312e6d3879d9e5d67ccacde82dc01d1d2fcd987d803494f242379",
+      "bytes": 7154
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_allowance_demand_sources_20261020.json",
+      "sha256": "f6637ab30d292658e564b299d30fd5dc7597562dc0ddd665da33b7df42f20f96",
+      "bytes": 3454
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_demand_credibility_results_20261020.json",
+      "sha256": "d4dbd84ba2ffe0c5accc967ff3193c87f49c6c949e164daa2ade64108a5ca753",
+      "bytes": 39070
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_demand_timing_design_20261020.json",
+      "sha256": "337dd966f06f34880f21d0994475c3fd4a406ab04f1b4fe89f5deebb84e3734d",
+      "bytes": 1079
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_demand_timing_results_20261020.json",
+      "sha256": "024fd6422c2256e2a0d538c26772c0779c2e9fc6345d54b356a01762efcc245f",
+      "bytes": 8158
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_empirical_allowance_demand_design_20261020.json",
+      "sha256": "1a5af9c107d54f558a41d1f9f3bc575e133b7151a7ef6d53d748f09d638367fc",
+      "bytes": 3104
+    },
+    {
+      "path": "docs/gadgetpickup-allowance-demand-audit-note-2026-10-20.md",
+      "sha256": "321481606f9c16b131b0bbb913ceb4f10ef3b47f5c5f97820d556b65873653b6",
+      "bytes": 23966
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/demand_credibility_predictions.parquet",
+      "sha256": "3257267849ba00a207e26254b24f6f4f3c948118aa81430a31aa44af43a49a05",
+      "bytes": 4130536
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/performance_predictions.parquet",
+      "sha256": "6ff7015fae699916e6d521ad51240a38c0a91c9b4e44610f5f03593ea5f6bc0d",
+      "bytes": 1054681
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/repricing_performance_predictions.parquet",
+      "sha256": "56ec5a9601dae871415982121090a938585e2d8ec3cd0dfd72e51ce74856122e",
+      "bytes": 868932
+    },
+    {
+      "path": "python/swappa_rescue/gadget_adjustment_cost_calibration.py",
+      "sha256": "d33f13e5f47eee01b36a6b5a8667e714f846f707202f03b1084d82892e60a801",
+      "bytes": 7845
+    },
+    {
+      "path": "python/swappa_rescue/gadget_allowance_audit_checks.py",
+      "sha256": "8415acb4703361d86b61174e97600189345cf2304ccca5d8c06ea786716ebf75",
+      "bytes": 5098
+    },
+    {
+      "path": "python/swappa_rescue/gadget_demand_credibility.py",
+      "sha256": "52e0c38c8057eb836b51a6e97677e15f79daf46c593a1b257e5eb4617a6b90a7",
+      "bytes": 8353
+    },
+    {
+      "path": "python/swappa_rescue/gadget_demand_price_timing.py",
+      "sha256": "b34399c0da4a68a77fe146ffe1b57c2f706f9629de52ec38b5a75936c53517a6",
+      "bytes": 4728
+    }
+  ]
+}

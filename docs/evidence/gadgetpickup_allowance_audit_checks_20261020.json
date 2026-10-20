@@ -1,0 +1,252 @@
+{
+  "code_commit": "5d3c96c076f297c6c7b94733c723b29ed7c629b5",
+  "script_sha256": "8415acb4703361d86b61174e97600189345cf2304ccca5d8c06ea786716ebf75",
+  "profit_identity_max_error": 1.7053025658242404e-13,
+  "independent_model_checks": [
+    {
+      "model": "apple-iphone-11",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-11-pro",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 3.552713678800501e-15
+    },
+    {
+      "model": "apple-iphone-11-pro-max",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-12",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 1.4210854715202004e-14
+    },
+    {
+      "model": "apple-iphone-12-mini",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.000437752232996913,
+      "certificate_rows": [
+        "participation",
+        "inaction:2023-12-07:-10",
+        "change:2023-12-08"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.5002188761164985,
+        0.4997811238835016
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-12-pro",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.0012096621112535288,
+      "certificate_rows": [
+        "participation",
+        "inaction:2023-12-07:-5",
+        "change:2023-12-08",
+        "change:2023-12-09",
+        "inaction:2023-12-12:5",
+        "change:2023-12-22"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.5006048310556268,
+        0.14263899492710352,
+        0.17673951849909386,
+        0.17613272478565792,
+        0.0038839307325179762
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-12-pro-max",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-13",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-13-mini",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 7.105427357601002e-15
+    },
+    {
+      "model": "apple-iphone-13-pro",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-13-pro-max",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 7.105427357601002e-15
+    },
+    {
+      "model": "apple-iphone-14",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-14-plus",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-14-pro",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 7.105427357601002e-15
+    },
+    {
+      "model": "apple-iphone-14-pro-max",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 1.4210854715202004e-14
+    },
+    {
+      "model": "apple-iphone-6s-plus",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.046742986900828176,
+      "certificate_rows": [
+        "participation",
+        "inaction:2023-12-01:-5",
+        "change:2023-12-08"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.5233714934504141,
+        0.47662850654958594
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-7",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 2.220446049250313e-16
+    },
+    {
+      "model": "apple-iphone-7-plus",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-8",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.0027316817414063943,
+      "certificate_rows": [
+        "participation",
+        "inaction:2023-11-05:-5",
+        "change:2023-11-06",
+        "change:2023-11-23",
+        "inaction:2023-11-29:-5",
+        "inaction:2023-12-01:-10"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.3821573851587125,
+        0.39041475699692874,
+        0.10821940213236805,
+        0.034616861770036825,
+        0.08459159394195385
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-8-plus",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-se-2nd-gen",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-se-3rd-gen-2022",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    },
+    {
+      "model": "apple-iphone-x",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.005445128539618871,
+      "certificate_rows": [
+        "participation",
+        "change:2023-11-11",
+        "inaction:2023-11-22:-5",
+        "change:2023-11-23",
+        "inaction:2023-12-04:-5",
+        "inaction:2023-12-08:-5",
+        "change:2023-12-09",
+        "inaction:2023-12-12:10"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.2102285869914109,
+        0.3311446844667849,
+        0.08613725584227142,
+        0.03804841352601558,
+        0.13352946627700898,
+        0.07180171584646672,
+        0.12910987705004157
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-xr",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 3.552713678800501e-15
+    },
+    {
+      "model": "apple-iphone-xs",
+      "feasible": false,
+      "independent_solver_status": 2,
+      "certificate_margin": 0.00019576095684614714,
+      "certificate_rows": [
+        "participation",
+        "inaction:2023-12-07:-5",
+        "change:2023-12-09"
+      ],
+      "certificate_weights": [
+        0.0,
+        0.5000978804784231,
+        0.4999021195215769
+      ],
+      "infeasible_without_participation": true
+    },
+    {
+      "model": "apple-iphone-xs-max",
+      "feasible": true,
+      "independent_solver_status": 0,
+      "maximum_primal_violation": 0.0
+    }
+  ],
+  "interpretation": "Numerical verification at fixed estimated demand, not statistical rejection. Dropping participation is a diagnostic attribution check only."
+}

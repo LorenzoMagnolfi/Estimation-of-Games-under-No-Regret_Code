@@ -1,0 +1,46 @@
+{
+  "date_accessed": "2026-10-20",
+  "purpose": "Evidence about the magnitude of pricing losses and credibility of demand; no source is evidence of GadgetPickup algorithm adoption.",
+  "sources": [
+    {
+      "id": "schlosser_boissier_2018",
+      "title": "Dynamic Pricing under Competition on Online Marketplaces: A Data-Driven Approach",
+      "url": "https://hpi.de/fileadmin/user_upload/fachgebiete/rabl/publications/2018/dynamic_pricing_kdd_2018.pdf",
+      "location": "Section 5 and Tables 7-8, PDF page 9",
+      "verified": "Random assignment of more than 5000 used books per strategy, three months, equal repricing frequency. Table 8 reports 23.1 percent higher accumulated profit for S3.",
+      "table7_inputs": {
+        "benchmark_sold_fraction": 0.4171,
+        "benchmark_profit_per_sale": 2.56,
+        "S3_sold_fraction": 0.4461,
+        "S3_profit_per_sale": 2.94
+      },
+      "calculation_from_rounded_table7": {
+        "profit_gain": 0.22828570786382163,
+        "baseline_shortfall_relative_to_S3": 0.18585717183084838
+      },
+      "interpretation": "Suggestive analogous professional used-goods market. An improvement over incumbent performance is not an upper bound on regret versus the best policy. The tested policy and profit definition differ from the narrow Swappa menu."
+    },
+    {
+      "id": "ferreira_lee_simchilevi_2016",
+      "title": "Analytics for an Online Retailer: Demand Forecasting and Price Optimization",
+      "url": "https://www.hbs.edu/ris/Publication%20Files/kris%20Analytics%20for%20an%20Online%20Retailer_6ef5f3e6-48e7-4923-a2d4-607d3a3d943c.pdf",
+      "verified": "Rue La La field experiment estimates 9.7 percent higher revenue, with a 90 percent interval of 2.3 to 17.8 percent.",
+      "interpretation": "Revenue, not profit or regret; fashion flash sales differ from used phones. Cannot calibrate a 5 or 10 percent profit allowance."
+    },
+    {
+      "id": "fong_manchanda_song_2026",
+      "title": "How Effective Is Suggested Pricing? Experimental Evidence from an E-Commerce Platform",
+      "url": "https://journals.sagepub.com/doi/abs/10.1177/00222437261432198",
+      "verified": "Publisher abstract: randomized suggested prices on Mercari; 30 percent change in suggestions induces 5 percent same-direction listing-price change. Lower suggestions improve sale likelihood and seller revenue.",
+      "access_limit": "Abstract accessed; no numerical structural demand elasticity extracted from the full paper.",
+      "interpretation": "Suggestive experimental support for the direction of a price response in used-goods sales; no transferable GadgetPickup elasticity or profit-efficiency bound. Publication in 2026 does not establish 2023 software availability or adoption."
+    },
+    {
+      "id": "swappa_negotiation_faq",
+      "title": "Can I offer a lower price or negotiate?",
+      "url": "https://swappa.com/faq/answer/how-to-accept-an-offer-lower-price",
+      "verified": "Accepted buyer offers can be implemented by editing the public listing price before purchase. The current FAQ expressly excludes Enterprise Seller listings from this mechanism.",
+      "interpretation": "A possible source of price-sale simultaneity; current FAQ does not establish its prevalence for GadgetPickup in 2023. Prior archived research notes document a 2023 GadgetPickup offer/refusal exchange, not an accepted negotiated sale."
+    }
+  ]
+}

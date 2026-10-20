@@ -1,5 +1,7 @@
 # GadgetPickup: performance assumptions and the information on cost
 
+> Update, October 20, 2026: `gadgetpickup-allowance-demand-audit-note-2026-10-20.md` governs the subsequent empirical calibration and demand audit. The 90/95 percent restrictions below remain sensitivity benchmarks; they are not empirically calibrated or the recommended leading specification. All numerical frontiers here are preserved as conditional calculations.
+
 Date: October 20, 2026. Audience: future research agents. Status: completed conditional calculations and proposed economic specification; statistical inference remains to be implemented. This note governs the new performance exercise. It supersedes the identification-impasse conclusion in `gadgetpickup-identification-status-2026-10-20.md`, while retaining that note's observation and demand diagnostics. The user explicitly permits suggestive evidence to motivate assumptions and does not require a verified pricing algorithm.
 
 ## Decision and interpretation

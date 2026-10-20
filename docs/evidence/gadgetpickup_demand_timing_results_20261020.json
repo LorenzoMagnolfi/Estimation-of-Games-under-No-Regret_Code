@@ -1,0 +1,258 @@
+{
+  "code_commit": "a5219e0b64713786128cc6e3e0ec9ee6285302ed",
+  "script_sha256": "b34399c0da4a68a77fe146ffe1b57c2f706f9629de52ec38b5a75936c53517a6",
+  "design_sha256": "337dd966f06f34880f21d0994475c3fd4a406ab04f1b4fe89f5deebb84e3734d",
+  "regressions": [
+    {
+      "spec": "current_price",
+      "fixed_effects": "category_week_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 376.94344779887706,
+      "se": 93.2909463619886,
+      "normal_interval": [
+        194.0931929293794,
+        559.7937026683747
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "current_price",
+      "fixed_effects": "category_week_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 105.82765317727572,
+      "se": 25.94487544661774,
+      "normal_interval": [
+        54.97569730190495,
+        156.6796090526465
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "current_price",
+      "fixed_effects": "listing_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 241.99166642455998,
+      "se": 47.21970771749156,
+      "normal_interval": [
+        149.4410392982765,
+        334.54229355084345
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    },
+    {
+      "spec": "current_price",
+      "fixed_effects": "listing_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 67.06183826219306,
+      "se": 13.051578328546277,
+      "normal_interval": [
+        41.480744738242365,
+        92.64293178614376
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    },
+    {
+      "spec": "lagged_own_price_vector",
+      "fixed_effects": "category_week_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 249.68336983787867,
+      "se": 93.2338340798621,
+      "normal_interval": [
+        66.94505504134895,
+        432.4216846344084
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "lagged_own_price_vector",
+      "fixed_effects": "category_week_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 69.00600373059844,
+      "se": 26.096059746840137,
+      "normal_interval": [
+        17.857726626791766,
+        120.15428083440511
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "lagged_own_price_vector",
+      "fixed_effects": "listing_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 214.33464483649448,
+      "se": 42.91484263455349,
+      "normal_interval": [
+        130.22155327276965,
+        298.4477364002193
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    },
+    {
+      "spec": "lagged_own_price_vector",
+      "fixed_effects": "listing_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 59.02761251464173,
+      "se": 11.864506135847872,
+      "normal_interval": [
+        35.77318048837991,
+        82.28204454090356
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    },
+    {
+      "spec": "current_plus_lagged_own_residual",
+      "fixed_effects": "category_week_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 397.86043594713385,
+      "se": 95.35083743276196,
+      "normal_interval": [
+        210.9727945789204,
+        584.7480773153472
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "current_plus_lagged_own_residual",
+      "fixed_effects": "category_week_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 111.89112862014473,
+      "se": 26.690514371947728,
+      "normal_interval": [
+        59.57772045112718,
+        164.20453678916226
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2\n"
+      ]
+    },
+    {
+      "spec": "current_plus_lagged_own_residual",
+      "fixed_effects": "listing_date",
+      "window": "full",
+      "rows": 17873,
+      "sales": 1299,
+      "price_contrast_extra_sales": 288.30435473134446,
+      "se": 59.94080589865958,
+      "normal_interval": [
+        170.82037516997167,
+        405.78833429271725
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    },
+    {
+      "spec": "current_plus_lagged_own_residual",
+      "fixed_effects": "listing_date",
+      "window": "novdec",
+      "rows": 5115,
+      "sales": 435,
+      "price_contrast_extra_sales": 80.46921110498783,
+      "se": 17.002548564438445,
+      "normal_interval": [
+        47.14421591868848,
+        113.7942062912872
+      ],
+      "warnings": [
+        "\nVariables have been fully absorbed and have removed from the regression:\n\ngap_negative, age_hinge_2, initial_residual, initial_reference, initial_reference_missing\n"
+      ]
+    }
+  ],
+  "raw": [
+    {
+      "window": "full",
+      "group": "cut_with_at_least_3_category_cuts",
+      "rows": 881,
+      "sales": 70,
+      "sale_rate": 0.07945516458569807
+    },
+    {
+      "window": "full",
+      "group": "increase",
+      "rows": 110,
+      "sales": 10,
+      "sale_rate": 0.09090909090909091
+    },
+    {
+      "window": "full",
+      "group": "other_cut",
+      "rows": 913,
+      "sales": 115,
+      "sale_rate": 0.12595837897042717
+    },
+    {
+      "window": "full",
+      "group": "unchanged",
+      "rows": 15969,
+      "sales": 1104,
+      "sale_rate": 0.06913394702235581
+    },
+    {
+      "window": "novdec",
+      "group": "cut_with_at_least_3_category_cuts",
+      "rows": 305,
+      "sales": 33,
+      "sale_rate": 0.10819672131147541
+    },
+    {
+      "window": "novdec",
+      "group": "increase",
+      "rows": 26,
+      "sales": 7,
+      "sale_rate": 0.2692307692307692
+    },
+    {
+      "window": "novdec",
+      "group": "other_cut",
+      "rows": 402,
+      "sales": 55,
+      "sale_rate": 0.13681592039800994
+    },
+    {
+      "window": "novdec",
+      "group": "unchanged",
+      "rows": 4382,
+      "sales": 340,
+      "sale_rate": 0.07759014148790506
+    }
+  ],
+  "interpretation": "Paired-sample descriptive price-timing audit. Lagged prices are not asserted exogenous; binary terminal outcomes and risk-set selection remain. Normal intervals describe clustered regression uncertainty only, not causal identification."
+}
