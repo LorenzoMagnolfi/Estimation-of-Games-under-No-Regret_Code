@@ -1,0 +1,28 @@
+{
+  "status": "Supplementary estimand declared after observed-sale-weighted withdrawal bounds; before computation",
+  "motivation": "Expected-sale weights enter the expected profit comparison itself. They avoid conflating a cost average for realized sold devices with the average relevant to expected profits. This is an estimand change, not a restriction on cost heterogeneity.",
+  "target": "Sum_j c_j sum_t q_jt / sum_jt q_jt, all retained seller inventory in test period",
+  "weights": "Fixed fitted observed-action sale probabilities, not candidate-cost-dependent",
+  "priors": [
+    "nonnegative_only",
+    "no_below_observed_receipt"
+  ],
+  "comparisons": [
+    "price_only",
+    "withdrawal_only",
+    "all_frozen_plus_withdrawal"
+  ],
+  "budgets": [
+    0,
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10
+  ],
+  "reporting": "Report expected-receipt-weighted gross margin as mean expected receipt minus mean expected cost. No historical invoice-cost interpretation or confidence coverage is claimed."
+}
