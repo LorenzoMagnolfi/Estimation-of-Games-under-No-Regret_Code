@@ -24,5 +24,6 @@
   ],
   "eligible_model_days": "Every retained current listing has a consecutive fresh prior quote. This excludes entrants/gaps and November-19-as-previous. Repricing means any current price differs from prior. Batch schedule is a proxy for review opportunity, not a fact.",
   "adjustment_scope": "Calibrate K_g using observed changes on qualifying review dates, and inaction on qualifying review dates. Models without both an observed change and inaction do not have a data-disciplined K_g; report separately.",
-  "limitations": "No source can establish a finite upper regret allowance just by reporting average revenue improvements. A price adjustment model is an additional economic restriction and may be rejected. Do not relax it after seeing infeasibility."
+  "limitations": "No source can establish a finite upper regret allowance just by reporting average revenue improvements. A price adjustment model is an additional economic restriction and may be rejected. Do not relax it after seeing infeasibility.",
+  "adjustment_extra_variant": "Complete-menu version additionally compares chosen adjusted prices with the four alternatives at zero additional slack on adjustment days. This is stronger than the primary inaction/change restriction. Both assume one-day incremental profits suffice; multi-day investment returns are omitted."
 }
