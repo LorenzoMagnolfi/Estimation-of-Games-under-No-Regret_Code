@@ -1,0 +1,104 @@
+{
+  "selection": "Eight SHA256-first sold listings with update gap 0/1, three SHA256-first negative gaps, three largest gaps with hash tie break. Selected after first targeted public outlier LXLM45265 was inspected; report that selection history. Final raw date excluded.",
+  "interpretation": "Date Closed is a public closure marker, not guaranteed paid order timestamp. Live historical metadata may have been updated. No outcome labels overwritten.",
+  "sample": [
+    {
+      "Code": "LXLV88245",
+      "last": "2023-11-09 00:00:00",
+      "updated": "2023-11-10 00:00:00",
+      "sold": 1.0,
+      "gap": 1
+    },
+    {
+      "Code": "LXNJ08178",
+      "last": "2023-12-15 00:00:00",
+      "updated": "2023-12-15 00:00:00",
+      "sold": 1.0,
+      "gap": 0
+    },
+    {
+      "Code": "LXIT64625",
+      "last": "2023-09-18 00:00:00",
+      "updated": "2023-09-18 00:00:00",
+      "sold": 1.0,
+      "gap": 0
+    },
+    {
+      "Code": "LXKL51386",
+      "last": "2023-10-27 00:00:00",
+      "updated": "2023-10-27 00:00:00",
+      "sold": 1.0,
+      "gap": 0
+    },
+    {
+      "Code": "LXMI54035",
+      "last": "2023-11-17 00:00:00",
+      "updated": "2023-11-18 00:00:00",
+      "sold": 1.0,
+      "gap": 1
+    },
+    {
+      "Code": "LXJP12215",
+      "last": "2023-10-03 00:00:00",
+      "updated": "2023-10-03 00:00:00",
+      "sold": 1.0,
+      "gap": 0
+    },
+    {
+      "Code": "LXMI95959",
+      "last": "2023-11-23 00:00:00",
+      "updated": "2023-11-24 00:00:00",
+      "sold": 1.0,
+      "gap": 1
+    },
+    {
+      "Code": "LXLY32383",
+      "last": "2023-11-10 00:00:00",
+      "updated": "2023-11-10 00:00:00",
+      "sold": 1.0,
+      "gap": 0
+    },
+    {
+      "Code": "LXMG54591",
+      "last": "2023-11-19 00:00:00",
+      "updated": "2023-11-18 00:00:00",
+      "sold": 1.0,
+      "gap": -1
+    },
+    {
+      "Code": "LXMH38200",
+      "last": "2023-11-19 00:00:00",
+      "updated": "2023-11-18 00:00:00",
+      "sold": 1.0,
+      "gap": -1
+    },
+    {
+      "Code": "LXMF74325",
+      "last": "2023-11-19 00:00:00",
+      "updated": "2023-11-18 00:00:00",
+      "sold": 1.0,
+      "gap": -1
+    },
+    {
+      "Code": "LXLM45265",
+      "last": "2023-11-03 00:00:00",
+      "updated": "2023-11-27 00:00:00",
+      "sold": 1.0,
+      "gap": 24
+    },
+    {
+      "Code": "LXHD25322",
+      "last": "2023-10-06 00:00:00",
+      "updated": "2023-10-09 00:00:00",
+      "sold": 1.0,
+      "gap": 3
+    },
+    {
+      "Code": "LXJV91606",
+      "last": "2023-09-22 00:00:00",
+      "updated": "2023-09-24 00:00:00",
+      "sold": 1.0,
+      "gap": 2
+    }
+  ]
+}
