@@ -16,9 +16,25 @@ DESIGN=ROOT/'docs/evidence/gadgetpickup_empirical_allowance_demand_design_202610
 
 
 def optimize(obj,A,b):
-    r=linprog(obj,A_ub=csr_matrix(A),b_ub=b,bounds=(0,None),method='highs')
+    # Scale dollar cost coordinates and constraint rows without changing the set.
+    scale=np.r_[np.full(len(obj)-1,100.),1.]
+    row_scale=np.maximum(1.,np.maximum(abs(b),np.max(abs(A*scale),axis=1)))
+    AA=A*scale/row_scale[:,None];bb=b/row_scale
+    for method,presolve in [('highs',True),('highs-ds',False),('highs-ipm',False)]:
+        r=linprog(obj*scale,A_ub=csr_matrix(AA),b_ub=bb,bounds=(0,None),method=method,options={'presolve':presolve})
+        if r.status in [0,2,3]:break
     assert r.status in [0,2,3],r.message
-    return dict(status=int(r.status),value=float(obj@r.x) if r.success else None)
+    if r.success:assert np.max(A@(r.x*scale)-b)<1e-4
+    return dict(status=int(r.status),value=float(obj@(r.x*scale)) if r.success else None)
+
+
+def farkas(A,b):
+    # y>=0, A'y>=0 and b'y<0 certify infeasibility for nonnegative unknowns.
+    rs=np.maximum(1.,np.maximum(abs(b),np.max(abs(A),axis=1)));AA=A/rs[:,None];bb=b/rs
+    r=linprog(bb,A_ub=csr_matrix(-AA.T),b_ub=np.zeros(A.shape[1]),A_eq=np.ones((1,len(b))),b_eq=[1.],bounds=(0,None),method='highs')
+    assert r.success and r.fun < -1e-8
+    assert np.min(AA.T@r.x)>-1e-7
+    return dict(normalized_certificate_margin=float(-r.fun),minimum_dual_component=float(np.min(AA.T@r.x)))
 
 
 def main():
@@ -67,6 +83,7 @@ def main():
                             reduced=[i for i in active if i!=j]
                             if optimize(np.zeros(J+1),A[reduced],b[reduced])['status']==2:active=reduced
                         rec['infeasible_subset']=[labels[j] for j in active]
+                        rec['infeasibility_certificate']=farkas(A[active],b[active])
                     records.append(rec);partial.append(rec)
                 total=sum(a['expected_sales'] for a in partial);feas=all(a['feasible'] for a in partial)
                 summary.append(dict(window=window,schedule=schedule,complete_menu=complete,models=len(partial),infeasible_models=[a['model'] for a in partial if not a['feasible']],models_with_changes_and_inaction=sum(a['eligible_change_days']>0 and a['eligible_inaction_days']>0 for a in partial),identified_adjustment_share=sum(a['expected_sales'] for a in partial if a['eligible_change_days']>0 and a['eligible_inaction_days']>0)/total,joint_feasible=feas,cost_lower=sum(a['expected_sales']*a['cost_lower']['value'] for a in partial)/total if feas else None,cost_upper=sum(a['expected_sales']*a['cost_upper']['value'] for a in partial)/total if feas else None))
