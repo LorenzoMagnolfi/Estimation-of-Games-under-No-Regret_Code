@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-20",
+  "timing": "Specified after seller-wide review-target results and their attribution; extends exactly the same inequalities to the original targets, without choosing products or horizons.",
+  "targets": [
+    "review_exposure_expected_sales",
+    "original_daily_expected_sales",
+    "original_realized_sales"
+  ],
+  "costs": "Persistent nonnegative costs for all November-December listings, including those never present at an eligible review. Retain heterogeneous K_g.",
+  "restrictions": "Exactly seller-wide core/complete review systems, with and without the previously used daily-window participation restriction. Report both; adding daily participation is not implied by review participation.",
+  "scope": "All three demand fits and five specified horizon laws. No changes in sample, behavioral comparisons, or cost caps. Unbounded targets reported as such."
+}
