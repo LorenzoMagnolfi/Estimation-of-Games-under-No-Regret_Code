@@ -2,7 +2,7 @@
 
 ## GadgetPickup demand and regret investigation, October 20, 2026
 
-Current writer: none; displayed-order, copied-date, and fourteen public closure-date checks are complete. No background process remains. The user's research goal remains active and unresolved. No background process remains. Next writer should claim only the new GadgetPickup analysis paths before editing.
+Current writer: Codex, ASCECN-NC330225; one-day demand correction and pagination diagnostics. Prior observation audit complete. The user's research goal remains active and unresolved. No background process remains. Next writer should claim only the new GadgetPickup analysis paths before editing.
 
 - Latest source-data gate: `docs/gadgetpickup-observation-audit-2026-10-20.md`. November 19 repeats ALL non-date cells of November 18; 197 raw GadgetPickup rows and 30 terminal labels fall on the copy (195/29 in first-stage). November 18 to 20 is a two-day interval. Do not simply relabel all sales to November 18 or count November 19 as feedback.
 - Recovered historical table order from 166 raw workbooks. All 3,121 duplicated listing-days straddle 50-row page boundaries, including 195 GadgetPickup cases. Snapshot rank is not verified persistent buyer exposure; no rank-IV claim. Fourteen public Date Closed checks documented; browser works where web fetch failed, no authentication used.
