@@ -1,0 +1,279 @@
+{
+  "code_commit": "e5132706cb8d61b897c783a0707241b79632e0a6",
+  "driver_sha256": "da41efdcc70c436d8ee571a3edc5496a51361853ea22011b7f8713b45f263806",
+  "calculation_sha256": "69f022385d2884d38d865896e22171e615e1836c1fceebaa254e9dad551a8cd5",
+  "categories": 158,
+  "totals": [
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "days": 4572,
+      "empty_days": 0,
+      "zero_cost_dominated_days": 0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "days": 4572,
+      "empty_days": 0,
+      "zero_cost_dominated_days": 0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "days": 4572,
+      "empty_days": 0,
+      "zero_cost_dominated_days": 0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "days": 4572,
+      "empty_days": 0,
+      "zero_cost_dominated_days": 0
+    }
+  ],
+  "selected": [
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "category": "apple-iphone-11|128 GB|Fair",
+      "selected": true,
+      "category_index": 3,
+      "days": 28,
+      "empty_days": 0,
+      "mean_width": 0.8737970511183857,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 19.0
+    },
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "category": "apple-iphone-11|128 GB|Good",
+      "selected": true,
+      "category_index": 4,
+      "days": 44,
+      "empty_days": 0,
+      "mean_width": 0.9444084159380456,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 12.0
+    },
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "category": "apple-iphone-8|128 GB|Good",
+      "selected": true,
+      "category_index": 44,
+      "days": 53,
+      "empty_days": 0,
+      "mean_width": 0.8887155215185754,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 18.0
+    },
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "category": "apple-iphone-xs-max|64 GB|Good",
+      "selected": true,
+      "category_index": 31,
+      "days": 72,
+      "empty_days": 0,
+      "mean_width": 0.9170682346278574,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 17.0
+    },
+    {
+      "unit": "day",
+      "restriction": "exact_price",
+      "category": "apple-iphone-x|256 GB|Good",
+      "selected": true,
+      "category_index": 32,
+      "days": 79,
+      "empty_days": 0,
+      "mean_width": 0.6479845524848957,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 65.0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-11|128 GB|Fair",
+      "selected": true,
+      "category_index": 3,
+      "days": 28,
+      "empty_days": 0,
+      "mean_width": 0.8727822910181334,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 19.0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-11|128 GB|Good",
+      "selected": true,
+      "category_index": 4,
+      "days": 44,
+      "empty_days": 0,
+      "mean_width": 0.9417463869911974,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 12.0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-8|128 GB|Good",
+      "selected": true,
+      "category_index": 44,
+      "days": 53,
+      "empty_days": 0,
+      "mean_width": 0.5565981771008012,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 18.0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-xs-max|64 GB|Good",
+      "selected": true,
+      "category_index": 31,
+      "days": 72,
+      "empty_days": 0,
+      "mean_width": 0.9138257769125079,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 17.0
+    },
+    {
+      "unit": "day",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-x|256 GB|Good",
+      "selected": true,
+      "category_index": 32,
+      "days": 79,
+      "empty_days": 0,
+      "mean_width": 0.6269575335596644,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 65.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "category": "apple-iphone-11|128 GB|Fair",
+      "selected": true,
+      "category_index": 3,
+      "days": 28,
+      "empty_days": 0,
+      "mean_width": 0.7253468257406607,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 77.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "category": "apple-iphone-11|128 GB|Good",
+      "selected": true,
+      "category_index": 4,
+      "days": 44,
+      "empty_days": 0,
+      "mean_width": 0.8709806203849436,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 33.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "category": "apple-iphone-8|128 GB|Good",
+      "selected": true,
+      "category_index": 44,
+      "days": 53,
+      "empty_days": 0,
+      "mean_width": 0.8330813089499776,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 30.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "category": "apple-iphone-xs-max|64 GB|Good",
+      "selected": true,
+      "category_index": 31,
+      "days": 72,
+      "empty_days": 0,
+      "mean_width": 0.6020893417678609,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 132.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "exact_price",
+      "category": "apple-iphone-x|256 GB|Good",
+      "selected": true,
+      "category_index": 32,
+      "days": 79,
+      "empty_days": 0,
+      "mean_width": 0.4311102498139873,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 264.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-11|128 GB|Fair",
+      "selected": true,
+      "category_index": 3,
+      "days": 28,
+      "empty_days": 0,
+      "mean_width": 0.7186803359676249,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 77.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-11|128 GB|Good",
+      "selected": true,
+      "category_index": 4,
+      "days": 44,
+      "empty_days": 0,
+      "mean_width": 0.8433175888040275,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 33.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-8|128 GB|Good",
+      "selected": true,
+      "category_index": 44,
+      "days": 53,
+      "empty_days": 0,
+      "mean_width": 0.4168085739199628,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 30.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-xs-max|64 GB|Good",
+      "selected": true,
+      "category_index": 31,
+      "days": 72,
+      "empty_days": 0,
+      "mean_width": 0.5936702276481198,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 132.0
+    },
+    {
+      "unit": "listing",
+      "restriction": "monotone_price",
+      "category": "apple-iphone-x|256 GB|Good",
+      "selected": true,
+      "category_index": 32,
+      "days": 79,
+      "empty_days": 0,
+      "mean_width": 0.36858378671475445,
+      "zero_cost_dominated_days": 0,
+      "max_prior_count": 264.0
+    }
+  ],
+  "interpretation": "One-day-calendar version of the previous conditional information diagnostic. Constant conditional arm means, timing, coverage and optional monotonicity remain maintained assumptions. No verified seller behavior or new-method cost set."
+}

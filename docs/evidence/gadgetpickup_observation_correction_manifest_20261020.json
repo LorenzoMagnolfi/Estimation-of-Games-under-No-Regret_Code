@@ -1,0 +1,72 @@
+{
+  "demand_producing_commit": "a583e93",
+  "feedback_producing_commit": "e513270",
+  "original_design_commit": "b867ff2",
+  "files": [
+    {
+      "path": "python/swappa_rescue/gadget_observation_correction.py",
+      "sha256": "2f495803dbfe4b7a9974d1931be8efdb13b77799ffddf1f6ff2b65e99051073e",
+      "bytes": 5741
+    },
+    {
+      "path": "python/swappa_rescue/gadget_observation_feedback.py",
+      "sha256": "da41efdcc70c436d8ee571a3edc5496a51361853ea22011b7f8713b45f263806",
+      "bytes": 2064
+    },
+    {
+      "path": "python/swappa_rescue/gadget_inventory_feedback_extension.py",
+      "sha256": "69f022385d2884d38d865896e22171e615e1836c1fceebaa254e9dad551a8cd5",
+      "bytes": 9859
+    },
+    {
+      "path": "python/swappa_rescue/gadget_demand_crossfit.py",
+      "sha256": "8c41bb093fcff38c24893d7452897b5a46182c87c1273a5ceb1e848b0dab958a",
+      "bytes": 5466
+    },
+    {
+      "path": "python/swappa_rescue/gadget_demand_audit.py",
+      "sha256": "2aedf8c635a55dc2806e43d680ae7979faf85c28d7773784b001d7527c6ac184",
+      "bytes": 8564
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_observation_correction_design_20261020.json",
+      "sha256": "8e0c0f796898685602555f7122cc644ca0c6aa399533f9ac0819c0ed8d1cd96a",
+      "bytes": 1826
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_observation_correction_results_20261020.json",
+      "sha256": "276a8b95cb8a1fae8244ace3a968856537a2b8a9e5e945c8aa43c67fd2afbc4f",
+      "bytes": 15913
+    },
+    {
+      "path": "docs/evidence/gadgetpickup_observation_feedback_results_20261020.json",
+      "sha256": "4fbcd991ca86e36b8119be0f201559aeeb188b20a2e537745a7a4f5a8ab728eb",
+      "bytes": 7900
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/observation_corrected_predictions.parquet",
+      "sha256": "916b191ae6638fda34fe853c48a6bfa34b1aded5d1755337e44d09c5ce40e948",
+      "bytes": 792091
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/pagination_gap_diagnostic.csv",
+      "sha256": "62001b36557beffe9d1d8006a81398d008f461a6a3c2c2be283c8b6fad966d36",
+      "bytes": 779268
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/observation_correction.json",
+      "sha256": "276a8b95cb8a1fae8244ace3a968856537a2b8a9e5e945c8aa43c67fd2afbc4f",
+      "bytes": 15913
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/observed_intervals/feedback_full_history.csv",
+      "sha256": "4973c933a03f3d4ba93a62817d78c4c7feb325624be79bb1301e2b4399c15130",
+      "bytes": 2691726
+    },
+    {
+      "path": "output/swappa_rescue_20261016/fullsource/reference_screened/known_status/gadget_demand_20261020/snapshot_calendar.csv",
+      "sha256": "c14fac94a6e0c89a6133b7a3579053f2fc513ca969e732a02cc688f6b61cc085",
+      "bytes": 6388
+    }
+  ]
+}

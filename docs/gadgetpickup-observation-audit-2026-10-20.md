@@ -2,6 +2,8 @@
 
 Date: October 20, 2026. Audience: Lorenzo and future research agents. Status: verified source-data findings and a limited public-page validation. No causal demand estimate, finite regret allowance, or cost interval is supplied by this audit.
 
+> **Follow-up completed:** `gadgetpickup-identification-status-2026-10-20.md` reports the corrected refit, pagination-gap association, and corrected sales-information calculation.
+
 ## Result and decision
 
 Two source-data problems must be addressed before promoting the earlier demand or cost calculations. First, the November 19 spreadsheet repeats every non-date cell of the November 18 spreadsheet. Second, all 3,121 duplicated listing-days in the original tables straddle 50-row page boundaries. Removing duplicate rows does not establish that the remaining rows represent a simultaneous census of offers.
