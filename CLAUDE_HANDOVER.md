@@ -1,5 +1,9 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+## Two human research notes, October 20, 2026
+
+Lorenzo requested two separate consolidated notes. In the paper sibling, `JPE Revision/swappa-shared-pricing-note-2026-10-19.tex` now covers **Upgrade alone**; `JPE Revision/swappa-post-upgrade-research-note-2026-10-20.tex` covers **all subsequent work**, through persistent prices, aggregate performance, and original-target transfer. The earlier empirical-foundations and rule-tests human notes are historical. Both current PDFs were compiled and visually reviewed with Lorenzo's explicit authorization; see the paper handover for their local paths. These notes govern human exposition; the implementation records below retain exact numerical provenance. No new estimates or canonical manuscript changes were made by the consolidation.
+
 ## GadgetPickup demand and regret investigation, October 20, 2026
 
 Current writer: none. Persistent-price, aggregate-performance, and demand extension completed; no process remains live.
