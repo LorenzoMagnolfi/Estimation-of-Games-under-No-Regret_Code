@@ -32,7 +32,7 @@ def main():
             mean_raw_own_count=float(s.own_n.mean()),mean_retained_own_count=float(retained.mean()),
             maximum_omitted_own_count=float(np.max(s.own_n.to_numpy()-retained))))
         for fit in spec['demand_fits']:
-            artifact=RUN/(stem+'_'+fit+'_coef.npz');z=np.load(artifact)
+            artifact=RUN/(stem+'_'+fit+'_coef.npz');z=np.load(artifact,allow_pickle=True)  # Trusted local artifacts written by policy_cost_frontier.
             assert np.array_equal(codes,z['codes'])
             A=z['A'];B=z['B'];w=z['weights'];cap=z['caps'];qa=z['q_observed']
             assert len(qa)==len(s) and np.min(qa)>0
