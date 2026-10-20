@@ -1,5 +1,6 @@
 """Recover historical table order and audit demand-identifying variation."""
 from __future__ import annotations
+import argparse
 import hashlib
 import itertools
 import json
@@ -39,6 +40,9 @@ def extract():
 def summarize(a,sources):
     d=pd.read_parquet(ROOT/'output/swappa_rescue_20261016/fullsource/reference_screened/panel.parquet')
     duplicate=a.duplicated(['Code','date'],keep=False)
+    dup=a.loc[duplicate].groupby(['Code','date']).agg(first_position=('table_position','min'),last_position=('table_position','max'),copies=('Code','size'),prices=('source_price_numeric','nunique'))
+    crossing_pages=((dup.last_position-1)//50)>((dup.first_position-1)//50)
+    gadget_codes=set(d.loc[d.Seller.eq('GadgetPickup'),'Code'])
     b=a.drop_duplicates(['Code','date']).merge(d,on=['Code','date','device_id'],how='inner',validate='one_to_one')
     b=b.sort_values(['date','device_id','table_position'])
     b['price_drop_from_previous']=b.groupby(['date','device_id']).Price.diff().lt(0)
@@ -72,11 +76,20 @@ def summarize(a,sources):
     for label,z in [('all',gp),('at_or_below_same_category_rival_min',gp[gp.cheapest_rival]),('above_same_category_rival_min',gp[~gp.cheapest_rival&gp.rival_min.notna()])]:
         summaries.append(dict(group=label,rows=len(z),sales=int(z.sale_terminal_status.sum()),position_median=float(z.table_position.median()),position_q90=float(z.table_position.quantile(.9)),position_first_share=float(z.table_position.eq(1).mean()),position_top10_share=float(z.table_position.le(10).mean())))
     b[['Code','date','device_id','table_position','display_number_numeric','Price','price_drop_from_previous']].to_parquet(RUN/'display_order_matched.parquet',index=False)
-    return dict(files=len(sources),file_errors=[z for z in sources if 'error' in z],extracted_rows=len(a),dates=int(a.date.nunique()),duplicate_rows=int(duplicate.sum()),matched_rows=len(b),unmatched_unique_rows=int(len(a.drop_duplicates(['Code','date']))-len(b)),numeric_display_fraction=float(a.display_number_numeric.notna().mean()),display_equals_position_fraction=float(a.display_number_numeric.eq(a.table_position).mean()),source_price_mismatch_rows=int(b.source_price_numeric.ne(b.Price).sum()),adjacent_price_inversions=int(b.price_drop_from_previous.sum()),device_dates=int(b.groupby(['device_id','date']).ngroups),device_dates_with_inversion=int(b.loc[b.price_drop_from_previous,['device_id','date']].drop_duplicates().shape[0]),gadget_position=summaries,gadget_tied_groups=len(ties),gadget_same_price_pair_transitions=pair_total,gadget_same_price_pair_order_reversals=int(pair_reversed),gadget_tie_creation_order=dict(older_first=int(created_order[0]),newer_first=int(created_order[1]),same_created_date=int(created_order[2])),rival_min_crossings=int(crossing.sum()),crossing_sources=c.value_counts().reset_index(name='rows').to_dict('records'),updated_gap_counts=gap.to_dict('records'))
+    return dict(files=len(sources),file_errors=[z for z in sources if 'error' in z],extracted_rows=len(a),dates=int(a.date.nunique()),duplicate_rows=int(duplicate.sum()),duplicate_listing_days=len(dup),duplicate_copy_counts=dup.copies.value_counts().to_dict(),duplicate_same_price_fraction=float(dup.prices.eq(1).mean()),duplicate_cross_50_row_boundary_fraction=float(crossing_pages.mean()),gadget_duplicate_listing_days=int(dup.reset_index().Code.isin(gadget_codes).sum()),matched_rows=len(b),unmatched_unique_rows=int(len(a.drop_duplicates(['Code','date']))-len(b)),numeric_display_fraction=float(a.display_number_numeric.notna().mean()),display_equals_position_fraction=float(a.display_number_numeric.eq(a.table_position).mean()),source_price_mismatch_rows=int(b.source_price_numeric.ne(b.Price).sum()),adjacent_price_inversions=int(b.price_drop_from_previous.sum()),device_dates=int(b.groupby(['device_id','date']).ngroups),device_dates_with_inversion=int(b.loc[b.price_drop_from_previous,['device_id','date']].drop_duplicates().shape[0]),gadget_position=summaries,gadget_tied_groups=len(ties),gadget_same_price_pair_transitions=pair_total,gadget_same_price_pair_order_reversals=int(pair_reversed),gadget_tie_creation_order=dict(older_first=int(created_order[0]),newer_first=int(created_order[1]),same_created_date=int(created_order[2])),rival_min_crossings=int(crossing.sum()),crossing_sources=c.value_counts().reset_index(name='rows').to_dict('records'),updated_gap_counts=gap.to_dict('records'))
 
 def main():
-    RUN.mkdir(parents=True,exist_ok=True);a,sources=extract();result=dict(code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),design_sha256=hashlib.sha256(DESIGN.read_bytes()).hexdigest(),summary=summarize(a,sources),source_files=sources,interpretation='Displayed table order is observed; featured flags and causal/random ordering are not established. Updated is not verified transaction time. No causal demand coefficient, instrument, regret bound or cost estimate.')
-    for p in [RUN/'display_order_audit.json',ROOT/'docs/evidence/gadgetpickup_display_order_results_20261020.json']:p.write_text(json.dumps(result,indent=2,default=str)+'\n')
+    RUN.mkdir(parents=True,exist_ok=True)
+    parser=argparse.ArgumentParser();parser.add_argument('--from-cache',action='store_true');args=parser.parse_args()
+    extraction_commit=None
+    if args.from_cache:
+        prior=json.loads((RUN/'display_order_audit.json').read_text());sources=prior['source_files']
+        for r in sources:
+            assert 'error' not in r and hashlib.sha256((ROOT/'data/Swappa_Daily_Data'/r['file']).read_bytes()).hexdigest()==r['sha256']
+        a=pd.read_parquet(RUN/'historical_display_order.parquet');extraction_commit=prior.get('extraction_commit') or prior['code_commit']
+    else:a,sources=extract()
+    result=dict(extraction_commit=extraction_commit,code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),design_sha256=hashlib.sha256(DESIGN.read_bytes()).hexdigest(),summary=summarize(a,sources),source_files=sources,interpretation='Displayed table order is observed; featured flags and causal/random ordering are not established. Updated is not verified transaction time. No causal demand coefficient, instrument, regret bound or cost estimate.')
+    for p in [RUN/'display_order_audit.json',ROOT/'docs/evidence/gadgetpickup_display_order_results_20261020.json']:p.write_text(json.dumps(result,indent=2,default=str,allow_nan=False)+'\n')
     print(json.dumps(result['summary'],indent=2,default=str),flush=True);print('DISPLAY_ORDER_AUDIT_COMPLETE',flush=True)
 
 if __name__=='__main__':main()
