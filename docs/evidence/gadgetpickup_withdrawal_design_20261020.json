@@ -1,0 +1,45 @@
+{
+  "status": "Supplementary design fixed after initial price-rule and cost results, before computing withdrawal bounds",
+  "reason": "Complete the comparison set with the economically available choice of withholding all modeled inventory; not an assumption that a price floor reveals cost.",
+  "source": "https://swappa.com/faq/answer/cancel-listing",
+  "source_access_date": "2026-10-20",
+  "source_fact": "Swappa currently permits cancellation before purchase without penalty. Historical applicability to the 2023 panel is an additional maintained assumption; the live FAQ is not dated evidence of 2023 terms.",
+  "comparison": "Withhold all modeled seller inventory on each test day, yielding zero incremental selling payoff. This changes the participation choice, beyond the frozen price-only comparisons.",
+  "economic_assumptions": [
+    "Zero payoff is relative to retaining the device; cost denotes incremental opportunity cost of sale, not necessarily historical acquisition expenditure.",
+    "The modeled inventory payoff must represent the seller decision problem, or omitted inventory and outside-channel effects must be added.",
+    "The same specified cumulative foregone-profit budget covers withdrawal and all price-policy comparisons. Availability alone does not establish this behavioral bound.",
+    "This is a comparison on realized states, not a simulation of an alternative inventory path."
+  ],
+  "priors": [
+    "nonnegative_only",
+    "no_below_observed_receipt"
+  ],
+  "demand_fits": [
+    "seller",
+    "common"
+  ],
+  "sellers": [
+    "GadgetPickup",
+    "UPGRADE SOLUTION INC"
+  ],
+  "comparison_sets": [
+    "withdrawal_only",
+    "fitted_rules_plus_withdrawal",
+    "all_frozen_plus_withdrawal"
+  ],
+  "budgets_dollars_per_eligible_listing_day": [
+    0,
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10
+  ],
+  "target": "Observed-sale-weighted mean persistent listing opportunity cost, same target as original run",
+  "reporting": "Preserve all original outputs. Report every specified case and distinguish sensitivity sets from confidence sets. No cost equality, dispersion cap, or selected regret tolerance."
+}
