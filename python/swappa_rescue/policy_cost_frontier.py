@@ -80,7 +80,7 @@ def main():
             c=.37*cap
             direct=((xnew-c[idx,None])*qnew-(x-c[idx])[:,None]*qa[:,None]).sum(axis=0)/N
             assert np.max(abs(direct-(A-B@c)))<1e-10
-            artifact=RUN/(stem+'_'+fitname.replace('.joblib','')+'_policy_coefficients.npz')
+            artifact=RUN/((('gp' if seller=='GadgetPickup' else 'up')+'_'+('seller' if fitname.startswith('continuation') else 'common')+'_coef.npz'))
             np.savez_compressed(artifact,A=A,B=B,weights=w,caps=cap,codes=codes,policies=np.array(columns),q_observed=qa,q_proposed=qnew,proposed_prices=pnew)
             for family in ['all_frozen','fitted_rules_only']:
                 keep=np.ones(len(columns),dtype=bool) if family=='all_frozen' else np.array([not c.startswith('ask_shift_') for c in columns])
