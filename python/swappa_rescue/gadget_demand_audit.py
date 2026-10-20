@@ -30,7 +30,7 @@ class GadgetDemand(MultiproductDemand):
         z=super().continuous(d,action)
         if self.kind!='additive':z['calendar_time']=(d.date-pd.Timestamp('2023-07-11')).dt.days.to_numpy()/100
         if self.kind=='category_age':
-            for cat in self.categories:z['age::'+cat]=np.log1p(d.since_seen.to_numpy())*d.category.eq(cat).to_numpy()
+            z=pd.concat([z,pd.DataFrame({'age::'+cat:np.log1p(d.since_seen.to_numpy())*d.category.eq(cat).to_numpy() for cat in self.categories})],axis=1)
         if self.kind=='category_spline':
             # These are predictive price controls, not a claim of causal monotonicity.
             for knot in [200,400,600,800]:z['price_hinge_'+str(knot)]=np.maximum(d.Price.to_numpy()-knot,0)/100

@@ -1,0 +1,19 @@
+{
+  "status": "Exploratory extension declared after first demand refit results, before these fits",
+  "reason": "Linear time extrapolation and sparse category-age interactions worsened future predictions. Test models that avoid those specific extrapolations, preserving every previous result.",
+  "models": [
+    "category_without_calendar_trend",
+    "shallow_histogram_boosting_prediction_benchmark"
+  ],
+  "tree_settings": {
+    "learning_rate": 0.05,
+    "max_iter": 200,
+    "max_leaf_nodes": 7,
+    "min_samples_leaf": 100,
+    "l2_regularization": 10,
+    "early_stopping": false
+  },
+  "splits": "Same three chronological periods as original demand design",
+  "cost_inversion": "Do not run cost inversion on the predictive benchmark; flexible fit alone does not identify causal effects.",
+  "regret_evidence": "Audit seller policy repetition, common-price batches, feedback observability, and stable-environment conditions before applying a theorem."
+}
