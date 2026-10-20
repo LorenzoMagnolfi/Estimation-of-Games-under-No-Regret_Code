@@ -1,0 +1,21 @@
+{
+  "status": "Information diagnostic declared before calculation. No adoption or calibrated cost interval.",
+  "categories": "Five most exposed GadgetPickup categories through September 30, already reported in extension audit",
+  "period": [
+    "2023-10-01",
+    "2023-12-22"
+  ],
+  "information_start": "October 1; intentionally omit prior seller information, not a claim of seller restart",
+  "units": [
+    "bounded daily fraction sold, no within-day independence",
+    "individual Bernoulli exposures, additional conditional mean restriction within batch"
+  ],
+  "confidence": "Hoeffding simultaneous over five selected categories, sequentially introduced exact integer price arms, and sample counts: radius sqrt(log(2*5*j*(j+1)*m*(m+1)/.05)/(2*m)); unobserved [0,1]. Uses prior completed dates only.",
+  "maintained_for_diagnostic": [
+    "For each category and exact price, conditional expected sale fraction is constant throughout the evaluation period.",
+    "Price and qualifying inventory are chosen before the outcomes; terminal proxy is valid timely feedback.",
+    "No cross-price or cross-category transfer; separate arms."
+  ],
+  "report": "all categories, prior positive lower-bound coverage, interval widths, zero-cost non-dominance against previously seen prices; not actual seller regret",
+  "scope": "Failure of this confidence construction is not an impossibility result for all learners or confidence bounds."
+}
