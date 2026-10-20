@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-20",
+  "status": "Specified before new horizon, event-study, or cost results; previous audits are known.",
+  "sample": "Corrected fullsource_refscreen_known; demand diagnostics use all corrected dates; behavior evaluation November 1-December 22, 2023 only.",
+  "review_proxy": "Dates with >=10 changed continuing GadgetPickup quotes across >=3 phone models, as defined in the prior audit. Model-days require all retained offers to have a consecutive fresh previous quote.",
+  "primary_horizon": "Empirical distribution of gaps between consecutive batch-review dates strictly before November 1. Use this same ex ante distribution for every November-December comparison, not an offer duration selected by eventual sale or adjustment.",
+  "horizon_comparisons": [
+    1,
+    3,
+    7,
+    14
+  ],
+  "persistent_payoff": "For conditional daily probability q and fixed price x, contribution over horizon H is [1-(1-q)^H]*(x-c). Average this coefficient over the primary H distribution. A phone sells at most once. No time discounting within two weeks; primary horizon can exceed two weeks if preperiod gaps do. Hazard, price, continuation value, competitor state, and own-peer summary remain constant until review. No replenishment before review. These are explicit approximations, not consequences of observing a spell.",
+  "demand_specifications": [
+    "cached_corrected_additive",
+    "additive_no_initial",
+    "category_week_C1"
+  ],
+  "demand_provenance": "Use prior five-fold factual/shift predictions; refit matching alternative folds only to obtain retaining-previous-quote predictions. Check factual reproduction before use. No model selected by cost tightness.",
+  "behavior": "Unknown persistent nonnegative listing costs and stable nonnegative per-model adjustment cost K. Implemented expected contribution gain >= K; ignored shift gain on review-inaction dates <= K. Report primary and separately stronger complete-menu optimality on adjustment dates. Model-level aggregate review contribution >=0. Report infeasibility without repairing with arbitrary slack.",
+  "target": "Review-exposure expected-sales-weighted mean listing opportunity cost. This differs from prior daily-history and realized-sales means. Repeated anchors are conditional review opportunities, not a forecast of distinct sales over the whole panel.",
+  "scope": "Complete-menu version bounds restricted cumulative expected review regret by sum_g n_inaction_g K_g only within the maintained review model. Core version does not bound regret on adjustment dates. No actual daily-window ANR guarantee follows automatically.",
+  "demand_event_design": "On batch dates with a complete +/-7 calendar-day boundary window, treat categories with >=3 cuts and no increases among valid continuing quotes; controls have >=3 valid quotes and no price change. Assignment uses anchor-date prices, not future sales or changes. Stack category-days from -7 to +7 with stack-by-category and stack-by-date effects; base -1. Outcomes sale rate, mean ask, mean log listing age, and rival minimum price. Weight by prior-day category inventory (fixed within stack/category). Cluster by original category and calendar date. Missing categories remain missing; report attrition and subsequent control/treated changes. Both full and November-December anchor samples reported.",
+  "event_contrasts": "All leads/lags; mean leads -7:-2, mean post 0:3, 1:3, and 4:7; Wald pretrend diagnostics. Descriptive parallel-trend assessment, no instrumental-variable or automatic causal claim.",
+  "stable_price_demand": "Absorbed linear probability diagnostics on all fresh-quote rows and on unchanged-quote rows. Compare category-week/date, listing/date, and listing/category-date effects. Same continuous controls and exact $10 shift contrast. Not probability models for cost inversion.",
+  "hazard_check": "At batch anchors compare frozen factual daily probability to terminal sales while the offer remains observed at the anchor price. Stop before first new quote, gap, unknown exit, or sale, at most 14 days. Report depth bands 0,1-2,3-6,7-13 and stopping reasons; duplicated anchors acknowledged. This checks constant-hazard prediction under observed censoring, not unconditional H-day causal demand.",
+  "stopping_rule": "Do not select a horizon, model, subset of products, or extra tolerance based on obtaining nonempty or tight bounds. Preserve all prespecified results, distinguish economic incompatibility at fitted demand from a statistical rejection, and audit direct profits and horizon limiting cases."
+}
