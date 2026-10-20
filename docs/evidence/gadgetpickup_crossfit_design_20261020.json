@@ -1,0 +1,18 @@
+{
+  "status": "Exploratory retrospective demand check declared before fitting; not a seller-forecast exercise",
+  "reason": "Separate failure to forecast new calendar periods from failure to estimate contemporaneous demand using other listings. Entire listing histories remain together across five stable hash folds.",
+  "models": [
+    "gadget_additive_week",
+    "gadget_category_week",
+    "gadget_category_week_price_spline"
+  ],
+  "C": 1,
+  "folds": 5,
+  "selection": "Report every model; no cost inversion or allowance calibration.",
+  "variation_audit": [
+    "Price residual variation after category-by-week and category-by-day means",
+    "Conditional -10/+10 joint-price probability predictions on continuation rows",
+    "Whether core categories repeat observed prices across periods"
+  ],
+  "regret": "No predictive error is labeled seller regret; small prediction error does not by itself establish price choice near optimal."
+}

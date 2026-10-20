@@ -1,0 +1,211 @@
+{
+  "code_commit": "a51d34411caac852b8a69a5bb1eb930a4614a50a",
+  "script_sha256": "986838b458ecdea11e2ce125547583e23e85154c5f20fe34bcad21bf5f8ba61c",
+  "extension_design_sha256": "b0afd3e0ab6be0a6b9f861bbc3d0337a75ac3e493d1b5757be6a7f1697dcc7fe",
+  "records": [
+    {
+      "kind": "category_no_trend",
+      "train_end": "2023-08-31",
+      "test_start": "2023-09-01",
+      "test_end": "2023-09-30",
+      "metrics": {
+        "rows": 4092,
+        "sales": 280,
+        "predicted_sales": 366.9818180644269,
+        "mean_receipt_actual": 404.3890357142858,
+        "mean_receipt_predicted": 424.57734133115576,
+        "receipt_residual": -42583.23463066825,
+        "logloss": 0.23385513626738116,
+        "brier": 0.06176880116067102,
+        "auc": 0.7162199257982312
+      }
+    },
+    {
+      "kind": "tree",
+      "train_end": "2023-08-31",
+      "test_start": "2023-09-01",
+      "test_end": "2023-09-30",
+      "metrics": {
+        "rows": 4092,
+        "sales": 280,
+        "predicted_sales": 260.15892137784743,
+        "mean_receipt_actual": 404.3890357142858,
+        "mean_receipt_predicted": 422.55907246799234,
+        "receipt_residual": 3296.417488303306,
+        "logloss": 0.2346924024006572,
+        "brier": 0.061067112422980595,
+        "auc": 0.6787316369359916
+      }
+    },
+    {
+      "kind": "category_no_trend",
+      "train_end": "2023-09-30",
+      "test_start": "2023-10-01",
+      "test_end": "2023-10-31",
+      "metrics": {
+        "rows": 3747,
+        "sales": 256,
+        "predicted_sales": 354.8892927847999,
+        "mean_receipt_actual": 436.75218750000005,
+        "mean_receipt_predicted": 460.9410682917609,
+        "receipt_residual": -51774.489741533194,
+        "logloss": 0.2288028676612256,
+        "brier": 0.061870814172021414,
+        "auc": 0.7487003410555716
+      }
+    },
+    {
+      "kind": "tree",
+      "train_end": "2023-09-30",
+      "test_start": "2023-10-01",
+      "test_end": "2023-10-31",
+      "metrics": {
+        "rows": 3747,
+        "sales": 256,
+        "predicted_sales": 336.8139487170507,
+        "mean_receipt_actual": 436.75218750000005,
+        "mean_receipt_predicted": 431.266283958921,
+        "receipt_residual": -33447.940048733086,
+        "logloss": 0.22557981519683476,
+        "brier": 0.059795006112149045,
+        "auc": 0.7393571191993698
+      }
+    },
+    {
+      "kind": "category_no_trend",
+      "train_end": "2023-10-31",
+      "test_start": "2023-11-01",
+      "test_end": "2023-12-22",
+      "metrics": {
+        "rows": 6429,
+        "sales": 585,
+        "predicted_sales": 562.3809445095657,
+        "mean_receipt_actual": 392.61135042735043,
+        "mean_receipt_predicted": 439.77045469841585,
+        "receipt_residual": -17640.883680696268,
+        "logloss": 0.2711419621916929,
+        "brier": 0.07604268330387938,
+        "auc": 0.7513253420850956
+      }
+    },
+    {
+      "kind": "tree",
+      "train_end": "2023-10-31",
+      "test_start": "2023-11-01",
+      "test_end": "2023-12-22",
+      "metrics": {
+        "rows": 6429,
+        "sales": 585,
+        "predicted_sales": 470.74156807281963,
+        "mean_receipt_actual": 392.61135042735043,
+        "mean_receipt_predicted": 423.25166375167714,
+        "receipt_residual": 30435.488116105706,
+        "logloss": 0.26701550072827634,
+        "brier": 0.07444132198232539,
+        "auc": 0.7609638346291324
+      }
+    }
+  ],
+  "review_audit": {
+    "calendar_days": 165,
+    "listing_rows": 20486,
+    "category_days": 9671,
+    "categories": 173,
+    "consecutive_listing_rows": 18349,
+    "changed_listing_rows": 2035,
+    "common_price_multi_listing_share": 0.924449594438007,
+    "days_with_changes": 83,
+    "days_with_at_least_five_cuts": 42,
+    "top_categories_selected_by_pre_october_exposures": [
+      {
+        "category": "apple-iphone-x|256 GB|Good",
+        "days": 165,
+        "exposures": 1134,
+        "sales": 54,
+        "distinct_median_prices": 9,
+        "common_price_days": 129,
+        "review_changes": 11
+      },
+      {
+        "category": "apple-iphone-11|128 GB|Fair",
+        "days": 117,
+        "exposures": 587,
+        "sales": 21,
+        "distinct_median_prices": 12,
+        "common_price_days": 101,
+        "review_changes": 14
+      },
+      {
+        "category": "apple-iphone-xs-max|64 GB|Good",
+        "days": 161,
+        "exposures": 755,
+        "sales": 26,
+        "distinct_median_prices": 17,
+        "common_price_days": 152,
+        "review_changes": 18
+      },
+      {
+        "category": "apple-iphone-8|128 GB|Good",
+        "days": 124,
+        "exposures": 380,
+        "sales": 11,
+        "distinct_median_prices": 7,
+        "common_price_days": 124,
+        "review_changes": 7
+      },
+      {
+        "category": "apple-iphone-11|128 GB|Good",
+        "days": 105,
+        "exposures": 381,
+        "sales": 48,
+        "distinct_median_prices": 19,
+        "common_price_days": 86,
+        "review_changes": 24
+      }
+    ],
+    "monthly": [
+      {
+        "month": "2023-07",
+        "rows": 2043,
+        "sales": 168,
+        "mean_price": 402.0988742046011,
+        "sale_rate": 0.08223201174743025
+      },
+      {
+        "month": "2023-08",
+        "rows": 4175,
+        "sales": 305,
+        "mean_price": 448.9077844311377,
+        "sale_rate": 0.07305389221556886
+      },
+      {
+        "month": "2023-09",
+        "rows": 4092,
+        "sales": 280,
+        "mean_price": 485.74828934506354,
+        "sale_rate": 0.06842619745845552
+      },
+      {
+        "month": "2023-10",
+        "rows": 3747,
+        "sales": 256,
+        "mean_price": 485.48839071257004,
+        "sale_rate": 0.06832132372564718
+      },
+      {
+        "month": "2023-11",
+        "rows": 4106,
+        "sales": 346,
+        "mean_price": 525.6400389673648,
+        "sale_rate": 0.08426692644909888
+      },
+      {
+        "month": "2023-12",
+        "rows": 2323,
+        "sales": 239,
+        "mean_price": 436.77012483857084,
+        "sale_rate": 0.10288420146362462
+      }
+    ]
+  }
+}
