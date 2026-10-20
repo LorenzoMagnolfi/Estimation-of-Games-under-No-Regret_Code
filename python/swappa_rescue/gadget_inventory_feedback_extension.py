@@ -103,14 +103,14 @@ def feedback():
                     lo,hi=intervals.T if restriction=='exact_price' else shape_bands(prices,*intervals.T)
                     empty=bool(np.any(lo>hi+1e-10))
                     best=max(0.,float(np.max(x*lo)))
-                    records.append(dict(unit=unit,restriction=restriction,category=r.category,category_index=i,date=str(r.date.date()),selected=r.category in chosen,rows=r.rows,sales=r.sales,price=p,prior_count=state[p][0],lower=float(lo[at]),upper=float(hi[at]),width=float(hi[at]-lo[at]),empty=empty,zero_cost_dominated=(float(x[at]*hi[at])+1e-10<best) if not empty else None,prices=len(state)))
+                    records.append(dict(unit=unit,restriction=restriction,category=r.category,category_index=i,date=str(r.date.date()),selected=r.category in chosen,rows=r.rows,sales=r.sales,price=p,prior_count=state[p][0],lower=float(lo[at]),upper=float(hi[at]),width=float(hi[at]-lo[at]),empty_set=empty,zero_cost_dominated=(float(x[at]*hi[at])+1e-10<best) if not empty else None,prices=len(state)))
             state[p][0]+=1 if unit=='day' else r.rows
             state[p][1]+=r.sales/r.rows if unit=='day' else r.sales
     a=pd.DataFrame(records);a.to_csv(RUN/'feedback_full_history.csv',index=False)
     out=[]
     for (unit,restriction,cat),z in a.groupby(['unit','restriction','category']):
-        valid=z[~z.empty]
-        out.append(dict(unit=unit,restriction=restriction,category=cat,selected=bool(z.selected.iloc[0]),category_index=int(z.category_index.iloc[0]),days=len(z),empty_days=int(z.empty.sum()),mean_width=float(valid.width.mean()) if len(valid) else None,zero_cost_dominated_days=int(valid.zero_cost_dominated.eq(True).sum()),max_prior_count=float(z.prior_count.max())))
+        valid=z[~z.empty_set]
+        out.append(dict(unit=unit,restriction=restriction,category=cat,selected=bool(z.selected.iloc[0]),category_index=int(z.category_index.iloc[0]),days=len(z),empty_days=int(z.empty_set.sum()),mean_width=float(valid.width.mean()) if len(valid) else None,zero_cost_dominated_days=int(valid.zero_cost_dominated.eq(True).sum()),max_prior_count=float(z.prior_count.max())))
     return out
 
 def main():
