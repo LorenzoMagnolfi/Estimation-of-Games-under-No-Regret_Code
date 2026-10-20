@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-20",
+  "status": "frozen before new price-rule fits or cost profiles",
+  "sellers": [
+    "GadgetPickup",
+    "UPGRADE SOLUTION INC",
+    "AMS Traders Inc.",
+    "Certified Cell, Inc",
+    "SaveGadget"
+  ],
+  "train_end": "2023-09-30",
+  "validation_end": "2023-10-31",
+  "test_start": "2023-11-01",
+  "unit": "one-step listing price forecast using strictly earlier retained observations; evaluation only consecutive calendar days",
+  "families": [
+    "persistence",
+    "previous category median",
+    "competitor offset with historical price limits and scheduled review",
+    "markdown after elapsed time since observed price change",
+    "recent category sales thresholds with cooldown"
+  ],
+  "competitor_offsets": [
+    -20,
+    -10,
+    -5,
+    0,
+    5,
+    10,
+    20,
+    40,
+    60
+  ],
+  "deadbands": [
+    0,
+    3,
+    5,
+    10,
+    20
+  ],
+  "floor_quantiles": [
+    null,
+    0,
+    0.1
+  ],
+  "review_weekdays": [
+    "daily",
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "markdown_cooldowns": [
+    7,
+    14,
+    28,
+    56
+  ],
+  "price_steps": [
+    1,
+    3,
+    5,
+    10,
+    20
+  ],
+  "sales_low_thresholds": [
+    0,
+    1,
+    2,
+    5,
+    10
+  ],
+  "sales_high_threshold_formula": "2*low+2",
+  "sales_lookback_days": 7,
+  "selection": "Select within each family by October mean absolute price error, equally weighting seller-category-days. Also retain a separately labeled selector giving equal total weight to changed and unchanged observations. No test-data or cost-bound tuning.",
+  "price_grid": "integer ask, displayed ceil(1.03*ask); broad implementation limits displayed approximately 10 to 2000, not a cost support restriction",
+  "cost_plan": "Freeze policy predictions before loading demand or computing cost bounds. Evaluate fixed-demand linear profit-comparison constraints with persistent listing costs, first nonnegative with no finite upper cap, then the separately labeled no-below-observed-receipt restriction. No narrow within-category cost span. Compute all predeclared regret budgets and a feasibility frontier; do not call these confidence intervals.",
+  "additional_benchmarks": "uniform previous-ask changes of -10,-5,+5,+10 dollars, known before current choice; no current-profit oracle",
+  "regret_budget_dollars_per_eligible_listing_day": [
+    0,
+    0.01,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10
+  ],
+  "limitations": "Daily snapshots do not establish timing, exogeneity, or software adoption. Sales history uses maintained terminal-sale assignment. One-step forecasts do not simulate alternative future inventory paths. Theory and first-stage uncertainty assessed separately."
+}
