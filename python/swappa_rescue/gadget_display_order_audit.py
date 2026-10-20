@@ -67,6 +67,7 @@ def summarize(a,sources):
     last=s.groupby('Code').agg(date=('date','max'),updated=('Updated','first'),sold=('Real_Sold','first'))
     last=last[last.date.lt(d.date.max())].copy();last['update_gap']=(last.updated-last.date).dt.days
     gap=last.groupby(['sold','update_gap'],dropna=False).size().reset_index(name='listings')
+    gap=gap.astype(object).where(gap.notna(),None)
     summaries=[]
     for label,z in [('all',gp),('at_or_below_same_category_rival_min',gp[gp.cheapest_rival]),('above_same_category_rival_min',gp[~gp.cheapest_rival&gp.rival_min.notna()])]:
         summaries.append(dict(group=label,rows=len(z),sales=int(z.sale_terminal_status.sum()),position_median=float(z.table_position.median()),position_q90=float(z.table_position.quantile(.9)),position_first_share=float(z.table_position.eq(1).mean()),position_top10_share=float(z.table_position.le(10).mean())))
