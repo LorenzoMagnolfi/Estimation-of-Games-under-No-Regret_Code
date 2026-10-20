@@ -22,7 +22,7 @@ KEYS = ['device_id','Storage','Condition']
 
 def display(raw):
     """Project a proposed displayed price onto the declared asking-price grid."""
-    ask = np.clip(np.rint(np.asarray(raw)/1.03), 10, 1941)
+    ask = np.clip(np.floor(np.asarray(raw)/1.03+1e-9), 10, 1941)
     return np.ceil(1.03*ask-1e-9)
 
 
