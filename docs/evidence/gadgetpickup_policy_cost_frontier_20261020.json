@@ -1,0 +1,2411 @@
+{
+  "code_commit": "3b4b77f1b366d679abfb0eddc1a9c3639ba1eef1",
+  "design_sha256": "2823d6f4cac3ddb15876e30a5ee17ff87e7d84366bd71cf512c5e9b1cbecf0b8",
+  "script_sha256": "1342ff17bb44f4d2cbebd32c4bab7a63ae0ccda2a1fc08343d9c44382fff9396",
+  "forecasts_sha256": {
+    "AMS_Traders_Inc_forecasts.parquet": "639b89b914980c36f2f290fc52e9c13108b37eb8de5ab62fbbf0bb9c71b16dad",
+    "Certified_Cell_Inc_forecasts.parquet": "06ef46f84a5555f7f68cc2c372077dea528056711638dba2db983388044c106e",
+    "GadgetPickup_forecasts.parquet": "42816c5656df0e9bdc41afa2f9b025f654c97ea5b8048c3efb9bf5f684837bf1",
+    "SaveGadget_forecasts.parquet": "8b3e3ed8b8f6a2807c9cfee05fed8f7e7fb27f3fc20c713332208d7396f0c024",
+    "UPGRADE_SOLUTION_INC_forecasts.parquet": "e6b36bafc33f80b813a5171d8b3805a0607191ca12746053c3e0f82034283a7c"
+  },
+  "demand_sha256": {
+    "continuation_seller_full_1.joblib": "7a9a7d792f46917bb07d32800fa9de06ad2121e371b30693bdf063041403e076",
+    "multiproduct_initial_terminal.joblib": "f92e423075f0186878d29f06ab189bbfe620358b9ca83e5f217a6d3d3946953c"
+  },
+  "interpretation": "Exact LP sensitivity sets at fixed fitted demand. No statistical coverage, algorithm adoption, or causal demand validation is claimed. Persistent unknown costs; no cost-dispersion restriction. Price rules were frozen before loading demand.",
+  "results": [
+    {
+      "seller": "GadgetPickup",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 14,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_seller_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 14,
+      "prior_mean_cost_upper": 399.5394055201699,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 2.6829491021652405,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 165.5860819021747
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 234.2179308366788
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 164.24606972279713
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 235.55794301605636
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 159.00437897982985
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 240.79963375902364
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 152.7489784331853
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 247.0550343056682
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 135.70460890396524
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 264.0994038348882
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 111.14212924382355
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 288.66188349502994
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 70.1897940622112
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 329.6142186766423
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 17.770719238168468
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 382.03329350068503
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.0,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_seller_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 10,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_seller_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 10,
+      "prior_mean_cost_upper": 399.5394055201699,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.0,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_seller_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 14,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_common_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 14,
+      "prior_mean_cost_upper": 399.5394055201699,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 3.3496485492874277,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 180.20262799791246
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 219.60138474094103
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 179.0344208945655
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 220.769591844288
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 174.399753092171
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 225.40425964668248
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 168.69075208554602
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 231.11326065330746
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 152.62252062915468
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 247.1814921096988
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 129.2732602007841
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 270.53075253806935
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 90.91944260665542
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 308.88457013219806
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 37.02266769178585
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 362.78134504706765
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.0,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_common_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 10,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_common_coef.npz"
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "cost_variables": 832,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 10,
+      "prior_mean_cost_upper": 399.5394055201699,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 399.5394055201696
+          },
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.0,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\gp_common_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 14,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_seller_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 14,
+      "prior_mean_cost_upper": 139.80480916030533,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 2.033908772384497,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 52.50553438543402
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.1226577221514
+          },
+          "margin_lower": 0.7214644152531946,
+          "margin_upper": 87.33858775197056
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 51.6718790430152
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.213722045522
+          },
+          "margin_lower": 0.630400091882592,
+          "margin_upper": 88.17224309438939
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 48.600044264031
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.57789377967077
+          },
+          "margin_lower": 0.2662283577338087,
+          "margin_upper": 91.24407787337358
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 45.36586443738527
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 94.47825770001931
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 40.261982960889085
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 99.5821391765155
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 32.34920284128628
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 107.4949192961183
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 18.740338064145057
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 121.10378407325953
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.43807153765505275
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.40605059974953
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.07492600559474287,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_seller_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 10,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_seller_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "continuation_seller_full_1.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 10,
+      "prior_mean_cost_upper": 139.80480916030533,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.26275062145147376,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 5.803017504641656
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.12272412418022
+          },
+          "margin_lower": 0.7213980132243591,
+          "margin_upper": 134.04110463276294
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 5.045267273401482
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.21375912973372
+          },
+          "margin_lower": 0.6303630076708657,
+          "margin_upper": 134.7988548640031
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 3.9706233355307647
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.57789915194775
+          },
+          "margin_lower": 0.2662229854568352,
+          "margin_upper": 135.8734988018738
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 2.793269801121803
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 137.0508523362828
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.18637747875803937
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.65774465864655
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.0749255774718664,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_seller_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 14,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_common_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "all_frozen",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 14,
+      "prior_mean_cost_upper": 139.80480916030533,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 1.5417738874342422,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 47.787512871438544
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.00536259913827
+          },
+          "margin_lower": 0.8387595382663164,
+          "margin_upper": 92.05660926596605
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 46.82472340815993
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.12166390449417
+          },
+          "margin_lower": 0.7224582329104123,
+          "margin_upper": 93.01939872924464
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 43.200237469266234
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.58670285227663
+          },
+          "margin_lower": 0.257419285127952,
+          "margin_upper": 96.64388466813836
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 40.12241487900737
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 99.7217072583972
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 34.148599119807294
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 105.69552301759728
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 25.245711147886766
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 114.59841098951782
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 11.009441806120728
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 128.83468033128386
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.06876180609646337,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 214.31060175922607,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_common_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 10,
+      "prior_mean_cost_upper": null,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 3,
+            "value": null
+          },
+          "margin_lower": null,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_common_coef.npz"
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "multiproduct_initial_terminal.joblib",
+      "comparison_family": "fitted_rules_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "cost_variables": 178,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 10,
+      "prior_mean_cost_upper": 139.80480916030533,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.19639933834206946,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": {
+            "status": 0,
+            "value": 4.9165215828162125
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.00552599768235
+          },
+          "margin_lower": 0.8385961397222275,
+          "margin_upper": 134.92760055458837
+        },
+        {
+          "budget": 0.01,
+          "lower": {
+            "status": 0,
+            "value": 4.237142796869705
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.12177159363551
+          },
+          "margin_lower": 0.7223505437690676,
+          "margin_upper": 135.60697934053488
+        },
+        {
+          "budget": 0.05,
+          "lower": {
+            "status": 0,
+            "value": 3.0637310540832217
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.5867539774481
+          },
+          "margin_lower": 0.257368159956485,
+          "margin_upper": 136.78039108332135
+        },
+        {
+          "budget": 0.1,
+          "lower": {
+            "status": 0,
+            "value": 1.8164455369924462
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 138.02767660041215
+        },
+        {
+          "budget": 0.25,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": {
+            "status": 0,
+            "value": 0.0
+          },
+          "upper": {
+            "status": 0,
+            "value": 139.80480916030518
+          },
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ],
+      "budget_at_prior_upper_mean_cost": 0.06875814572322284,
+      "idealized_exp3ix_normalized_allowance_at_95pct": 179.95768256370445,
+      "coefficient_artifact": "C:\\Users\\magnolfi.1\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_rescue_20261016\\fullsource\\reference_screened\\known_status\\empirical_rules_20261020\\up_common_coef.npz"
+    }
+  ]
+}

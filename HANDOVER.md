@@ -1,5 +1,9 @@
 # HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+## Current Swappa research entry point (October 20, 2026)
+
+Read `docs/SWAPPA_RULE_TESTS_2026-10-20.md` and the top of `CLAUDE_HANDOVER.md`. Chronological rule tests and unknown-cost sensitivity programs are complete. The expected-sales target can be bounded without a cost cap, but a credible informative performance allowance and counterfactual demand remain unresolved. No active Swappa writer or background job remains from this pass.
+
 ## Purpose
 
 MATLAB + Stata + Python codebase for "Estimation of Games under No Regret: Structural Econometrics for AI" (Lomys & Magnolfi, JPE revision). Refactored from the RA's original `Replication_2025` package into a clean, reproducible layout. Simulates no-regret learning dynamics (regret matching, proxy-regret matching), solves BCCE identification problems via SOCP, and generates figures/tables for the paper.

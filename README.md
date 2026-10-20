@@ -7,6 +7,8 @@ This repository is the working code home for two related goals:
 
 ## Swappa research notes, October 20, 2026
 
+- [Rule tests and cost inversion](docs/SWAPPA_RULE_TESTS_2026-10-20.md): completed GadgetPickup-focused evaluation, separate expected-sales cost bounds, exact assumptions, and unresolved confidence guarantees. Governs the new calculations.
+
 - [Upgrade exercise closeout](docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md): assumptions, exact guarantees, conditional estimates, and limitations. The exercise did not establish an empirically validated rescue.
 - [Empirical foundations](docs/SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md): dated software/platform evidence, sources, descriptive pricing audit, and candidate assumptions for further work.
 - [Reproducible descriptive results](docs/evidence/pricing_practices_audit_20261020.json).

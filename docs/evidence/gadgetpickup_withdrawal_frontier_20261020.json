@@ -1,0 +1,2074 @@
+{
+  "code_commit": "e46548247dcaa3950191edaf9a69876da366d973",
+  "design_sha256": "3264111682fc2270b813e4c95a14f12003e933d556707bba88c48945291647c5",
+  "script_sha256": "03ef5950494bd9c0c3929eca55fb97c2fb5db9ecc37475042a38200d00831774",
+  "source_coefficients_sha256": {
+    "gp_common_coef.npz": "e5993ef0cf712486e3639315a40b5b966813aa20c610d024be8d6f2d259994d3",
+    "gp_seller_coef.npz": "58df8433db23bda9d4bdc67440feddf6aad243bc9bcbc0d56d0dad45f8ee6a94",
+    "up_common_coef.npz": "3ed1509d82f17a6968e1660e1610215b7a4087b574ea743b44a3adea9ee43394",
+    "up_seller_coef.npz": "c737cd91a10016d7140209a61a5a340d4374d5d431f6b7b25e8d50135445537c"
+  },
+  "interpretation": "Supplementary fitted-demand sensitivity sets. Historical feasibility, zero baseline payoff, modeled inventory coverage, and a common regret allowance are maintained assumptions; no confidence coverage is claimed.",
+  "inventory_audit": [
+    {
+      "seller": "GadgetPickup",
+      "retained_rows": 6429,
+      "retained_listings": 832,
+      "fraction_rows_raw_own_count_exceeds_retained": 0.0,
+      "mean_raw_own_count": 4.799035619847566,
+      "mean_retained_own_count": 4.799035619847566,
+      "maximum_omitted_own_count": 0.0
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "retained_rows": 1820,
+      "retained_listings": 178,
+      "fraction_rows_raw_own_count_exceeds_retained": 0.0,
+      "mean_raw_own_count": 26.63736263736264,
+      "mean_retained_own_count": 26.63736263736264,
+      "maximum_omitted_own_count": 0.0
+    }
+  ],
+  "results": [
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "withdrawal_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 18246.205461635516,
+          "margin_lower": -17846.401448896664,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 18250.007343858706,
+          "margin_lower": -17850.203331119854,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 18265.214872751454,
+          "margin_lower": -17865.410860012602,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 18284.224283867396,
+          "margin_lower": -17884.420271128543,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 18341.252517215216,
+          "margin_lower": -17941.448504476364,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 18436.299572794913,
+          "margin_lower": -18036.49556005606,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 18626.393683954306,
+          "margin_lower": -18226.589671215454,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 19006.5819062731,
+          "margin_lower": -18606.777893534247,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20147.146573229467,
+          "margin_lower": -19747.342560490615,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 22048.087684823426,
+          "margin_lower": -21648.283672084573,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "withdrawal_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 18246.205461635516,
+          "margin_lower": -17846.401448896664,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 18250.007343858706,
+          "margin_lower": -17850.203331119854,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 18265.214872751454,
+          "margin_lower": -17865.410860012602,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 18284.224283867396,
+          "margin_lower": -17884.420271128543,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 18341.252517215216,
+          "margin_lower": -17941.448504476364,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 18436.299572794913,
+          "margin_lower": -18036.49556005606,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 18626.393683954306,
+          "margin_lower": -18226.589671215454,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 19006.5819062731,
+          "margin_lower": -18606.777893534247,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20147.146573229467,
+          "margin_lower": -19747.342560490615,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 22048.087684823426,
+          "margin_lower": -21648.283672084573,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 12145.586223859616,
+          "margin_lower": -11745.782211120762,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 12165.580018935545,
+          "margin_lower": -11765.776006196691,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 12245.555199239261,
+          "margin_lower": -11845.751186500407,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 12345.524174618902,
+          "margin_lower": -11945.720161880048,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 12645.431100757833,
+          "margin_lower": -12245.627088018979,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 13145.27597765605,
+          "margin_lower": -12745.471964917197,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 14144.965731452481,
+          "margin_lower": -13745.161718713627,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 16144.345239045346,
+          "margin_lower": -15744.541226306492,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20147.146573229467,
+          "margin_lower": -19747.342560490615,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 22048.087684823426,
+          "margin_lower": -21648.283672084573,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "seller",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 2.6829491021652405,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 165.5860819021747,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 234.2179308366788
+        },
+        {
+          "budget": 0.01,
+          "lower": 164.24606972279713,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 235.55794301605636
+        },
+        {
+          "budget": 0.05,
+          "lower": 159.00437897982985,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 240.79963375902364
+        },
+        {
+          "budget": 0.1,
+          "lower": 152.7489784331853,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 247.0550343056682
+        },
+        {
+          "budget": 0.25,
+          "lower": 135.70460890396524,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 264.0994038348882
+        },
+        {
+          "budget": 0.5,
+          "lower": 111.14212924382355,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 288.66188349502994
+        },
+        {
+          "budget": 1,
+          "lower": 70.1897940622112,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 329.6142186766423
+        },
+        {
+          "budget": 2,
+          "lower": 17.770719238168468,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 382.03329350068503
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "withdrawal_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 18189.781651356796,
+          "margin_lower": -17789.977638617944,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 18193.423283135933,
+          "margin_lower": -17793.61927039708,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 18207.989810252482,
+          "margin_lower": -17808.18579751363,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 18226.197969148172,
+          "margin_lower": -17826.39395640932,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 18280.822445835238,
+          "margin_lower": -17881.018433096386,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 18371.863240313673,
+          "margin_lower": -17972.05922757482,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 18553.94482927055,
+          "margin_lower": -18154.140816531697,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 18918.108007184303,
+          "margin_lower": -18518.30399444545,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20010.597540925555,
+          "margin_lower": -19610.793528186703,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 21831.413430494315,
+          "margin_lower": -21431.609417755462,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "withdrawal_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 18189.781651356796,
+          "margin_lower": -17789.977638617944,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 18193.423283135933,
+          "margin_lower": -17793.61927039708,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 18207.989810252482,
+          "margin_lower": -17808.18579751363,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 18226.197969148172,
+          "margin_lower": -17826.39395640932,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 18280.822445835238,
+          "margin_lower": -17881.018433096386,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 18371.863240313673,
+          "margin_lower": -17972.05922757482,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 18553.94482927055,
+          "margin_lower": -18154.140816531697,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 18918.108007184303,
+          "margin_lower": -18518.30399444545,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20010.597540925555,
+          "margin_lower": -19610.793528186703,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 21831.413430494315,
+          "margin_lower": -21431.609417755462,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 12479.464981490655,
+          "margin_lower": -12079.660968751801,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 12496.496048122055,
+          "margin_lower": -12096.692035383201,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 12564.62031464766,
+          "margin_lower": -12164.816301908806,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 12649.775647804665,
+          "margin_lower": -12249.971635065811,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 12905.241647275683,
+          "margin_lower": -12505.43763453683,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 13331.018313060713,
+          "margin_lower": -12931.214300321859,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 14182.571644630765,
+          "margin_lower": -13782.767631891911,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 15885.678307770877,
+          "margin_lower": -15485.874295032023,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 20010.597540925555,
+          "margin_lower": -19610.793528186703,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 21831.413430494315,
+          "margin_lower": -21431.609417755462,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "GadgetPickup",
+      "fit": "common",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 5638,
+      "calendar_rounds": 52,
+      "target_sales": 471,
+      "mean_receipt": 399.8040127388535,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 3.3496485492874277,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 180.20262799791246,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 219.60138474094103
+        },
+        {
+          "budget": 0.01,
+          "lower": 179.0344208945655,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 220.769591844288
+        },
+        {
+          "budget": 0.05,
+          "lower": 174.399753092171,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 225.40425964668248
+        },
+        {
+          "budget": 0.1,
+          "lower": 168.69075208554602,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 231.11326065330746
+        },
+        {
+          "budget": 0.25,
+          "lower": 152.62252062915468,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 247.1814921096988
+        },
+        {
+          "budget": 0.5,
+          "lower": 129.2732602007841,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 270.53075253806935
+        },
+        {
+          "budget": 1,
+          "lower": 90.91944260665542,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 308.88457013219806
+        },
+        {
+          "budget": 2,
+          "lower": 37.02266769178585,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 362.78134504706765
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 399.5394055201696,
+          "margin_lower": 0.2646072186838637,
+          "margin_upper": 399.8040127388535
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "withdrawal_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 3856.934248973583,
+          "margin_lower": -3717.0901268361786,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 3859.7789810576705,
+          "margin_lower": -3719.934858920266,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 3871.15790939402,
+          "margin_lower": -3731.3137872566153,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 3885.3815698144567,
+          "margin_lower": -3745.537447677052,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 3928.052551075767,
+          "margin_lower": -3788.2084289383624,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 3999.170853177951,
+          "margin_lower": -3859.3267310405463,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 4141.407457382318,
+          "margin_lower": -4001.5633352449136,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4425.880665791054,
+          "margin_lower": -4286.0365436536495,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5279.30029101726,
+          "margin_lower": -5139.456168879856,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6701.666333060937,
+          "margin_lower": -6561.822210923533,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "withdrawal_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 3360.5754629865332,
+          "margin_lower": -3220.7313408491286,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 3456.9825355868497,
+          "margin_lower": -3317.138413449445,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 3492.6621238728485,
+          "margin_lower": -3352.818001735444,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 3537.261609230346,
+          "margin_lower": -3397.4174870929414,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 3671.060065302838,
+          "margin_lower": -3531.2159431654336,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 3894.0574920903264,
+          "margin_lower": -3754.2133699529218,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 4141.407457382318,
+          "margin_lower": -4001.5633352449136,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4425.880665791054,
+          "margin_lower": -4286.0365436536495,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5279.30029101726,
+          "margin_lower": -5139.456168879856,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6701.666333060937,
+          "margin_lower": -6561.822210923533,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.26275062145147376,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 5.803017504641656,
+          "upper": 139.12272412418022,
+          "margin_lower": 0.7213980132243591,
+          "margin_upper": 134.04110463276294
+        },
+        {
+          "budget": 0.01,
+          "lower": 5.045267273401482,
+          "upper": 139.21375912973372,
+          "margin_lower": 0.6303630076708657,
+          "margin_upper": 134.7988548640031
+        },
+        {
+          "budget": 0.05,
+          "lower": 3.9706233355307647,
+          "upper": 139.57789915194775,
+          "margin_lower": 0.2662229854568352,
+          "margin_upper": 135.8734988018738
+        },
+        {
+          "budget": 0.1,
+          "lower": 2.793269801121803,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 137.0508523362828
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.18637747875803937,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.65774465864655
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 2203.0280149300615,
+          "margin_lower": -2063.183892792657,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 2295.9955319805777,
+          "margin_lower": -2156.151409843173,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 2373.30258680087,
+          "margin_lower": -2233.4584646634653,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 2447.4639940259535,
+          "margin_lower": -2307.619871888549,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 2648.923602061709,
+          "margin_lower": -2509.0794799243045,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 2936.0043342861945,
+          "margin_lower": -2796.16021214879,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 3354.5458085289583,
+          "margin_lower": -3214.7016863915537,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4191.628757014485,
+          "margin_lower": -4051.7846348770804,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5279.30029101726,
+          "margin_lower": -5139.456168879856,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6701.666333060937,
+          "margin_lower": -6561.822210923533,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "seller",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 2.033908772384497,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 52.50553438543402,
+          "upper": 139.1226577221514,
+          "margin_lower": 0.7214644152531946,
+          "margin_upper": 87.33858775197056
+        },
+        {
+          "budget": 0.01,
+          "lower": 51.6718790430152,
+          "upper": 139.21372210189963,
+          "margin_lower": 0.6304000355049482,
+          "margin_upper": 88.17224309438939
+        },
+        {
+          "budget": 0.05,
+          "lower": 48.600044264031,
+          "upper": 139.57789377967077,
+          "margin_lower": 0.2662283577338087,
+          "margin_upper": 91.24407787337358
+        },
+        {
+          "budget": 0.1,
+          "lower": 45.36586443738527,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 94.47825770001931
+        },
+        {
+          "budget": 0.25,
+          "lower": 40.261982960889085,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 99.5821391765155
+        },
+        {
+          "budget": 0.5,
+          "lower": 32.34920284128628,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 107.4949192961183
+        },
+        {
+          "budget": 1,
+          "lower": 18.740338064145057,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 121.10378407325953
+        },
+        {
+          "budget": 2,
+          "lower": 0.43807153765505275,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.40605059974953
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "withdrawal_only",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 3827.039607445525,
+          "margin_lower": -3687.19548530812,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 3829.9934239919503,
+          "margin_lower": -3690.1493018545457,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 3841.808690177652,
+          "margin_lower": -3701.9645680402473,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 3856.5777729097786,
+          "margin_lower": -3716.733650772374,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 3900.8850211061604,
+          "margin_lower": -3761.0408989687558,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 3974.730434766796,
+          "margin_lower": -3834.8863126293913,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 4122.421262088067,
+          "margin_lower": -3982.5771399506625,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4417.80291673061,
+          "margin_lower": -4277.958794593206,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5303.947880658237,
+          "margin_lower": -5164.103758520833,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6780.856153870949,
+          "margin_lower": -6641.012031733545,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "withdrawal_only",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 1,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 3329.058656616619,
+          "margin_lower": -3189.2145344792143,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 3425.276629331411,
+          "margin_lower": -3285.4325071940066,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 3467.367406919144,
+          "margin_lower": -3327.523284781739,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 3519.9808789038057,
+          "margin_lower": -3380.136756766401,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 3677.8212948577825,
+          "margin_lower": -3537.977172720378,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 3940.8886547810903,
+          "margin_lower": -3801.0445326436857,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 4122.421262088067,
+          "margin_lower": -3982.5771399506625,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4417.80291673061,
+          "margin_lower": -4277.958794593206,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5303.947880658237,
+          "margin_lower": -5164.103758520833,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6780.856153870949,
+          "margin_lower": -6641.012031733545,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "fitted_rules_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 11,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.19639933834206946,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 4.9165215828162125,
+          "upper": 139.00552599768235,
+          "margin_lower": 0.8385961397222275,
+          "margin_upper": 134.92760055458837
+        },
+        {
+          "budget": 0.01,
+          "lower": 4.237142796869705,
+          "upper": 139.12177159363551,
+          "margin_lower": 0.7223505437690676,
+          "margin_upper": 135.60697934053488
+        },
+        {
+          "budget": 0.05,
+          "lower": 3.0637310540832217,
+          "upper": 139.5867539774481,
+          "margin_lower": 0.257368159956485,
+          "margin_upper": 136.78039108332135
+        },
+        {
+          "budget": 0.1,
+          "lower": 1.8164455369924462,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 138.02767660041215
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "nonnegative_only",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 0.0,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 0.0,
+          "upper": 1887.8651389623492,
+          "margin_lower": -1748.0210168249446,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.01,
+          "lower": 0.0,
+          "upper": 1983.5831127550484,
+          "margin_lower": -1843.7389906176438,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.05,
+          "lower": 0.0,
+          "upper": 2078.4215033374535,
+          "margin_lower": -1938.5773812000489,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.1,
+          "lower": 0.0,
+          "upper": 2164.379835617086,
+          "margin_lower": -2024.5357134796814,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.25,
+          "lower": 0.0,
+          "upper": 2422.254832455982,
+          "margin_lower": -2282.4107103185775,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 0.5,
+          "lower": 0.0,
+          "upper": 2829.2624719387127,
+          "margin_lower": -2689.418349801308,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 1,
+          "lower": 0.0,
+          "upper": 3366.6390986949837,
+          "margin_lower": -3226.794976557579,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 4389.062498796725,
+          "margin_lower": -4249.218376659321,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 5303.947880658237,
+          "margin_lower": -5164.103758520833,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 6780.856153870949,
+          "margin_lower": -6641.012031733545,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    },
+    {
+      "seller": "UPGRADE SOLUTION INC",
+      "fit": "common",
+      "comparison_family": "all_frozen_plus_withdrawal",
+      "prior": "no_below_observed_receipt",
+      "eligible_listing_days": 1563,
+      "calendar_rounds": 52,
+      "target_sales": 131,
+      "mean_receipt": 139.84412213740458,
+      "policy_count": 15,
+      "minimum_feasible_budget": 0.0,
+      "budget_at_zero_mean_cost": 1.5417738874342422,
+      "profiles": [
+        {
+          "budget": 0,
+          "lower": 47.787512871438544,
+          "upper": 139.00536259913827,
+          "margin_lower": 0.8387595382663164,
+          "margin_upper": 92.05660926596605
+        },
+        {
+          "budget": 0.01,
+          "lower": 46.82472340815993,
+          "upper": 139.12166390449417,
+          "margin_lower": 0.7224582329104123,
+          "margin_upper": 93.01939872924464
+        },
+        {
+          "budget": 0.05,
+          "lower": 43.200237469266234,
+          "upper": 139.58670285227663,
+          "margin_lower": 0.257419285127952,
+          "margin_upper": 96.64388466813836
+        },
+        {
+          "budget": 0.1,
+          "lower": 40.12241487900737,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 99.7217072583972
+        },
+        {
+          "budget": 0.25,
+          "lower": 34.148599119807294,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 105.69552301759728
+        },
+        {
+          "budget": 0.5,
+          "lower": 25.245711147886766,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 114.59841098951782
+        },
+        {
+          "budget": 1,
+          "lower": 11.009441806120728,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 128.83468033128386
+        },
+        {
+          "budget": 2,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 5,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        },
+        {
+          "budget": 10,
+          "lower": 0.0,
+          "upper": 139.80480916030518,
+          "margin_lower": 0.039312977099399404,
+          "margin_upper": 139.84412213740458
+        }
+      ]
+    }
+  ]
+}

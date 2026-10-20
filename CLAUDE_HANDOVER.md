@@ -1,5 +1,18 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+## Swappa rule tests and cost inversion, October 20, 2026
+
+- Governing implementation: `docs/SWAPPA_RULE_TESTS_2026-10-20.md`. Governing exposition: paper sibling `JPE Revision/swappa-rule-tests-note-2026-10-20.tex`. This section supersedes the earlier "next step: freeze and validate" status below.
+- Rule design fixed at 3047402; chronological prediction run at 2413ce4; price-only unknown-cost run at 3b4b77f. Supplementary withdrawal design 74d2283 and run e465482. Separate expected-sales target design c5775a1 and run 83c9668. Attribution and timing/LP checks e188ebe. All original outputs preserved. No demand refit.
+- GadgetPickup: 5,638 eligible test pairs, 870 changes. Persistence MAE 1.884; sales 1.911; waiting 1.942; competitor 10.051. No selected primary family improves on persistence. Other four sellers also evaluated; full metrics saved.
+- Unknown costs remain the estimation target. Nonnegative unrestricted listing costs, frozen price comparisons, and withdrawal bound GadgetPickup's separate expected-sales mean at [120.58,466.16] for epsilon=0 and [92.58,475.87] for epsilon=1 dollar per eligible listing-day. No common costs, cost span, or upper cap. Lower endpoint comes entirely from the -10 previous-ask comparison; fitted rules supply no positive lower bound for GadgetPickup.
+- The original observed-sales target remains unbounded without withdrawal and extremely wide with it. The separate no-below-receipt cap substantially changes the intervals and is labeled an unsupported additional restriction. Do not silently impose it or reinterpret receipt equivalents as net payout.
+- New-method requirements and exact Theorem CR mapping are documented. These are fitted-demand obedience-component sensitivity sets, not full Q_f confidence intervals. A history-rule/withdrawal comparison needs its own valid performance envelope, observed-window initialization treatment, consistency set, and demand uncertainty. Standard EXP3-IX bound is vacuous at 52 calendar days even with two actions.
+- Demand diagnostic: GadgetPickup predicted total sales 580.45 vs recorded 585, but predicted-sales mean receipt 466.16 vs actual 392.61. Within retained market-days own-inventory counts match retained counts exactly; excluded markets and channels remain outside the calculation.
+- Three focused tests pass; direct profit identities, analytic withdrawal bounds, interval monotonicity, and GadgetPickup's lower certificate pass. Human source static checks pass; no new PDF, manuscript edit, push, external contact, or HPC job.
+- Current writer: none; this pass is complete and no background process remains. Next research step: predetermine and audit demand calibration/causal response, and independently establish the feedback/review/performance inputs. Do not choose assumptions by tightness. Prior lower sections are historical records.
+
+
 ## Swappa exercise closure, October 20, 2026
 
 - Public-source research and the five-seller pricing audit are complete: `docs/SWAPPA_EMPIRICAL_FOUNDATIONS_2026-10-20.md`; reproducible script `python/swappa_rescue/pricing_practices_audit.py`, tracked result `docs/evidence/pricing_practices_audit_20261020.json`. No focal-seller repricer adoption verified. Actual-sales rule availability is documented by a May 2023 Repricer.com announcement; it is not Swappa adoption or a regret guarantee. No new cost estimates.

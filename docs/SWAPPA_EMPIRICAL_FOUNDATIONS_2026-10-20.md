@@ -1,5 +1,7 @@
 # Swappa empirical foundations: evidence and implementation record
 
+**Subsequent work:** `SWAPPA_RULE_TESTS_2026-10-20.md` now records the completed chronological rule tests and unknown-cost calculations. It supersedes the forward-looking execution status below. The source register remains the evidence record; no seller adoption or finite-sample performance guarantee has been established.
+
 Date: 2026-10-20. Status: broad public-source review and descriptive audit completed; no new cost estimator or seller-adoption claim. Read the human exposition in the paper sibling, `JPE Revision/swappa-empirical-foundations-note-2026-10-20.tex`. This file preserves evidence provenance and next-step specifications. The closed learning exercise is governed by `UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md`.
 
 ## Decision
