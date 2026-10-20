@@ -41,7 +41,7 @@ def main():
     g=s.groupby('Code');s['dp']=g.Price.diff();s['gap']=g.date.diff().dt.days;s['cut']=s.dp.lt(0)&s.gap.eq(1)
     cell=s.groupby(['category','date']).agg(rows=('Code','size'),price=('Price','median'),distinct_prices=('Price','nunique'),sales=('sale_terminal_status','sum'),cuts=('cut','sum')).reset_index().sort_values(['category','date'])
     cell['gap']=cell.groupby('category').date.diff().dt.days;cell['dprice']=cell.groupby('category').price.diff();cell['common']=cell.distinct_prices.eq(1)
-    categories=cell.groupby('category').agg(days=('date','size'),exposures=('rows','sum'),sales=('sales','sum'),distinct_median_prices=('price','nunique'),common_price_days=('common','sum'),review_changes=('dprice',lambda x:int((x.fillna(0)!=0).sum()))
+    categories=cell.groupby('category').agg(days=('date','size'),exposures=('rows','sum'),sales=('sales','sum'),distinct_median_prices=('price','nunique'),common_price_days=('common','sum'),review_changes=('dprice',lambda x:int((x.fillna(0)!=0).sum())))
     train=s[s.date.le('2023-09-30')].groupby('category').size();chosen=train.sort_values(ascending=False).head(5).index
     bymonth=s.assign(month=s.date.dt.strftime('%Y-%m')).groupby('month').agg(rows=('Code','size'),sales=('sale_terminal_status','sum'),mean_price=('Price','mean'));bymonth['sale_rate']=bymonth.sales/bymonth.rows
     batches=s.groupby('date').agg(cuts=('cut','sum'),listings=('Code','size'),sales=('sale_terminal_status','sum'))
