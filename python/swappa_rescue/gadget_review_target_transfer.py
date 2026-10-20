@@ -5,7 +5,18 @@ import numpy as np,pandas as pd
 from audit_panel import ROOT
 from gadget_demand_audit import RUN
 from gadget_persistent_review import probability
-from gadget_seller_aggregate_review import endpoint
+from scipy.optimize import linprog
+from scipy.sparse import csr_matrix
+
+
+def endpoint(obj,A,b):
+    scale=np.full(len(obj),100.)
+    row=np.maximum(1.,np.maximum(abs(b),np.max(abs(A*scale),axis=1)))
+    for method,presolve in [("highs",True),("highs-ds",False),("highs-ipm",False)]:
+        r=linprog(obj*scale,A_ub=csr_matrix(A*scale/row[:,None]),b_ub=b/row,bounds=(0,None),method=method,options={"presolve":presolve,"primal_feasibility_tolerance":1e-9,"dual_feasibility_tolerance":1e-9})
+        if r.status in [2,3]:return dict(status=int(r.status),value=None)
+        if r.success and np.max(A@(r.x*scale)-b)<1e-5:return dict(status=0,value=float(obj@(r.x*scale)))
+    raise AssertionError((r.message,float(np.max(A@(r.x*scale)-b)) if r.x is not None else None))
 
 DESIGN=ROOT/'docs/evidence/gadgetpickup_review_target_transfer_design_20261020.json'
 
