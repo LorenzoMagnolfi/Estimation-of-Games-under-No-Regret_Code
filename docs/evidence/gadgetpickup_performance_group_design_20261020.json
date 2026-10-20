@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-20",
+  "exploratory_extension_after_pooled_results": true,
+  "motivation": "Common category pricing and coordinated inventory entry motivate examining product-level performance and a separate common opportunity-cost approximation. Neither is selected because of resulting interval width.",
+  "window": "novdec",
+  "response_scales": [
+    0.5,
+    0.75,
+    1
+  ],
+  "rho_grid": [
+    0,
+    0.025,
+    0.05,
+    0.1,
+    0.15,
+    0.2
+  ],
+  "specifications": [
+    {
+      "name": "listing_cost_pooled",
+      "cost_group": "Code",
+      "performance_group": null,
+      "participation_group": null
+    },
+    {
+      "name": "listing_cost_device_participation",
+      "cost_group": "Code",
+      "performance_group": null,
+      "participation_group": "device_id"
+    },
+    {
+      "name": "listing_cost_device_performance",
+      "cost_group": "Code",
+      "performance_group": "device_id",
+      "participation_group": "device_id"
+    },
+    {
+      "name": "listing_cost_category_performance",
+      "cost_group": "Code",
+      "performance_group": "category",
+      "participation_group": "category"
+    },
+    {
+      "name": "category_cost_pooled",
+      "cost_group": "category",
+      "performance_group": null,
+      "participation_group": null
+    }
+  ],
+  "comparison_family": [
+    -10,
+    -5,
+    5,
+    10
+  ],
+  "qualification": "Category costs mean common opportunity value for device/model storage condition, not equal historical invoice costs. Product-group deviations require the maintained absence of demand spillovers between groups. Group performance prevents unrestricted offsetting of gains and losses across groups; it is stronger than pooled performance."
+}
