@@ -75,7 +75,20 @@ end
 if ~isfield(opts, 'use_parfor'), opts.use_parfor = true; end
 
 use_fast = strcmp(opts.backend, 'fast');
+opts.learning_style = lower(opts.learning_style);
 use_prm = strcmp(opts.learning_style, 'prm');
+use_hedge = strcmp(opts.learning_style, 'hedge');       % family F (df.sim.learn_hedge), 2026-11-02
+use_exp3ix = strcmp(opts.learning_style, 'exp3ix');     % family B (df.sim.learn_exp3ix)
+% V05 calibrations (codes 14-17): per-candidate tolerances from compute_epsilon_v05, as in
+% run_stage_ii; the candidate's marginal is the probability vector itself. Tail codes need L1.
+use_v05 = ismember(opts.switch_eps, [14, 15, 16, 17]);
+if ismember(opts.switch_eps, [14, 15]) && ~use_l1
+    error('run_stage_ii_nonparam:TailNeedsSlack', ...
+        'switch_eps=%d (direct tail) needs consistency_slack_kind ''L1'' for the latent-count ceiling.', opts.switch_eps);
+end
+% precomputed_distY: optional cell (one entry per maxiters value) of cached trajectories,
+% used to re-solve the same play under several calibrations (as in run_stage_ii).
+if ~isfield(opts, 'precomputed_distY'), opts.precomputed_distY = {}; end
 
 % Pool policy (mirrors run_stage_ii): open a pool only for the parfor-safe
 % direct lane, when none is open, on a job that actually has cores.
@@ -173,8 +186,14 @@ for maxiter_index = 1:n_iters
     % Learning
     N = 1; M = maxiters; M_obs = maxiters;
     numdst_t = 1; numdst_t_obs = numdst_t;
-    if use_prm
+    if numel(opts.precomputed_distY) >= maxiter_index && ~isempty(opts.precomputed_distY{maxiter_index})
+        distY_time = opts.precomputed_distY{maxiter_index};
+    elseif use_prm
         [distY_time, ~] = learn_mod_prm(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    elseif use_hedge
+        [distY_time, ~] = df.sim.learn_hedge(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+    elseif use_exp3ix
+        [distY_time, ~] = df.sim.learn_exp3ix(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
     else
         [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
     end
@@ -191,7 +210,12 @@ for maxiter_index = 1:n_iters
 
         % Epsilon for this iteration count (obedience budget alpha_R; see run_stage_ii)
         confid = opts.alpha_R(1);
-        eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
+        if use_v05
+            eps_vec = [];   % per-candidate tolerances below
+        else
+            eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
+        end
+        r_N = 0;
         if use_l1
             r_N = df.solvers.compute_consistency_slack(s2, opts.alpha_C, maxiters, 'L1');
         end
@@ -201,7 +225,11 @@ for maxiter_index = 1:n_iters
         c_all = zeros(n_vars, NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:, nd);
-            if opts.switch_eps == 1 || opts.switch_eps == 3 || opts.switch_eps == 4 || ...
+            if use_v05
+                eps_t = df.solvers.compute_epsilon_v05(cfg, maxiters, marg_distrib_grid(:,nd)', ...
+                    r_N, opts.switch_eps, opts.alpha_R(1));
+                eps_fin = repmat(eps_t, 1, NAg*a_dim);
+            elseif opts.switch_eps == 1 || opts.switch_eps == 3 || opts.switch_eps == 4 || ...
                     opts.switch_eps == 10 || opts.switch_eps == 11
                 eps_fin = repmat(sqrt(marg_distrib_grid(:,nd))', 1, NAg*a_dim) .* ...
                           repmat(eps_vec, 1, NAg*a_dim);
