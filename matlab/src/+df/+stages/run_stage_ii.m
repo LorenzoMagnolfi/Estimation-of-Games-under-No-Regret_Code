@@ -123,6 +123,13 @@ if ~isfield(opts, 'precomputed_distY'), opts.precomputed_distY = {}; end
 % the SAME epsilon vector is used at every N instead of compute_epsilon(maxiters).
 % Scalar broadcasts to 1 x s; otherwise must be 1 x s (per-type, as compute_epsilon).
 if ~isfield(opts, 'eps_override'), opts.eps_override = []; end
+% eps_player_cap: players (indices) NOT modeled as learners; their obedience rows get the
+% payoff span as tolerance (never binding). SIM-MIXED exhibit (II_RUN_v05_mixed).
+if ~isfield(opts, 'eps_player_cap'), opts.eps_player_cap = []; end
+% cons_N_override: composition count used for the consistency radius and the tail's
+% latent-count ceiling in place of maxiters (V05 independent-unit lemma: J_eff for
+% persistent units with predetermined durations; II_RUN_v05_units).
+if ~isfield(opts, 'cons_N_override'), opts.cons_N_override = []; end
 % Fixed-grid mode (area-vs-N comparisons): when nonempty, these (mu,sigma)
 % multiplier grids are used for EVERY N so the identified-set AREA is comparable
 % across horizons (the default grid narrows with N, which is fine for per-N region
@@ -370,11 +377,13 @@ for maxiter_index = 1:n_iters
         end
         Psi = Psi ./ sum(Psi, 1);
 
+        cons_N = maxiters;
+        if ~isempty(opts.cons_N_override), cons_N = opts.cons_N_override; end
         % Consistency slack radius (only if enabled)
         if use_box || use_l1
             M_C = s2;  % |T||Theta|; in this simulation Theta is degenerate so M_C = s2
             r_N = df.solvers.compute_consistency_slack( ...
-                M_C, opts.alpha_C, maxiters, opts.consistency_slack_kind);
+                M_C, opts.alpha_C, cons_N, opts.consistency_slack_kind);
         elseif use_clt
             % CLT chi-square ellipsoid radius rho = sqrt(chi2_{d-1,1-alpha_C}/N).
             % chi2inv(p,k) = 2*gammaincinv(p,k/2) (base MATLAB; no Stats toolbox).
@@ -397,6 +406,14 @@ for maxiter_index = 1:n_iters
                 eps_t = df.solvers.compute_epsilon_v05(cfg, maxiters, marg_distrib(:,nd)', ...
                     r_count, opts.switch_eps, opts.alpha_R(1));
                 eps_fin = repmat(eps_t, 1, NAg*a_dim);
+                if ~isempty(opts.eps_player_cap)
+                    % Tiles are ordered [types x deviations] per player (build_constraints);
+                    % a non-learner's rows get its payoff span, which exceeds every cap K*m.
+                    for jp = opts.eps_player_cap(:)'
+                        Kj = max(cfg.Pi(:,:,jp), [], 1) - min(cfg.Pi(:,:,jp), [], 1);
+                        eps_fin((jp-1)*s*a_dim + (1:s*a_dim)) = repmat(Kj, 1, a_dim);
+                    end
+                end
             else
                 eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
                           repmat(eps_vec, 1, NAg*a_dim);

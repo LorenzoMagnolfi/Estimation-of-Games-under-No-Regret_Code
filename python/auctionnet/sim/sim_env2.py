@@ -37,6 +37,9 @@ vgrid = np.exp(mu0) * rho_v ** (np.arange(NV) - (NV - 1) / 2)
 edges = np.concatenate([[-np.inf], (np.log(vgrid[1:]) + np.log(vgrid[:-1])) / 2, [np.inf]])
 psi0 = np.diff(norm.cdf(edges, loc=mu0, scale=sig0)); psi0 /= psi0.sum()
 emp_hist = np.histogram(logv, bins=edges)[0] / len(logv)
+# per-opportunity context bin, aligned with R (same keep mask, same order): the paired environment (run_paired.py) draws an
+# opportunity and keeps its own context and rival triple, so the context truth is emp_hist rather than the lognormal psi0
+ctx_idx = np.digitize(logv, edges[1:-1]).astype(np.int8)
 expo_idx = np.arange(NM)[:, None] + CTX_STEPS * np.arange(NV)[None, :]
 bid_index = expo_idx - expo_idx.min(); NB = int(bid_index.max()) + 1
 
@@ -63,7 +66,8 @@ for j, v in enumerate(vgrid):
 best = ubar.max(axis=0); kbest = ubar.argmax(axis=0)
 np.savez(out, alphas=alphas, vgrid=vgrid, psi0=psi0, emp_hist=emp_hist, mu0=mu0, sig0=sig0, lam0=lam0, R=R.astype(np.float32), ubar=ubar, K=K,
          expo=expo, cost=cost, winp=winp, bid_index=bid_index, NB=NB, rho=rho, src=role, E=E, RES=RES, edges=edges,
-         periods=np.array(periods), expo_measured=expo_meas, n_contexts=len(v_src), ctx_steps=CTX_STEPS, mult_lo=MULT_LO, mult_hi=MULT_HI)
+         periods=np.array(periods), expo_measured=expo_meas, n_contexts=len(v_src), ctx_steps=CTX_STEPS, mult_lo=MULT_LO, mult_hi=MULT_HI,
+         ctx_idx=ctx_idx)
 print(f"role {role}: periods {periods}; {len(v_src):,d} contexts, {len(R):,d} rival triples; lambda0 = {lam0}; measured exposure {np.round(expo_meas, 3)}")
 print(f"context grid (x1e4): {np.round(vgrid * 1e4, 2)}; lognormal masses {np.round(psi0, 3)}; empirical masses {np.round(emp_hist, 3)}; (mu0, sigma0) = ({mu0:.3f}, {sig0:.3f})")
 print("best multiplier / lambda0 by context:", np.round(alphas[kbest] / lam0, 3))

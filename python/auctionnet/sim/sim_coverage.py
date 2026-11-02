@@ -1,7 +1,7 @@
 """Coverage over seeds for Design A: run the learner for several seeds and record, per checkpoint and slack rule,
 whether the truth is in the Regime P interval and feasible in Regime O, plus interval widths and Regime O shares on a
 coarse grid.
-Usage: python sim_coverage.py <env_npz> <work_dir> <learner> <N_total> <n_seeds> [first_seed=101]
+Usage: python sim_coverage.py <env_npz> <work_dir> <learner> <N_total> <n_seeds> [first_seed=101] [mode=iid]
 """
 import os
 import subprocess
@@ -12,6 +12,7 @@ import pandas as pd
 
 env, work, learner, N_total, n_seeds = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], int(sys.argv[5])
 first = int(sys.argv[6]) if len(sys.argv) > 6 else 101
+mode = sys.argv[7] if len(sys.argv) > 7 else "iid"          # passed to sim_run.py ('paired' for the paired environment)
 here = os.path.dirname(os.path.abspath(__file__))
 py = sys.executable
 os.makedirs(work, exist_ok=True)
@@ -19,7 +20,7 @@ rowsP, rowsO = [], []
 for s in range(first, first + n_seeds):
     run = os.path.join(work, f"run_{learner}_{s}.npz"); pref = os.path.join(work, f"inf_{learner}_{s}")
     if not os.path.exists(run):
-        subprocess.run([py, os.path.join(here, "sim_run.py"), env, run, learner, N_total, str(s)], check=True, capture_output=True)
+        subprocess.run([py, os.path.join(here, "sim_run.py"), env, run, learner, N_total, str(s), mode], check=True, capture_output=True)
     if not os.path.exists(pref + "_regimeP.csv"):
         subprocess.run([py, os.path.join(here, "sim_infer.py"), env, run, pref, "PO", "coarse"], check=True, capture_output=True)
     P = pd.read_csv(pref + "_regimeP.csv"); P["seed"] = s; rowsP.append(P)

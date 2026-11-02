@@ -15,7 +15,10 @@ Recorded at every checkpoint N (cumulative from period 1): Z counts over (multip
 counterfactual sums over all visits Sa[k] = sum e_k v and Sc[k] = sum e_k price for every multiplier k; the realized
 sums Ra = sum e_a v and Rc = sum e_a price; visit counts; win counts. Payoffs at any value lambda follow as
 lambda * Sa - Sc and lambda * Ra - Rc, so both inference regimes and the regret diagnostics use sample quantities.
-Usage: python sim_run.py <env_npz> <out_npz> <learner> <N_total> [seed=1]
+Usage: python sim_run.py <env_npz> <out_npz> <learner> <N_total> [seed=1] [mode=iid]
+  mode 'iid': context drawn from the fitted lognormal masses psi0 and the rival triple drawn independently (Design A main).
+  mode 'paired': one recorded opportunity drawn per auction, its own context bin (env ctx_idx) and its own rival triple
+  kept together (the paired-environment robustness row; the context truth is then the empirical masses emp_hist).
 """
 import sys
 import time
@@ -27,6 +30,9 @@ out = sys.argv[2]
 learner = sys.argv[3]
 N_total = int(float(sys.argv[4]))
 seed = int(sys.argv[5]) if len(sys.argv) > 5 else 1
+mode = sys.argv[6] if len(sys.argv) > 6 else "iid"
+if mode not in ("iid", "paired"):
+    raise SystemExit("mode must be iid or paired")
 CHECKS = sorted(set([int(x) for x in [1e5, 4.8e5, 1e6, 3e6, 1e7, 3e7, 1e8, 3e8, 1e9] if x <= N_total] + [N_total]))
 
 alphas, vgrid, psi0, lam0, R, K, E, RES = (env["alphas"], env["vgrid"], env["psi0"], float(env["lam0"]), env["R"].astype(np.float64),
@@ -52,8 +58,14 @@ def outcome_vectors(j, ridx):
 
 
 t0 = time.time()
-ctx = rng.choice(NV, size=N_total, p=psi0).astype(np.int8)
-ridx = rng.integers(0, len(R), size=N_total, dtype=np.int32)
+if mode == "paired":
+    if "ctx_idx" not in env.files:
+        raise SystemExit("paired mode needs an environment with ctx_idx (rebuild with sim_env2.py)")
+    ridx = rng.integers(0, len(R), size=N_total, dtype=np.int32)
+    ctx = env["ctx_idx"][ridx].astype(np.int8)
+else:
+    ctx = rng.choice(NV, size=N_total, p=psi0).astype(np.int8)
+    ridx = rng.integers(0, len(R), size=N_total, dtype=np.int32)
 results = {}
 Sa = np.zeros((NV, NM)); Sc = np.zeros((NV, NM))
 Ra = np.zeros(NV); Rc = np.zeros(NV)
@@ -177,7 +189,7 @@ elif learner in ("exp3", "exp3ix"):
 else:
     raise SystemExit("learner must be hedge, exp3 or exp3ix")
 
-np.savez(out, checks=np.array(sorted(results)), learner=learner, seed=seed,
+np.savez(out, checks=np.array(sorted(results)), learner=learner, seed=seed, mode=mode,
          **{f"{key}_{Nc}": results[Nc][key] for Nc in results for key in ["Z", "Sa", "Sc", "Ra", "Rc", "cnt", "win"]})
 print(f"\nlearner={learner} seed={seed} total={N_total:,d} ({time.time() - t0:.0f}s)")
 for Nc in sorted(results):

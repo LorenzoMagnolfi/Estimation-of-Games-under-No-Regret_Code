@@ -238,6 +238,8 @@ def applicable_rules():
 
 
 rowsP, rowsO = [], []
+# empirical context masses (the truth of a paired-environment run; a second truth check in Regime O when present)
+emp_hist = env["emp_hist"].astype(float) if "emp_hist" in env.files else None
 coarse = len(sys.argv) > 5 and sys.argv[5] == "coarse"
 mus = mu0 + (np.linspace(-1.0, 1.0, 21) if coarse else np.linspace(-1.0, 1.0, 41))
 sigs = np.linspace(0.15, 2.0, 38) if not coarse else np.round(np.linspace(0.2, 2.0, 19), 3)
@@ -284,11 +286,12 @@ for N in checks:
             else:
                 mu_rng = sg_rng = (np.nan, np.nan)
             truth_ok = regime_O_feasible(qN, psi0, eps_for(psi0), rc)
+            emp_ok = regime_O_feasible(qN, emp_hist, eps_for(emp_hist), rc) if emp_hist is not None else np.nan
             rowsO.append(dict(N=N, rule=rule, share=share, mu_lo=mu_rng[0], mu_hi=mu_rng[1], sig_lo=sg_rng[0], sig_hi=sg_rng[1],
-                              truth_feasible=truth_ok, r_cons=rc))
+                              truth_feasible=truth_ok, emp_feasible=emp_ok, r_cons=rc))
             np.save(f"{pref}_O_{rule}_{N}.npy", feas)
             print(f"O  N={N:>11,d} {rule:9s} feasible share {share:.3f}; mu in [{mu_rng[0]:.2f},{mu_rng[1]:.2f}] (truth {mu0:.2f}); "
-                  f"sigma in [{sg_rng[0]:.2f},{sg_rng[1]:.2f}] (truth {sig0:.2f}); truth feasible: {truth_ok}", flush=True)
+                  f"sigma in [{sg_rng[0]:.2f},{sg_rng[1]:.2f}] (truth {sig0:.2f}); truth feasible: {truth_ok}; empirical masses feasible: {emp_ok}", flush=True)
 if rowsP:
     pd.DataFrame(rowsP).to_csv(f"{pref}_regimeP.csv", index=False)
 if rowsO:
