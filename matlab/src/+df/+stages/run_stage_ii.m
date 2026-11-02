@@ -53,12 +53,19 @@ if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
 if ~isfield(opts, 'require_corrected'), opts.require_corrected = false; end
 % SIM-5: guard against the deprecated pre-correction radius silently entering
 % revision artifacts. Revision runners set require_corrected = true.
-if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13])
+if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13, 14, 15, 16, 17])
     error('run_stage_ii:UncorrectedEps', ...
         ['require_corrected=true but switch_eps=%d. Use 10/11 (Markov Hedge/EXP3) or ' ...
-         '12/13 (high-probability Hedge/EXP3); switch_eps=1 is the deprecated radius.'], ...
+         '12/13 (high-probability Hedge/EXP3), or the V05 calibrations 14/15 (direct tail ' ...
+         'F/B) and 16/17 (first-moment rectangle F/B); switch_eps=1 is the deprecated radius.'], ...
         opts.switch_eps);
 end
+% V05 calibrations (2026-11-02): per-candidate tolerances from
+% df.solvers.compute_epsilon_v05 (the tail codes need the latent-count ceiling,
+% hence an L1 or box consistency set; the moment codes work with any kind).
+% NOTE: the legacy Markov codes 10/11 omit the union-bound factor M_R = NPlayers*s
+% of Theorem CR (per-cell error alpha_R instead of alpha_R/M_R); 16/17 carry it.
+use_v05 = ismember(opts.switch_eps, [14, 15, 16, 17]);
 % Solver engine for the full-grid solve (within backend='fast', adaptive=false):
 %   'sedumi_direct' (default) build the canonical form once (socp_to_sedumi),
 %                   call sedumi per point: no per-point CVX overhead, parfor-
@@ -149,12 +156,20 @@ if ~isempty(opts.candidate_mask) && (opts.adaptive || ~use_fast)
         'candidate_mask requires backend=''fast'' and adaptive=false.');
 end
 opts.learning_style = lower(opts.learning_style);
-if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled'})
+if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled', 'hedge', 'exp3ix'})
     error('run_stage_ii:UnknownLearningStyle', ...
-        'Unknown learning_style "%s". Use "rm", "prm", or "pooled".', opts.learning_style);
+        'Unknown learning_style "%s". Use "rm", "prm", "pooled", "hedge", or "exp3ix".', opts.learning_style);
 end
 use_prm = strcmp(opts.learning_style, 'prm');
 use_pooled = strcmp(opts.learning_style, 'pooled');
+use_hedge = strcmp(opts.learning_style, 'hedge');       % family F (df.sim.learn_hedge)
+use_exp3ix = strcmp(opts.learning_style, 'exp3ix');     % family B (df.sim.learn_exp3ix)
+if ismember(opts.switch_eps, [14, 15]) && ~strcmp(opts.consistency_slack_kind, 'L1')
+    error('run_stage_ii:TailNeedsSlack', ...
+        ['switch_eps=%d (direct tail) needs consistency_slack_kind ''L1'': the latent-count ' ...
+         'ceiling N*min(1, phi + r/2) uses the L1 radius (a box radius bounds cells, not marginals).'], ...
+        opts.switch_eps);
+end
 
 cfg.learning_style = opts.learning_style;
 numdst_t = 1;
@@ -263,6 +278,10 @@ for maxiter_index = 1:n_iters
             [distY_time, ~] = learn_mod_prm(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         elseif use_pooled
             [distY_time, ~] = learn_mod_pooled(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        elseif use_hedge
+            [distY_time, ~] = df.sim.learn_hedge(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        elseif use_exp3ix
+            [distY_time, ~] = df.sim.learn_exp3ix(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         else
             [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         end
@@ -323,6 +342,8 @@ for maxiter_index = 1:n_iters
             else
                 eps_vec = opts.eps_override(:)';   % expect 1 x s
             end
+        elseif use_v05
+            eps_vec = [];   % per-candidate tolerances from compute_epsilon_v05 (below)
         else
             eps_vec = df.solvers.compute_epsilon(cfg, maxiters, confid, opts.switch_eps);
         end
@@ -357,8 +378,19 @@ for maxiter_index = 1:n_iters
         B_base = zeros(1, NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:,nd);
-            eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
-                      repmat(eps_vec, 1, NAg*a_dim);
+            if use_v05
+                % V05 calibrations: the tolerance of type t at this candidate is a
+                % function of the candidate's type share (latent count ceiling or
+                % expected count), computed here rather than as sqrt(phi) x eps_t.
+                r_count = 0;
+                if use_l1, r_count = r_N; end      % tail codes require L1 (checked above)
+                eps_t = df.solvers.compute_epsilon_v05(cfg, maxiters, marg_distrib(:,nd)', ...
+                    r_count, opts.switch_eps, opts.alpha_R(1));
+                eps_fin = repmat(eps_t, 1, NAg*a_dim);
+            else
+                eps_fin = repmat(sqrt(marg_distrib(:,nd))', 1, NAg*a_dim) .* ...
+                          repmat(eps_vec, 1, NAg*a_dim);
+            end
             if use_obed_budget
                 % One tile of eps_fin = the s weighted per-type caps at this
                 % candidate; their sum is the budget base. The componentwise
