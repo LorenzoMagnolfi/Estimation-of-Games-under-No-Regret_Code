@@ -53,7 +53,7 @@ if ~isfield(opts, 'learning_style'),  opts.learning_style = 'rm'; end
 if ~isfield(opts, 'require_corrected'), opts.require_corrected = false; end
 % SIM-5: guard against the deprecated pre-correction radius silently entering
 % revision artifacts. Revision runners set require_corrected = true.
-if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13, 14, 15, 16, 17])
+if opts.require_corrected && ~ismember(opts.switch_eps, [10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
     error('run_stage_ii:UncorrectedEps', ...
         ['require_corrected=true but switch_eps=%d. Use 10/11 (Markov Hedge/EXP3) or ' ...
          '12/13 (high-probability Hedge/EXP3), or the V05 calibrations 14/15 (direct tail ' ...
@@ -65,7 +65,7 @@ end
 % hence an L1 or box consistency set; the moment codes work with any kind).
 % NOTE: the legacy Markov codes 10/11 omit the union-bound factor M_R = NPlayers*s
 % of Theorem CR (per-cell error alpha_R instead of alpha_R/M_R); 16/17 carry it.
-use_v05 = ismember(opts.switch_eps, [14, 15, 16, 17]);
+use_v05 = ismember(opts.switch_eps, [14, 15, 16, 17, 18, 19]);   % 18/19: noisy-feedback bridge (sparse-outcome exhibit)
 % Solver engine for the full-grid solve (within backend='fast', adaptive=false):
 %   'sedumi_direct' (default) build the canonical form once (socp_to_sedumi),
 %                   call sedumi per point: no per-point CVX overhead, parfor-
@@ -156,19 +156,21 @@ if ~isempty(opts.candidate_mask) && (opts.adaptive || ~use_fast)
         'candidate_mask requires backend=''fast'' and adaptive=false.');
 end
 opts.learning_style = lower(opts.learning_style);
-if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled', 'hedge', 'exp3ix'})
+if ~ismember(opts.learning_style, {'rm', 'prm', 'pooled', 'hedge', 'exp3ix', 'hedge_noisy', 'exp3ix_noisy'})
     error('run_stage_ii:UnknownLearningStyle', ...
-        'Unknown learning_style "%s". Use "rm", "prm", "pooled", "hedge", or "exp3ix".', opts.learning_style);
+        'Unknown learning_style "%s". Use "rm", "prm", "pooled", "hedge", "exp3ix", "hedge_noisy", or "exp3ix_noisy".', opts.learning_style);
 end
 use_prm = strcmp(opts.learning_style, 'prm');
 use_pooled = strcmp(opts.learning_style, 'pooled');
 use_hedge = strcmp(opts.learning_style, 'hedge');       % family F (df.sim.learn_hedge)
 use_exp3ix = strcmp(opts.learning_style, 'exp3ix');     % family B (df.sim.learn_exp3ix)
+use_hedge_noisy = strcmp(opts.learning_style, 'hedge_noisy');     % family F on realized potential profits (sparse-outcome exhibit)
+use_exp3ix_noisy = strcmp(opts.learning_style, 'exp3ix_noisy');   % family B on the realized own profit
 % tail_allow_exact (diagnostic only): run a tail code with exact consistency, using
 % the candidate's own shares as the count (no ceiling). Not a valid finite-sample
 % region; used by the width decomposition to isolate the obedience component.
 if ~isfield(opts, 'tail_allow_exact'), opts.tail_allow_exact = false; end
-if ismember(opts.switch_eps, [14, 15]) && ~strcmp(opts.consistency_slack_kind, 'L1') && ~opts.tail_allow_exact
+if ismember(opts.switch_eps, [14, 15, 18, 19]) && ~strcmp(opts.consistency_slack_kind, 'L1') && ~opts.tail_allow_exact
     error('run_stage_ii:TailNeedsSlack', ...
         ['switch_eps=%d (direct tail) needs consistency_slack_kind ''L1'': the latent-count ' ...
          'ceiling N*min(1, phi + r/2) uses the L1 radius (a box radius bounds cells, not marginals).'], ...
@@ -286,6 +288,10 @@ for maxiter_index = 1:n_iters
             [distY_time, ~] = df.sim.learn_hedge(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         elseif use_exp3ix
             [distY_time, ~] = df.sim.learn_exp3ix(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        elseif use_hedge_noisy
+            [distY_time, ~] = df.sim.learn_hedge_noisy(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
+        elseif use_exp3ix_noisy
+            [distY_time, ~] = df.sim.learn_exp3ix_noisy(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         else
             [distY_time, ~] = learn_mod(cfg, N, M, M_obs, numdst_t, numdst_t_obs, 1, 1);
         end

@@ -60,8 +60,26 @@ switch switch_eps
         mu = N * phi;
         b = K .* min(mu, Afam * sqrt(d * C * mu) + (log(d) + 1) / (2 * bminus) * sqrt(d * N / C)) / N;
         eps_t = (M_R / alpha_R) * b;
+    case {18, 19}
+        % Noisy-feedback bridge (V05, Appendix "Noisy Reward Feedback", calendar form): the learner's
+        % guarantee holds for the feedback regret on potential profits in a known interval of width
+        % L_t (cash units); structural regret adds at most 2 L sqrt((N_k + 1) ln(d J_N / delta_D)) with
+        % error delta_D. Tail at delta/2, bridge at delta/2; cap K m (expected-profit units).
+        %   18: full potential-feedback vector, Hedge on Y (family F with span L)      [learn_hedge_noisy]
+        %   19: selected feedback only, EXP3-IX on Y (family B with width L)           [learn_exp3ix_noisy]
+        c_t = cfg.tps(:, 1)';                                         % cost of each type (players symmetric)
+        L = max(max(cfg.AA) - c_t, 0) + max(c_t - min(cfg.AA), 0);   % realized-profit interval width, cash units
+        m = N * min(1, phi + r_cons / 2);
+        d2 = delta / 2;
+        bridge = 2 * L .* sqrt((m + 1) * log(d * JN / d2));
+        if switch_eps == 18
+            core = L .* (cF * sqrt(m) + sqrt((m + 1) * log(JN / d2)));
+        else
+            core = L .* (Afam * sqrt(d * m * C) + (sqrt(2) / (2 * bminus)) * sqrt(d * m / C) * log(2 * d * JN / d2) + log(2 / d2));
+        end
+        eps_t = min(K .* m, core + bridge) / N;
     otherwise
-        error('compute_epsilon_v05:BadSwitch', 'switch_eps must be 14, 15, 16 or 17 (got %d).', switch_eps);
+        error('compute_epsilon_v05:BadSwitch', 'switch_eps must be 14 to 19 (got %d).', switch_eps);
 end
 eps_t = max(eps_t, 0);
 end
