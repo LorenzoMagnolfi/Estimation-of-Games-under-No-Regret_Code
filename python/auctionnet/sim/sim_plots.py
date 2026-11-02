@@ -16,7 +16,7 @@ mu0, sig0, lam0 = float(env["mu0"]), float(env["sig0"]), float(env["lam0"])
 grid = np.load(f"{pref}_grid.npz"); mus, sigs = grid["mus"], grid["sigs"]
 O = pd.read_csv(f"{pref}_regimeO.csv"); P = pd.read_csv(f"{pref}_regimeP.csv")
 Ns = sorted(O.N.unique())
-rules = [r for r in ["tailF", "markov", "empirical"] if r in set(O.rule)]   # tailF present only in the 2026-11-02 reruns
+rules = [r for r in ["tailF", "tailB", "momentB", "markov", "empirical"] if r in set(O.rule)]   # V05 rules present only in the 2026-11-02 reruns
 fig1, axes = plt.subplots(len(rules), len(Ns), figsize=(2.6 * len(Ns), 2.6 * len(rules)), squeeze=False)
 for r_, rule in enumerate(rules):
     for c_, N in enumerate(Ns):
@@ -37,7 +37,7 @@ fig1.tight_layout()
 fig1.savefig(f"{fig}_regimeO.pdf"); fig1.savefig(f"{fig}_regimeO.png", dpi=150)
 
 fig2, ax = plt.subplots(figsize=(5, 3))
-for rule, col in [("markov", "tab:blue"), ("tailF", "tab:green"), ("empirical", "tab:red")]:
+for rule, col in [("markov", "tab:blue"), ("momentB", "tab:blue"), ("tailF", "tab:green"), ("tailB", "tab:green"), ("empirical", "tab:red")]:
     sub = P[P.rule == rule].sort_values("N")
     if sub.empty:
         continue

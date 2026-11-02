@@ -6,6 +6,10 @@ Learners:
           is exogenous to the focal bidder, the Hedge path is a function of cumulative payoff vectors and is vectorized.
   exp3  : bandit feedback (only the chosen multiplier's realized payoff), importance-weighted estimates, anytime
           eta_t = sqrt(ln NM / (t NM)); sequential, compiled with numba.
+  exp3ix: bandit feedback with implicit exploration (Neu 2015): the same loss normalization and step, estimates
+          loss * 1{a} / (P[a] + gamma_t) with gamma_t = eta_t / 2. This is the stabilized bandit family B of the revised
+          Section 4 (Niccolò's V05, 2026-11-02) with schedule bands a = 1, b = 1/2, prior uniform, so its certified
+          inputs (rules tailB and momentB in sim_infer.py) apply; plain exp3 is outside that family.
 
 Recorded at every checkpoint N (cumulative from period 1): Z counts over (multiplier, context); per context the
 counterfactual sums over all visits Sa[k] = sum e_k v and Sc[k] = sum e_k price for every multiplier k; the realized
@@ -94,11 +98,11 @@ if learner == "hedge":
             snapshot(stop)
             print(f"  checkpoint {stop:>12,d}  ({time.time() - t0:5.0f}s)", flush=True)
         start = stop
-elif learner == "exp3":
+elif learner in ("exp3", "exp3ix"):
     from numba import njit
 
     @njit(cache=True)
-    def run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Kv, lam0, E1, E2, E3, RESf, checks, seed_):
+    def run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Kv, lam0, E1, E2, E3, RESf, checks, seed_, ix):
         np.random.seed(seed_)
         NVl, NMl = len(vgrid), len(alphas)
         Sest = np.zeros((NVl, NMl)); Sa_ = np.zeros((NVl, NMl)); Sc_ = np.zeros((NVl, NMl))
@@ -149,8 +153,12 @@ elif learner == "exp3":
                 ea[k] = e * v; pa[k] = e * price
             g = lam0 * ea[a] - pa[a]
             # loss-based EXP3 on losses in [0, 1]: loss = (umax_j - u) / K_j, importance-weighted; Sest accumulates -loss_hat
+            # exp3ix (ix == 1): implicit exploration, loss_hat = loss / (P[a] + gamma), gamma = eta / 2
             loss = (umax[j] - g) / Kv[j]
-            Sest[j, a] -= loss / P[a]
+            if ix == 1:
+                Sest[j, a] -= loss / (P[a] + 0.5 * eta)
+            else:
+                Sest[j, a] -= loss / P[a]
             for k in range(NMl):
                 Sa_[j, k] += ea[k]; Sc_[j, k] += pa[k]
             Ra_[j] += ea[a]; Rc_[j] += pa[a]; cntv[j] += 1; Zc[a, j] += 1
@@ -161,12 +169,13 @@ elif learner == "exp3":
                 ic += 1
         return Z_out, Sa_out, Sc_out, Ra_out, Rc_out, cnt_out, win_out
     chk = np.array(CHECKS, dtype=np.int64)
-    Zo, Sao, Sco, Rao, Rco, co, wo = run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Ksafe, lam0, float(E[0]), float(E[1]), float(E[2]), RES, chk, seed + 7)
+    Zo, Sao, Sco, Rao, Rco, co, wo = run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Ksafe, lam0, float(E[0]), float(E[1]), float(E[2]), RES, chk, seed + 7,
+                                              1 if learner == "exp3ix" else 0)
     for ic, Nc in enumerate(chk):
         results[int(Nc)] = dict(Z=Zo[ic], Sa=Sao[ic], Sc=Sco[ic], Ra=Rao[ic], Rc=Rco[ic], cnt=co[ic], win=wo[ic])
-    print(f"  exp3 done, {time.time() - t0:.0f}s")
+    print(f"  {learner} done, {time.time() - t0:.0f}s")
 else:
-    raise SystemExit("learner must be hedge or exp3")
+    raise SystemExit("learner must be hedge, exp3 or exp3ix")
 
 np.savez(out, checks=np.array(sorted(results)), learner=learner, seed=seed,
          **{f"{key}_{Nc}": results[Nc][key] for Nc in results for key in ["Z", "Sa", "Sc", "Ra", "Rc", "cnt", "win"]})

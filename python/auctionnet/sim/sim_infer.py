@@ -16,22 +16,25 @@ ball of radius r_cons moves a single coordinate by at most r_cons / 2); this is 
 Rule 'markov_realized' (Regime O only) keeps the earlier tolerance with the realized shares, which the analyst does not
 observe in that regime; it is reported as a diagnostic for comparison with the runs of 2026-09-23/24.
 
-Rule 'tailF' (added 2026-11-02; Hedge runs only): the direct-tail calibration of the revised Section 4 (Niccolo's V05
-manuscript of 2026-11-02, Corollary "Full-Feedback Inputs", eq. s4Finputs) in place of the Markov conversion. Per context j
-with count m and payoff span K_j, with probability at least 1 - delta the cumulative structural regret is at most
-    H(m, delta) = K_j * min{ m, c_F,j sqrt(m) + sqrt((m + 1) ln(J_N / delta)) },   J_N = 1 + ceil(log2 N),
-with delta = alpha_R / M_R per context (union bound over contexts). The Hedge of sim_run.py is a member of the full-feedback
-family: relative entropy to the uniform prior (B_reg = ln|A|, sigma = 1) and step sqrt(ln|A| / (s - 1)) on payoffs divided by
-the environment's K_sub[j]; in the family's normalization (payoffs divided by the exact span K_j over the whole rival pool)
-its step multiplier lies in the band [rho_j, sqrt(2) rho_j] with rho_j = K_j / K_sub[j] >= 1, hence
-c_F,j = (1 / rho_j + sqrt(2) rho_j / 4) sqrt(ln|A|). The exact span K_j is recomputed here over the full rival pool (the
-environment's K is a subsample maximum, which is not a support bound).
-Regime P: m is the observed count. Regime O: m = N min{1, psi_j(mu, sigma) + r_cons / 2} on the consistency event (a valid,
-weakly looser substitute for the latent count, since H is nondecreasing in m), the tail is taken at delta / 2, and the
-comparison between sample payoffs and the population table adds K_j sqrt(2 m ln(2|A| / delta)) at error delta / 2 (V05,
-Appendix "Integrating an Exogenous Competitive State"; the fresh independent rival draws of sim_run.py satisfy its condition).
+V05 rules (added 2026-11-02; Niccolò's V05 manuscript, Corollaries "Full-Feedback Inputs" and "Bandit Inputs"):
+  tailF   (Hedge runs)  direct tail of the full-feedback family F: per context j with count m and exact payoff span K_j,
+          H(m, delta) = K_j min{ m, c_F,j sqrt(m) + sqrt((m + 1) ln(J_N / delta)) }, J_N = 1 + ceil(log2 N), delta = alpha_R / M_R.
+          The Hedge of sim_run.py is in family F (relative entropy to the uniform prior, step sqrt(ln|A| / (s - 1)) on payoffs
+          divided by K_sub[j]); in the family's normalization its step multiplier lies in [rho_j, sqrt(2) rho_j] with
+          rho_j = K_j / K_sub[j], so c_F,j = (1/rho_j + sqrt(2) rho_j / 4) sqrt(ln|A|).
+  momentF (Hedge runs)  first-moment rectangle of family F at the expected count: (M_R / alpha_R) K_j (c_F,j + 1/4) sqrt(mu) / N.
+  tailB   (exp3ix runs) direct tail of the stabilized bandit family B (exp3ix: bands a = 1, b = 1/2, so A = 3, b_- = 1/2,
+          C_pr = ln|A|, L = K_j): H(m, delta) = L min{ m, A sqrt(d m C) + (sqrt 2 / (2 b_-)) sqrt(d m / C) ln(2 d J_N / delta) + ln(2/delta) }.
+  momentB (exp3ix runs) first-moment rectangle of family B (calendar bound, keeps its sqrt(N) term):
+          (M_R / alpha_R) (L / N) min{ mu, A sqrt(d C mu) + (ln d + 1) / (2 b_-) sqrt(d N / C) }.
+The exact span K_j is recomputed over the full rival pool (the environment's K is a subsample maximum, not a support bound).
+Regime P: m (and mu) are the observed counts. Regime O: tails use m = N min{1, psi_j + r_cons / 2} on the consistency event
+(valid, weakly looser than the witness count), taken at delta / 2, plus the sample-vs-population comparison term
+K_j sqrt(2 m ln(2|A| / delta)) at error delta / 2 (V05, "Integrating an Exogenous Competitive State"; the fresh independent
+rival draws of sim_run.py satisfy its condition); first moments use the expected count N psi_j (V05, Q2).
+Plain exp3 runs are outside family B: their only certified rule remains the historical 'markov' EXP3 envelope.
 Usage: python sim_infer.py <env_npz> <run_npz> <out_prefix> [regimes=PO] [coarse|full] [checkpoints|all] [rules]
-  rules: comma-separated subset of exact,markov,empirical,none,markov_realized,tailF (default: all applicable).
+  rules: comma-separated subset of the rules applicable to the run's learner (default: all applicable).
 """
 import sys
 
@@ -63,15 +66,16 @@ LEARNER = str(run["learner"]) if "learner" in run.files else "hedge"
 
 
 def markov_eps(N, phi):
-    """Markov tolerance per auction (unconditional) for context shares phi."""
+    """Markov tolerance per auction (unconditional) for context shares phi (historical envelopes)."""
     if LEARNER == "exp3":          # Corollary 2 (bandit feedback): 2 sqrt(e-1) K sqrt(m |A| ln|A|)
         return (M_R / (ALPHA_R * N)) * 2 * np.sqrt(np.e - 1) * K * np.sqrt(N * phi * NM * lnA)
     return (M_R / (ALPHA_R * N)) * K * (np.sqrt(2 * N * phi * lnA) + lnA)
 
 
-# ---- rule tailF: exact payoff span over the full rival pool and the family-F constants (Hedge runs only) ----
+# ---- V05 rules: exact payoff span over the full rival pool and the family constants ----
 K_FULL = None
 C_F = None
+A_B, BMINUS_B, C_B = 3.0, 0.5, lnA      # family B constants for exp3ix (a = 1, b = 1/2)
 
 
 def exact_span():
@@ -94,35 +98,64 @@ def exact_span():
     return Kf
 
 
-def tailF_setup():
+def v05_setup():
     global K_FULL, C_F
     if K_FULL is not None:
         return
-    if LEARNER != "hedge":
-        raise ValueError("rule tailF is certified for the Hedge learner of sim_run.py only")
+    if LEARNER not in ("hedge", "exp3ix"):
+        raise ValueError("the V05 rules are certified for the hedge (family F) and exp3ix (family B) learners only")
     K_FULL = np.maximum(exact_span(), K)          # the subsample maximum is a lower bound on the exact span
     Ksafe = np.maximum(K, 1e-12)
-    rho = np.where(K_FULL > 0, K_FULL / Ksafe, 1.0)    # the learner's effective step multiplier band is [rho, sqrt(2) rho]
+    rho = np.where(K_FULL > 0, K_FULL / Ksafe, 1.0)    # the Hedge learner's effective step multiplier band is [rho, sqrt(2) rho]
     C_F = (1.0 / rho + np.sqrt(2.0) * rho / 4.0) * np.sqrt(lnA)
-    print(f"tailF: K_full = {np.round(K_FULL, 5)}  K_env = {np.round(K, 5)}  rho = {np.round(rho, 4)}  c_F = {np.round(C_F, 3)}", flush=True)
+    print(f"v05: K_full = {np.round(K_FULL, 5)}  K_env = {np.round(K, 5)}  rho = {np.round(rho, 4)}  c_F = {np.round(C_F, 3)}", flush=True)
+
+
+def _JN(N):
+    return 1 + int(np.ceil(np.log2(N)))
+
+
+def rival_term(m, delta_G):
+    """Sample-vs-population payoff comparison (Regime O), per context, cumulative units."""
+    return K_FULL * np.sqrt(2.0 * m * np.log(NM / delta_G))
 
 
 def tailF_eps(N, m, regime):
-    """Per-auction tolerance from the full-feedback direct tail at counts m (array over contexts)."""
-    tailF_setup()
-    JN = 1 + int(np.ceil(np.log2(N)))
-    delta = ALPHA_R / M_R
-    m = np.asarray(m, dtype=np.float64)
+    v05_setup(); JN = _JN(N); delta = ALPHA_R / M_R; m = np.asarray(m, dtype=np.float64)
     if regime == "P":
         H = K_FULL * np.minimum(m, C_F * np.sqrt(m) + np.sqrt((m + 1.0) * np.log(JN / delta)))
-    else:   # Regime O: obedience uses the population payoff table; split delta between the tail and the rival comparison
+    else:
         d2 = delta / 2.0
-        H = K_FULL * np.minimum(m, C_F * np.sqrt(m) + np.sqrt((m + 1.0) * np.log(JN / d2)) + np.sqrt(2.0 * m * np.log(NM / d2)))
+        H = np.minimum(K_FULL * m, K_FULL * (C_F * np.sqrt(m) + np.sqrt((m + 1.0) * np.log(JN / d2))) + rival_term(m, d2))
     return H / N
+
+
+def tailB_eps(N, m, regime):
+    v05_setup(); JN = _JN(N); delta = ALPHA_R / M_R; m = np.asarray(m, dtype=np.float64)
+    d_ = delta if regime == "P" else delta / 2.0
+    core = A_B * np.sqrt(NM * m * C_B) + (np.sqrt(2.0) / (2.0 * BMINUS_B)) * np.sqrt(NM * m / C_B) * np.log(2.0 * NM * JN / d_) + np.log(2.0 / d_)
+    if regime == "P":
+        H = K_FULL * np.minimum(m, core)
+    else:
+        H = np.minimum(K_FULL * m, K_FULL * core + rival_term(m, d_))
+    return H / N
+
+
+def momentF_eps(N, mu):
+    v05_setup(); mu = np.asarray(mu, dtype=np.float64)
+    b = K_FULL * np.minimum(mu, (C_F + 0.25) * np.sqrt(mu)) / N
+    return (M_R / ALPHA_R) * b
+
+
+def momentB_eps(N, mu):
+    v05_setup(); mu = np.asarray(mu, dtype=np.float64)
+    b = K_FULL * np.minimum(mu, A_B * np.sqrt(NM * C_B * mu) + (lnA + 1.0) / (2.0 * BMINUS_B) * np.sqrt(NM * N / C_B)) / N
+    return (M_R / ALPHA_R) * b
 
 
 def slack(N, rule, Z, Sa, Sc, Ra, Rc):
     phi = Z.sum(axis=0) / N
+    cnt = Z.sum(axis=0)
     if rule == "exact":
         return np.zeros(NV)
     if rule == "none":             # no obedience restriction: the set identified by the bid marginal and consistency alone
@@ -133,7 +166,13 @@ def slack(N, rule, Z, Sa, Sc, Ra, Rc):
         S = lam0 * Sa - Sc; real = lam0 * Ra - Rc
         return np.maximum(S.max(axis=1) - real, 0.0) / N
     if rule == "tailF":            # Regime P: observed counts
-        return tailF_eps(N, Z.sum(axis=0), "P")
+        return tailF_eps(N, cnt, "P")
+    if rule == "tailB":
+        return tailB_eps(N, cnt, "P")
+    if rule == "momentF":
+        return momentF_eps(N, cnt)
+    if rule == "momentB":
+        return momentB_eps(N, cnt)
     raise ValueError(rule)
 
 
@@ -185,6 +224,19 @@ def regime_O_feasible(qN, psi, eps, r_cons):
     return res.status == 0
 
 
+def applicable_rules():
+    rules = ["exact", "empirical"] + (["none"] if "O" in regimes else [])
+    if LEARNER == "hedge":
+        rules += ["markov"] + (["markov_realized"] if "O" in regimes else []) + ["tailF", "momentF"]
+    elif LEARNER == "exp3":
+        rules += ["markov"] + (["markov_realized"] if "O" in regimes else [])
+    elif LEARNER == "exp3ix":
+        rules += ["tailB", "momentB"]
+    if RULES_WANTED is not None:
+        rules = [r for r in rules if r in RULES_WANTED]
+    return rules
+
+
 rowsP, rowsO = [], []
 coarse = len(sys.argv) > 5 and sys.argv[5] == "coarse"
 mus = mu0 + (np.linspace(-1.0, 1.0, 21) if coarse else np.linspace(-1.0, 1.0, 41))
@@ -196,10 +248,7 @@ for N in checks:
         for j in range(NV):
             qN[bid_index[k, j]] += Z[k, j] / N
     r_cons = np.sqrt(2 * np.log((2 ** NV - 2) / ALPHA_C) / N)
-    rules = ["exact", "markov", "empirical"] + (["none", "markov_realized"] if "O" in regimes else []) + (["tailF"] if LEARNER == "hedge" else [])
-    if RULES_WANTED is not None:
-        rules = [r for r in rules if r in RULES_WANTED]
-    for rule in rules:
+    for rule in applicable_rules():
         eps = slack(N, rule, Z, Sa, Sc, Ra, Rc)
         if "P" in regimes and rule != "markov_realized":     # in Regime P the realized shares are observed: 'markov' already uses them
             lo, hi, L, H = regime_P(N, Sa, Sc, Ra, Rc, eps)
@@ -216,6 +265,12 @@ for N in checks:
                     return markov_eps(N, np.minimum(1.0, psi + rc / 2))
                 if rule == "tailF":
                     return tailF_eps(N, N * np.minimum(1.0, psi + rc / 2), "O")
+                if rule == "tailB":
+                    return tailB_eps(N, N * np.minimum(1.0, psi + rc / 2), "O")
+                if rule == "momentF":
+                    return momentF_eps(N, N * psi)
+                if rule == "momentB":
+                    return momentB_eps(N, N * psi)
                 return eps
 
             feas = np.zeros((len(mus), len(sigs)), dtype=bool)

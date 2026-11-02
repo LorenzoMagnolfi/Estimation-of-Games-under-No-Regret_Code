@@ -164,7 +164,11 @@ use_prm = strcmp(opts.learning_style, 'prm');
 use_pooled = strcmp(opts.learning_style, 'pooled');
 use_hedge = strcmp(opts.learning_style, 'hedge');       % family F (df.sim.learn_hedge)
 use_exp3ix = strcmp(opts.learning_style, 'exp3ix');     % family B (df.sim.learn_exp3ix)
-if ismember(opts.switch_eps, [14, 15]) && ~strcmp(opts.consistency_slack_kind, 'L1')
+% tail_allow_exact (diagnostic only): run a tail code with exact consistency, using
+% the candidate's own shares as the count (no ceiling). Not a valid finite-sample
+% region; used by the width decomposition to isolate the obedience component.
+if ~isfield(opts, 'tail_allow_exact'), opts.tail_allow_exact = false; end
+if ismember(opts.switch_eps, [14, 15]) && ~strcmp(opts.consistency_slack_kind, 'L1') && ~opts.tail_allow_exact
     error('run_stage_ii:TailNeedsSlack', ...
         ['switch_eps=%d (direct tail) needs consistency_slack_kind ''L1'': the latent-count ' ...
          'ceiling N*min(1, phi + r/2) uses the L1 radius (a box radius bounds cells, not marginals).'], ...
@@ -378,7 +382,7 @@ for maxiter_index = 1:n_iters
         B_base = zeros(1, NGrid);
         for nd = 1:NGrid
             bmarg = Psi(:,nd);
-            if use_v05
+            if use_v05 && isempty(opts.eps_override)
                 % V05 calibrations: the tolerance of type t at this candidate is a
                 % function of the candidate's type share (latent count ceiling or
                 % expected count), computed here rather than as sqrt(phi) x eps_t.
