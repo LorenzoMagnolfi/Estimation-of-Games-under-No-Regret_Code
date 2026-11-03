@@ -16,7 +16,7 @@ for rule, col, fill, lab in [("markov", "#2a78d6", "#6da7ec", "Markov conversion
     s = d[d.rule == rule].sort_values("N")
     ax.fill_between(s.N, s.lam_lo, s.lam_hi, color=fill, alpha=0.35, lw=0)
     ax.plot(s.N, s.lam_lo, color=col, lw=2); ax.plot(s.N, s.lam_hi, color=col, lw=2, label=lab)
-ax.axhline(truth, color=INK, lw=1, ls=(0, (3, 3))); ax.annotate("truth 115.4", (1e8, truth), xytext=(8, 0), textcoords="offset points", fontsize=8, color=INK, va="center")
+ax.axhline(truth, color=INK, lw=1, ls=(0, (3, 3))); ax.annotate("truth 115.4", (1e8, truth), xytext=(8, 9), textcoords="offset points", fontsize=8, color=INK, va="center")
 ax.set_xscale("log"); Ns = sorted(d.N.unique()); ax.set_xticks(Ns); ax.set_xticklabels([f"{n/1e6:g}M" if n >= 1e6 else f"{n/1e3:g}k" for n in Ns]); ax.set_xticks([], minor=True)
 ax.set_xlim(min(Ns) / 1.4, max(Ns) * 4); ax.set_ylim(-700, 700)
 ax.set_xlabel("auctions N", color=INK, fontsize=9); ax.set_ylabel("value per conversion", color=INK, fontsize=9)
