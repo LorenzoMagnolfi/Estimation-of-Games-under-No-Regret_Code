@@ -193,7 +193,8 @@ def regime_P(N, Sa, Sc, Ra, Rc, eps):
 def regime_P_joint(N, Sa, Sc, Ra, Rc, b):
     """Normalized joint first-moment budget (eq:s4jointbudget), equal weights on contexts with b_k > 0: the interval for
     lambda is min and max of lambda over (lambda, r >= 0) with lambda A_jk - C_jk <= r_j and sum_j w_j r_j / b_j <= 1/alpha_R."""
-    J = np.where(b > 0)[0]
+    B_FLOOR = 1e-13          # a first-moment bound below this per auction is treated as zero (r_k = 0), keeping coefficients finite
+    J = np.where(b > B_FLOOR)[0]
     if len(J) == 0:
         return regime_P(N, Sa, Sc, Ra, Rc, np.zeros(NV))[2:]
     w = np.zeros(NV); w[J] = 1.0 / len(J)
@@ -203,8 +204,8 @@ def regime_P_joint(N, Sa, Sc, Ra, Rc, b):
         for kp in range(NM):
             A = (Sa[j, kp] - Ra[j]) / N; C = (Sc[j, kp] - Rc[j]) / N
             row = np.zeros(nvar); row[0] = A; row[1 + j] = -1.0; A_ub.append(row); b_ub.append(C)
-    row = np.zeros(nvar); row[1:] = np.where(b > 0, w / np.maximum(b, 1e-300), 0.0); A_ub.append(row); b_ub.append(1.0 / ALPHA_R)
-    bounds = [(None, None)] + [((0.0, 0.0) if b[j] <= 0 else (0.0, None)) for j in range(NV)]
+    row = np.zeros(nvar); row[1:] = np.where(b > B_FLOOR, w / np.maximum(b, B_FLOOR), 0.0); A_ub.append(row); b_ub.append(1.0 / ALPHA_R)
+    bounds = [(None, None)] + [((0.0, 0.0) if b[j] <= B_FLOOR else (0.0, None)) for j in range(NV)]
     out = []
     for sign in (1.0, -1.0):
         c = np.zeros(nvar); c[0] = sign
@@ -274,7 +275,8 @@ def O_feasible_fixed(qN, psi, eps, r_cons, tag):
 
 def O_feasible_joint(qN, psi, b, r_cons, tag):
     """Normalized joint first-moment budget: r_j variables, Gamma_{j,kp} <= r_j, sum_j w_j r_j / b_j <= 1/alpha_R."""
-    J = np.where(b > 0)[0]
+    B_FLOOR = 1e-13
+    J = np.where(b > B_FLOOR)[0]
     nvar = NVAR0 + NV
     w = np.zeros(NV)
     if len(J):
@@ -286,9 +288,9 @@ def O_feasible_joint(qN, psi, b, r_cons, tag):
         for kp in range(NM):
             G[j * NM + kp, :NVAR0] = GAMMA[j, kp]; G[j * NM + kp, NVAR0 + j] = -1.0
     rows.append(G); rhs.append(np.zeros(NV * NM))
-    row = np.zeros(nvar); row[NVAR0:] = np.where(b > 0, w / np.maximum(b, 1e-300), 0.0); rows.append(row[None, :]); rhs.append(np.array([1.0 / ALPHA_R]))
+    row = np.zeros(nvar); row[NVAR0:] = np.where(b > B_FLOOR, w / np.maximum(b, B_FLOOR), 0.0); rows.append(row[None, :]); rhs.append(np.array([1.0 / ALPHA_R]))
     A_eq = np.hstack([A_EQ0, np.zeros((NB, NV))])
-    bounds = [(0, None)] * NVAR0 + [((0.0, 0.0) if b[j] <= 0 else (0.0, None)) for j in range(NV)]
+    bounds = [(0, None)] * NVAR0 + [((0.0, 0.0) if b[j] <= B_FLOOR else (0.0, None)) for j in range(NV)]
     return _solve(np.zeros(nvar), np.vstack(rows), np.concatenate(rhs), A_eq, qN, bounds, tag)
 
 

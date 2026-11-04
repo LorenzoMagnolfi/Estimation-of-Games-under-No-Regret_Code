@@ -80,6 +80,10 @@ parfor nd = 1:NGrid
         % variables: nu (nvar), z (s2), then rho (s per player) for the budget
         nz = s2; nrho = (strcmp(rule, 'jointF')) * (NPlayers * s);
         nv = nvar + nz + nrho;
+        % first-moment bounds per (player, type) and the budget's active set; a bound below 1e-13 per auction is treated
+        % as zero (r_k = 0, as eq:s4jointbudget prescribes for b_k = 0), which keeps the LP coefficients finite
+        bvec = zeros(NPlayers * s, 1); for i2 = 1:NPlayers, for t2 = 1:s, bvec((i2 - 1) * s + t2) = bF(N * phi(t2), t2); end, end
+        J = bvec > 1e-13; w = zeros(size(bvec)); if any(J), w(J) = 1 / nnz(J); end
         Aeq = [Aeq_match, zeros(NA, nz + nrho)]; beq = qN;
         Aineq = []; bineq = [];
         % composition: sum_a nu(a,p) - psi <= z,  psi - sum_a nu <= z,  sum z <= r
@@ -112,9 +116,8 @@ parfor nd = 1:NGrid
             end
         end
         if strcmp(rule, 'jointF')
-            bvec = zeros(NPlayers * s, 1); for i = 1:NPlayers, for t = 1:s, bvec((i - 1) * s + t) = bF(N * phi(t), t); end, end
-            J = bvec > 0; w = zeros(size(bvec)); w(J) = 1 / nnz(J);
-            row = zeros(1, nv); row(nvar + nz + 1:end) = (w ./ max(bvec, 1e-300))' .* J'; Aineq = [Aineq; row]; bineq = [bineq; 1 / alpha_R]; %#ok<AGROW>
+            coef = zeros(size(bvec)); coef(J) = w(J) ./ bvec(J);
+            row = zeros(1, nv); row(nvar + nz + 1:end) = coef'; Aineq = [Aineq; row]; bineq = [bineq; 1 / alpha_R]; %#ok<AGROW>
         end
         lb = zeros(nv, 1); ub = inf(nv, 1);
         if strcmp(rule, 'jointF'), ub(nvar + nz + find(~J)) = 0; end
