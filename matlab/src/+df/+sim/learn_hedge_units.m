@@ -41,8 +41,8 @@ for k = 1:nProf
     action_profile_map(find(AA == A(k,1), 1), find(AA == A(k,2), 1)) = k;
 end
 combs = [kron(ones(size(type_vals{2})), type_vals{1}), kron(type_vals{2}, ones(size(type_vals{1})))];
-md1 = pdf('normal', type_vals{1}, cfg.mu(1), cfg.sigma2(1,1)); md1 = md1 / sum(md1);
-md2 = pdf('normal', type_vals{2}, cfg.mu(2), cfg.sigma2(2,2)); md2 = md2 / sum(md2);
+md1 = pdf('normal', type_vals{1}, cfg.mu(1), sqrt(cfg.sigma2(1,1))); md1 = md1 / sum(md1);
+md2 = pdf('normal', type_vals{2}, cfg.mu(2), sqrt(cfg.sigma2(2,2))); md2 = md2 / sum(md2);
 joint_distrib = kron(md2, md1); n_combs = size(combs, 1);
 combs_type_idx = zeros(n_combs, 2);
 for k = 1:n_combs

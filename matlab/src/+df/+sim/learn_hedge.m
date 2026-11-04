@@ -33,6 +33,10 @@ NPlayers  = cfg.NPlayers;
 alpha_val = cfg.alpha;
 type_space = cfg.type_space;
 Pi        = cfg.Pi;
+% sale-probability scale q (sparse-outcome exhibit): profits and the normalizer Kt (from the
+% q-scaled Pi) must carry the same q, so that the step multiplier stays c = 1 (finding I4,
+% Niccolò, 4 November 2026; before this fix the effective multiplier was 1/q).
+q_scale = 1; if isfield(cfg, 'sale_scale') && ~isempty(cfg.sale_scale), q_scale = cfg.sale_scale; end
 
 nAct = size(AA, 1);
 nProf = size(A, 1);
@@ -79,8 +83,8 @@ mu_val = cfg.mu;
 if NPlayers == 2 && size(sigma2, 1) == 2
     combs = [kron(ones(size(type_vals{2})), type_vals{1}), ...
              kron(type_vals{2}, ones(size(type_vals{1})))];
-    md1 = pdf('normal', type_vals{1}, mu_val(1), sigma2(1,1)); md1 = md1 / sum(md1);
-    md2 = pdf('normal', type_vals{2}, mu_val(2), sigma2(2,2)); md2 = md2 / sum(md2);
+    md1 = pdf('normal', type_vals{1}, mu_val(1), sqrt(sigma2(1,1))); md1 = md1 / sum(md1);
+    md2 = pdf('normal', type_vals{2}, mu_val(2), sqrt(sigma2(2,2))); md2 = md2 / sum(md2);
     joint_distrib = kron(md2, md1);
     n_combs = size(combs, 1);
     combs_type_idx = zeros(n_combs, NPlayers);
@@ -149,12 +153,12 @@ for t = 1:(N + M)
         type_j = type_indices(j);
         denom_own = 1 + sum_exp_all;
         cp_own = exp_alpha_actions(j) / denom_own;
-        utility = cp_own * (actions(j) - mc_draw(j));
+        utility = q_scale * cp_own * (actions(j) - mc_draw(j));
         cum_util(type_j, j) = cum_util(type_j, j) + utility;
         sum_others = 1 + sum_exp_all - exp_alpha_actions(j);
         denom_cf = sum_others + exp_alpha_AA;
         cp_cf = exp_alpha_AA ./ denom_cf;
-        cf_utilities = cp_cf .* (AA - mc_draw(j));
+        cf_utilities = q_scale * cp_cf .* (AA - mc_draw(j));
         cum_cf_util(:, type_j, j) = cum_cf_util(:, type_j, j) + cf_utilities;
     end
 

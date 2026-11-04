@@ -88,9 +88,9 @@ mu_val = cfg.mu;
 if NPlayers == 2 && size(sigma2, 1) == 2
     combs = [kron(ones(size(type_vals{2})), type_vals{1}), ...
              kron(type_vals{2}, ones(size(type_vals{1})))];
-    md1 = pdf('normal', type_vals{1}, mu_val(1), sigma2(1,1));
+    md1 = pdf('normal', type_vals{1}, mu_val(1), sqrt(sigma2(1,1)));
     md1 = md1 / sum(md1);
-    md2 = pdf('normal', type_vals{2}, mu_val(2), sigma2(2,2));
+    md2 = pdf('normal', type_vals{2}, mu_val(2), sqrt(sigma2(2,2)));
     md2 = md2 / sum(md2);
     joint_distrib = kron(md2, md1);
     n_combs = size(combs, 1);

@@ -7,7 +7,7 @@ sigma2 = cfg.sigma2;
 mu = cfg.mu;
 
 % Generate marginal distribution as in v5
-marg_distrib = pdf('normal', type_space{1,1}, mu(1), sigma2(1,1));
+marg_distrib = pdf('normal', type_space{1,1}, mu(1), sqrt(sigma2(1,1)));
 marg_distrib = marg_distrib ./ sum(marg_distrib, 1);
 
 % For 1-dimensional case
@@ -20,7 +20,7 @@ elseif size(sigma2, 1) == 2
     combs = [kron(ones(size(type_space{2,1})), type_space{1,1}), kron(type_space{2,1}, ones(size(type_space{1,1})))];
     
     % Joint distribution (assuming independence)
-    marg_distrib2 = pdf('normal', type_space{2,1}, mu(2), sigma2(2,2));
+    marg_distrib2 = pdf('normal', type_space{2,1}, mu(2), sqrt(sigma2(2,2)));
     marg_distrib2 = marg_distrib2 ./ sum(marg_distrib2, 1);
     joint_distrib = kron(marg_distrib2, marg_distrib);
     
@@ -32,7 +32,7 @@ elseif size(sigma2, 1) == 2
 elseif sigma2 == diag(diag(sigma2)) 
     mc_draws = zeros(draws, size(sigma2, 1));
     for ind = 1:size(sigma2, 1)
-        marg_distrib_i = pdf('normal', type_space{ind,1}, mu(ind), sigma2(ind,ind));
+        marg_distrib_i = pdf('normal', type_space{ind,1}, mu(ind), sqrt(sigma2(ind,ind)));
         marg_distrib_i = marg_distrib_i ./ sum(marg_distrib_i, 1);
         mc_draws(:, ind) = randsample(type_space{ind,1}, draws, true, marg_distrib_i);
     end

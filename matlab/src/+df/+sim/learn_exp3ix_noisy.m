@@ -37,8 +37,8 @@ record_times_obs = round(M_obs * (1:numdst_t_obs) / numdst_t_obs); obs_start = N
 for k = 1:numdst_t_obs, t_abs = obs_start + record_times_obs(k); if t_abs >= 1 && t_abs <= N + M, record_map_obs(t_abs) = k; end, end
 sigma2 = cfg.sigma2; mu_val = cfg.mu;
 combs = [kron(ones(size(type_vals{2})), type_vals{1}), kron(type_vals{2}, ones(size(type_vals{1})))];
-md1 = pdf('normal', type_vals{1}, mu_val(1), sigma2(1,1)); md1 = md1 / sum(md1);
-md2 = pdf('normal', type_vals{2}, mu_val(2), sigma2(2,2)); md2 = md2 / sum(md2);
+md1 = pdf('normal', type_vals{1}, mu_val(1), sqrt(sigma2(1,1))); md1 = md1 / sum(md1);
+md2 = pdf('normal', type_vals{2}, mu_val(2), sqrt(sigma2(2,2))); md2 = md2 / sum(md2);
 joint_distrib = kron(md2, md1); n_combs = size(combs, 1);
 combs_type_idx = zeros(n_combs, NPlayers);
 for k = 1:n_combs

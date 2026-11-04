@@ -33,6 +33,17 @@ seed = int(sys.argv[5]) if len(sys.argv) > 5 else 1
 mode = sys.argv[6] if len(sys.argv) > 6 else "iid"
 if mode not in ("iid", "paired"):
     raise SystemExit("mode must be iid or paired")
+# Optional 7th argument: path to an audit JSON (audit_env_role.py) whose 'width_exact' gives, per context, the exact
+# width umax - g_min of the reward support over every multiplier and every rival triple of the pool. With it, the bandit
+# learners normalize losses by that width, so losses lie in [0, 1] as family B requires (finding I1, Niccolò, 4 November
+# 2026); without it the historical normalizer K (within-rival cross-multiplier span) is kept, and losses can exceed one.
+ixnorm = "env_K"
+L_EXACT = None
+if len(sys.argv) > 7 and sys.argv[7] not in ("", "env_K"):
+    import json
+    with open(sys.argv[7]) as fh:
+        L_EXACT = np.array(json.load(fh)["width_exact"], dtype=np.float64)
+    ixnorm = "exact:" + sys.argv[7]
 CHECKS = sorted(set([int(x) for x in [1e5, 4.8e5, 1e6, 3e6, 1e7, 3e7, 1e8, 3e8, 1e9] if x <= N_total] + [N_total]))
 
 alphas, vgrid, psi0, lam0, R, K, E, RES = (env["alphas"], env["vgrid"], env["psi0"], float(env["lam0"]), env["R"].astype(np.float64),
@@ -181,7 +192,8 @@ elif learner in ("exp3", "exp3ix"):
                 ic += 1
         return Z_out, Sa_out, Sc_out, Ra_out, Rc_out, cnt_out, win_out
     chk = np.array(CHECKS, dtype=np.int64)
-    Zo, Sao, Sco, Rao, Rco, co, wo = run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Ksafe, lam0, float(E[0]), float(E[1]), float(E[2]), RES, chk, seed + 7,
+    Knorm = np.maximum(L_EXACT, 1e-12) if L_EXACT is not None else Ksafe
+    Zo, Sao, Sco, Rao, Rco, co, wo = run_exp3(ctx, ridx, r1, r2, r3, alphas, vgrid, Knorm, lam0, float(E[0]), float(E[1]), float(E[2]), RES, chk, seed + 7,
                                               1 if learner == "exp3ix" else 0)
     for ic, Nc in enumerate(chk):
         results[int(Nc)] = dict(Z=Zo[ic], Sa=Sao[ic], Sc=Sco[ic], Ra=Rao[ic], Rc=Rco[ic], cnt=co[ic], win=wo[ic])
@@ -189,7 +201,8 @@ elif learner in ("exp3", "exp3ix"):
 else:
     raise SystemExit("learner must be hedge, exp3 or exp3ix")
 
-np.savez(out, checks=np.array(sorted(results)), learner=learner, seed=seed, mode=mode,
+np.savez(out, checks=np.array(sorted(results)), learner=learner, seed=seed, mode=mode, ixnorm=ixnorm,
+         L_exact=(L_EXACT if L_EXACT is not None else np.zeros(0)),
          **{f"{key}_{Nc}": results[Nc][key] for Nc in results for key in ["Z", "Sa", "Sc", "Ra", "Rc", "cnt", "win"]})
 print(f"\nlearner={learner} seed={seed} total={N_total:,d} ({time.time() - t0:.0f}s)")
 for Nc in sorted(results):

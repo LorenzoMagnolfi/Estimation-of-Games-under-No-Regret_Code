@@ -177,6 +177,13 @@ def slack(N, rule, Z, Sa, Sc, Ra, Rc):
 
 
 def regime_P(N, Sa, Sc, Ra, Rc, eps):
+    """Per-context interval for lambda from the obedience inequalities lambda * A - C <= eps, intersected over deviations.
+
+    A zero slope (|A| <= TOL) leaves the inequality -C <= eps, which fails iff C < -eps. The branch rejected when C > eps
+    until 4 November 2026 (finding I5 of Niccolò's feedback); the saved runs show the branch firing only with |C| below
+    1e-7, far inside every certified allowance, so no certified endpoint changed (audit record in the paper repo's
+    handover). TOL = 1e-12 on per-auction averages; slopes below it are treated as zero.
+    """
     lo, hi = np.full(NV, -np.inf), np.full(NV, np.inf)
     for j in range(NV):
         for kp in range(NM):
@@ -185,7 +192,7 @@ def regime_P(N, Sa, Sc, Ra, Rc, eps):
                 hi[j] = min(hi[j], (eps[j] + C) / A)
             elif A < -TOL:
                 lo[j] = max(lo[j], (eps[j] + C) / A)
-            elif C > eps[j] + TOL:
+            elif C < -eps[j] - TOL:
                 lo[j], hi[j] = np.inf, -np.inf
     return lo, hi, max(lo), min(hi)
 
@@ -218,10 +225,22 @@ def build_O_matrices():
 A_eq, A_ub, nvar = build_O_matrices()
 
 
+SOLVER_LOG = []     # (status, message) of every Regime O solve that is neither optimal (0) nor certified infeasible (2)
+
+
 def regime_O_feasible(qN, psi, eps, r_cons):
+    """Feasibility of the Regime O witness program for context masses psi. Returns True only for a solver-certified
+    feasible point (status 0) and False only for certified infeasibility (status 2); any other HiGHS status (iteration or
+    time limit, numerical difficulty) is logged and raised, so that a solver failure is never coded as a rejection
+    (finding I7(d) of Niccolò's feedback, 4 November 2026)."""
     b_ub = np.concatenate([np.repeat(psi, 2) * np.tile([1.0, -1.0], NV), [r_cons], np.repeat(eps, NM)])
     res = linprog(np.zeros(nvar), A_ub=A_ub, b_ub=b_ub, A_eq=A_eq, b_eq=qN, bounds=[(0, None)] * nvar, method="highs")
-    return res.status == 0
+    if res.status == 0:
+        return True
+    if res.status == 2:
+        return False
+    SOLVER_LOG.append((int(res.status), str(res.message)))
+    raise RuntimeError(f"Regime O solve ended with status {res.status}: {res.message}")
 
 
 def applicable_rules():

@@ -16,7 +16,7 @@ end
 
 %% Marginal Distribution
 
-marg_distrib = pdf('normal',type_space{ind,1},mu(1),sigma2(1,1));
+marg_distrib = pdf('normal',type_space{ind,1},mu(1), sqrt(sigma2(1,1)));
 marg_distrib = marg_distrib./sum(marg_distrib,1);
 
 end
