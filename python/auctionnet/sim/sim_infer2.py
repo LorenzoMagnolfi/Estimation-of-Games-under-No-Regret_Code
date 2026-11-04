@@ -300,8 +300,7 @@ def O_feasible_own(qN, psi, r_cons, N, Hfun, tag):
     rows, rhs = [A_CONS], [np.concatenate([np.repeat(psi, 2) * np.tile([1.0, -1.0], NV), [r_cons]])]
     h = 1e-3
     for j in range(NV):
-        Hm = Hfun(N, m_grid, "O")[:, j] if Hfun(N, m_grid, "O").ndim == 2 else None
-        # Hfun returns an array over contexts for scalar m; evaluate per context explicitly
+        # Hfun takes a count vector over contexts; evaluate context j at each tangent point with a constant count vector
         vals = np.array([Hfun(N, np.full(NV, m), "O")[j] for m in m_grid])
         dvals = np.array([(Hfun(N, np.full(NV, m * (1 + h)), "O")[j] - Hfun(N, np.full(NV, m * (1 - h)), "O")[j]) / (2 * h * m) for m in m_grid])
         for t, m_t in enumerate(m_grid):
