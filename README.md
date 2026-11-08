@@ -5,6 +5,15 @@ This repository is the working code home for two related goals:
 1. Reproduce the current paper as it exists now.
 2. Support revision-track code changes without losing the baseline.
 
+## Swappa research notes, November 6 to 8, 2026
+
+The notes for coauthors live in the paper repository (`JPE Revision/swappa-revival-learning-layers-note-2026-11-08.tex` governs the shared claims; the `-for-agents` Markdown beside it carries paths and commits). This repository holds the long-form records and the producing code.
+
+- [Defensible results assessment](docs/swappa-defensible-results-assessment-2026-11-08.md): the core Lerner-index result under the steady state, the repaired inference (max-t, cross-covariance, block bootstrap with demand refit), the free-cost bounds, the regret-notion comparison, the demand weak link, and what to demote.
+- [Steady-state alternatives](docs/swappa-steady-state-alternatives-2026-11-08.md): the learning-consistent layers that replace Assumption A2 (experience-indexed, any-window, bandit), all 13 sellers ordered by experience, and (Section 5) how the H unobserved rounds enter Theorems 1 and CR and Proposition 2.
+- [Revival audit memo](docs/swappa-revival-agent-memo-2026-11-06.md) and [demand repair note](docs/swappa-demand-repair-note-2026-11-06.md): the fix matrix M1 to M9 and the demand pilot on the native-reference panel.
+- Evidence: `docs/evidence/swappa_*_20261106.*` and `docs/evidence/swappa_*_20261108.*`; scripts: `python/swappa_rescue/*_20261106.py` and `*_20261108.py` (the common module is `swappa_common_20261108.py`).
+
 ## Swappa research notes, October 20, 2026
 
 - [Rule tests and cost inversion](docs/SWAPPA_RULE_TESTS_2026-10-20.md): completed GadgetPickup-focused evaluation, separate expected-sales cost bounds, exact assumptions, and unresolved confidence guarantees. Governs the new calculations.
