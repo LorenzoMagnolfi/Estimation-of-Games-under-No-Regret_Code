@@ -1,0 +1,6559 @@
+{
+ "date": "2026-11-08",
+ "spec": "raw_d0",
+ "eps_mode": "window",
+ "levels": [
+  0.0,
+  -0.1,
+  -0.05,
+  -0.025,
+  -0.01,
+  0.01,
+  0.025,
+  0.05,
+  0.1
+ ],
+ "sellers": {
+  "GadgetPickup": {
+   "sales": 1638,
+   "days": 164,
+   "cells": 10120,
+   "rows": 21012,
+   "cells_per_day": 61.7,
+   "implied_years": 2.2,
+   "H": {
+    "sku_day": 49196,
+    "listing_day": 102144
+   },
+   "n_models": 18,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.795,
+       0.8075,
+       false
+      ],
+      "SS_bonf": [
+       0.775,
+       0.825,
+       false
+      ],
+      "SS_maxt": [
+       0.7775,
+       0.8225,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7575,
+       0.8425,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.76,
+       0.8375,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7625,
+       0.84,
+       false
+      ],
+      "E_listing_maxt": [
+       0.765,
+       0.835,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2875,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.73,
+       0.8825,
+       false
+      ],
+      "AW_listing": [
+       0.745,
+       0.865,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0098,
+      "AW_skuday": 0.1036,
+      "E_listing": 0.0068,
+      "Bandit_listing": 0.6545
+     },
+     "lerner": {
+      "fit": [
+       11.9,
+       13.26
+      ],
+      "SS_bonf": [
+       9.99,
+       15.45
+      ],
+      "SS_maxt": [
+       10.26,
+       15.17
+      ],
+      "E_skuday_bonf": [
+       8.08,
+       17.36
+      ],
+      "E_skuday_maxt": [
+       8.63,
+       17.08
+      ],
+      "E_listing_bonf": [
+       8.35,
+       16.81
+      ],
+      "E_listing_maxt": [
+       8.9,
+       16.54
+      ],
+      "Bandit_listing_bonf": [
+       -1.74,
+       68.63
+      ],
+      "AW_skuday": [
+       3.72,
+       20.36
+      ],
+      "AW_listing": [
+       5.63,
+       18.72
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7925,
+       0.8075,
+       false
+      ],
+      "SS_bonf": [
+       0.76,
+       0.8325,
+       false
+      ],
+      "SS_maxt": [
+       0.7625,
+       0.83,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7525,
+       0.8425,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.755,
+       0.84,
+       false
+      ],
+      "E_listing_bonf": [
+       0.755,
+       0.84,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7575,
+       0.8375,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.28,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.7325,
+       0.885,
+       false
+      ],
+      "AW_listing": [
+       0.745,
+       0.865,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0099,
+      "AW_skuday": 0.1044,
+      "E_listing": 0.0069,
+      "Bandit_listing": 0.6545
+     },
+     "lerner": {
+      "fit": [
+       11.9,
+       13.54
+      ],
+      "SS_bonf": [
+       9.17,
+       17.08
+      ],
+      "SS_maxt": [
+       9.45,
+       16.81
+      ],
+      "E_skuday_bonf": [
+       8.08,
+       17.9
+      ],
+      "E_skuday_maxt": [
+       8.35,
+       17.63
+      ],
+      "E_listing_bonf": [
+       8.35,
+       17.63
+      ],
+      "E_listing_maxt": [
+       8.63,
+       17.36
+      ],
+      "Bandit_listing_bonf": [
+       -1.74,
+       69.45
+      ],
+      "AW_skuday": [
+       3.44,
+       20.08
+      ],
+      "AW_listing": [
+       5.63,
+       18.72
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.765,
+       0.8325,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.77,
+       0.8275,
+       false
+      ],
+      "E_listing_bonf": [
+       0.77,
+       0.825,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7775,
+       0.82,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.325,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.735,
+       0.89,
+       false
+      ],
+      "AW_listing": [
+       0.7525,
+       0.8675,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0106,
+      "AW_skuday": 0.1162,
+      "E_listing": 0.0074,
+      "Bandit_listing": 0.6545
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       9.17,
+       16.54
+      ],
+      "E_skuday_maxt": [
+       9.72,
+       15.99
+      ],
+      "E_listing_bonf": [
+       9.99,
+       15.99
+      ],
+      "E_listing_maxt": [
+       10.54,
+       15.17
+      ],
+      "Bandit_listing_bonf": [
+       -1.74,
+       64.54
+      ],
+      "AW_skuday": [
+       2.9,
+       19.81
+      ],
+      "AW_listing": [
+       5.35,
+       17.9
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7875,
+       0.7925,
+       false
+      ],
+      "SS_maxt": [
+       0.79,
+       0.79,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.755,
+       0.815,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.76,
+       0.81,
+       false
+      ],
+      "E_listing_bonf": [
+       0.765,
+       0.805,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7675,
+       0.8025,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9275,
+       false
+      ],
+      "AW_skuday": [
+       0.73,
+       0.92,
+       false
+      ],
+      "AW_listing": [
+       0.7475,
+       0.865,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0058,
+      "AW_skuday": 0.061,
+      "E_listing": 0.0041,
+      "Bandit_listing": 0.3722
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       13.54,
+       14.08
+      ],
+      "SS_maxt": [
+       13.81,
+       13.81
+      ],
+      "E_skuday_bonf": [
+       11.08,
+       17.63
+      ],
+      "E_skuday_maxt": [
+       11.63,
+       17.08
+      ],
+      "E_listing_bonf": [
+       12.17,
+       16.54
+      ],
+      "E_listing_maxt": [
+       12.45,
+       16.26
+      ],
+      "Bandit_listing_bonf": [
+       -1.19,
+       78.18
+      ],
+      "AW_skuday": [
+       -0.37,
+       20.36
+      ],
+      "AW_listing": [
+       5.63,
+       18.45
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 162,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7875,
+       0.8,
+       false
+      ],
+      "SS_maxt": [
+       0.7925,
+       0.7975,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7575,
+       0.85,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.765,
+       0.8425,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7675,
+       0.83,
+       false
+      ],
+      "E_listing_maxt": [
+       0.775,
+       0.825,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9425,
+       false
+      ],
+      "AW_skuday": [
+       0.695,
+       1.155,
+       false
+      ],
+      "AW_listing": [
+       0.7425,
+       0.9575,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0022,
+      "AW_skuday": 0.0198,
+      "E_listing": 0.0015,
+      "Bandit_listing": 0.1386
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       12.72,
+       14.08
+      ],
+      "SS_maxt": [
+       12.99,
+       13.54
+      ],
+      "E_skuday_bonf": [
+       7.26,
+       17.36
+      ],
+      "E_skuday_maxt": [
+       8.08,
+       16.54
+      ],
+      "E_listing_bonf": [
+       9.45,
+       16.26
+      ],
+      "E_listing_maxt": [
+       9.99,
+       15.45
+      ],
+      "Bandit_listing_bonf": [
+       -2.83,
+       78.18
+      ],
+      "AW_skuday": [
+       -26.01,
+       24.17
+      ],
+      "AW_listing": [
+       -4.47,
+       18.99
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     0.79,
+     0.28,
+     -0.13,
+     -0.53,
+     1.47,
+     1.42
+    ],
+    "mean_abs_kstar": 0.77,
+    "sd_kstar": 0.749,
+    "across_day_sd_mean_level": 0.017,
+    "within_day_cross_sku_sd": 0.063
+   },
+   "seconds": 39.6
+  },
+  "AMS Traders Inc.": {
+   "sales": 1316,
+   "days": 164,
+   "cells": 7254,
+   "rows": 22007,
+   "cells_per_day": 44.2,
+   "implied_years": 2.4,
+   "H": {
+    "sku_day": 38159,
+    "listing_day": 115765
+   },
+   "n_models": 14,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.8075,
+       0.8175,
+       false
+      ],
+      "SS_bonf": [
+       0.79,
+       0.835,
+       false
+      ],
+      "SS_maxt": [
+       0.7925,
+       0.8325,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7725,
+       0.8525,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.775,
+       0.85,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7775,
+       0.85,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7825,
+       0.845,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.95,
+       false
+      ],
+      "AW_skuday": [
+       0.7475,
+       0.9025,
+       false
+      ],
+      "AW_listing": [
+       0.7625,
+       0.88,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0093,
+      "AW_skuday": 0.0957,
+      "E_listing": 0.0054,
+      "Bandit_listing": 0.7587
+     },
+     "lerner": {
+      "fit": [
+       11.8,
+       12.88
+      ],
+      "SS_bonf": [
+       9.91,
+       14.77
+      ],
+      "SS_maxt": [
+       10.18,
+       14.5
+      ],
+      "E_skuday_bonf": [
+       8.02,
+       16.65
+      ],
+      "E_skuday_maxt": [
+       8.29,
+       16.38
+      ],
+      "E_listing_bonf": [
+       8.29,
+       16.11
+      ],
+      "E_listing_maxt": [
+       8.83,
+       15.57
+      ],
+      "Bandit_listing_bonf": [
+       -2.5,
+       78.42
+      ],
+      "AW_skuday": [
+       2.63,
+       19.35
+      ],
+      "AW_listing": [
+       5.06,
+       17.73
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7975,
+       0.8275,
+       false
+      ],
+      "SS_bonf": [
+       0.7775,
+       0.8525,
+       false
+      ],
+      "SS_maxt": [
+       0.7775,
+       0.85,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7675,
+       0.865,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.77,
+       0.86,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7725,
+       0.86,
+       false
+      ],
+      "E_listing_maxt": [
+       0.775,
+       0.855,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9525,
+       false
+      ],
+      "AW_skuday": [
+       0.745,
+       0.905,
+       false
+      ],
+      "AW_listing": [
+       0.76,
+       0.88,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0093,
+      "AW_skuday": 0.0969,
+      "E_listing": 0.0055,
+      "Bandit_listing": 0.7587
+     },
+     "lerner": {
+      "fit": [
+       10.72,
+       13.96
+      ],
+      "SS_bonf": [
+       8.02,
+       16.11
+      ],
+      "SS_maxt": [
+       8.29,
+       16.11
+      ],
+      "E_skuday_bonf": [
+       6.67,
+       17.19
+      ],
+      "E_skuday_maxt": [
+       7.21,
+       16.92
+      ],
+      "E_listing_bonf": [
+       7.21,
+       16.65
+      ],
+      "E_listing_maxt": [
+       7.75,
+       16.38
+      ],
+      "Bandit_listing_bonf": [
+       -2.77,
+       78.42
+      ],
+      "AW_skuday": [
+       2.36,
+       19.62
+      ],
+      "AW_listing": [
+       5.06,
+       18.0
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.79,
+       0.8475,
+       false
+      ],
+      "SS_maxt": [
+       0.7925,
+       0.8425,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.775,
+       0.86,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.78,
+       0.855,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7825,
+       0.855,
+       false
+      ],
+      "E_listing_maxt": [
+       0.785,
+       0.85,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.95,
+       false
+      ],
+      "AW_skuday": [
+       0.755,
+       0.9,
+       false
+      ],
+      "AW_listing": [
+       0.77,
+       0.87,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0087,
+      "AW_skuday": 0.0875,
+      "E_listing": 0.0051,
+      "Bandit_listing": 0.7587
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       8.56,
+       14.77
+      ],
+      "SS_maxt": [
+       9.1,
+       14.5
+      ],
+      "E_skuday_bonf": [
+       7.21,
+       16.38
+      ],
+      "E_skuday_maxt": [
+       7.75,
+       15.84
+      ],
+      "E_listing_bonf": [
+       7.75,
+       15.57
+      ],
+      "E_listing_maxt": [
+       8.29,
+       15.3
+      ],
+      "Bandit_listing_bonf": [
+       -2.5,
+       78.42
+      ],
+      "AW_skuday": [
+       2.9,
+       18.54
+      ],
+      "AW_listing": [
+       6.13,
+       16.92
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.795,
+       0.8275,
+       false
+      ],
+      "SS_maxt": [
+       0.7975,
+       0.8225,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7675,
+       0.8575,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.775,
+       0.8525,
+       false
+      ],
+      "E_listing_bonf": [
+       0.78,
+       0.8475,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7875,
+       0.84,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.96,
+       false
+      ],
+      "AW_skuday": [
+       0.7375,
+       0.9275,
+       false
+      ],
+      "AW_listing": [
+       0.765,
+       0.875,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0046,
+      "AW_skuday": 0.0442,
+      "E_listing": 0.0027,
+      "Bandit_listing": 0.3838
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.72,
+       14.23
+      ],
+      "SS_maxt": [
+       11.26,
+       13.96
+      ],
+      "E_skuday_bonf": [
+       7.48,
+       17.19
+      ],
+      "E_skuday_maxt": [
+       8.02,
+       16.38
+      ],
+      "E_listing_bonf": [
+       8.56,
+       15.84
+      ],
+      "E_listing_maxt": [
+       9.37,
+       15.04
+      ],
+      "Bandit_listing_bonf": [
+       -3.58,
+       78.42
+      ],
+      "AW_skuday": [
+       -0.07,
+       20.43
+      ],
+      "AW_listing": [
+       5.59,
+       17.46
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 126,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7925,
+       0.805,
+       false
+      ],
+      "SS_maxt": [
+       0.795,
+       0.7975,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.755,
+       0.8625,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7675,
+       0.8575,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7775,
+       0.85,
+       false
+      ],
+      "E_listing_maxt": [
+       0.785,
+       0.845,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.945,
+       false
+      ],
+      "AW_skuday": [
+       0.7125,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.755,
+       0.8875,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0022,
+      "AW_skuday": 0.0195,
+      "E_listing": 0.0013,
+      "Bandit_listing": 0.1759
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       13.15,
+       14.5
+      ],
+      "SS_maxt": [
+       13.96,
+       14.23
+      ],
+      "E_skuday_bonf": [
+       6.94,
+       18.54
+      ],
+      "E_skuday_maxt": [
+       7.48,
+       17.19
+      ],
+      "E_listing_bonf": [
+       8.29,
+       16.11
+      ],
+      "E_listing_maxt": [
+       8.83,
+       15.3
+      ],
+      "Bandit_listing_bonf": [
+       -1.96,
+       78.42
+      ],
+      "AW_skuday": [
+       -29.47,
+       23.13
+      ],
+      "AW_listing": [
+       4.25,
+       18.54
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     2.41,
+     0.96,
+     0.3,
+     1.03,
+     0.45,
+     -2.09
+    ],
+    "mean_abs_kstar": 1.207,
+    "sd_kstar": 1.347,
+    "across_day_sd_mean_level": 0.018,
+    "within_day_cross_sku_sd": 0.065
+   },
+   "seconds": 32.4
+  },
+  "UPGRADE SOLUTION INC": {
+   "sales": 952,
+   "days": 164,
+   "cells": 1126,
+   "rows": 10514,
+   "cells_per_day": 6.9,
+   "implied_years": 0.5,
+   "H": {
+    "sku_day": 1265,
+    "listing_day": 11813
+   },
+   "n_models": 3,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7425,
+       0.75,
+       false
+      ],
+      "SS_bonf": [
+       0.7175,
+       0.77,
+       false
+      ],
+      "SS_maxt": [
+       0.7225,
+       0.7675,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6725,
+       0.825,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.68,
+       0.82,
+       false
+      ],
+      "E_listing_bonf": [
+       0.695,
+       0.795,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7025,
+       0.7925,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.91,
+       false
+      ],
+      "AW_skuday": [
+       0.6425,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6925,
+       0.82,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1606,
+      "AW_skuday": 1.0577,
+      "E_listing": 0.053,
+      "Bandit_listing": 1.9927
+     },
+     "lerner": {
+      "fit": [
+       12.66,
+       13.54
+      ],
+      "SS_bonf": [
+       10.33,
+       16.45
+      ],
+      "SS_maxt": [
+       10.62,
+       15.87
+      ],
+      "E_skuday_bonf": [
+       3.93,
+       21.69
+      ],
+      "E_skuday_maxt": [
+       4.51,
+       20.81
+      ],
+      "E_listing_bonf": [
+       7.42,
+       19.07
+      ],
+      "E_listing_maxt": [
+       7.71,
+       18.19
+      ],
+      "Bandit_listing_bonf": [
+       -5.97,
+       76.71
+      ],
+      "AW_skuday": [
+       -39.74,
+       25.18
+      ],
+      "AW_listing": [
+       4.51,
+       19.36
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.725,
+       0.765,
+       false
+      ],
+      "SS_bonf": [
+       0.6975,
+       0.79,
+       false
+      ],
+      "SS_maxt": [
+       0.7,
+       0.7875,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.665,
+       0.83,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.67,
+       0.8275,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6825,
+       0.8025,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6875,
+       0.8,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9125,
+       false
+      ],
+      "AW_skuday": [
+       0.6375,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6875,
+       0.825,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1655,
+      "AW_skuday": 1.0919,
+      "E_listing": 0.0546,
+      "Bandit_listing": 1.9927
+     },
+     "lerner": {
+      "fit": [
+       10.92,
+       15.57
+      ],
+      "SS_bonf": [
+       8.0,
+       18.78
+      ],
+      "SS_maxt": [
+       8.3,
+       18.49
+      ],
+      "E_skuday_bonf": [
+       3.35,
+       22.56
+      ],
+      "E_skuday_maxt": [
+       3.64,
+       21.98
+      ],
+      "E_listing_bonf": [
+       6.55,
+       20.52
+      ],
+      "E_listing_maxt": [
+       6.84,
+       19.94
+      ],
+      "Bandit_listing_bonf": [
+       -6.26,
+       76.71
+      ],
+      "AW_skuday": [
+       -39.74,
+       25.76
+      ],
+      "AW_listing": [
+       3.93,
+       19.94
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.755,
+       false
+      ],
+      "SS_bonf": [
+       0.7,
+       0.785,
+       false
+      ],
+      "SS_maxt": [
+       0.7025,
+       0.7825,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6675,
+       0.8275,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6725,
+       0.825,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6875,
+       0.8,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6925,
+       0.7975,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9125,
+       false
+      ],
+      "AW_skuday": [
+       0.6375,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.69,
+       0.825,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1677,
+      "AW_skuday": 1.099,
+      "E_listing": 0.0553,
+      "Bandit_listing": 1.9927
+     },
+     "lerner": {
+      "fit": [
+       12.08,
+       14.12
+      ],
+      "SS_bonf": [
+       8.59,
+       18.49
+      ],
+      "SS_maxt": [
+       8.88,
+       18.19
+      ],
+      "E_skuday_bonf": [
+       3.64,
+       22.27
+      ],
+      "E_skuday_maxt": [
+       3.93,
+       21.69
+      ],
+      "E_listing_bonf": [
+       6.84,
+       19.94
+      ],
+      "E_listing_maxt": [
+       7.13,
+       19.36
+      ],
+      "Bandit_listing_bonf": [
+       -6.26,
+       76.71
+      ],
+      "AW_skuday": [
+       -39.74,
+       25.76
+      ],
+      "AW_listing": [
+       3.93,
+       19.65
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.755,
+       false
+      ],
+      "SS_bonf": [
+       0.7,
+       0.785,
+       false
+      ],
+      "SS_maxt": [
+       0.7025,
+       0.7825,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6675,
+       0.8275,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6725,
+       0.825,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6875,
+       0.8,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6925,
+       0.7975,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9125,
+       false
+      ],
+      "AW_skuday": [
+       0.6375,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.69,
+       0.825,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1677,
+      "AW_skuday": 1.099,
+      "E_listing": 0.0553,
+      "Bandit_listing": 1.9927
+     },
+     "lerner": {
+      "fit": [
+       12.08,
+       14.12
+      ],
+      "SS_bonf": [
+       8.59,
+       18.49
+      ],
+      "SS_maxt": [
+       8.88,
+       18.19
+      ],
+      "E_skuday_bonf": [
+       3.64,
+       22.27
+      ],
+      "E_skuday_maxt": [
+       3.93,
+       21.69
+      ],
+      "E_listing_bonf": [
+       6.84,
+       19.94
+      ],
+      "E_listing_maxt": [
+       7.13,
+       19.36
+      ],
+      "Bandit_listing_bonf": [
+       -6.26,
+       76.71
+      ],
+      "AW_skuday": [
+       -39.74,
+       25.76
+      ],
+      "AW_listing": [
+       3.93,
+       19.65
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7375,
+       0.7575,
+       false
+      ],
+      "SS_maxt": [
+       0.75,
+       0.755,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6725,
+       0.82,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6825,
+       0.815,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7225,
+       0.78,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7275,
+       0.7775,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.8925,
+       false
+      ],
+      "AW_skuday": [
+       0.6325,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.7325,
+       0.8075,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0814,
+      "AW_skuday": 0.4349,
+      "E_listing": 0.029,
+      "Bandit_listing": 1.1696
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       11.79,
+       14.12
+      ],
+      "SS_maxt": [
+       12.08,
+       12.66
+      ],
+      "E_skuday_bonf": [
+       4.51,
+       21.69
+      ],
+      "E_skuday_maxt": [
+       5.09,
+       20.52
+      ],
+      "E_listing_bonf": [
+       9.17,
+       15.87
+      ],
+      "E_listing_maxt": [
+       9.46,
+       15.28
+      ],
+      "Bandit_listing_bonf": [
+       -3.93,
+       76.71
+      ],
+      "AW_skuday": [
+       -39.74,
+       26.35
+      ],
+      "AW_listing": [
+       5.97,
+       14.7
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     0.2,
+     1.71,
+     0.36,
+     -0.48,
+     0.54,
+     0.34
+    ],
+    "mean_abs_kstar": 0.605,
+    "sd_kstar": 0.651,
+    "across_day_sd_mean_level": 0.015,
+    "within_day_cross_sku_sd": 0.05
+   },
+   "seconds": 6.2
+  },
+  "NYCPhonebuyer LLC": {
+   "sales": 747,
+   "days": 161,
+   "cells": 4996,
+   "rows": 8196,
+   "cells_per_day": 31.0,
+   "implied_years": 1.4,
+   "H": {
+    "sku_day": 15359,
+    "listing_day": 25197
+   },
+   "n_models": 9,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.75,
+       false
+      ],
+      "SS_bonf": [
+       0.715,
+       0.7675,
+       false
+      ],
+      "SS_maxt": [
+       0.7175,
+       0.765,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6825,
+       0.7925,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6875,
+       0.79,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6875,
+       0.7875,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6925,
+       0.7875,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.91,
+       false
+      ],
+      "AW_skuday": [
+       0.6425,
+       0.84,
+       false
+      ],
+      "AW_listing": [
+       0.66,
+       0.8275,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0332,
+      "AW_skuday": 0.2412,
+      "E_listing": 0.0261,
+      "Bandit_listing": 1.5281
+     },
+     "lerner": {
+      "fit": [
+       12.04,
+       13.51
+      ],
+      "SS_bonf": [
+       9.99,
+       16.15
+      ],
+      "SS_maxt": [
+       10.29,
+       15.86
+      ],
+      "E_skuday_bonf": [
+       7.06,
+       19.96
+      ],
+      "E_skuday_maxt": [
+       7.35,
+       19.37
+      ],
+      "E_listing_bonf": [
+       7.65,
+       19.37
+      ],
+      "E_listing_maxt": [
+       7.65,
+       18.79
+      ],
+      "Bandit_listing_bonf": [
+       -6.72,
+       76.55
+      ],
+      "AW_skuday": [
+       1.49,
+       24.65
+      ],
+      "AW_listing": [
+       2.96,
+       22.6
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7125,
+       0.77,
+       false
+      ],
+      "SS_bonf": [
+       0.685,
+       0.7975,
+       false
+      ],
+      "SS_maxt": [
+       0.69,
+       0.7925,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6625,
+       0.8075,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.67,
+       0.8025,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6675,
+       0.805,
+       false
+      ],
+      "E_listing_maxt": [
+       0.675,
+       0.8025,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9125,
+       false
+      ],
+      "AW_skuday": [
+       0.6325,
+       0.845,
+       false
+      ],
+      "AW_listing": [
+       0.6525,
+       0.83,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0345,
+      "AW_skuday": 0.2527,
+      "E_listing": 0.0271,
+      "Bandit_listing": 1.5281
+     },
+     "lerner": {
+      "fit": [
+       9.7,
+       16.44
+      ],
+      "SS_bonf": [
+       6.47,
+       19.67
+      ],
+      "SS_maxt": [
+       7.06,
+       19.08
+      ],
+      "E_skuday_bonf": [
+       5.3,
+       22.31
+      ],
+      "E_skuday_maxt": [
+       5.89,
+       21.43
+      ],
+      "E_listing_bonf": [
+       5.59,
+       21.72
+      ],
+      "E_listing_maxt": [
+       5.89,
+       20.84
+      ],
+      "Bandit_listing_bonf": [
+       -7.01,
+       76.55
+      ],
+      "AW_skuday": [
+       0.9,
+       25.82
+      ],
+      "AW_listing": [
+       2.66,
+       23.48
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7075,
+       0.775,
+       false
+      ],
+      "SS_maxt": [
+       0.7125,
+       0.77,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.685,
+       0.79,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.69,
+       0.785,
+       false
+      ],
+      "E_listing_bonf": [
+       0.69,
+       0.7875,
+       false
+      ],
+      "E_listing_maxt": [
+       0.695,
+       0.7825,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9125,
+       false
+      ],
+      "AW_skuday": [
+       0.65,
+       0.845,
+       false
+      ],
+      "AW_listing": [
+       0.6675,
+       0.8275,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0382,
+      "AW_skuday": 0.2816,
+      "E_listing": 0.03,
+      "Bandit_listing": 1.5281
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       9.11,
+       17.03
+      ],
+      "SS_maxt": [
+       9.7,
+       16.44
+      ],
+      "E_skuday_bonf": [
+       7.35,
+       19.67
+      ],
+      "E_skuday_maxt": [
+       7.94,
+       19.08
+      ],
+      "E_listing_bonf": [
+       7.65,
+       19.08
+      ],
+      "E_listing_maxt": [
+       8.23,
+       18.49
+      ],
+      "Bandit_listing_bonf": [
+       -7.01,
+       76.55
+      ],
+      "AW_skuday": [
+       0.9,
+       23.77
+      ],
+      "AW_listing": [
+       2.96,
+       21.72
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.6875,
+       0.7125,
+       false
+      ],
+      "SS_maxt": [
+       0.6925,
+       0.7075,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6625,
+       0.7575,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6675,
+       0.75,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6675,
+       0.755,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6725,
+       0.7475,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.905,
+       false
+      ],
+      "AW_skuday": [
+       0.635,
+       0.8925,
+       false
+      ],
+      "AW_listing": [
+       0.6575,
+       0.8425,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0206,
+      "AW_skuday": 0.1455,
+      "E_listing": 0.0164,
+      "Bandit_listing": 0.7515
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       16.44,
+       19.37
+      ],
+      "SS_maxt": [
+       17.03,
+       18.79
+      ],
+      "E_skuday_bonf": [
+       11.16,
+       22.31
+      ],
+      "E_skuday_maxt": [
+       12.04,
+       21.72
+      ],
+      "E_listing_bonf": [
+       11.46,
+       21.72
+      ],
+      "E_listing_maxt": [
+       12.34,
+       21.13
+      ],
+      "Bandit_listing_bonf": [
+       -6.13,
+       76.55
+      ],
+      "AW_skuday": [
+       -4.67,
+       25.53
+      ],
+      "AW_listing": [
+       1.2,
+       22.89
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 81,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7325,
+       0.7725,
+       false
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.6275,
+       0.835,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6475,
+       0.82,
+       false
+      ],
+      "E_listing_bonf": [
+       0.65,
+       0.8075,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6625,
+       0.8,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.5875,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.63,
+       0.99,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0115,
+      "AW_skuday": 0.0744,
+      "E_listing": 0.0087,
+      "Bandit_listing": 0.474
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       9.41,
+       14.1
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       2.08,
+       26.41
+      ],
+      "E_skuday_maxt": [
+       3.84,
+       24.07
+      ],
+      "E_listing_bonf": [
+       5.3,
+       23.77
+      ],
+      "E_listing_maxt": [
+       6.18,
+       22.31
+      ],
+      "Bandit_listing_bonf": [
+       -9.36,
+       76.55
+      ],
+      "AW_skuday": [
+       -40.73,
+       31.1
+      ],
+      "AW_listing": [
+       -16.1,
+       26.12
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     0.97,
+     0.96,
+     1.42,
+     0.16,
+     0.52,
+     -3.15
+    ],
+    "mean_abs_kstar": 1.197,
+    "sd_kstar": 1.526,
+    "across_day_sd_mean_level": 0.028,
+    "within_day_cross_sku_sd": 0.077
+   },
+   "seconds": 17.9
+  },
+  "SaveGadget": {
+   "sales": 581,
+   "days": 164,
+   "cells": 5559,
+   "rows": 10897,
+   "cells_per_day": 33.9,
+   "implied_years": 1.1,
+   "H": {
+    "sku_day": 13247,
+    "listing_day": 25967
+   },
+   "n_models": 10,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7925,
+       0.8025,
+       false
+      ],
+      "SS_bonf": [
+       0.775,
+       0.82,
+       false
+      ],
+      "SS_maxt": [
+       0.7775,
+       0.8175,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7525,
+       0.8475,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.755,
+       0.8425,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7575,
+       0.8425,
+       false
+      ],
+      "E_listing_maxt": [
+       0.76,
+       0.8375,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0125,
+       false
+      ],
+      "AW_skuday": [
+       0.725,
+       0.9,
+       false
+      ],
+      "AW_listing": [
+       0.7375,
+       0.875,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0193,
+      "AW_skuday": 0.1484,
+      "E_listing": 0.0139,
+      "Bandit_listing": 2.3157
+     },
+     "lerner": {
+      "fit": [
+       14.72,
+       15.78
+      ],
+      "SS_bonf": [
+       12.86,
+       17.64
+      ],
+      "SS_maxt": [
+       13.12,
+       17.37
+      ],
+      "E_skuday_bonf": [
+       9.93,
+       20.03
+      ],
+      "E_skuday_maxt": [
+       10.47,
+       19.76
+      ],
+      "E_listing_bonf": [
+       10.47,
+       19.5
+      ],
+      "E_listing_maxt": [
+       11.0,
+       19.23
+      ],
+      "Bandit_listing_bonf": [
+       -7.6,
+       78.75
+      ],
+      "AW_skuday": [
+       4.36,
+       22.95
+      ],
+      "AW_listing": [
+       7.01,
+       21.62
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7075,
+       0.865,
+       false
+      ],
+      "SS_bonf": [
+       0.66,
+       0.925,
+       false
+      ],
+      "SS_maxt": [
+       0.67,
+       0.905,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6525,
+       0.9525,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.66,
+       0.925,
+       false
+      ],
+      "E_listing_bonf": [
+       0.655,
+       0.9425,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6625,
+       0.9175,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0825,
+       false
+      ],
+      "AW_skuday": [
+       0.6625,
+       1.015,
+       false
+      ],
+      "AW_listing": [
+       0.67,
+       0.9575,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0277,
+      "AW_skuday": 0.2365,
+      "E_listing": 0.0201,
+      "Bandit_listing": 2.3157
+     },
+     "lerner": {
+      "fit": [
+       8.08,
+       24.81
+      ],
+      "SS_bonf": [
+       1.7,
+       29.86
+      ],
+      "SS_maxt": [
+       3.82,
+       28.8
+      ],
+      "E_skuday_bonf": [
+       -1.22,
+       30.66
+      ],
+      "E_skuday_maxt": [
+       1.7,
+       29.86
+      ],
+      "E_listing_bonf": [
+       -0.16,
+       30.39
+      ],
+      "E_listing_maxt": [
+       2.5,
+       29.6
+      ],
+      "Bandit_listing_bonf": [
+       -15.04,
+       78.75
+      ],
+      "AW_skuday": [
+       -7.87,
+       29.6
+      ],
+      "AW_listing": [
+       -1.76,
+       28.8
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.8075,
+       0.8075,
+       false
+      ],
+      "SS_bonf": [
+       0.75,
+       0.87,
+       false
+      ],
+      "SS_maxt": [
+       0.7575,
+       0.86,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7425,
+       0.88,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7475,
+       0.875,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7425,
+       0.8775,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7475,
+       0.8725,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0275,
+       false
+      ],
+      "AW_skuday": [
+       0.72,
+       0.93,
+       false
+      ],
+      "AW_listing": [
+       0.73,
+       0.905,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0222,
+      "AW_skuday": 0.2052,
+      "E_listing": 0.0163,
+      "Bandit_listing": 2.3157
+     },
+     "lerner": {
+      "fit": [
+       14.19,
+       14.19
+      ],
+      "SS_bonf": [
+       7.54,
+       20.3
+      ],
+      "SS_maxt": [
+       8.61,
+       19.5
+      ],
+      "E_skuday_bonf": [
+       6.48,
+       21.09
+      ],
+      "E_skuday_maxt": [
+       7.01,
+       20.56
+      ],
+      "E_listing_bonf": [
+       6.75,
+       21.09
+      ],
+      "E_listing_maxt": [
+       7.28,
+       20.56
+      ],
+      "Bandit_listing_bonf": [
+       -9.19,
+       78.75
+      ],
+      "AW_skuday": [
+       1.17,
+       23.48
+      ],
+      "AW_listing": [
+       3.82,
+       22.42
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.775,
+       0.8425,
+       false
+      ],
+      "SS_maxt": [
+       0.785,
+       0.835,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7575,
+       0.875,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7675,
+       0.87,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7625,
+       0.87,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7725,
+       0.86,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0375,
+       false
+      ],
+      "AW_skuday": [
+       0.74,
+       1.0125,
+       false
+      ],
+      "AW_listing": [
+       0.7525,
+       0.94,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0121,
+      "AW_skuday": 0.1113,
+      "E_listing": 0.0089,
+      "Bandit_listing": 1.1866
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.47,
+       17.64
+      ],
+      "SS_maxt": [
+       11.26,
+       16.58
+      ],
+      "E_skuday_bonf": [
+       7.01,
+       19.5
+      ],
+      "E_skuday_maxt": [
+       7.54,
+       18.44
+      ],
+      "E_listing_bonf": [
+       7.54,
+       18.97
+      ],
+      "E_listing_maxt": [
+       8.61,
+       17.91
+      ],
+      "Bandit_listing_bonf": [
+       -10.26,
+       78.75
+      ],
+      "AW_skuday": [
+       -7.6,
+       21.36
+      ],
+      "AW_listing": [
+       0.1,
+       20.03
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 90,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7775,
+       0.8475,
+       false
+      ],
+      "SS_maxt": [
+       0.78,
+       0.8375,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7375,
+       0.9075,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.745,
+       0.9,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7475,
+       0.8975,
+       false
+      ],
+      "E_listing_maxt": [
+       0.755,
+       0.89,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.05,
+       false
+      ],
+      "AW_skuday": [
+       0.685,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.7225,
+       1.0,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0079,
+      "AW_skuday": 0.0545,
+      "E_listing": 0.0051,
+      "Bandit_listing": 0.6729
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       9.93,
+       17.37
+      ],
+      "SS_maxt": [
+       11.0,
+       17.11
+      ],
+      "E_skuday_bonf": [
+       3.56,
+       21.62
+      ],
+      "E_skuday_maxt": [
+       4.36,
+       20.83
+      ],
+      "E_listing_bonf": [
+       4.62,
+       20.56
+      ],
+      "E_listing_maxt": [
+       5.42,
+       19.76
+      ],
+      "Bandit_listing_bonf": [
+       -11.59,
+       78.75
+      ],
+      "AW_skuday": [
+       -27.53,
+       27.2
+      ],
+      "AW_listing": [
+       -6.27,
+       23.22
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     3.35,
+     1.95,
+     0.3,
+     -0.25,
+     -0.34,
+     0.78
+    ],
+    "mean_abs_kstar": 1.162,
+    "sd_kstar": 1.311,
+    "across_day_sd_mean_level": 0.112,
+    "within_day_cross_sku_sd": 0.123
+   },
+   "seconds": 19.6
+  },
+  "Certified Cell, Inc": {
+   "sales": 554,
+   "days": 164,
+   "cells": 1783,
+   "rows": 10271,
+   "cells_per_day": 10.9,
+   "implied_years": 0.2,
+   "H": {
+    "sku_day": 784,
+    "listing_day": 4515
+   },
+   "n_models": 5,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7825,
+       0.79,
+       false
+      ],
+      "SS_bonf": [
+       0.745,
+       0.8225,
+       false
+      ],
+      "SS_maxt": [
+       0.7525,
+       0.815,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.635,
+       0.9575,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.68,
+       0.895,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6975,
+       0.88,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7125,
+       0.855,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.025,
+       false
+      ],
+      "AW_skuday": [
+       0.6575,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.7225,
+       0.86,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1659,
+      "AW_skuday": 1.079,
+      "E_listing": 0.0698,
+      "Bandit_listing": 8.019
+     },
+     "lerner": {
+      "fit": [
+       10.56,
+       11.41
+      ],
+      "SS_bonf": [
+       6.89,
+       15.66
+      ],
+      "SS_maxt": [
+       7.73,
+       14.81
+      ],
+      "E_skuday_bonf": [
+       -8.4,
+       28.11
+      ],
+      "E_skuday_maxt": [
+       -1.32,
+       23.02
+      ],
+      "E_listing_bonf": [
+       0.38,
+       21.04
+      ],
+      "E_listing_maxt": [
+       3.21,
+       19.34
+      ],
+      "Bandit_listing_bonf": [
+       -16.04,
+       77.36
+      ],
+      "AW_skuday": [
+       -35.85,
+       25.56
+      ],
+      "AW_listing": [
+       2.64,
+       18.21
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.755,
+       0.855,
+       false
+      ],
+      "SS_maxt": [
+       0.76,
+       0.8375,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6375,
+       0.985,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6875,
+       0.915,
+       false
+      ],
+      "E_listing_bonf": [
+       0.715,
+       0.8925,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7275,
+       0.87,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.025,
+       false
+      ],
+      "AW_skuday": [
+       0.66,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.7275,
+       0.855,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1724,
+      "AW_skuday": 1.0673,
+      "E_listing": 0.0724,
+      "Bandit_listing": 8.019
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       3.21,
+       14.53
+      ],
+      "SS_maxt": [
+       5.19,
+       13.96
+      ],
+      "E_skuday_bonf": [
+       -11.51,
+       27.83
+      ],
+      "E_skuday_maxt": [
+       -3.59,
+       22.17
+      ],
+      "E_listing_bonf": [
+       -1.04,
+       19.06
+      ],
+      "E_listing_maxt": [
+       1.51,
+       17.64
+      ],
+      "Bandit_listing_bonf": [
+       -16.04,
+       77.36
+      ],
+      "AW_skuday": [
+       -35.85,
+       25.28
+      ],
+      "AW_listing": [
+       3.21,
+       17.64
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.6625,
+       0.965,
+       false
+      ],
+      "SS_maxt": [
+       0.7175,
+       0.885,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6375,
+       1.1075,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6875,
+       0.9575,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6525,
+       1.005,
+       false
+      ],
+      "E_listing_maxt": [
+       0.705,
+       0.91,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.035,
+       false
+      ],
+      "AW_skuday": [
+       0.6225,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.63,
+       1.1425,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.2555,
+      "AW_skuday": 3.4146,
+      "E_listing": 0.1071,
+      "Bandit_listing": 8.019
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       -9.25,
+       25.0
+      ],
+      "SS_maxt": [
+       -0.19,
+       18.77
+      ],
+      "E_skuday_bonf": [
+       -25.38,
+       27.83
+      ],
+      "E_skuday_maxt": [
+       -8.4,
+       22.17
+      ],
+      "E_listing_bonf": [
+       -13.78,
+       26.13
+      ],
+      "E_listing_maxt": [
+       -3.02,
+       20.19
+      ],
+      "Bandit_listing_bonf": [
+       -17.17,
+       77.36
+      ],
+      "AW_skuday": [
+       -35.85,
+       29.53
+      ],
+      "AW_listing": [
+       -29.34,
+       28.68
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7725,
+       0.8825,
+       false
+      ],
+      "SS_maxt": [
+       0.78,
+       0.84,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6925,
+       1.2,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7075,
+       1.0325,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7375,
+       0.9425,
+       false
+      ],
+      "E_listing_maxt": [
+       0.745,
+       0.89,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0325,
+       false
+      ],
+      "AW_skuday": [
+       0.66,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.7325,
+       0.84,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.1548,
+      "AW_skuday": 1.4402,
+      "E_listing": 0.0912,
+      "Bandit_listing": 4.4967
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       0.09,
+       12.55
+      ],
+      "SS_maxt": [
+       4.9,
+       11.7
+      ],
+      "E_skuday_bonf": [
+       -35.85,
+       21.6
+      ],
+      "E_skuday_maxt": [
+       -16.89,
+       19.9
+      ],
+      "E_listing_bonf": [
+       -6.7,
+       16.51
+      ],
+      "E_listing_maxt": [
+       -0.76,
+       15.66
+      ],
+      "Bandit_listing_bonf": [
+       -16.89,
+       77.36
+      ],
+      "AW_skuday": [
+       -35.85,
+       25.28
+      ],
+      "AW_listing": [
+       4.9,
+       17.07
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 45,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.75,
+       0.91,
+       false
+      ],
+      "SS_maxt": [
+       0.755,
+       0.8575,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.2,
+       1.2,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.2,
+       1.2,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6875,
+       1.055,
+       false
+      ],
+      "E_listing_maxt": [
+       0.695,
+       0.965,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0375,
+       false
+      ],
+      "AW_skuday": [
+       0.54,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.73,
+       0.8375,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0693,
+      "AW_skuday": 0.2941,
+      "E_listing": 0.0236,
+      "Bandit_listing": 3.768
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       -3.02,
+       15.09
+      ],
+      "SS_maxt": [
+       2.92,
+       14.53
+      ],
+      "E_skuday_bonf": [
+       -35.85,
+       77.36
+      ],
+      "E_skuday_maxt": [
+       -35.85,
+       77.36
+      ],
+      "E_listing_bonf": [
+       -19.44,
+       22.17
+      ],
+      "E_listing_maxt": [
+       -9.25,
+       21.32
+      ],
+      "Bandit_listing_bonf": [
+       -17.45,
+       77.36
+      ],
+      "AW_skuday": [
+       -35.85,
+       38.87
+      ],
+      "AW_listing": [
+       5.19,
+       17.36
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     10.0,
+     -1.43,
+     -5.61,
+     3.02,
+     1.73,
+     -1.84
+    ],
+    "mean_abs_kstar": 3.938,
+    "sd_kstar": 4.887,
+    "across_day_sd_mean_level": 0.055,
+    "within_day_cross_sku_sd": 0.15
+   },
+   "seconds": 10.1
+  },
+  "Gilly's Smart Phones": {
+   "sales": 425,
+   "days": 154,
+   "cells": 1376,
+   "rows": 2647,
+   "cells_per_day": 8.9,
+   "implied_years": 2.1,
+   "H": {
+    "sku_day": 6468,
+    "listing_day": 12443
+   },
+   "n_models": 3,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.7525,
+       false
+      ],
+      "SS_bonf": [
+       0.7075,
+       0.78,
+       false
+      ],
+      "SS_maxt": [
+       0.7125,
+       0.7775,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.665,
+       0.815,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6725,
+       0.81,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6725,
+       0.8075,
+       false
+      ],
+      "E_listing_maxt": [
+       0.68,
+       0.8025,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.925,
+       false
+      ],
+      "AW_skuday": [
+       0.565,
+       1.0,
+       false
+      ],
+      "AW_listing": [
+       0.61,
+       0.8725,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0582,
+      "AW_skuday": 0.6348,
+      "E_listing": 0.0423,
+      "Bandit_listing": 2.1466
+     },
+     "lerner": {
+      "fit": [
+       12.39,
+       14.14
+      ],
+      "SS_bonf": [
+       9.19,
+       17.63
+      ],
+      "SS_maxt": [
+       9.48,
+       17.05
+      ],
+      "E_skuday_bonf": [
+       5.12,
+       22.58
+      ],
+      "E_skuday_maxt": [
+       5.7,
+       21.71
+      ],
+      "E_listing_bonf": [
+       5.99,
+       21.71
+      ],
+      "E_listing_maxt": [
+       6.57,
+       20.83
+      ],
+      "Bandit_listing_bonf": [
+       -7.69,
+       76.72
+      ],
+      "AW_skuday": [
+       -16.42,
+       34.22
+      ],
+      "AW_listing": [
+       -1.58,
+       28.98
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7,
+       0.765,
+       true
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.655,
+       0.8125,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.67,
+       0.805,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6675,
+       0.8075,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6825,
+       0.795,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.925,
+       false
+      ],
+      "AW_skuday": [
+       0.57,
+       0.9725,
+       false
+      ],
+      "AW_listing": [
+       0.62,
+       0.8625,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0566,
+      "AW_skuday": 0.5867,
+      "E_listing": 0.041,
+      "Bandit_listing": 2.1466
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.94,
+       18.5
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       5.41,
+       23.74
+      ],
+      "E_skuday_maxt": [
+       6.28,
+       22.0
+      ],
+      "E_listing_bonf": [
+       5.99,
+       22.29
+      ],
+      "E_listing_maxt": [
+       7.44,
+       20.54
+      ],
+      "Bandit_listing_bonf": [
+       -7.69,
+       76.72
+      ],
+      "AW_skuday": [
+       -13.22,
+       33.64
+      ],
+      "AW_listing": [
+       -0.41,
+       27.82
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7325,
+       0.7475,
+       false
+      ],
+      "SS_bonf": [
+       0.65,
+       0.79,
+       false
+      ],
+      "SS_maxt": [
+       0.6575,
+       0.785,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6225,
+       0.8125,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.635,
+       0.8075,
+       false
+      ],
+      "E_listing_bonf": [
+       0.63,
+       0.81,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6425,
+       0.8025,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.925,
+       false
+      ],
+      "AW_skuday": [
+       0.5575,
+       0.9625,
+       false
+      ],
+      "AW_listing": [
+       0.61,
+       0.8625,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0548,
+      "AW_skuday": 0.5999,
+      "E_listing": 0.0398,
+      "Bandit_listing": 2.1466
+     },
+     "lerner": {
+      "fit": [
+       12.97,
+       14.72
+      ],
+      "SS_bonf": [
+       8.03,
+       24.32
+      ],
+      "SS_maxt": [
+       8.61,
+       23.45
+      ],
+      "E_skuday_bonf": [
+       5.41,
+       27.53
+      ],
+      "E_skuday_maxt": [
+       5.99,
+       26.07
+      ],
+      "E_listing_bonf": [
+       5.7,
+       26.65
+      ],
+      "E_listing_maxt": [
+       6.57,
+       25.2
+      ],
+      "Bandit_listing_bonf": [
+       -7.69,
+       76.72
+      ],
+      "AW_skuday": [
+       -12.06,
+       35.09
+      ],
+      "AW_listing": [
+       -0.41,
+       28.98
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 18,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.64,
+       0.65,
+       false
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.6075,
+       0.825,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6225,
+       0.82,
+       false
+      ],
+      "E_listing_bonf": [
+       0.62,
+       0.82,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6325,
+       0.8,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.55,
+       1.0575,
+       false
+      ],
+      "AW_listing": [
+       0.61,
+       0.8825,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0335,
+      "AW_skuday": 0.366,
+      "E_listing": 0.0242,
+      "Bandit_listing": 1.2873
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       24.32,
+       25.49
+      ],
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       3.95,
+       29.27
+      ],
+      "E_skuday_maxt": [
+       4.53,
+       27.53
+      ],
+      "E_listing_bonf": [
+       4.53,
+       27.82
+      ],
+      "E_listing_maxt": [
+       6.86,
+       26.36
+      ],
+      "Bandit_listing_bonf": [
+       -8.56,
+       76.72
+      ],
+      "AW_skuday": [
+       -23.12,
+       35.97
+      ],
+      "AW_listing": [
+       -2.74,
+       28.98
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.6425,
+       0.7875,
+       false
+      ],
+      "SS_maxt": [
+       0.6575,
+       0.7775,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.555,
+       0.855,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.5725,
+       0.8525,
+       false
+      ],
+      "E_listing_bonf": [
+       0.5725,
+       0.8375,
+       false
+      ],
+      "E_listing_maxt": [
+       0.5925,
+       0.825,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.945,
+       false
+      ],
+      "AW_skuday": [
+       0.28,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.575,
+       0.97,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0314,
+      "AW_skuday": 0.2975,
+      "E_listing": 0.0214,
+      "Bandit_listing": 1.0472
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       8.32,
+       25.2
+      ],
+      "SS_maxt": [
+       9.48,
+       23.45
+      ],
+      "E_skuday_bonf": [
+       0.46,
+       35.39
+      ],
+      "E_skuday_maxt": [
+       0.75,
+       33.35
+      ],
+      "E_listing_bonf": [
+       2.5,
+       33.35
+      ],
+      "E_listing_maxt": [
+       3.95,
+       31.02
+      ],
+      "Bandit_listing_bonf": [
+       -10.02,
+       76.72
+      ],
+      "AW_skuday": [
+       -39.71,
+       67.4
+      ],
+      "AW_listing": [
+       -12.93,
+       33.06
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     0.94,
+     0.28,
+     -0.44,
+     -0.17,
+     1.41,
+     1.9
+    ],
+    "mean_abs_kstar": 0.857,
+    "sd_kstar": 0.839,
+    "across_day_sd_mean_level": 0.023,
+    "within_day_cross_sku_sd": 0.06
+   },
+   "seconds": 5.1
+  },
+  "TD'S Cell Shop": {
+   "sales": 418,
+   "days": 164,
+   "cells": 2096,
+   "rows": 3317,
+   "cells_per_day": 12.8,
+   "implied_years": 2.3,
+   "H": {
+    "sku_day": 10872,
+    "listing_day": 17205
+   },
+   "n_models": 4,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.7475,
+       false
+      ],
+      "SS_bonf": [
+       0.715,
+       0.7675,
+       false
+      ],
+      "SS_maxt": [
+       0.7175,
+       0.765,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6825,
+       0.8,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6875,
+       0.795,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6875,
+       0.795,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6925,
+       0.7925,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.96,
+       false
+      ],
+      "AW_skuday": [
+       0.6225,
+       0.9,
+       false
+      ],
+      "AW_listing": [
+       0.6375,
+       0.85,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0427,
+      "AW_skuday": 0.4373,
+      "E_listing": 0.0344,
+      "Bandit_listing": 1.7837
+     },
+     "lerner": {
+      "fit": [
+       15.86,
+       16.99
+      ],
+      "SS_bonf": [
+       13.61,
+       19.52
+      ],
+      "SS_maxt": [
+       13.89,
+       19.24
+      ],
+      "E_skuday_bonf": [
+       9.95,
+       23.18
+      ],
+      "E_skuday_maxt": [
+       10.52,
+       22.62
+      ],
+      "E_listing_bonf": [
+       10.52,
+       22.62
+      ],
+      "E_listing_maxt": [
+       10.8,
+       22.05
+      ],
+      "Bandit_listing_bonf": [
+       -8.05,
+       77.49
+      ],
+      "AW_skuday": [
+       -1.3,
+       29.93
+      ],
+      "AW_listing": [
+       4.33,
+       28.24
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.72,
+       0.7625,
+       false
+      ],
+      "SS_bonf": [
+       0.675,
+       0.8125,
+       false
+      ],
+      "SS_maxt": [
+       0.68,
+       0.8075,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6625,
+       0.8225,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.67,
+       0.815,
+       false
+      ],
+      "E_listing_bonf": [
+       0.665,
+       0.82,
+       false
+      ],
+      "E_listing_maxt": [
+       0.6725,
+       0.8125,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.97,
+       false
+      ],
+      "AW_skuday": [
+       0.6175,
+       0.92,
+       false
+      ],
+      "AW_listing": [
+       0.63,
+       0.87,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0441,
+      "AW_skuday": 0.5051,
+      "E_listing": 0.0355,
+      "Bandit_listing": 1.7837
+     },
+     "lerner": {
+      "fit": [
+       14.18,
+       18.96
+      ],
+      "SS_bonf": [
+       8.55,
+       24.02
+      ],
+      "SS_maxt": [
+       9.11,
+       23.46
+      ],
+      "E_skuday_bonf": [
+       7.42,
+       25.43
+      ],
+      "E_skuday_maxt": [
+       8.27,
+       24.59
+      ],
+      "E_listing_bonf": [
+       7.7,
+       25.15
+      ],
+      "E_listing_maxt": [
+       8.55,
+       24.31
+      ],
+      "Bandit_listing_bonf": [
+       -9.18,
+       77.49
+      ],
+      "AW_skuday": [
+       -3.55,
+       30.5
+      ],
+      "AW_listing": [
+       2.08,
+       29.09
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.725,
+       0.76,
+       false
+      ],
+      "E_skuday_maxt": null,
+      "E_listing_bonf": [
+       0.7375,
+       0.7475,
+       false
+      ],
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       0.95,
+       false
+      ],
+      "AW_skuday": [
+       0.6425,
+       0.875,
+       false
+      ],
+      "AW_listing": [
+       0.6525,
+       0.85,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0406,
+      "AW_skuday": 0.4905,
+      "E_listing": 0.0329,
+      "Bandit_listing": 1.7837
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       14.46,
+       18.4
+      ],
+      "E_skuday_maxt": null,
+      "E_listing_bonf": [
+       15.86,
+       16.99
+      ],
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -6.93,
+       77.49
+      ],
+      "AW_skuday": [
+       1.51,
+       27.68
+      ],
+      "AW_listing": [
+       4.33,
+       26.56
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       0.935,
+       false
+      ],
+      "AW_skuday": [
+       0.65,
+       0.965,
+       false
+      ],
+      "AW_listing": [
+       0.6775,
+       0.87,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0215,
+      "AW_skuday": 0.2436,
+      "E_listing": 0.0182,
+      "Bandit_listing": 0.9485
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -5.24,
+       77.49
+      ],
+      "AW_skuday": [
+       -8.62,
+       26.84
+      ],
+      "AW_listing": [
+       2.08,
+       23.74
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 36,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0125,
+       false
+      ],
+      "AW_skuday": [
+       0.6,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6525,
+       0.9225,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.019,
+      "AW_skuday": 0.2065,
+      "E_listing": 0.0159,
+      "Bandit_listing": 0.7383
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -13.96,
+       77.49
+      ],
+      "AW_skuday": [
+       -35.07,
+       32.47
+      ],
+      "AW_listing": [
+       -3.83,
+       26.56
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     3.45,
+     1.43,
+     -0.5,
+     -0.82,
+     2.16,
+     -2.92
+    ],
+    "mean_abs_kstar": 1.88,
+    "sd_kstar": 2.112,
+    "across_day_sd_mean_level": 0.225,
+    "within_day_cross_sku_sd": 0.122
+   },
+   "seconds": 6.4
+  },
+  "Wireless Source": {
+   "sales": 389,
+   "days": 164,
+   "cells": 11955,
+   "rows": 22332,
+   "cells_per_day": 72.9,
+   "implied_years": 0.9,
+   "H": {
+    "sku_day": 23944,
+    "listing_day": 44727
+   },
+   "n_models": 18,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.8225,
+       0.8275,
+       false
+      ],
+      "SS_bonf": [
+       0.7625,
+       0.8875,
+       false
+      ],
+      "SS_maxt": [
+       0.775,
+       0.875,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.74,
+       0.92,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7525,
+       0.905,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7425,
+       0.9125,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7575,
+       0.9,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.1775,
+       false
+      ],
+      "AW_skuday": [
+       0.6975,
+       1.135,
+       false
+      ],
+      "AW_listing": [
+       0.7125,
+       1.0575,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0437,
+      "AW_skuday": 1.5518,
+      "E_listing": 0.0324,
+      "Bandit_listing": 11.0215
+     },
+     "lerner": {
+      "fit": [
+       21.12,
+       21.6
+      ],
+      "SS_bonf": [
+       15.4,
+       27.32
+      ],
+      "SS_maxt": [
+       16.59,
+       26.12
+      ],
+      "E_skuday_bonf": [
+       12.3,
+       29.46
+      ],
+      "E_skuday_maxt": [
+       13.73,
+       28.27
+      ],
+      "E_listing_bonf": [
+       13.02,
+       29.22
+      ],
+      "E_listing_maxt": [
+       14.21,
+       27.79
+      ],
+      "Bandit_listing_bonf": [
+       -12.24,
+       80.94
+      ],
+      "AW_skuday": [
+       -8.19,
+       33.51
+      ],
+      "AW_listing": [
+       -0.81,
+       32.08
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.79,
+       1.0025,
+       false
+      ],
+      "SS_maxt": [
+       0.8025,
+       0.9525,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.785,
+       1.0175,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.795,
+       0.9625,
+       false
+      ],
+      "E_listing_bonf": [
+       0.785,
+       1.0125,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7975,
+       0.96,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.2,
+       false
+      ],
+      "AW_skuday": [
+       0.705,
+       1.0725,
+       false
+      ],
+      "AW_listing": [
+       0.72,
+       1.015,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0452,
+      "AW_skuday": 1.6505,
+      "E_listing": 0.0335,
+      "Bandit_listing": 11.0215
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       4.44,
+       24.69
+      ],
+      "SS_maxt": [
+       9.2,
+       23.5
+      ],
+      "E_skuday_bonf": [
+       3.01,
+       25.17
+      ],
+      "E_skuday_maxt": [
+       8.25,
+       24.22
+      ],
+      "E_listing_bonf": [
+       3.48,
+       25.17
+      ],
+      "E_listing_maxt": [
+       8.49,
+       23.98
+      ],
+      "Bandit_listing_bonf": [
+       -14.39,
+       80.94
+      ],
+      "AW_skuday": [
+       -2.24,
+       32.8
+      ],
+      "AW_listing": [
+       3.25,
+       31.37
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.685,
+       1.2,
+       false
+      ],
+      "SS_maxt": [
+       0.75,
+       1.0425,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6775,
+       1.2,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7425,
+       1.06,
+       false
+      ],
+      "E_listing_bonf": [
+       0.68,
+       1.2,
+       false
+      ],
+      "E_listing_maxt": [
+       0.745,
+       1.055,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.2,
+       false
+      ],
+      "AW_skuday": [
+       0.6625,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.685,
+       1.2,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0705,
+      "AW_skuday": 4.4337,
+      "E_listing": 0.0523,
+      "Bandit_listing": 11.0215
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       -14.39,
+       34.7
+      ],
+      "SS_maxt": [
+       0.62,
+       28.51
+      ],
+      "E_skuday_bonf": [
+       -14.39,
+       35.42
+      ],
+      "E_skuday_maxt": [
+       -1.04,
+       29.22
+      ],
+      "E_listing_bonf": [
+       -14.39,
+       35.18
+      ],
+      "E_listing_maxt": [
+       -0.57,
+       28.98
+      ],
+      "Bandit_listing_bonf": [
+       -14.39,
+       80.94
+      ],
+      "AW_skuday": [
+       -14.39,
+       36.85
+      ],
+      "AW_listing": [
+       -14.39,
+       34.7
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.825,
+       0.925,
+       false
+      ],
+      "SS_maxt": [
+       0.8425,
+       0.92,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.785,
+       0.9425,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7975,
+       0.935,
+       false
+      ],
+      "E_listing_bonf": [
+       0.79,
+       0.935,
+       false
+      ],
+      "E_listing_maxt": [
+       0.8,
+       0.93,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.2,
+       false
+      ],
+      "AW_skuday": [
+       0.7925,
+       0.9925,
+       false
+      ],
+      "AW_listing": [
+       0.8025,
+       0.9725,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0375,
+      "AW_skuday": 1.5739,
+      "E_listing": 0.0281,
+      "Bandit_listing": 6.7408
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       11.83,
+       21.36
+      ],
+      "SS_maxt": [
+       12.3,
+       19.69
+      ],
+      "E_skuday_bonf": [
+       10.16,
+       25.17
+      ],
+      "E_skuday_maxt": [
+       10.87,
+       23.98
+      ],
+      "E_listing_bonf": [
+       10.87,
+       24.69
+      ],
+      "E_listing_maxt": [
+       11.35,
+       23.74
+      ],
+      "Bandit_listing_bonf": [
+       -14.39,
+       80.94
+      ],
+      "AW_skuday": [
+       5.39,
+       24.46
+      ],
+      "AW_listing": [
+       7.3,
+       23.5
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 162,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.85,
+       0.9325,
+       false
+      ],
+      "SS_maxt": [
+       0.8575,
+       0.9125,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.805,
+       0.99,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.815,
+       0.97,
+       false
+      ],
+      "E_listing_bonf": [
+       0.81,
+       0.9625,
+       false
+      ],
+      "E_listing_maxt": [
+       0.83,
+       0.9475,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.12,
+       false
+      ],
+      "AW_skuday": [
+       0.8125,
+       1.1875,
+       false
+      ],
+      "AW_listing": [
+       0.825,
+       0.98,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0156,
+      "AW_skuday": 0.3579,
+      "E_listing": 0.0117,
+      "Bandit_listing": 2.4928
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       11.11,
+       18.97
+      ],
+      "SS_maxt": [
+       13.02,
+       18.26
+      ],
+      "E_skuday_bonf": [
+       5.63,
+       23.26
+      ],
+      "E_skuday_maxt": [
+       7.54,
+       22.31
+      ],
+      "E_listing_bonf": [
+       8.25,
+       22.79
+      ],
+      "E_listing_maxt": [
+       9.68,
+       20.88
+      ],
+      "Bandit_listing_bonf": [
+       -6.76,
+       80.94
+      ],
+      "AW_skuday": [
+       -13.2,
+       22.55
+      ],
+      "AW_listing": [
+       6.58,
+       21.36
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     10.0,
+     0.8,
+     -4.92,
+     -6.5,
+     -0.78,
+     -5.21
+    ],
+    "mean_abs_kstar": 4.702,
+    "sd_kstar": 5.591,
+    "across_day_sd_mean_level": 0.041,
+    "within_day_cross_sku_sd": 0.156
+   },
+   "seconds": 42.7
+  },
+  "The Cellular Resource": {
+   "sales": 360,
+   "days": 164,
+   "cells": 6163,
+   "rows": 10036,
+   "cells_per_day": 37.6,
+   "implied_years": 13.2,
+   "H": {
+    "sku_day": 186460,
+    "listing_day": 303636
+   },
+   "n_models": 13,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.7675,
+       0.775,
+       false
+      ],
+      "SS_bonf": [
+       0.75,
+       0.82,
+       false
+      ],
+      "SS_maxt": [
+       0.7525,
+       0.805,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7425,
+       0.8425,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.745,
+       0.82,
+       false
+      ],
+      "E_listing_bonf": [
+       0.745,
+       0.84,
+       false
+      ],
+      "E_listing_maxt": [
+       0.745,
+       0.8175,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.02,
+       false
+      ],
+      "AW_skuday": [
+       0.69,
+       0.9125,
+       false
+      ],
+      "AW_listing": [
+       0.705,
+       0.865,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0091,
+      "AW_skuday": 0.3174,
+      "E_listing": 0.0073,
+      "Bandit_listing": 1.3988
+     },
+     "lerner": {
+      "fit": [
+       17.56,
+       18.35
+      ],
+      "SS_bonf": [
+       12.77,
+       20.22
+      ],
+      "SS_maxt": [
+       14.37,
+       19.95
+      ],
+      "E_skuday_bonf": [
+       10.38,
+       21.01
+      ],
+      "E_skuday_maxt": [
+       12.77,
+       20.75
+      ],
+      "E_listing_bonf": [
+       10.64,
+       20.75
+      ],
+      "E_listing_maxt": [
+       13.04,
+       20.75
+      ],
+      "Bandit_listing_bonf": [
+       -8.51,
+       78.72
+      ],
+      "AW_skuday": [
+       2.93,
+       26.6
+      ],
+      "AW_listing": [
+       7.98,
+       25.0
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.745,
+       0.7975,
+       false
+      ],
+      "SS_bonf": [
+       0.7125,
+       0.86,
+       false
+      ],
+      "SS_maxt": [
+       0.7175,
+       0.84,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.71,
+       0.87,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.715,
+       0.8475,
+       false
+      ],
+      "E_listing_bonf": [
+       0.71,
+       0.8675,
+       false
+      ],
+      "E_listing_maxt": [
+       0.715,
+       0.8475,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.025,
+       false
+      ],
+      "AW_skuday": [
+       0.685,
+       0.915,
+       false
+      ],
+      "AW_listing": [
+       0.6925,
+       0.87,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0092,
+      "AW_skuday": 0.3169,
+      "E_listing": 0.0074,
+      "Bandit_listing": 1.3988
+     },
+     "lerner": {
+      "fit": [
+       15.16,
+       20.75
+      ],
+      "SS_bonf": [
+       8.51,
+       24.21
+      ],
+      "SS_maxt": [
+       10.64,
+       23.67
+      ],
+      "E_skuday_bonf": [
+       7.45,
+       24.47
+      ],
+      "E_skuday_maxt": [
+       9.84,
+       23.94
+      ],
+      "E_listing_bonf": [
+       7.72,
+       24.47
+      ],
+      "E_listing_maxt": [
+       9.84,
+       23.94
+      ],
+      "Bandit_listing_bonf": [
+       -9.04,
+       78.72
+      ],
+      "AW_skuday": [
+       2.66,
+       27.13
+      ],
+      "AW_listing": [
+       7.45,
+       26.33
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.765,
+       0.7975,
+       false
+      ],
+      "SS_bonf": [
+       0.725,
+       0.8825,
+       false
+      ],
+      "SS_maxt": [
+       0.73,
+       0.8575,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7225,
+       0.89,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7275,
+       0.865,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7225,
+       0.8875,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7275,
+       0.8625,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.03,
+       false
+      ],
+      "AW_skuday": [
+       0.6925,
+       0.9225,
+       false
+      ],
+      "AW_listing": [
+       0.6975,
+       0.885,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0092,
+      "AW_skuday": 0.3459,
+      "E_listing": 0.0075,
+      "Bandit_listing": 1.3988
+     },
+     "lerner": {
+      "fit": [
+       15.16,
+       18.62
+      ],
+      "SS_bonf": [
+       6.12,
+       22.88
+      ],
+      "SS_maxt": [
+       8.78,
+       22.34
+      ],
+      "E_skuday_bonf": [
+       5.32,
+       23.14
+      ],
+      "E_skuday_maxt": [
+       7.98,
+       22.61
+      ],
+      "E_listing_bonf": [
+       5.59,
+       23.14
+      ],
+      "E_listing_maxt": [
+       8.25,
+       22.61
+      ],
+      "Bandit_listing_bonf": [
+       -9.57,
+       78.72
+      ],
+      "AW_skuday": [
+       1.87,
+       26.33
+      ],
+      "AW_listing": [
+       5.86,
+       25.8
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7775,
+       0.8725,
+       false
+      ],
+      "SS_maxt": [
+       0.785,
+       0.845,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7725,
+       0.905,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.78,
+       0.86,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7725,
+       0.8975,
+       false
+      ],
+      "E_listing_maxt": [
+       0.78,
+       0.8575,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.0625,
+       false
+      ],
+      "AW_skuday": [
+       0.6875,
+       0.95,
+       false
+      ],
+      "AW_listing": [
+       0.6975,
+       0.885,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0052,
+      "AW_skuday": 0.1815,
+      "E_listing": 0.0042,
+      "Bandit_listing": 0.8595
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       7.18,
+       17.29
+      ],
+      "SS_maxt": [
+       10.11,
+       16.49
+      ],
+      "E_skuday_bonf": [
+       3.73,
+       17.82
+      ],
+      "E_skuday_maxt": [
+       8.51,
+       17.02
+      ],
+      "E_listing_bonf": [
+       4.53,
+       17.82
+      ],
+      "E_listing_maxt": [
+       8.78,
+       17.02
+      ],
+      "Bandit_listing_bonf": [
+       -13.03,
+       78.72
+      ],
+      "AW_skuday": [
+       -1.06,
+       26.86
+      ],
+      "AW_listing": [
+       5.86,
+       25.8
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 117,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.6975,
+       0.84,
+       false
+      ],
+      "SS_maxt": [
+       0.7225,
+       0.83,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.6925,
+       0.8625,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6975,
+       0.845,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6925,
+       0.855,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7,
+       0.8425,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9825,
+       false
+      ],
+      "AW_skuday": [
+       0.5975,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.69,
+       0.9875,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0025,
+      "AW_skuday": 0.0749,
+      "E_listing": 0.0019,
+      "Bandit_listing": 0.3301
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.64,
+       25.8
+      ],
+      "SS_maxt": [
+       11.71,
+       23.14
+      ],
+      "E_skuday_bonf": [
+       8.25,
+       26.33
+      ],
+      "E_skuday_maxt": [
+       10.11,
+       25.8
+      ],
+      "E_listing_bonf": [
+       9.05,
+       26.33
+      ],
+      "E_listing_maxt": [
+       10.38,
+       25.54
+      ],
+      "Bandit_listing_bonf": [
+       -4.52,
+       78.72
+      ],
+      "AW_skuday": [
+       -27.65,
+       36.44
+      ],
+      "AW_listing": [
+       -5.05,
+       26.6
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     4.44,
+     2.1,
+     1.48,
+     0.03,
+     -10.0,
+     0.29
+    ],
+    "mean_abs_kstar": 3.057,
+    "sd_kstar": 4.581,
+    "across_day_sd_mean_level": 0.052,
+    "within_day_cross_sku_sd": 0.14
+   },
+   "seconds": 18.1
+  },
+  "Sellworld": {
+   "sales": 357,
+   "days": 153,
+   "cells": 1733,
+   "rows": 4577,
+   "cells_per_day": 11.3,
+   "implied_years": 7.7,
+   "H": {
+    "sku_day": 29696,
+    "listing_day": 78430
+   },
+   "n_models": 7,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.765,
+       0.7775,
+       false
+      ],
+      "SS_bonf": [
+       0.735,
+       0.805,
+       false
+      ],
+      "SS_maxt": [
+       0.74,
+       0.8025,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.705,
+       0.835,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.71,
+       0.8275,
+       false
+      ],
+      "E_listing_bonf": [
+       0.71,
+       0.8275,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7175,
+       0.82,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9325,
+       false
+      ],
+      "AW_skuday": [
+       0.47,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6225,
+       0.9125,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0177,
+      "AW_skuday": 0.4606,
+      "E_listing": 0.011,
+      "Bandit_listing": 0.605
+     },
+     "lerner": {
+      "fit": [
+       12.24,
+       13.65
+      ],
+      "SS_bonf": [
+       9.13,
+       17.03
+      ],
+      "SS_maxt": [
+       9.41,
+       16.47
+      ],
+      "E_skuday_bonf": [
+       5.75,
+       20.42
+      ],
+      "E_skuday_maxt": [
+       6.59,
+       19.86
+      ],
+      "E_listing_bonf": [
+       6.59,
+       19.86
+      ],
+      "E_listing_maxt": [
+       7.44,
+       19.01
+      ],
+      "Bandit_listing_bonf": [
+       -5.26,
+       77.42
+      ],
+      "AW_skuday": [
+       -35.46,
+       46.95
+      ],
+      "AW_listing": [
+       -3.0,
+       29.73
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": [
+       0.7625,
+       0.7775,
+       false
+      ],
+      "SS_bonf": [
+       0.7125,
+       0.8225,
+       false
+      ],
+      "SS_maxt": [
+       0.7175,
+       0.815,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.695,
+       0.84,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7025,
+       0.8325,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7025,
+       0.835,
+       false
+      ],
+      "E_listing_maxt": [
+       0.71,
+       0.83,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.935,
+       false
+      ],
+      "AW_skuday": [
+       0.47,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6225,
+       0.9125,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0178,
+      "AW_skuday": 0.4505,
+      "E_listing": 0.011,
+      "Bandit_listing": 0.605
+     },
+     "lerner": {
+      "fit": [
+       12.24,
+       13.93
+      ],
+      "SS_bonf": [
+       7.16,
+       19.57
+      ],
+      "SS_maxt": [
+       8.0,
+       19.01
+      ],
+      "E_skuday_bonf": [
+       5.18,
+       21.55
+      ],
+      "E_skuday_maxt": [
+       6.03,
+       20.7
+      ],
+      "E_listing_bonf": [
+       5.75,
+       20.7
+      ],
+      "E_listing_maxt": [
+       6.31,
+       19.86
+      ],
+      "Bandit_listing_bonf": [
+       -5.54,
+       77.42
+      ],
+      "AW_skuday": [
+       -35.46,
+       46.95
+      ],
+      "AW_listing": [
+       -3.0,
+       29.73
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7225,
+       0.795,
+       false
+      ],
+      "SS_maxt": [
+       0.7275,
+       0.7875,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.7025,
+       0.8125,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7125,
+       0.8075,
+       false
+      ],
+      "E_listing_bonf": [
+       0.71,
+       0.8075,
+       false
+      ],
+      "E_listing_maxt": [
+       0.72,
+       0.8025,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.93,
+       false
+      ],
+      "AW_skuday": [
+       0.4825,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.6325,
+       0.8975,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0165,
+      "AW_skuday": 0.3877,
+      "E_listing": 0.0102,
+      "Bandit_listing": 0.605
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.26,
+       18.44
+      ],
+      "SS_maxt": [
+       11.11,
+       17.88
+      ],
+      "E_skuday_bonf": [
+       8.29,
+       20.7
+      ],
+      "E_skuday_maxt": [
+       8.85,
+       19.57
+      ],
+      "E_listing_bonf": [
+       8.85,
+       19.86
+      ],
+      "E_listing_maxt": [
+       9.41,
+       18.73
+      ],
+      "Bandit_listing_bonf": [
+       -4.98,
+       77.42
+      ],
+      "AW_skuday": [
+       -35.46,
+       45.54
+      ],
+      "AW_listing": [
+       -1.31,
+       28.6
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 18,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.715,
+       0.795,
+       false
+      ],
+      "SS_maxt": [
+       0.7275,
+       0.78,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.675,
+       0.8175,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.695,
+       0.8025,
+       false
+      ],
+      "E_listing_bonf": [
+       0.695,
+       0.8075,
+       false
+      ],
+      "E_listing_maxt": [
+       0.71,
+       0.795,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9725,
+       false
+      ],
+      "AW_skuday": [
+       0.37,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.63,
+       0.9075,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0136,
+      "AW_skuday": 0.2614,
+      "E_listing": 0.0082,
+      "Bandit_listing": 0.4805
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       10.26,
+       19.29
+      ],
+      "SS_maxt": [
+       11.95,
+       17.88
+      ],
+      "E_skuday_bonf": [
+       7.72,
+       23.81
+      ],
+      "E_skuday_maxt": [
+       9.41,
+       21.55
+      ],
+      "E_listing_bonf": [
+       8.85,
+       21.55
+      ],
+      "E_listing_maxt": [
+       10.26,
+       19.86
+      ],
+      "Bandit_listing_bonf": [
+       -9.78,
+       77.42
+      ],
+      "AW_skuday": [
+       -35.46,
+       58.23
+      ],
+      "AW_listing": [
+       -2.44,
+       28.89
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 63,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.6775,
+       0.8875,
+       false
+      ],
+      "SS_maxt": [
+       0.6875,
+       0.8725,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.655,
+       0.9825,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.6725,
+       0.92,
+       false
+      ],
+      "E_listing_bonf": [
+       0.6675,
+       0.92,
+       false
+      ],
+      "E_listing_maxt": [
+       0.68,
+       0.895,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.03,
+       false
+      ],
+      "AW_skuday": [
+       0.2,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.61,
+       1.2,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0056,
+      "AW_skuday": 0.0904,
+      "E_listing": 0.003,
+      "Bandit_listing": 0.1833
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       -0.18,
+       23.52
+      ],
+      "SS_maxt": [
+       1.51,
+       22.4
+      ],
+      "E_skuday_bonf": [
+       -10.9,
+       26.06
+      ],
+      "E_skuday_maxt": [
+       -3.85,
+       24.09
+      ],
+      "E_listing_bonf": [
+       -3.85,
+       24.65
+      ],
+      "E_listing_maxt": [
+       -1.03,
+       23.24
+      ],
+      "Bandit_listing_bonf": [
+       -16.27,
+       77.42
+      ],
+      "AW_skuday": [
+       -35.46,
+       77.42
+      ],
+      "AW_listing": [
+       -35.46,
+       31.14
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     1.38,
+     0.57,
+     1.14,
+     0.96,
+     -0.07,
+     0.33
+    ],
+    "mean_abs_kstar": 0.742,
+    "sd_kstar": 0.495,
+    "across_day_sd_mean_level": 0.029,
+    "within_day_cross_sku_sd": 0.088
+   },
+   "seconds": 8.8
+  },
+  "We Buy Mobile Corp": {
+   "sales": 336,
+   "days": 164,
+   "cells": 7279,
+   "rows": 14276,
+   "cells_per_day": 44.4,
+   "implied_years": 10.4,
+   "H": {
+    "sku_day": 170697,
+    "listing_day": 334781
+   },
+   "n_models": 18,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.8025,
+       0.8125,
+       false
+      ],
+      "SS_bonf": [
+       0.78,
+       0.83,
+       false
+      ],
+      "SS_maxt": [
+       0.7825,
+       0.8275,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.77,
+       0.8425,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7725,
+       0.84,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7725,
+       0.84,
+       false
+      ],
+      "E_listing_maxt": [
+       0.775,
+       0.8375,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9725,
+       false
+      ],
+      "AW_skuday": [
+       0.6975,
+       0.955,
+       false
+      ],
+      "AW_listing": [
+       0.7225,
+       0.905,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0062,
+      "AW_skuday": 0.3312,
+      "E_listing": 0.0046,
+      "Bandit_listing": 1.2867
+     },
+     "lerner": {
+      "fit": [
+       11.63,
+       12.72
+      ],
+      "SS_bonf": [
+       9.73,
+       15.16
+      ],
+      "SS_maxt": [
+       10.0,
+       14.89
+      ],
+      "E_skuday_bonf": [
+       8.37,
+       16.25
+      ],
+      "E_skuday_maxt": [
+       8.64,
+       15.98
+      ],
+      "E_listing_bonf": [
+       8.64,
+       15.98
+      ],
+      "E_listing_maxt": [
+       8.91,
+       15.71
+      ],
+      "Bandit_listing_bonf": [
+       -5.77,
+       78.25
+      ],
+      "AW_skuday": [
+       -3.87,
+       24.14
+      ],
+      "AW_listing": [
+       1.57,
+       21.42
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7725,
+       0.8425,
+       false
+      ],
+      "SS_maxt": [
+       0.7775,
+       0.8375,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.765,
+       0.8475,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.77,
+       0.8425,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7675,
+       0.8475,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7725,
+       0.8425,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.975,
+       false
+      ],
+      "AW_skuday": [
+       0.7025,
+       0.9425,
+       false
+      ],
+      "AW_listing": [
+       0.7275,
+       0.8975,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.006,
+      "AW_skuday": 0.3069,
+      "E_listing": 0.0044,
+      "Bandit_listing": 1.2867
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       8.37,
+       15.98
+      ],
+      "SS_maxt": [
+       8.91,
+       15.44
+      ],
+      "E_skuday_bonf": [
+       7.82,
+       16.8
+      ],
+      "E_skuday_maxt": [
+       8.37,
+       16.25
+      ],
+      "E_listing_bonf": [
+       7.82,
+       16.52
+      ],
+      "E_listing_maxt": [
+       8.37,
+       15.98
+      ],
+      "Bandit_listing_bonf": [
+       -6.05,
+       78.25
+      ],
+      "AW_skuday": [
+       -2.51,
+       23.59
+      ],
+      "AW_listing": [
+       2.38,
+       20.87
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7675,
+       0.8525,
+       false
+      ],
+      "SS_maxt": [
+       0.7775,
+       0.84,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.765,
+       0.8575,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.7725,
+       0.8475,
+       false
+      ],
+      "E_listing_bonf": [
+       0.765,
+       0.855,
+       false
+      ],
+      "E_listing_maxt": [
+       0.775,
+       0.8475,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.975,
+       false
+      ],
+      "AW_skuday": [
+       0.72,
+       0.9375,
+       false
+      ],
+      "AW_listing": [
+       0.745,
+       0.895,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0062,
+      "AW_skuday": 0.289,
+      "E_listing": 0.0046,
+      "Bandit_listing": 1.2867
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       7.28,
+       16.52
+      ],
+      "SS_maxt": [
+       8.64,
+       15.44
+      ],
+      "E_skuday_bonf": [
+       6.73,
+       16.8
+      ],
+      "E_skuday_maxt": [
+       7.82,
+       15.98
+      ],
+      "E_listing_bonf": [
+       7.01,
+       16.8
+      ],
+      "E_listing_maxt": [
+       7.82,
+       15.71
+      ],
+      "Bandit_listing_bonf": [
+       -6.05,
+       78.25
+      ],
+      "AW_skuday": [
+       -1.97,
+       21.69
+      ],
+      "AW_listing": [
+       2.66,
+       18.97
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       0.9925,
+       false
+      ],
+      "AW_skuday": [
+       0.7375,
+       0.985,
+       false
+      ],
+      "AW_listing": [
+       0.77,
+       0.915,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0035,
+      "AW_skuday": 0.1313,
+      "E_listing": 0.0026,
+      "Bandit_listing": 0.7695
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -7.95,
+       78.25
+      ],
+      "AW_skuday": [
+       -7.13,
+       19.79
+      ],
+      "AW_listing": [
+       0.48,
+       16.25
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 162,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.7675,
+       0.8125,
+       false
+      ],
+      "SS_maxt": [
+       0.7725,
+       0.8,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.76,
+       0.8375,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.765,
+       0.82,
+       false
+      ],
+      "E_listing_bonf": [
+       0.7625,
+       0.83,
+       false
+      ],
+      "E_listing_maxt": [
+       0.7675,
+       0.815,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       0.945,
+       false
+      ],
+      "AW_skuday": [
+       0.675,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.735,
+       0.985,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0013,
+      "AW_skuday": 0.0354,
+      "E_listing": 0.0009,
+      "Bandit_listing": 0.2768
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       11.63,
+       16.52
+      ],
+      "SS_maxt": [
+       12.99,
+       15.98
+      ],
+      "E_skuday_bonf": [
+       8.91,
+       17.34
+      ],
+      "E_skuday_maxt": [
+       10.81,
+       16.8
+      ],
+      "E_listing_bonf": [
+       9.73,
+       17.07
+      ],
+      "E_listing_maxt": [
+       11.36,
+       16.52
+      ],
+      "Bandit_listing_bonf": [
+       -2.78,
+       78.25
+      ],
+      "AW_skuday": [
+       -30.52,
+       26.58
+      ],
+      "AW_listing": [
+       -7.13,
+       20.06
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     5.33,
+     -0.96,
+     -0.44,
+     -3.21,
+     1.42,
+     0.57
+    ],
+    "mean_abs_kstar": 1.988,
+    "sd_kstar": 2.612,
+    "across_day_sd_mean_level": 0.024,
+    "within_day_cross_sku_sd": 0.091
+   },
+   "seconds": 29.6
+  },
+  "PDX Cellular Solutions": {
+   "sales": 300,
+   "days": 164,
+   "cells": 5722,
+   "rows": 13280,
+   "cells_per_day": 34.9,
+   "implied_years": 2.5,
+   "H": {
+    "sku_day": 31463,
+    "listing_day": 73021
+   },
+   "n_models": 9,
+   "comparators": {
+    "phi": {
+     "n_moments": 8,
+     "sets_theta": {
+      "fit": [
+       0.905,
+       0.9125,
+       false
+      ],
+      "SS_bonf": [
+       0.8825,
+       0.9325,
+       false
+      ],
+      "SS_maxt": [
+       0.8875,
+       0.93,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.865,
+       0.955,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.87,
+       0.95,
+       false
+      ],
+      "E_listing_bonf": [
+       0.87,
+       0.95,
+       false
+      ],
+      "E_listing_maxt": [
+       0.8725,
+       0.945,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.1325,
+       false
+      ],
+      "AW_skuday": [
+       0.8275,
+       1.0725,
+       false
+      ],
+      "AW_listing": [
+       0.835,
+       1.025,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0142,
+      "AW_skuday": 0.1846,
+      "E_listing": 0.0095,
+      "Bandit_listing": 2.3
+     },
+     "lerner": {
+      "fit": [
+       10.75,
+       11.49
+      ],
+      "SS_bonf": [
+       8.8,
+       13.69
+      ],
+      "SS_maxt": [
+       9.04,
+       13.2
+      ],
+      "E_skuday_bonf": [
+       6.6,
+       15.4
+      ],
+      "E_skuday_maxt": [
+       7.08,
+       14.91
+      ],
+      "E_listing_bonf": [
+       7.08,
+       14.91
+      ],
+      "E_listing_maxt": [
+       7.57,
+       14.66
+      ],
+      "Bandit_listing_bonf": [
+       -10.76,
+       80.44
+      ],
+      "AW_skuday": [
+       -4.9,
+       19.07
+      ],
+      "AW_listing": [
+       -0.25,
+       18.33
+      ]
+     }
+    },
+    "ext_day": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": [
+       0.8775,
+       0.9625,
+       false
+      ],
+      "SS_maxt": [
+       0.885,
+       0.9525,
+       false
+      ],
+      "E_skuday_bonf": [
+       0.8675,
+       0.9725,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.875,
+       0.9625,
+       false
+      ],
+      "E_listing_bonf": [
+       0.87,
+       0.97,
+       false
+      ],
+      "E_listing_maxt": [
+       0.8775,
+       0.9575,
+       false
+      ],
+      "Bandit_listing_bonf": [
+       0.2,
+       1.135,
+       false
+      ],
+      "AW_skuday": [
+       0.8325,
+       1.055,
+       false
+      ],
+      "AW_listing": [
+       0.845,
+       1.015,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0142,
+      "AW_skuday": 0.1798,
+      "E_listing": 0.0095,
+      "Bandit_listing": 2.3
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": [
+       5.86,
+       14.18
+      ],
+      "SS_maxt": [
+       6.84,
+       13.44
+      ],
+      "E_skuday_bonf": [
+       4.88,
+       15.15
+      ],
+      "E_skuday_maxt": [
+       5.86,
+       14.42
+      ],
+      "E_listing_bonf": [
+       5.13,
+       14.91
+      ],
+      "E_listing_maxt": [
+       6.35,
+       14.18
+      ],
+      "Bandit_listing_bonf": [
+       -11.01,
+       80.44
+      ],
+      "AW_skuday": [
+       -3.18,
+       18.58
+      ],
+      "AW_listing": [
+       0.73,
+       17.35
+      ]
+     }
+    },
+    "ext_cell": {
+     "n_moments": 9,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.915,
+       0.95,
+       false
+      ],
+      "E_skuday_maxt": null,
+      "E_listing_bonf": [
+       0.925,
+       0.935,
+       false
+      ],
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       1.135,
+       false
+      ],
+      "AW_skuday": [
+       0.8675,
+       1.06,
+       false
+      ],
+      "AW_listing": [
+       0.8875,
+       1.0025,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0148,
+      "AW_skuday": 0.2151,
+      "E_listing": 0.0099,
+      "Bandit_listing": 2.3
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       7.08,
+       10.51
+      ],
+      "E_skuday_maxt": null,
+      "E_listing_bonf": [
+       8.55,
+       9.53
+      ],
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -11.01,
+       80.44
+      ],
+      "AW_skuday": [
+       -3.67,
+       15.15
+      ],
+      "AW_listing": [
+       1.95,
+       13.2
+      ]
+     }
+    },
+    "ctx_gen": {
+     "n_moments": 27,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       1.1575,
+       false
+      ],
+      "AW_skuday": [
+       0.895,
+       1.11,
+       false
+      ],
+      "AW_listing": [
+       0.915,
+       1.0075,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0078,
+      "AW_skuday": 0.1135,
+      "E_listing": 0.0056,
+      "Bandit_listing": 1.2332
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": null,
+      "E_skuday_maxt": null,
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -13.21,
+       80.44
+      ],
+      "AW_skuday": [
+       -8.56,
+       12.46
+      ],
+      "AW_listing": [
+       1.46,
+       10.51
+      ]
+     }
+    },
+    "ctx_model": {
+     "n_moments": 81,
+     "sets_theta": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       0.915,
+       0.97,
+       false
+      ],
+      "E_skuday_maxt": [
+       0.9325,
+       0.9375,
+       false
+      ],
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       0.2,
+       1.1625,
+       false
+      ],
+      "AW_skuday": [
+       0.855,
+       1.2,
+       false
+      ],
+      "AW_listing": [
+       0.955,
+       1.2,
+       false
+      ]
+     },
+     "allowance_share_of_daily_profit_at_theta08": {
+      "E_skuday": 0.0043,
+      "AW_skuday": 0.0535,
+      "E_listing": 0.0028,
+      "Bandit_listing": 0.6636
+     },
+     "lerner": {
+      "fit": null,
+      "SS_bonf": null,
+      "SS_maxt": null,
+      "E_skuday_bonf": [
+       5.13,
+       10.51
+      ],
+      "E_skuday_maxt": [
+       8.31,
+       8.8
+      ],
+      "E_listing_bonf": null,
+      "E_listing_maxt": null,
+      "Bandit_listing_bonf": [
+       -13.7,
+       80.44
+      ],
+      "AW_skuday": [
+       -17.37,
+       16.38
+      ],
+      "AW_listing": [
+       -17.37,
+       6.6
+      ]
+     }
+    }
+   },
+   "behavior": {
+    "monthly_kstar_pct": [
+     3.01,
+     -1.33,
+     -0.9,
+     -1.28,
+     2.0,
+     1.28
+    ],
+    "mean_abs_kstar": 1.633,
+    "sd_kstar": 1.714,
+    "across_day_sd_mean_level": 0.02,
+    "within_day_cross_sku_sd": 0.083
+   },
+   "seconds": 16.5
+  }
+ },
+ "spearman_years_vs_mean_abs_kstar": {
+  "rho": 0.06,
+  "p": 0.845,
+  "n": 13
+ },
+ "spearman_years_vs_sd_kstar": {
+  "rho": -0.011,
+  "p": 0.972,
+  "n": 13
+ },
+ "spearman_years_vs_across_day_sd_mean_level": {
+  "rho": -0.049,
+  "p": 0.873,
+  "n": 13
+ },
+ "seconds": 256.5
+}

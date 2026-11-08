@@ -1,0 +1,2826 @@
+{
+ "date": "2026-11-08",
+ "boot_dir": "C:\\Users\\lorem\\Dropbox\\ClaudeCodeProjects\\Estimation-of-Games-under-No-Regret_Code\\output\\swappa_core_20261108\\boot",
+ "results": {
+  "raw_d0": {
+   "replications": 500,
+   "tasks": 50,
+   "price_coefficients": {
+    "lp_ref": {
+     "full_sample": -4.87063268570637,
+     "analytic_se_twoway": 0.5282483774107389,
+     "boot_mean": -5.600021268169331,
+     "boot_sd": 0.44982109239841933,
+     "ratio_boot_over_analytic": 0.8515333158300673
+    },
+    "gap_up": {
+     "full_sample": -4.81448915531172,
+     "analytic_se_twoway": 0.4798589439453517,
+     "boot_mean": -4.3600976743120405,
+     "boot_sd": 0.4163930349211443,
+     "ratio_boot_over_analytic": 0.8677404895230313
+    },
+    "gap_dn": {
+     "full_sample": 0.5006433071963469,
+     "analytic_se_twoway": 0.414690265769794,
+     "boot_mean": 0.3604919595807632,
+     "boot_sd": 0.461001681800586,
+     "ratio_boot_over_analytic": 1.1116771235148806
+    },
+    "peer_rel": {
+     "full_sample": 0.7055939787216993,
+     "analytic_se_twoway": 0.20827625609998407,
+     "boot_mean": 0.5861424866150132,
+     "boot_sd": 0.16096648768837582,
+     "ratio_boot_over_analytic": 0.7728508794161493
+    },
+    "lp_ref_plus_gap_up": {
+     "full_sample": -9.685121841018091,
+     "analytic_se_twoway": 0.3474545920755921,
+     "boot_mean": -9.960118942481373,
+     "boot_sd": 0.3669747396842502
+    }
+   },
+   "sellers": {
+    "GadgetPickup": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.795,
+       0.8075,
+       false
+      ],
+      "bonferroni": [
+       0.775,
+       0.825,
+       false
+      ],
+      "normal_maxt": [
+       0.7775,
+       0.8225,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7725,
+       0.825,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       11.9,
+       13.26
+      ],
+      "bonferroni": [
+       9.99,
+       15.45
+      ],
+      "normal_maxt": [
+       10.26,
+       15.17
+      ],
+      "percentile_t_boot": [
+       9.99,
+       15.72
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.0325307921291476,
+       2.086849207285707
+      ],
+      "percentile_t_range": [
+       1.9543056149705345,
+       3.0117650867995542
+      ],
+      "percentile_t_at_fit": 2.5803533364237334
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.99,
+       0.911,
+       0.889,
+       0.877,
+       0.882,
+       0.882,
+       0.88,
+       0.881
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.933,
+        0.893,
+        0.88,
+        0.872,
+        0.882,
+        0.887,
+        0.892,
+        0.902
+       ],
+       [
+        1.06,
+        0.955,
+        0.923,
+        0.906,
+        0.902,
+        0.896,
+        0.887,
+        0.874
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8075,
+      "max_t_full": -0.045718702676561786,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.0,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.996
+     }
+    },
+    "AMS Traders Inc.": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.8075,
+       0.8175,
+       false
+      ],
+      "bonferroni": [
+       0.79,
+       0.835,
+       false
+      ],
+      "normal_maxt": [
+       0.7925,
+       0.8325,
+       false
+      ],
+      "percentile_t_boot": [
+       0.79,
+       0.8325,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       11.8,
+       12.88
+      ],
+      "bonferroni": [
+       9.91,
+       14.77
+      ],
+      "normal_maxt": [
+       10.18,
+       14.5
+      ],
+      "percentile_t_boot": [
+       10.18,
+       14.77
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.0058779616718345,
+       2.093573198849427
+      ],
+      "percentile_t_range": [
+       1.588358088248775,
+       2.8268744734445237
+      ],
+      "percentile_t_at_fit": 2.26628823449681
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.901,
+       0.867,
+       0.84,
+       0.822,
+       0.804,
+       0.796,
+       0.789,
+       0.78
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.907,
+        0.862,
+        0.824,
+        0.805,
+        0.783,
+        0.776,
+        0.771,
+        0.764
+       ],
+       [
+        0.916,
+        0.878,
+        0.859,
+        0.845,
+        0.831,
+        0.822,
+        0.812,
+        0.8
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8075,
+      "max_t_full": -0.0684096328220921,
+      "reject_bonferroni": 0.01,
+      "reject_normal_maxt": 0.036,
+      "reject_percentile_t": 0.022,
+      "bonferroni_covers_fit_mid": 0.998
+     }
+    },
+    "UPGRADE SOLUTION INC": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7425,
+       0.75,
+       false
+      ],
+      "bonferroni": [
+       0.7175,
+       0.77,
+       false
+      ],
+      "normal_maxt": [
+       0.7225,
+       0.7675,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7225,
+       0.765,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       12.66,
+       13.54
+      ],
+      "bonferroni": [
+       10.33,
+       16.45
+      ],
+      "normal_maxt": [
+       10.62,
+       15.87
+      ],
+      "percentile_t_boot": [
+       10.92,
+       15.87
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9913424331586405,
+       2.1119401865921423
+      ],
+      "percentile_t_range": [
+       1.3583561317992698,
+       2.38297694117113
+      ],
+      "percentile_t_at_fit": 1.9269936573290125
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.704,
+       0.792,
+       0.851,
+       0.88,
+       0.915,
+       0.932,
+       0.954,
+       0.983
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.732,
+        0.887,
+        0.936,
+        0.954,
+        0.974,
+        0.983,
+        0.994,
+        1.008
+       ],
+       [
+        0.732,
+        0.724,
+        0.761,
+        0.792,
+        0.834,
+        0.857,
+        0.891,
+        0.939
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7425,
+      "max_t_full": -0.018472103465596357,
+      "reject_bonferroni": 0.004,
+      "reject_normal_maxt": 0.016,
+      "reject_percentile_t": 0.026,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "NYCPhonebuyer LLC": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.75,
+       false
+      ],
+      "bonferroni": [
+       0.715,
+       0.7675,
+       false
+      ],
+      "normal_maxt": [
+       0.7175,
+       0.765,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7075,
+       0.7675,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       12.04,
+       13.51
+      ],
+      "bonferroni": [
+       9.99,
+       16.15
+      ],
+      "normal_maxt": [
+       10.29,
+       15.86
+      ],
+      "percentile_t_boot": [
+       9.99,
+       17.03
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.0335379044774875,
+       2.139036709366152
+      ],
+      "percentile_t_range": [
+       2.11119492346595,
+       3.3265039035179633
+      ],
+      "percentile_t_at_fit": 2.8639554604735724
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.076,
+       0.934,
+       0.881,
+       0.85,
+       0.817,
+       0.812,
+       0.813,
+       0.844
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.991,
+        0.933,
+        0.892,
+        0.865,
+        0.828,
+        0.826,
+        0.834,
+        0.874
+       ],
+       [
+        1.246,
+        1.039,
+        0.961,
+        0.917,
+        0.877,
+        0.857,
+        0.837,
+        0.838
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7375,
+      "max_t_full": -0.2231452662951995,
+      "reject_bonferroni": 0.03,
+      "reject_normal_maxt": 0.056,
+      "reject_percentile_t": 0.006,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "SaveGadget": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7925,
+       0.8025,
+       false
+      ],
+      "bonferroni": [
+       0.775,
+       0.82,
+       false
+      ],
+      "normal_maxt": [
+       0.7775,
+       0.8175,
+       false
+      ],
+      "percentile_t_boot": [
+       0.775,
+       0.8175,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       14.72,
+       15.78
+      ],
+      "bonferroni": [
+       12.86,
+       17.64
+      ],
+      "normal_maxt": [
+       13.12,
+       17.37
+      ],
+      "percentile_t_boot": [
+       13.12,
+       17.64
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.992599352519315,
+       2.1451938557007897
+      ],
+      "percentile_t_range": [
+       1.791336360609763,
+       3.2147180318033457
+      ],
+      "percentile_t_at_fit": 2.5123843547425997
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.891,
+       0.904,
+       0.918,
+       0.921,
+       0.915,
+       0.911,
+       0.904,
+       0.887
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.888,
+        0.966,
+        0.976,
+        0.966,
+        0.938,
+        0.928,
+        0.915,
+        0.888
+       ],
+       [
+        0.922,
+        0.89,
+        0.892,
+        0.895,
+        0.897,
+        0.895,
+        0.892,
+        0.885
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8025,
+      "max_t_full": -0.1512490541134874,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.0,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.998
+     }
+    },
+    "Certified Cell, Inc": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7825,
+       0.79,
+       false
+      ],
+      "bonferroni": [
+       0.745,
+       0.8225,
+       false
+      ],
+      "normal_maxt": [
+       0.755,
+       0.815,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7375,
+       0.8275,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       10.56,
+       11.41
+      ],
+      "bonferroni": [
+       6.89,
+       15.66
+      ],
+      "normal_maxt": [
+       7.73,
+       14.53
+      ],
+      "percentile_t_boot": [
+       6.32,
+       16.51
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.960884894497523,
+       2.185441296091947
+      ],
+      "percentile_t_range": [
+       1.702130737716353,
+       2.8791802522949097
+      ],
+      "percentile_t_at_fit": 2.8097978532819017
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.726,
+       0.914,
+       1.045,
+       1.092,
+       1.085,
+       1.049,
+       0.985,
+       0.882
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.901,
+        1.084,
+        0.967,
+        0.894,
+        0.824,
+        0.795,
+        0.766,
+        0.732
+       ],
+       [
+        0.709,
+        0.745,
+        0.803,
+        0.854,
+        0.931,
+        0.986,
+        1.054,
+        1.081
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.79,
+      "max_t_full": -0.0801544740354659,
+      "reject_bonferroni": 0.006,
+      "reject_normal_maxt": 0.008,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.994
+     }
+    },
+    "Gilly's Smart Phones": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.7525,
+       false
+      ],
+      "bonferroni": [
+       0.7075,
+       0.78,
+       false
+      ],
+      "normal_maxt": [
+       0.7125,
+       0.775,
+       false
+      ],
+      "percentile_t_boot": [
+       0.695,
+       0.78,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       12.39,
+       14.14
+      ],
+      "bonferroni": [
+       9.19,
+       17.63
+      ],
+      "normal_maxt": [
+       9.77,
+       17.05
+      ],
+      "percentile_t_boot": [
+       9.19,
+       19.09
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.023403254267678,
+       2.108571797932934
+      ],
+      "percentile_t_range": [
+       1.9293969319788822,
+       3.73074578449851
+      ],
+      "percentile_t_at_fit": 2.8271941616555814
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.801,
+       0.905,
+       0.959,
+       0.979,
+       0.994,
+       1.002,
+       1.01,
+       1.01
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.933,
+        1.065,
+        1.073,
+        1.063,
+        1.034,
+        1.029,
+        1.026,
+        1.011
+       ],
+       [
+        0.867,
+        0.825,
+        0.863,
+        0.888,
+        0.933,
+        0.951,
+        0.969,
+        0.988
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7375,
+      "max_t_full": -0.03853951918861938,
+      "reject_bonferroni": 0.066,
+      "reject_normal_maxt": 0.12,
+      "reject_percentile_t": 0.024,
+      "bonferroni_covers_fit_mid": 0.984
+     }
+    },
+    "TD'S Cell Shop": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7375,
+       0.7475,
+       false
+      ],
+      "bonferroni": [
+       0.715,
+       0.7675,
+       false
+      ],
+      "normal_maxt": [
+       0.7175,
+       0.765,
+       false
+      ],
+      "percentile_t_boot": [
+       0.71,
+       0.765,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       15.86,
+       16.99
+      ],
+      "bonferroni": [
+       13.61,
+       19.52
+      ],
+      "normal_maxt": [
+       13.89,
+       19.24
+      ],
+      "percentile_t_boot": [
+       13.89,
+       20.08
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9972687052125542,
+       2.1056895689121213
+      ],
+      "percentile_t_range": [
+       1.6074528246697104,
+       3.234052845894375
+      ],
+      "percentile_t_at_fit": 2.4421657276662443
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.94,
+       1.009,
+       1.035,
+       1.048,
+       1.045,
+       1.043,
+       1.044,
+       1.027
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.044,
+        1.119,
+        1.123,
+        1.117,
+        1.095,
+        1.084,
+        1.069,
+        1.039
+       ],
+       [
+        0.912,
+        0.931,
+        0.952,
+        0.967,
+        0.971,
+        0.975,
+        0.987,
+        0.987
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7475,
+      "max_t_full": -0.031145773313961712,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.002,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.994
+     }
+    },
+    "Wireless Source": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.8225,
+       0.8275,
+       false
+      ],
+      "bonferroni": [
+       0.7625,
+       0.8875,
+       false
+      ],
+      "normal_maxt": [
+       0.7775,
+       0.875,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7425,
+       0.925,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       21.12,
+       21.6
+      ],
+      "bonferroni": [
+       15.4,
+       27.32
+      ],
+      "normal_maxt": [
+       16.59,
+       25.89
+      ],
+      "percentile_t_boot": [
+       11.83,
+       29.22
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9702051150986803,
+       2.0410742637094077
+      ],
+      "percentile_t_range": [
+       2.724899134011604,
+       6.512045186586399
+      ],
+      "percentile_t_at_fit": 5.702432643749972
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.106,
+       1.169,
+       1.19,
+       1.197,
+       1.204,
+       1.206,
+       1.207,
+       1.194
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.347,
+        1.366,
+        1.359,
+        1.351,
+        1.343,
+        1.336,
+        1.326,
+        1.299
+       ],
+       [
+        1.101,
+        1.061,
+        1.059,
+        1.059,
+        1.062,
+        1.065,
+        1.069,
+        1.068
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8225,
+      "max_t_full": -0.04896430362212454,
+      "reject_bonferroni": 0.28,
+      "reject_normal_maxt": 0.322,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.734
+     }
+    },
+    "The Cellular Resource": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.7675,
+       0.775,
+       false
+      ],
+      "bonferroni": [
+       0.75,
+       0.82,
+       false
+      ],
+      "normal_maxt": [
+       0.7525,
+       0.805,
+       false
+      ],
+      "percentile_t_boot": [
+       0.735,
+       1.2,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       17.56,
+       18.35
+      ],
+      "bonferroni": [
+       12.77,
+       20.22
+      ],
+      "normal_maxt": [
+       14.37,
+       19.95
+      ],
+      "percentile_t_boot": [
+       -27.65,
+       21.81
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.954750589930148,
+       2.177037632989707
+      ],
+      "percentile_t_range": [
+       2.778240365897484,
+       5.748710103841991
+      ],
+      "percentile_t_at_fit": 5.5711584980795195
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.838,
+       0.822,
+       0.825,
+       0.838,
+       0.878,
+       0.916,
+       0.976,
+       0.966
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.818,
+        0.829,
+        0.881,
+        0.935,
+        0.978,
+        0.971,
+        0.952,
+        0.917
+       ],
+       [
+        0.873,
+        0.845,
+        0.836,
+        0.834,
+        0.835,
+        0.835,
+        0.837,
+        0.854
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7675,
+      "max_t_full": -0.16638766842380337,
+      "reject_bonferroni": 0.068,
+      "reject_normal_maxt": 0.114,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.968
+     }
+    },
+    "Sellworld": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.765,
+       0.7775,
+       false
+      ],
+      "bonferroni": [
+       0.735,
+       0.8075,
+       false
+      ],
+      "normal_maxt": [
+       0.74,
+       0.8025,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7175,
+       0.815,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       12.24,
+       13.65
+      ],
+      "bonferroni": [
+       8.85,
+       17.03
+      ],
+      "normal_maxt": [
+       9.41,
+       16.47
+      ],
+      "percentile_t_boot": [
+       8.0,
+       19.01
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9703504078021166,
+       2.183969396545525
+      ],
+      "percentile_t_range": [
+       2.469896204373009,
+       3.285322149915581
+      ],
+      "percentile_t_at_fit": 3.029808462660817
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.0,
+       0.957,
+       0.93,
+       0.913,
+       0.909,
+       0.898,
+       0.884,
+       0.887
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.912,
+        0.801,
+        0.797,
+        0.819,
+        0.852,
+        0.866,
+        0.88,
+        0.905
+       ],
+       [
+        1.041,
+        1.021,
+        1.02,
+        1.022,
+        1.028,
+        1.022,
+        0.994,
+        0.937
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7775,
+      "max_t_full": -0.10672259725115336,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.002,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "We Buy Mobile Corp": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.8025,
+       0.8125,
+       false
+      ],
+      "bonferroni": [
+       0.78,
+       0.83,
+       false
+      ],
+      "normal_maxt": [
+       0.785,
+       0.8275,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7675,
+       0.84,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       11.63,
+       12.72
+      ],
+      "bonferroni": [
+       9.73,
+       15.16
+      ],
+      "normal_maxt": [
+       10.0,
+       14.62
+      ],
+      "percentile_t_boot": [
+       8.64,
+       16.52
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9944921076265023,
+       2.139875414994545
+      ],
+      "percentile_t_range": [
+       1.6506816699421338,
+       3.6913392708635966
+      ],
+      "percentile_t_at_fit": 3.587546093861725
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.146,
+       1.034,
+       0.962,
+       0.915,
+       0.853,
+       0.815,
+       0.767,
+       0.719
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.056,
+        0.908,
+        0.837,
+        0.798,
+        0.764,
+        0.755,
+        0.746,
+        0.745
+       ],
+       [
+        1.189,
+        1.114,
+        1.071,
+        1.041,
+        0.99,
+        0.944,
+        0.87,
+        0.76
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8125,
+      "max_t_full": -0.04875940066347906,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.002,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.99
+     }
+    },
+    "PDX Cellular Solutions": {
+     "replications_used": 500,
+     "sets_theta": {
+      "fit": [
+       0.905,
+       0.9125,
+       false
+      ],
+      "bonferroni": [
+       0.8825,
+       0.9325,
+       false
+      ],
+      "normal_maxt": [
+       0.8875,
+       0.93,
+       false
+      ],
+      "percentile_t_boot": [
+       0.88,
+       0.9375,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       10.75,
+       11.49
+      ],
+      "bonferroni": [
+       8.8,
+       13.69
+      ],
+      "normal_maxt": [
+       9.04,
+       13.2
+      ],
+      "percentile_t_boot": [
+       8.31,
+       13.93
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9821563562260138,
+       2.0880573890590672
+      ],
+      "percentile_t_range": [
+       1.6937654363865258,
+       3.209829560154539
+      ],
+      "percentile_t_at_fit": 2.9975183648147206
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.204,
+       1.029,
+       0.959,
+       0.924,
+       0.887,
+       0.867,
+       0.843,
+       0.82
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.103,
+        0.935,
+        0.895,
+        0.88,
+        0.867,
+        0.862,
+        0.859,
+        0.861
+       ],
+       [
+        1.247,
+        1.113,
+        1.041,
+        1.0,
+        0.949,
+        0.916,
+        0.87,
+        0.809
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.9125,
+      "max_t_full": -0.03520998086135875,
+      "reject_bonferroni": 0.008,
+      "reject_normal_maxt": 0.02,
+      "reject_percentile_t": 0.002,
+      "bonferroni_covers_fit_mid": 0.984
+     }
+    }
+   }
+  },
+  "raw_d6": {
+   "replications": 200,
+   "tasks": 20,
+   "price_coefficients": {
+    "lp_ref": {
+     "full_sample": -6.4753778942548195,
+     "analytic_se_twoway": 0.40599669860612014,
+     "boot_mean": -7.037901742023336,
+     "boot_sd": 0.553996697694952,
+     "ratio_boot_over_analytic": 1.364534981680762
+    },
+    "gap_up": {
+     "full_sample": 2.56895803880369,
+     "analytic_se_twoway": 0.8528968294337713,
+     "boot_mean": 2.7633032802225386,
+     "boot_sd": 0.9272148363838374,
+     "ratio_boot_over_analytic": 1.0871359868923478
+    },
+    "gap_dn": {
+     "full_sample": 5.130471002715264,
+     "analytic_se_twoway": 0.5116270924701543,
+     "boot_mean": 5.300628850134405,
+     "boot_sd": 0.6829089454950966,
+     "ratio_boot_over_analytic": 1.334778700240418
+    },
+    "peer_rel": {
+     "full_sample": 0.6612403561228378,
+     "analytic_se_twoway": 0.1964609476403747,
+     "boot_mean": 0.4881017338106782,
+     "boot_sd": 0.13617574452935227,
+     "ratio_boot_over_analytic": 0.6931440887612149
+    },
+    "lp_ref_plus_gap_up": {
+     "full_sample": -3.9064198554511296,
+     "analytic_se_twoway": 0.8403800207802429,
+     "boot_mean": -4.274598461800797,
+     "boot_sd": 1.0986426070463442
+    }
+   },
+   "sellers": {
+    "GadgetPickup": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.8275,
+       0.835,
+       false
+      ],
+      "bonferroni": [
+       0.8125,
+       0.85,
+       false
+      ],
+      "normal_maxt": [
+       0.815,
+       0.8475,
+       false
+      ],
+      "percentile_t_boot": [
+       0.815,
+       0.85,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       8.9,
+       9.72
+      ],
+      "bonferroni": [
+       7.26,
+       11.35
+      ],
+      "normal_maxt": [
+       7.54,
+       11.08
+      ],
+      "percentile_t_boot": [
+       7.26,
+       11.08
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.0086471762619653,
+       2.0920810432969246
+      ],
+      "percentile_t_range": [
+       1.8803405243564528,
+       2.369478662387953
+      ],
+      "percentile_t_at_fit": 2.214637101529648
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.054,
+       0.932,
+       0.859,
+       0.818,
+       0.758,
+       0.726,
+       0.681,
+       0.63
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.008,
+        0.859,
+        0.789,
+        0.755,
+        0.71,
+        0.689,
+        0.663,
+        0.642
+       ],
+       [
+        1.085,
+        0.995,
+        0.933,
+        0.893,
+        0.833,
+        0.797,
+        0.743,
+        0.665
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8275,
+      "max_t_full": -0.07108965390467589,
+      "reject_bonferroni": 0.01,
+      "reject_normal_maxt": 0.015,
+      "reject_percentile_t": 0.01,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "AMS Traders Inc.": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.835,
+       0.84,
+       false
+      ],
+      "bonferroni": [
+       0.82,
+       0.86,
+       false
+      ],
+      "normal_maxt": [
+       0.8225,
+       0.855,
+       false
+      ],
+      "percentile_t_boot": [
+       0.8225,
+       0.8575,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       9.37,
+       9.91
+      ],
+      "bonferroni": [
+       7.21,
+       11.53
+      ],
+      "normal_maxt": [
+       7.75,
+       11.26
+      ],
+      "percentile_t_boot": [
+       7.48,
+       11.26
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9959592978272442,
+       2.076313380706372
+      ],
+      "percentile_t_range": [
+       1.8230002705121195,
+       2.349027310155931
+      ],
+      "percentile_t_at_fit": 2.024774528046599
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.962,
+       0.855,
+       0.798,
+       0.768,
+       0.734,
+       0.717,
+       0.696,
+       0.672
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.933,
+        0.814,
+        0.76,
+        0.734,
+        0.704,
+        0.694,
+        0.682,
+        0.669
+       ],
+       [
+        0.988,
+        0.903,
+        0.85,
+        0.82,
+        0.783,
+        0.76,
+        0.728,
+        0.69
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.835,
+      "max_t_full": -0.015075170592289721,
+      "reject_bonferroni": 0.01,
+      "reject_normal_maxt": 0.045,
+      "reject_percentile_t": 0.045,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "UPGRADE SOLUTION INC": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": null,
+      "bonferroni": [
+       0.73,
+       0.7675,
+       false
+      ],
+      "normal_maxt": [
+       0.7325,
+       0.7625,
+       false
+      ],
+      "percentile_t_boot": [
+       0.735,
+       0.76,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": null,
+      "bonferroni": [
+       10.62,
+       14.99
+      ],
+      "normal_maxt": [
+       11.21,
+       14.7
+      ],
+      "percentile_t_boot": [
+       11.5,
+       14.41
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9951025385845194,
+       2.120891733365698
+      ],
+      "percentile_t_range": [
+       1.2150487938166532,
+       2.39887063593516
+      ],
+      "percentile_t_at_fit": null
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": null,
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.764,
+        0.863,
+        0.9,
+        0.917,
+        0.919,
+        0.927,
+        0.937,
+        0.932
+       ],
+       [
+        0.679,
+        0.699,
+        0.736,
+        0.764,
+        0.786,
+        0.806,
+        0.839,
+        0.868
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": null
+    },
+    "NYCPhonebuyer LLC": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.785,
+       0.7925,
+       false
+      ],
+      "bonferroni": [
+       0.77,
+       0.805,
+       false
+      ],
+      "normal_maxt": [
+       0.7725,
+       0.8025,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7725,
+       0.805,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       7.06,
+       7.94
+      ],
+      "bonferroni": [
+       5.59,
+       9.7
+      ],
+      "normal_maxt": [
+       5.89,
+       9.41
+      ],
+      "percentile_t_boot": [
+       5.59,
+       9.41
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.0129093109043383,
+       2.0939537892350852
+      ],
+      "percentile_t_range": [
+       1.881470900952746,
+       2.346869097138668
+      ],
+      "percentile_t_at_fit": 2.2724057430123588
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.155,
+       0.992,
+       0.902,
+       0.858,
+       0.82,
+       0.803,
+       0.789,
+       0.783
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.079,
+        0.883,
+        0.817,
+        0.794,
+        0.785,
+        0.787,
+        0.797,
+        0.817
+       ],
+       [
+        1.195,
+        1.086,
+        1.0,
+        0.948,
+        0.891,
+        0.858,
+        0.819,
+        0.778
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7925,
+      "max_t_full": -0.08290280684511044,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.005,
+      "reject_percentile_t": 0.005,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "SaveGadget": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.8225,
+       0.83,
+       false
+      ],
+      "bonferroni": [
+       0.81,
+       0.845,
+       false
+      ],
+      "normal_maxt": [
+       0.8125,
+       0.8425,
+       false
+      ],
+      "percentile_t_boot": [
+       0.81,
+       0.845,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       11.79,
+       12.59
+      ],
+      "bonferroni": [
+       10.2,
+       13.92
+      ],
+      "normal_maxt": [
+       10.47,
+       13.65
+      ],
+      "percentile_t_boot": [
+       10.2,
+       13.92
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.988269797601033,
+       2.1419214835730815
+      ],
+      "percentile_t_range": [
+       1.9674287467038836,
+       2.490831958932363
+      ],
+      "percentile_t_at_fit": 2.4598646559429866
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.063,
+       0.968,
+       0.908,
+       0.879,
+       0.846,
+       0.828,
+       0.816,
+       0.808
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.034,
+        0.918,
+        0.869,
+        0.859,
+        0.854,
+        0.85,
+        0.852,
+        0.848
+       ],
+       [
+        1.084,
+        1.016,
+        0.966,
+        0.936,
+        0.894,
+        0.867,
+        0.836,
+        0.807
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.83,
+      "max_t_full": -0.042822500918455124,
+      "reject_bonferroni": 0.0,
+      "reject_normal_maxt": 0.0,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 1.0
+     }
+    },
+    "Certified Cell, Inc": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.805,
+       0.8075,
+       false
+      ],
+      "bonferroni": [
+       0.77,
+       0.84,
+       false
+      ],
+      "normal_maxt": [
+       0.7775,
+       0.8325,
+       false
+      ],
+      "percentile_t_boot": [
+       0.76,
+       0.855,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       8.58,
+       8.87
+      ],
+      "bonferroni": [
+       4.9,
+       12.83
+      ],
+      "normal_maxt": [
+       5.75,
+       11.98
+      ],
+      "percentile_t_boot": [
+       3.21,
+       13.96
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9591909308953837,
+       2.1496954415241856
+      ],
+      "percentile_t_range": [
+       1.7273410519825576,
+       3.373458929020594
+      ],
+      "percentile_t_at_fit": 3.1681872993582383
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.794,
+       0.988,
+       1.066,
+       1.082,
+       1.077,
+       1.062,
+       1.035,
+       0.999
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.041,
+        1.048,
+        0.955,
+        0.91,
+        0.873,
+        0.854,
+        0.833,
+        0.84
+       ],
+       [
+        0.73,
+        0.805,
+        0.858,
+        0.891,
+        0.942,
+        0.965,
+        0.985,
+        0.966
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8075,
+      "max_t_full": -0.189917030262465,
+      "reject_bonferroni": 0.005,
+      "reject_normal_maxt": 0.02,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.995
+     }
+    },
+    "Gilly's Smart Phones": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.7825,
+       0.79,
+       false
+      ],
+      "bonferroni": [
+       0.755,
+       0.8175,
+       false
+      ],
+      "normal_maxt": [
+       0.76,
+       0.8125,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7525,
+       0.8175,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       8.03,
+       8.9
+      ],
+      "bonferroni": [
+       4.82,
+       12.1
+      ],
+      "normal_maxt": [
+       5.41,
+       11.52
+      ],
+      "percentile_t_boot": [
+       4.82,
+       12.39
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       2.005142670339986,
+       2.0648389209875146
+      ],
+      "percentile_t_range": [
+       2.13256691393195,
+       2.683306763800537
+      ],
+      "percentile_t_at_fit": 2.5930734223668828
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.912,
+       0.888,
+       0.891,
+       0.898,
+       0.914,
+       0.921,
+       0.928,
+       0.925
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.898,
+        0.913,
+        0.933,
+        0.946,
+        0.966,
+        0.971,
+        0.972,
+        0.962
+       ],
+       [
+        0.94,
+        0.895,
+        0.879,
+        0.873,
+        0.876,
+        0.878,
+        0.882,
+        0.88
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.79,
+      "max_t_full": -0.10385204089911296,
+      "reject_bonferroni": 0.005,
+      "reject_normal_maxt": 0.025,
+      "reject_percentile_t": 0.005,
+      "bonferroni_covers_fit_mid": 0.99
+     }
+    },
+    "TD'S Cell Shop": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.76,
+       0.765,
+       false
+      ],
+      "bonferroni": [
+       0.7425,
+       0.79,
+       false
+      ],
+      "normal_maxt": [
+       0.745,
+       0.785,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7425,
+       0.785,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       13.89,
+       14.46
+      ],
+      "bonferroni": [
+       11.08,
+       16.43
+      ],
+      "normal_maxt": [
+       11.64,
+       16.14
+      ],
+      "percentile_t_boot": [
+       11.64,
+       16.43
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9908236659790595,
+       2.098893517108767
+      ],
+      "percentile_t_range": [
+       1.6658523687277014,
+       2.7045603303491146
+      ],
+      "percentile_t_at_fit": 2.1618926268069214
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.92,
+       0.853,
+       0.836,
+       0.833,
+       0.833,
+       0.837,
+       0.841,
+       0.841
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.91,
+        0.891,
+        0.895,
+        0.906,
+        0.917,
+        0.924,
+        0.918,
+        0.9
+       ],
+       [
+        0.954,
+        0.872,
+        0.834,
+        0.814,
+        0.79,
+        0.78,
+        0.774,
+        0.776
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.76,
+      "max_t_full": -0.025585687914262516,
+      "reject_bonferroni": 0.01,
+      "reject_normal_maxt": 0.04,
+      "reject_percentile_t": 0.025,
+      "bonferroni_covers_fit_mid": 0.995
+     }
+    },
+    "Wireless Source": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.8325,
+       0.8325,
+       false
+      ],
+      "bonferroni": [
+       0.815,
+       0.855,
+       false
+      ],
+      "normal_maxt": [
+       0.8175,
+       0.85,
+       false
+      ],
+      "percentile_t_boot": [
+       0.8125,
+       0.87,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       20.64,
+       20.64
+      ],
+      "bonferroni": [
+       18.5,
+       22.31
+      ],
+      "normal_maxt": [
+       18.97,
+       22.07
+      ],
+      "percentile_t_boot": [
+       17.07,
+       22.55
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9603760728466921,
+       2.130938895174914
+      ],
+      "percentile_t_range": [
+       2.1213511266857306,
+       3.7485994657715604
+      ],
+      "percentile_t_at_fit": 3.2613238423378244
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.087,
+       0.976,
+       0.968,
+       0.978,
+       0.989,
+       0.985,
+       0.992,
+       0.975
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.999,
+        1.03,
+        1.063,
+        1.082,
+        1.079,
+        1.056,
+        1.047,
+        1.007
+       ],
+       [
+        1.176,
+        1.071,
+        1.027,
+        1.006,
+        0.996,
+        0.995,
+        0.995,
+        0.982
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8325,
+      "max_t_full": -0.19177572932934736,
+      "reject_bonferroni": 0.01,
+      "reject_normal_maxt": 0.025,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.99
+     }
+    },
+    "The Cellular Resource": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.7875,
+       0.79,
+       false
+      ],
+      "bonferroni": [
+       0.775,
+       0.8325,
+       false
+      ],
+      "normal_maxt": [
+       0.7775,
+       0.815,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7675,
+       1.2,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       15.96,
+       16.23
+      ],
+      "bonferroni": [
+       11.44,
+       17.56
+      ],
+      "normal_maxt": [
+       13.3,
+       17.29
+      ],
+      "percentile_t_boot": [
+       -27.65,
+       18.35
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.947817834186463,
+       2.1889815102793206
+      ],
+      "percentile_t_range": [
+       2.314830951696123,
+       4.743074372488068
+      ],
+      "percentile_t_at_fit": 4.648650774192673
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       0.813,
+       0.794,
+       0.787,
+       0.783,
+       0.791,
+       0.791,
+       0.786,
+       0.736
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.803,
+        0.788,
+        0.801,
+        0.822,
+        0.881,
+        0.893,
+        0.872,
+        0.809
+       ],
+       [
+        0.832,
+        0.815,
+        0.808,
+        0.804,
+        0.799,
+        0.794,
+        0.787,
+        0.769
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.7875,
+      "max_t_full": -0.26409249132212775,
+      "reject_bonferroni": 0.05,
+      "reject_normal_maxt": 0.085,
+      "reject_percentile_t": 0.0,
+      "bonferroni_covers_fit_mid": 0.97
+     }
+    },
+    "Sellworld": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.81,
+       0.8175,
+       false
+      ],
+      "bonferroni": [
+       0.785,
+       0.85,
+       false
+      ],
+      "normal_maxt": [
+       0.79,
+       0.8425,
+       false
+      ],
+      "percentile_t_boot": [
+       0.7825,
+       0.8525,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       7.72,
+       8.57
+      ],
+      "bonferroni": [
+       4.05,
+       11.39
+      ],
+      "normal_maxt": [
+       4.9,
+       10.83
+      ],
+      "percentile_t_boot": [
+       3.77,
+       11.67
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.9640018443183247,
+       2.1445615545145453
+      ],
+      "percentile_t_range": [
+       2.0116087447347373,
+       2.751738648873331
+      ],
+      "percentile_t_at_fit": 2.566467530284332
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.014,
+       1.008,
+       0.973,
+       0.948,
+       0.908,
+       0.879,
+       0.844,
+       0.81
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.02,
+        0.944,
+        0.878,
+        0.857,
+        0.827,
+        0.821,
+        0.817,
+        0.824
+       ],
+       [
+        1.002,
+        1.015,
+        1.011,
+        1.006,
+        0.997,
+        0.984,
+        0.96,
+        0.903
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8175,
+      "max_t_full": -0.03080219446917763,
+      "reject_bonferroni": 0.02,
+      "reject_normal_maxt": 0.025,
+      "reject_percentile_t": 0.01,
+      "bonferroni_covers_fit_mid": 0.995
+     }
+    },
+    "We Buy Mobile Corp": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": [
+       0.8275,
+       0.8325,
+       false
+      ],
+      "bonferroni": [
+       0.81,
+       0.8525,
+       false
+      ],
+      "normal_maxt": [
+       0.8125,
+       0.85,
+       false
+      ],
+      "percentile_t_boot": [
+       0.8,
+       0.8625,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": [
+       9.45,
+       10.0
+      ],
+      "bonferroni": [
+       7.28,
+       11.9
+      ],
+      "normal_maxt": [
+       7.55,
+       11.63
+      ],
+      "percentile_t_boot": [
+       6.19,
+       12.99
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.980296405606935,
+       2.1151271381143983
+      ],
+      "percentile_t_range": [
+       1.3552205533927348,
+       3.911818316460446
+      ],
+      "percentile_t_at_fit": 3.747238042563335
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": [
+       1.186,
+       1.022,
+       0.9,
+       0.825,
+       0.747,
+       0.697,
+       0.632,
+       0.577
+      ],
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        1.119,
+        0.835,
+        0.704,
+        0.644,
+        0.603,
+        0.579,
+        0.561,
+        0.568
+       ],
+       [
+        1.195,
+        1.134,
+        1.067,
+        1.017,
+        0.956,
+        0.916,
+        0.837,
+        0.726
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": {
+      "theta": 0.8275,
+      "max_t_full": -0.03913276228082211,
+      "reject_bonferroni": 0.06,
+      "reject_normal_maxt": 0.11,
+      "reject_percentile_t": 0.005,
+      "bonferroni_covers_fit_mid": 0.965
+     }
+    },
+    "PDX Cellular Solutions": {
+     "replications_used": 200,
+     "sets_theta": {
+      "fit": null,
+      "bonferroni": [
+       0.825,
+       0.8675,
+       false
+      ],
+      "normal_maxt": [
+       0.83,
+       0.86,
+       false
+      ],
+      "percentile_t_boot": [
+       0.8325,
+       0.8625,
+       false
+      ]
+     },
+     "lerner": {
+      "fit": null,
+      "bonferroni": [
+       15.15,
+       19.31
+      ],
+      "normal_maxt": [
+       15.89,
+       18.82
+      ],
+      "percentile_t_boot": [
+       15.64,
+       18.58
+      ]
+     },
+     "critical_values": {
+      "bonferroni": 2.497705474412374,
+      "normal_maxt_range": [
+       1.995459468938445,
+       2.0985795794886393
+      ],
+      "percentile_t_range": [
+       1.6623373367094434,
+       2.411728693687445
+      ],
+      "percentile_t_at_fit": null
+     },
+     "boot_sd_over_analytic_se": {
+      "in_fit_set_by_shift": null,
+      "at_bonferroni_endpoints_by_shift": [
+       [
+        0.712,
+        0.76,
+        0.82,
+        0.859,
+        0.904,
+        0.912,
+        0.921,
+        0.911
+       ],
+       [
+        0.973,
+        0.799,
+        0.779,
+        0.791,
+        0.815,
+        0.826,
+        0.846,
+        0.856
+       ]
+      ],
+      "shifts": [
+       -0.1,
+       -0.05,
+       -0.025,
+       -0.01,
+       0.01,
+       0.025,
+       0.05,
+       0.1
+      ]
+     },
+     "null_point_size_check": null
+    }
+   }
+  }
+ }
+}

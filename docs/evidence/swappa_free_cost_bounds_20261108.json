@@ -1,0 +1,2412 @@
+{
+ "date": "2026-11-08",
+ "shifts": [
+  -0.1,
+  -0.05,
+  -0.025,
+  -0.01,
+  0.01,
+  0.025,
+  0.05,
+  0.1
+ ],
+ "results": {
+  "raw_d0": {
+   "GadgetPickup": {
+    "sales": 1638,
+    "listings": 2052,
+    "sold_mean_price": 416.2124388037712,
+    "marginal_weighted_price": 453.45449396985356,
+    "proportional_fit_theta": [
+     0.7935512183807065,
+     0.8078426648859502
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       32272.46137705247
+      ],
+      "lerner": [
+       -7653.84,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       388.06004192218967,
+       427.7984346281792
+      ],
+      "lerner": [
+       5.66,
+       14.42
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       236.0990004351079,
+       409.2918192918193
+      ],
+      "lerner": [
+       1.66,
+       43.27
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       388.0600419221898,
+       406.43149205474657
+      ],
+      "lerner": [
+       10.37,
+       14.42
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       33559.35649017341
+      ],
+      "lerner": [
+       -7963.04,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       378.5045362546274,
+       437.8061687604694
+      ],
+      "lerner": [
+       3.45,
+       16.53
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       218.86541245888012,
+       409.2918192918193
+      ],
+      "lerner": [
+       1.66,
+       47.41
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       378.5045362546275,
+       414.2828851641706
+      ],
+      "lerner": [
+       8.64,
+       16.53
+      ]
+     }
+    }
+   },
+   "AMS Traders Inc.": {
+    "sales": 1316,
+    "listings": 1736,
+    "sold_mean_price": 502.9421020492946,
+    "marginal_weighted_price": 518.5080851290289,
+    "proportional_fit_theta": [
+     0.8070062791097109,
+     0.8190650799334842
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       29190.994926617914
+      ],
+      "lerner": [
+       -5704.05,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       445.7309928120754,
+       476.1596002208545
+      ],
+      "lerner": [
+       8.17,
+       14.04
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       251.2858817859209,
+       498.8837386018237
+      ],
+      "lerner": [
+       0.81,
+       50.04
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       445.73099281207556,
+       463.71731354556215
+      ],
+      "lerner": [
+       10.57,
+       14.04
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       29848.020141492696
+      ],
+      "lerner": [
+       -5834.68,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       435.87128424391085,
+       486.87690754238474
+      ],
+      "lerner": [
+       6.1,
+       15.94
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       232.05974383860533,
+       498.8837386018237
+      ],
+      "lerner": [
+       0.81,
+       53.86
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       435.87128424391113,
+       473.29472202187833
+      ],
+      "lerner": [
+       8.72,
+       15.94
+      ]
+     }
+    }
+   },
+   "UPGRADE SOLUTION INC": {
+    "sales": 952,
+    "listings": 1030,
+    "sold_mean_price": 144.8700219051407,
+    "marginal_weighted_price": 145.8605970633958,
+    "proportional_fit_theta": [
+     0.742335178481975,
+     0.7515537699258359
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       3688.7629029488066
+      ],
+      "lerner": [
+       -2446.26,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       125.47295794524449,
+       130.80450608512294
+      ],
+      "lerner": [
+       10.32,
+       13.98
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       82.79543838818937,
+       144.53886554621732
+      ],
+      "lerner": [
+       0.23,
+       42.85
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       125.47295794524445,
+       128.03430171243463
+      ],
+      "lerner": [
+       12.22,
+       13.98
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       3802.3291955034383
+      ],
+      "lerner": [
+       -2524.65,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       121.79224992308811,
+       134.83159679178019
+      ],
+      "lerner": [
+       7.56,
+       16.5
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       76.77285310677352,
+       144.53886554621732
+      ],
+      "lerner": [
+       0.23,
+       47.01
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       121.79224992308805,
+       131.87192904762003
+      ],
+      "lerner": [
+       9.59,
+       16.5
+      ]
+     }
+    }
+   },
+   "NYCPhonebuyer LLC": {
+    "sales": 747,
+    "listings": 903,
+    "sold_mean_price": 458.77424993316674,
+    "marginal_weighted_price": 480.244376392246,
+    "proportional_fit_theta": [
+     0.7357950186274148,
+     0.7517299279459309
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       7700.83357592918
+      ],
+      "lerner": [
+       -1578.57,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       400.2677253030893,
+       450.2754970830991
+      ],
+      "lerner": [
+       6.24,
+       16.65
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       259.2191629272241,
+       441.8018741633195
+      ],
+      "lerner": [
+       3.7,
+       43.5
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       400.26772530308995,
+       419.7329568729841
+      ],
+      "lerner": [
+       12.6,
+       16.65
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       7894.2623354155785
+      ],
+      "lerner": [
+       -1620.73,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       390.1519194743072,
+       461.58547151237974
+      ],
+      "lerner": [
+       3.89,
+       18.76
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       241.99261237363862,
+       441.8018741633195
+      ],
+      "lerner": [
+       3.7,
+       47.25
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       390.15191947430776,
+       428.7400651608896
+      ],
+      "lerner": [
+       10.72,
+       18.76
+      ]
+     }
+    }
+   },
+   "SaveGadget": {
+    "sales": 581,
+    "listings": 760,
+    "sold_mean_price": 572.2026256322808,
+    "marginal_weighted_price": 560.1285291148737,
+    "proportional_fit_theta": [
+     0.7907767457578022,
+     0.8034922968620491
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       2959671494.7951474
+      ],
+      "lerner": [
+       -517241758.43,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       459.8795132359006,
+       498.9999756667776
+      ],
+      "lerner": [
+       10.91,
+       17.9
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       268.9987914805011,
+       524.4612736660923
+      ],
+      "lerner": [
+       8.34,
+       52.99
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       459.8795132359011,
+       478.2682875275025
+      ],
+      "lerner": [
+       14.61,
+       17.9
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       3019780040.2599397
+      ],
+      "lerner": [
+       -527746524.18,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       450.13021833163765,
+       509.1342634676515
+      ],
+      "lerner": [
+       9.1,
+       19.64
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       250.58817314772907,
+       524.4612736660923
+      ],
+      "lerner": [
+       8.34,
+       56.21
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       450.1302183316383,
+       486.7824137660323
+      ],
+      "lerner": [
+       13.09,
+       19.64
+      ]
+     }
+    }
+   },
+   "Certified Cell, Inc": {
+    "sales": 554,
+    "listings": 979,
+    "sold_mean_price": 327.42283377240847,
+    "marginal_weighted_price": 350.4136594945597,
+    "proportional_fit_theta": [
+     0.7804972063435406,
+     0.7907862362439854
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       13654.89028810053
+      ],
+      "lerner": [
+       -4070.41,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       302.08951816424394,
+       321.4315262048584
+      ],
+      "lerner": [
+       8.27,
+       13.79
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       159.738633605518,
+       321.81768953068575
+      ],
+      "lerner": [
+       1.71,
+       51.21
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       302.0895181642448,
+       314.3123057472383
+      ],
+      "lerner": [
+       10.3,
+       13.79
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       14084.443107011499
+      ],
+      "lerner": [
+       -4201.61,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       292.6711883131612,
+       331.5430551336901
+      ],
+      "lerner": [
+       5.39,
+       16.48
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       142.4935118120998,
+       321.81768953068575
+      ],
+      "lerner": [
+       1.71,
+       56.48
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       292.67118831316196,
+       323.03145616206456
+      ],
+      "lerner": [
+       7.81,
+       16.48
+      ]
+     }
+    }
+   },
+   "Gilly's Smart Phones": {
+    "sales": 425,
+    "listings": 455,
+    "sold_mean_price": 271.4850051629906,
+    "marginal_weighted_price": 286.1069892129068,
+    "proportional_fit_theta": [
+     0.7370676814134018,
+     0.7544490833430445
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       6527.943009297592
+      ],
+      "lerner": [
+       -2304.53,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       240.9742394285143,
+       274.1571999943926
+      ],
+      "lerner": [
+       4.18,
+       15.77
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       149.21543960159903,
+       267.35288668926273
+      ],
+      "lerner": [
+       1.52,
+       45.04
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       240.97423942851455,
+       254.8773520942989
+      ],
+      "lerner": [
+       10.92,
+       15.77
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       6783.869468288753
+      ],
+      "lerner": [
+       -2398.8,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       231.9939213100751,
+       284.58763329285983
+      ],
+      "lerner": [
+       0.53,
+       18.91
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       134.48307035304515,
+       269.021176470588
+      ],
+      "lerner": [
+       0.91,
+       50.46
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       231.9939213100755,
+       262.9832265856047
+      ],
+      "lerner": [
+       8.08,
+       18.91
+      ]
+     }
+    }
+   },
+   "TD'S Cell Shop": {
+    "sales": 418,
+    "listings": 468,
+    "sold_mean_price": 305.6787374284258,
+    "marginal_weighted_price": 348.74601371944794,
+    "proportional_fit_theta": [
+     0.7359240669237782,
+     0.7477615883386143
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       5601.233807447755
+      ],
+      "lerner": [
+       -1732.39,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       269.7033317439881,
+       296.0621630035855
+      ],
+      "lerner": [
+       15.11,
+       22.66
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       146.79559453691778,
+       301.212918660287
+      ],
+      "lerner": [
+       1.46,
+       51.98
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       269.70333174398826,
+       281.8125457694593
+      ],
+      "lerner": [
+       19.19,
+       22.66
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       5758.890792480654
+      ],
+      "lerner": [
+       -1783.97,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       261.7587587874308,
+       304.39537486476513
+      ],
+      "lerner": [
+       12.72,
+       24.94
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       134.42676628549623,
+       301.212918660287
+      ],
+      "lerner": [
+       1.46,
+       56.02
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       261.7587587874308,
+       289.29875568536966
+      ],
+      "lerner": [
+       17.05,
+       24.94
+      ]
+     }
+    }
+   },
+   "Wireless Source": {
+    "sales": 389,
+    "listings": 690,
+    "sold_mean_price": 299.60789560654274,
+    "marginal_weighted_price": 300.8904256961629,
+    "proportional_fit_theta": [
+     0.8214744491278322,
+     0.8287569508136908
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       2883830.036386845
+      ],
+      "lerner": [
+       -962434.73,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       257.5574692940404,
+       269.19687327505983
+      ],
+      "lerner": [
+       10.53,
+       14.4
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       109.31971590219052,
+       285.4910025706939
+      ],
+      "lerner": [
+       4.71,
+       63.51
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       257.55746929404074,
+       262.54726795885364
+      ],
+      "lerner": [
+       12.74,
+       14.4
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       3079068.9112986065
+      ],
+      "lerner": [
+       -1027599.52,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       241.18145612845515,
+       287.42183591323123
+      ],
+      "lerner": [
+       4.48,
+       19.84
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       73.75671262750012,
+       285.4910025706939
+      ],
+      "lerner": [
+       4.71,
+       75.38
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       241.18145612845547,
+       278.59918964425486
+      ],
+      "lerner": [
+       7.41,
+       19.84
+      ]
+     }
+    }
+   },
+   "The Cellular Resource": {
+    "sales": 360,
+    "listings": 706,
+    "sold_mean_price": 291.6250004378369,
+    "marginal_weighted_price": 306.2238689121033,
+    "proportional_fit_theta": [
+     0.76607274594132,
+     0.7765684139648886
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       14489793318.511545
+      ],
+      "lerner": [
+       -4968638835.88,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       257.8434650124636,
+       276.116156866587
+      ],
+      "lerner": [
+       9.83,
+       15.8
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       81.13803405945711,
+       281.661111111111
+      ],
+      "lerner": [
+       3.42,
+       72.18
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       257.84346501246375,
+       266.89630488123504
+      ],
+      "lerner": [
+       12.84,
+       15.8
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       14815675370.161331
+      ],
+      "lerner": [
+       -5080385788.7,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       250.04330388654114,
+       282.3261350019122
+      ],
+      "lerner": [
+       7.8,
+       18.35
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       64.88842488256287,
+       281.661111111111
+      ],
+      "lerner": [
+       3.42,
+       77.75
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       250.04330388654134,
+       272.2628337667579
+      ],
+      "lerner": [
+       11.09,
+       18.35
+      ]
+     }
+    }
+   },
+   "Sellworld": {
+    "sales": 357,
+    "listings": 427,
+    "sold_mean_price": 358.9138189172614,
+    "marginal_weighted_price": 363.75567542773945,
+    "proportional_fit_theta": [
+     0.7632175900854451,
+     0.7785468046262205
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       7538.579996283959
+      ],
+      "lerner": [
+       -2000.39,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       304.90065676221263,
+       340.3088222435223
+      ],
+      "lerner": [
+       6.45,
+       16.18
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       170.23614536916725,
+       355.2801120448178
+      ],
+      "lerner": [
+       1.01,
+       52.57
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       304.90065676221275,
+       320.67345473024255
+      ],
+      "lerner": [
+       11.84,
+       16.18
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       7828.750398980685
+      ],
+      "lerner": [
+       -2081.23,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       294.6126424165724,
+       351.03245368524404
+      ],
+      "lerner": [
+       3.5,
+       19.01
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       151.6826704410735,
+       355.2801120448178
+      ],
+      "lerner": [
+       1.01,
+       57.74
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       294.6126424165726,
+       329.64711354667634
+      ],
+      "lerner": [
+       9.38,
+       19.01
+      ]
+     }
+    }
+   },
+   "We Buy Mobile Corp": {
+    "sales": 336,
+    "listings": 567,
+    "sold_mean_price": 363.86753338096753,
+    "marginal_weighted_price": 349.61618578030084,
+    "proportional_fit_theta": [
+     0.800437269366383,
+     0.8128668046768549
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       56137.810595679024
+      ],
+      "lerner": [
+       -15328.09,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       301.5609124153301,
+       328.4447583979769
+      ],
+      "lerner": [
+       6.06,
+       13.75
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       194.9110612299149,
+       349.56547619047586
+      ],
+      "lerner": [
+       3.93,
+       46.43
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       301.56091241533005,
+       309.6261782818856
+      ],
+      "lerner": [
+       11.44,
+       13.75
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       57682.37334512124
+      ],
+      "lerner": [
+       -15752.57,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       294.4285070029093,
+       336.1680716545122
+      ],
+      "lerner": [
+       3.85,
+       15.79
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       168.62576527228256,
+       349.56547619047586
+      ],
+      "lerner": [
+       3.93,
+       53.66
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       294.4285070029093,
+       315.22962181756475
+      ],
+      "lerner": [
+       9.84,
+       15.79
+      ]
+     }
+    }
+   },
+   "PDX Cellular Solutions": {
+    "sales": 300,
+    "listings": 496,
+    "sold_mean_price": 454.5341334148277,
+    "marginal_weighted_price": 454.71455066808386,
+    "proportional_fit_theta": [
+     0.9040504354734598,
+     0.912792198021628
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       17422.646239285154
+      ],
+      "lerner": [
+       -3733.08,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       399.67238320690075,
+       410.3772078110563
+      ],
+      "lerner": [
+       9.75,
+       12.1
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       278.19368360703714,
+       440.8733333333329
+      ],
+      "lerner": [
+       3.01,
+       38.8
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       399.6723832069009,
+       405.80952595966113
+      ],
+      "lerner": [
+       10.76,
+       12.1
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       17820.68286546956
+      ],
+      "lerner": [
+       -3820.65,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       390.7313470685794,
+       419.75265841808135
+      ],
+      "lerner": [
+       7.69,
+       14.07
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       253.96447676172127,
+       440.8733333333329
+      ],
+      "lerner": [
+       3.01,
+       44.13
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       390.7313470685796,
+       414.8319240383018
+      ],
+      "lerner": [
+       8.77,
+       14.07
+      ]
+     }
+    }
+   }
+  },
+  "raw_d6": {
+   "GadgetPickup": {
+    "sales": 1638,
+    "listings": 2052,
+    "sold_mean_price": 416.2124388037712,
+    "marginal_weighted_price": 457.0778086941893,
+    "proportional_fit_theta": [
+     0.8270649251009045,
+     0.8357615894227765
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       119577.4495436355
+      ],
+      "lerner": [
+       -28629.91,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       408.40343362822335,
+       1188.4720769741793
+      ],
+      "lerner": [
+       -160.02,
+       10.65
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       265.93039382797576,
+       409.2918192918193
+      ],
+      "lerner": [
+       1.66,
+       36.11
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       408.40343362822404,
+       416.62136521046665
+      ],
+      "lerner": [
+       8.85,
+       10.65
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       123581.90645404065
+      ],
+      "lerner": [
+       -29592.03,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       400.80570787664135,
+       1210.8611990226339
+      ],
+      "lerner": [
+       -164.91,
+       12.31
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       248.39832903160678,
+       409.2918192918193
+      ],
+      "lerner": [
+       1.66,
+       40.32
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       400.8057078766418,
+       423.5160879136967
+      ],
+      "lerner": [
+       7.34,
+       12.31
+      ]
+     }
+    }
+   },
+   "AMS Traders Inc.": {
+    "sales": 1316,
+    "listings": 1736,
+    "sold_mean_price": 502.9421020492946,
+    "marginal_weighted_price": 539.6317475493255,
+    "proportional_fit_theta": [
+     0.8348980502645433,
+     0.8423576871195795
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       48661.71916005277
+      ],
+      "lerner": [
+       -9575.41,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       481.3929615086735,
+       1293.887662274289
+      ],
+      "lerner": [
+       -139.77,
+       10.79
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       295.5604592276969,
+       498.8837386018237
+      ],
+      "lerner": [
+       0.81,
+       41.23
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       481.3929615086724,
+       491.98368885635534
+      ],
+      "lerner": [
+       8.83,
+       10.79
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       50467.09217411657
+      ],
+      "lerner": [
+       -9934.37,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       471.5618447932017,
+       1324.2703240945984
+      ],
+      "lerner": [
+       -145.4,
+       12.61
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       273.58972550691493,
+       498.8837386018237
+      ],
+      "lerner": [
+       0.81,
+       45.6
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       471.5618447932005,
+       501.23907598478104
+      ],
+      "lerner": [
+       7.11,
+       12.61
+      ]
+     }
+    }
+   },
+   "UPGRADE SOLUTION INC": {
+    "sales": 952,
+    "listings": 1030,
+    "sold_mean_price": 144.8700219051407,
+    "marginal_weighted_price": 145.85385926273798,
+    "proportional_fit_theta": [
+     0.7495307167142103,
+     0.7452828374044581
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       4653.19788280498
+      ],
+      "lerner": [
+       -3111.98,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       127.17080194782727,
+       355.51109304623753
+      ],
+      "lerner": [
+       -143.74,
+       12.81
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       83.93609745220033,
+       142.76902659943786
+      ],
+      "lerner": [
+       1.45,
+       42.06
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       127.17080194782734,
+       129.2177205225267
+      ],
+      "lerner": [
+       11.41,
+       12.81
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       4813.983084090397
+      ],
+      "lerner": [
+       -3222.97,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       123.92737506937162,
+       367.618140956448
+      ],
+      "lerner": [
+       -152.05,
+       15.03
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       78.0386829479793,
+       144.53886554621732
+      ],
+      "lerner": [
+       0.23,
+       46.13
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       123.92737506937165,
+       132.4670856892654
+      ],
+      "lerner": [
+       9.18,
+       15.03
+      ]
+     }
+    }
+   },
+   "NYCPhonebuyer LLC": {
+    "sales": 747,
+    "listings": 903,
+    "sold_mean_price": 458.77424993316674,
+    "marginal_weighted_price": 491.0017538929969,
+    "proportional_fit_theta": [
+     0.7836135162624082,
+     0.7929603539254745
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       61544.170458587534
+      ],
+      "lerner": [
+       -13314.91,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       437.6954947107239,
+       1461.2842390007736
+      ],
+      "lerner": [
+       -197.61,
+       10.86
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       320.33664549943126,
+       441.8018741633195
+      ],
+      "lerner": [
+       3.7,
+       30.18
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       437.6954947107243,
+       446.4994598806878
+      ],
+      "lerner": [
+       9.06,
+       10.86
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       62767.13035781456
+      ],
+      "lerner": [
+       -13581.49,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       429.9942706296206,
+       1490.3217906056482
+      ],
+      "lerner": [
+       -203.53,
+       12.43
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       302.7646255896817,
+       441.8018741633195
+      ],
+      "lerner": [
+       3.7,
+       34.01
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       429.99427062962087,
+       453.7615218392259
+      ],
+      "lerner": [
+       7.58,
+       12.43
+      ]
+     }
+    }
+   },
+   "SaveGadget": {
+    "sales": 581,
+    "listings": 760,
+    "sold_mean_price": 572.2026256322808,
+    "marginal_weighted_price": 566.2387837266397,
+    "proportional_fit_theta": [
+     0.8220027577559449,
+     0.8302348435798695
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       1148064.827922674
+      ],
+      "lerner": [
+       -200539.56,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       483.96788974430496,
+       1305.38603571536
+      ],
+      "lerner": [
+       -130.54,
+       14.53
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       311.662113460187,
+       524.4612736660923
+      ],
+      "lerner": [
+       8.34,
+       45.53
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       483.9678897443056,
+       492.9668461706847
+      ],
+      "lerner": [
+       12.94,
+       14.53
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       1182256.1721239653
+      ],
+      "lerner": [
+       -206514.95,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       475.8661566421713,
+       1327.9559158011232
+      ],
+      "lerner": [
+       -134.52,
+       15.96
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       293.48693832472,
+       524.4612736660923
+      ],
+      "lerner": [
+       8.34,
+       48.71
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       475.8661566421718,
+       500.2844684209568
+      ],
+      "lerner": [
+       11.65,
+       15.96
+      ]
+     }
+    }
+   },
+   "Certified Cell, Inc": {
+    "sales": 554,
+    "listings": 979,
+    "sold_mean_price": 327.42283377240847,
+    "marginal_weighted_price": 350.20372026992334,
+    "proportional_fit_theta": [
+     0.8026611972364868,
+     0.8093612721756577
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       13649.817212051208
+      ],
+      "lerner": [
+       -4068.87,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       313.33258529248303,
+       472.2013864844291
+      ],
+      "lerner": [
+       -34.84,
+       10.53
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       190.9034870984151,
+       321.81768953068575
+      ],
+      "lerner": [
+       1.71,
+       41.7
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       313.3325852924832,
+       319.9701426388583
+      ],
+      "lerner": [
+       8.63,
+       10.53
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       14064.693221995189
+      ],
+      "lerner": [
+       -4195.57,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       304.045077916975,
+       486.55359531413524
+      ],
+      "lerner": [
+       -38.93,
+       13.18
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       170.07703479754107,
+       321.81768953068575
+      ],
+      "lerner": [
+       1.71,
+       48.06
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       304.0450779169751,
+       328.7901631310892
+      ],
+      "lerner": [
+       6.11,
+       13.18
+      ]
+     }
+    }
+   },
+   "Gilly's Smart Phones": {
+    "sales": 425,
+    "listings": 455,
+    "sold_mean_price": 271.4850051629906,
+    "marginal_weighted_price": 289.8214450862376,
+    "proportional_fit_theta": [
+     0.7810731036613575,
+     0.7911054923541704
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       5948.384596912614
+      ],
+      "lerner": [
+       -2091.05,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       259.0601463515258,
+       370.43928226218446
+      ],
+      "lerner": [
+       -27.82,
+       10.61
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       181.1687863028256,
+       269.021176470588
+      ],
+      "lerner": [
+       0.91,
+       33.27
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       259.0601463515259,
+       264.81571905227946
+      ],
+      "lerner": [
+       8.63,
+       10.61
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       6298.352829985508
+      ],
+      "lerner": [
+       -2219.96,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       250.45085241453813,
+       383.17185673719706
+      ],
+      "lerner": [
+       -32.21,
+       13.58
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       162.95067042968358,
+       269.021176470588
+      ],
+      "lerner": [
+       0.91,
+       39.98
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       250.4508524145379,
+       272.98387572506243
+      ],
+      "lerner": [
+       5.81,
+       13.58
+      ]
+     }
+    }
+   },
+   "TD'S Cell Shop": {
+    "sales": 418,
+    "listings": 468,
+    "sold_mean_price": 305.6787374284258,
+    "marginal_weighted_price": 347.5414442455665,
+    "proportional_fit_theta": [
+     0.7597918336336212,
+     0.766932029107083
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       11849.024228091152
+      ],
+      "lerner": [
+       -3776.3,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       284.7637671025114,
+       450.13638423808607
+      ],
+      "lerner": [
+       -29.52,
+       18.06
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       171.26937395969784,
+       301.212918660287
+      ],
+      "lerner": [
+       1.46,
+       43.97
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       284.7637671025116,
+       292.3729292630533
+      ],
+      "lerner": [
+       15.87,
+       18.06
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       12369.428662996539
+      ],
+      "lerner": [
+       -3946.55,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       277.0510564610026,
+       463.592165314774
+      ],
+      "lerner": [
+       -33.39,
+       20.28
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       156.82247690379162,
+       301.212918660287
+      ],
+      "lerner": [
+       1.46,
+       48.7
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       277.0510564610027,
+       299.6288506308877
+      ],
+      "lerner": [
+       13.79,
+       20.28
+      ]
+     }
+    }
+   },
+   "Wireless Source": {
+    "sales": 389,
+    "listings": 690,
+    "sold_mean_price": 299.60789560654274,
+    "marginal_weighted_price": 306.21061266812956,
+    "proportional_fit_theta": [
+     0.8311178329034772,
+     0.8339643724136918
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       314182.50312225946
+      ],
+      "lerner": [
+       -104764.56,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       261.7622705154619,
+       521.1720323904813
+      ],
+      "lerner": [
+       -70.2,
+       14.52
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       91.44787590850527,
+       285.4910025706939
+      ],
+      "lerner": [
+       4.71,
+       69.48
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       261.7622705154619,
+       264.6613896736241
+      ],
+      "lerner": [
+       13.57,
+       14.52
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       337464.18455921614
+      ],
+      "lerner": [
+       -112535.28,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       256.3027702787611,
+       538.6033877385862
+      ],
+      "lerner": [
+       -75.89,
+       16.3
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       79.60555948712785,
+       285.4910025706939
+      ],
+      "lerner": [
+       4.71,
+       73.43
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       256.3027702787612,
+       270.29390637235855
+      ],
+      "lerner": [
+       11.73,
+       16.3
+      ]
+     }
+    }
+   },
+   "The Cellular Resource": {
+    "sales": 360,
+    "listings": 706,
+    "sold_mean_price": 291.6250004378369,
+    "marginal_weighted_price": 312.20609462896715,
+    "proportional_fit_theta": [
+     0.785643313546354,
+     0.792391958455561
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       564172.7732691306
+      ],
+      "lerner": [
+       -193358.3,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       272.8519194385485,
+       931.0367239399816
+      ],
+      "lerner": [
+       -198.21,
+       12.61
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       93.7863942559657,
+       281.661111111111
+      ],
+      "lerner": [
+       3.42,
+       67.84
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       272.85191943854846,
+       278.3586915141227
+      ],
+      "lerner": [
+       10.84,
+       12.61
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       586717.1923449762
+      ],
+      "lerner": [
+       -201088.92,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       266.4646209365137,
+       947.8267900091394
+      ],
+      "lerner": [
+       -203.59,
+       14.65
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       76.59977873014884,
+       281.661111111111
+      ],
+      "lerner": [
+       3.42,
+       73.73
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       266.4646209365137,
+       282.98115937851736
+      ],
+      "lerner": [
+       9.36,
+       14.65
+      ]
+     }
+    }
+   },
+   "Sellworld": {
+    "sales": 357,
+    "listings": 427,
+    "sold_mean_price": 358.9138189172614,
+    "marginal_weighted_price": 377.85857614666605,
+    "proportional_fit_theta": [
+     0.8081115127755837,
+     0.8178080742538772
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       17421.774527141482
+      ],
+      "lerner": [
+       -4754.03,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       335.6886550952978,
+       1012.810979872345
+      ],
+      "lerner": [
+       -168.04,
+       11.16
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       214.70108194103057,
+       355.2801120448178
+      ],
+      "lerner": [
+       1.01,
+       40.18
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       335.68865509529763,
+       343.4744669988473
+      ],
+      "lerner": [
+       9.1,
+       11.16
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       18421.823626013225
+      ],
+      "lerner": [
+       -5032.66,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       325.17256534621475,
+       1046.0155590760837
+      ],
+      "lerner": [
+       -176.83,
+       13.94
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       191.80852812658287,
+       355.2801120448178
+      ],
+      "lerner": [
+       1.01,
+       46.56
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       325.1725653462146,
+       352.96322215553204
+      ],
+      "lerner": [
+       6.59,
+       13.94
+      ]
+     }
+    }
+   },
+   "We Buy Mobile Corp": {
+    "sales": 336,
+    "listings": 567,
+    "sold_mean_price": 363.86753338096753,
+    "marginal_weighted_price": 348.29682565362856,
+    "proportional_fit_theta": [
+     0.8272183848176354,
+     0.8347999110590136
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       139064.23771815677
+      ],
+      "lerner": [
+       -38118.37,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       312.1207323468918,
+       498.2579948541561
+      ],
+      "lerner": [
+       -43.06,
+       10.39
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       245.06187595514717,
+       349.56547619047586
+      ],
+      "lerner": [
+       3.93,
+       32.65
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       312.120732346892,
+       315.7755401705396
+      ],
+      "lerner": [
+       9.34,
+       10.39
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       149866.0214051848
+      ],
+      "lerner": [
+       -41086.97,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       305.3437183842445,
+       509.2063587897306
+      ],
+      "lerner": [
+       -46.2,
+       12.33
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       209.38842045561216,
+       349.56547619047586
+      ],
+      "lerner": [
+       3.93,
+       42.45
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       305.3437183842444,
+       317.8823346565818
+      ],
+      "lerner": [
+       8.73,
+       12.33
+      ]
+     }
+    }
+   },
+   "PDX Cellular Solutions": {
+    "sales": 300,
+    "listings": 496,
+    "sold_mean_price": 454.5341334148277,
+    "marginal_weighted_price": 445.38704502666656,
+    "proportional_fit_theta": [
+     0.8501888717826451,
+     0.8104544632496179
+    ],
+    "bounds": {
+     "fit|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       14491.876136038454
+      ],
+      "lerner": [
+       -3088.29,
+       100.0
+      ]
+     },
+     "fit|c>=0|marginal_weighted": {
+      "cost": [
+       375.6035082813333,
+       1089.630420896482
+      ],
+      "lerner": [
+       -144.65,
+       15.67
+      ]
+     },
+     "fit|0<=c<=min price|sold_mean": {
+      "cost": [
+       242.25847944985782,
+       438.9931594605492
+      ],
+      "lerner": [
+       3.42,
+       46.7
+      ]
+     },
+     "fit|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       375.60350828133403,
+       379.6355043624867
+      ],
+      "lerner": [
+       14.76,
+       15.67
+      ]
+     },
+     "T1approx|c>=0|sold_mean": {
+      "cost": [
+       0.0,
+       15954.23317270901
+      ],
+      "lerner": [
+       -3410.02,
+       100.0
+      ]
+     },
+     "T1approx|c>=0|marginal_weighted": {
+      "cost": [
+       362.17333752367284,
+       1133.7964049401905
+      ],
+      "lerner": [
+       -154.56,
+       18.68
+      ]
+     },
+     "T1approx|0<=c<=min price|sold_mean": {
+      "cost": [
+       191.18740821444675,
+       440.8733333333329
+      ],
+      "lerner": [
+       3.01,
+       57.94
+      ]
+     },
+     "T1approx|0<=c<=min price|marginal_weighted": {
+      "cost": [
+       362.1733375236732,
+       393.6373718721931
+      ],
+      "lerner": [
+       11.62,
+       18.68
+      ]
+     }
+    }
+   }
+  }
+ },
+ "seconds": 11.6
+}
