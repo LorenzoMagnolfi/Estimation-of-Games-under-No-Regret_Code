@@ -1,10 +1,14 @@
 # HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
-## Two human research notes, October 20, 2026
+## Current Swappa research entry point (8 November 2026)
+
+The notes for coauthors live in the paper sibling: `JPE Revision/swappa-revival-learning-layers-note-2026-11-08.tex` (human-facing; governs shared claims) and `swappa-revival-learning-layers-note-for-agents-2026-11-08.md` (paths and commits into this repo). This repo holds the long-form records and the producing code: `docs/swappa-defensible-results-assessment-2026-11-08.md` (steady-state core and repaired inference), `docs/swappa-steady-state-alternatives-2026-11-08.md` (learning layers; Section 5 is the formal relation to the paper's theorems), `docs/swappa-revival-agent-memo-2026-11-06.md` and `docs/swappa-demand-repair-note-2026-11-06.md`; evidence in `docs/evidence/swappa_*_20261106.*` and `swappa_*_20261108.*`; scripts in `python/swappa_rescue/*_20261106.py` and `*_20261108.py`, with the common module `swappa_common_20261108.py`. The README indexes them. Operational state and the joint ownership block are in the paper sibling's `CLAUDE_HANDOVER.md`.
+
+## Historical: two human research notes, October 20, 2026 (superseded on 8 November)
 
 Lorenzo requested two separate consolidated notes. In the paper sibling, `JPE Revision/swappa-shared-pricing-note-2026-10-19.tex` now covers **Upgrade alone**; `JPE Revision/swappa-post-upgrade-research-note-2026-10-20.tex` covers **all subsequent work**, through persistent prices, aggregate performance, and original-target transfer. The earlier empirical-foundations and rule-tests human notes are historical. Both current PDFs were compiled and visually reviewed with Lorenzo's explicit authorization; see the paper handover for their local paths. These notes govern human exposition; the implementation records below retain exact numerical provenance. No new estimates or canonical manuscript changes were made by the consolidation.
 
-## Current Swappa research entry point (October 20, 2026)
+## Historical: Swappa research entry point, October 20, 2026 (superseded on 8 November)
 
 Read `docs/gadgetpickup-persistent-review-note-2026-10-20.md` for the latest persistence, aggregate-performance, demand, and original-target results; read the top of `CLAUDE_HANDOVER.md` for operational state. `docs/SWAPPA_RULE_TESTS_2026-10-20.md` retains the earlier rule tests. Conditional positive bounds have been traced to additional performance assumptions; an empirically calibrated informative allowance and credible original-target cost bounds remain unresolved. No active Swappa writer or background job remains.
 

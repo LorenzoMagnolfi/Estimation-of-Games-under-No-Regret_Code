@@ -1,5 +1,32 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
+**Last updated:** 2026-11-08 (evening), machine LorenzosMiniPC (Windows 11, Python 3.14).
+**Session:** Swappa inference repair, the learning layers that replace the steady-state assumption, and the records behind the 8 November notes for Niccolò; committed and pushed as `b5cb262`, `9fba712` and `5340daf`.
+
+## Ownership
+
+The joint ownership block for this repo and the paper sibling lives in the paper sibling's `CLAUDE_HANDOVER.md`. As of 2026-11-08: current writer none, no claimed artifacts, no background job (the Unity bootstrap array 11386006 completed and its outputs were pulled).
+
+## Current State
+
+- `main` equals `origin/main`; the working tree is clean apart from this handover pass, which is committed with it.
+- The Swappa records of 6 to 8 November are committed: 15 scripts in `python/swappa_rescue/`, four notes in `docs/`, 11 evidence files in `docs/evidence/`, all indexed in `README.md`. Results and open items are in the dated entries below and in the paper sibling's notes.
+- Gitignored, carried only by Dropbox: `data/` (raw and intermediate Swappa and Decluttr data) and `output/swappa_core_20261108/` (514 MB bootstrap pull, logs). The Unity run root `~/NoRegret_runs/swappa_boot_20261108/` keeps the bootstrap MANIFEST.
+- Machine parity: the November scripts ran on LorenzosMiniPC with Python 3.14; the 6 November entry records the pyarrow arrangement on the OSU desktop. No installs this session.
+
+## Where to look first next session
+
+1. The paper sibling's `CLAUDE_HANDOVER.md`: ownership, pending items, open questions.
+2. `docs/swappa-steady-state-alternatives-2026-11-08.md` (Section 5 for the formal argument) and `docs/swappa-defensible-results-assessment-2026-11-08.md`.
+3. The dated entries below for scripts, evidence files and jobs.
+
+## Pending / Next Steps
+
+- [ ] Code-side Swappa items, waiting on Niccolò's answers to Q20 to Q24 or on Lorenzo's choice of inference of record: percentile-t bootstrap for the E(H), AW, fixed-level and G1 sets; demand uncertainty inside AW; a certified constant in the E(H) allowance once Q20 is answered; reference-row reconciliation (M5); the fee counterfactual's joint test under the demand family.
+- [ ] Full list and owners: the paper sibling's `CLAUDE_HANDOVER.md`, section Pending / Next Steps.
+
+## Session Log (newest first)
+
 ## SWAPPA: learning-consistent alternatives to the steady-state assumption, November 8, 2026 (afternoon)
 
 - Lorenzo objected that A2 (steady-state play) is the bigger vulnerability and against the paper's spirit. Note: `docs/swappa-steady-state-alternatives-2026-11-08.md`; evidence `docs/evidence/swappa_learning_layer_20261108.json`; script `python/swappa_rescue/swappa_learning_layer_20261108.py`; granularity diagnostics `output/swappa_core_20261108/decision_granularity.csv`; branch `longevity.json` and `convergence.json` copied to `output/swappa_core_20261108/branch_*.json`.
@@ -151,7 +178,7 @@ Read `docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` before using the earlie
   Read this FIRST when resuming work on a project.
 -->
 
-## Last Session
+## Session of 2026-09-10 (Unity transition)
 - **Date**: 2026-09-10
 - **Summary**: Unity transition started. The campaign had stalled when SSCC linstat closed (July 2026; last linstat-era commit `389086c`, 2026-07-21). Staged the full port surface on OSU Unity and launched the port gate.
 
@@ -167,11 +194,11 @@ Read `docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` before using the earlie
   4. Working job template: `~/NoRegret_runs/smoke_20260910_114613/job_smoke.sh` (single MATLAB session: cvx_setup → prereq check → payload).
 - **Launcher port**: the linstat launchers (`run_corrected_bundle_linstat.sh` etc., nohup-based) must become sbatch scripts; the smoke job script in the run root is the template. MATLAB module: `ml matlab/r2024b` (HANDOVER says R2024a+, so compatible). Linstat reference smokes for equivalence: `3778539`, `3779271` (both PASS).
 
-## Previous Session
+## Session of 2026-04-30 (realization-conditional identified set)
 - **Date**: 2026-04-30
 - **Summary**: Completed serious-run characterization of realization-conditional ID set: 3 truths × 5 N's × 2 LP variants (BCCE LP vs data-only). Discovered that the BCCE LP is mis-specified for persistent types and rejects the truth at asymmetric realizations. The data-only spec with per-candidate `kappa` eps is the right calibration — hits asymptotic floor at the smallest N tested. s=20 robustness pass shows the action-grid (not cost-grid) is the binding floor.
 
-## Current State
+## State as of 2026-04-30 (historical; current state at the top)
 
 ### What Was Done
 
@@ -207,7 +234,7 @@ Read `docs/UPGRADE_LEARNING_RULE_CLOSEOUT_2026-10-20.md` before using the earlie
 - `matlab/src/III_RUN_application_fixedcost.m`
 - These are application-side analogs of the simulation infrastructure. Working code, demonstrably runs (sanity test produced `c ∈ [-78.84, 0]` identified intervals for sellers 1 and 2), but on hold while we firm up the simulation design with Niccolò. Do NOT delete; do NOT re-introduce until Lorenzo signals.
 
-## Pending / Next Steps
+## Pending as of 2026-04-30 (historical; current list at the top)
 - [ ] **Commit pending work**: code repo (1 commit, simulation new files + handover refresh).
 - [ ] **Niccolò review** of paper-repo addendum with the three simulation findings.
 - [ ] **Asymmetric simulation / MC variance**: the s=5 serious run was 1 MC rep per (truth, N). Multi-rep would give variance bands on the identified set.
