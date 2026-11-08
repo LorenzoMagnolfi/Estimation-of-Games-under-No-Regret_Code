@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "derivatives": [
+    {
+      "model": "raw_d0",
+      "seller": "GadgetPickup",
+      "finite_difference": 3789.2540363827716,
+      "analytic": 3789.2540375958233,
+      "error": 1.2130517461628187e-06
+    },
+    {
+      "model": "raw_d0",
+      "seller": "We Buy Mobile Corp",
+      "finite_difference": 612.3816337094468,
+      "analytic": 612.3816339978789,
+      "error": 2.884321474994067e-07
+    },
+    {
+      "model": "raw_d1",
+      "seller": "GadgetPickup",
+      "finite_difference": -6015.6089763040645,
+      "analytic": -6015.608978685805,
+      "error": 2.3817401597625576e-06
+    },
+    {
+      "model": "raw_d1",
+      "seller": "We Buy Mobile Corp",
+      "finite_difference": -1489.7443295012633,
+      "analytic": -1489.74432983801,
+      "error": 3.3674655242066365e-07
+    },
+    {
+      "model": "raw_d6",
+      "seller": "GadgetPickup",
+      "finite_difference": 683.0194695794489,
+      "analytic": 683.0194653482299,
+      "error": 4.231219008943299e-06
+    },
+    {
+      "model": "raw_d6",
+      "seller": "We Buy Mobile Corp",
+      "finite_difference": -768.1102595597621,
+      "analytic": -768.1102599794783,
+      "error": 4.197162297714385e-07
+    }
+  ],
+  "grid_boundary_censoring": [
+    [
+      "raw_d0",
+      "GadgetPickup",
+      "follow",
+      "0.0"
+    ],
+    [
+      "raw_d0",
+      "We Buy Mobile Corp",
+      "follow",
+      "0.0"
+    ],
+    [
+      "raw_d1",
+      "GadgetPickup",
+      "follow",
+      "0.0"
+    ],
+    [
+      "raw_d1",
+      "We Buy Mobile Corp",
+      "follow",
+      "0.0"
+    ],
+    [
+      "raw_d6",
+      "GadgetPickup",
+      "fixed",
+      "0.0"
+    ],
+    [
+      "raw_d6",
+      "GadgetPickup",
+      "fixed",
+      "0.03"
+    ],
+    [
+      "raw_d6",
+      "We Buy Mobile Corp",
+      "fixed",
+      "0.0"
+    ],
+    [
+      "raw_d6",
+      "We Buy Mobile Corp",
+      "fixed",
+      "0.03"
+    ]
+  ],
+  "scope": "Numerical validation, not statistical coverage validation"
+}

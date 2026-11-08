@@ -1,0 +1,2411 @@
+{
+  "status": "exploratory demand diagnostics, no cost inversion or confidence intervals",
+  "verification": {
+    "status": "passed",
+    "independent_source": "16be52968a0776f0aec086a2bbeabf5b8f6abfcb:JPE Revision/swappa-revival-2026-11-03/code/demand.py",
+    "design_predictor_max_difference": 2.1316282072803006e-14,
+    "original_design_score_max": 1.4538970027899722e-10,
+    "zero_shift_identity": true,
+    "separate_listing_holdout": true,
+    "all_22_fits_converged": true,
+    "matched_timing_same_rows_and_sales": true,
+    "shape_checks": {
+      "d0_revival_like": {
+        "positive_logodds_response_share": 0.0,
+        "derivative_quantiles": [
+          -9.314862825857851,
+          -9.31486282554852,
+          -8.007412006895503,
+          -4.101445683205071,
+          -2.5119282720440976
+        ]
+      },
+      "d1_rich_competition": {
+        "positive_logodds_response_share": 0.0,
+        "derivative_quantiles": [
+          -9.648969565843203,
+          -9.64896956552485,
+          -8.321034029610349,
+          -3.8602120256465864,
+          -2.532276489396918
+        ]
+      },
+      "d6_flexible_gap": {
+        "positive_logodds_response_share": 0.0,
+        "derivative_quantiles": [
+          -13.563391856366291,
+          -13.563391855994952,
+          -8.705048958720829,
+          -0.6479911430628089,
+          -0.08147229114976517
+        ]
+      },
+      "raw_d6": {
+        "positive_logodds_response_share": 0.0,
+        "derivative_quantiles": [
+          -13.86683224988555,
+          -13.866832249514182,
+          -9.31769166504737,
+          -1.551632226552285,
+          -0.6836631169648135
+        ]
+      }
+    },
+    "limitation": "Numerical checks do not establish causal identification, correct observation process, or confidence coverage."
+  },
+  "risk_set": {
+    "raw_panel_rows": 462465,
+    "risk_rows": 457189,
+    "sales": 22792,
+    "listings": 34079,
+    "dates": 164,
+    "reference_ratio": 1.0641471048513302,
+    "external_reference_share": 0.9295827327429138,
+    "intermediate_gap_histories": 5665,
+    "intermediate_gap_rows": 11891,
+    "strict_rows": 279225,
+    "strict_sales": 19979,
+    "fresh_previous_rows": 408795,
+    "unchanged_previous_rows": 375337,
+    "unknown_terminal_excluded": 3,
+    "late_terminal_excluded": 1508,
+    "revival_expected_rows": 457189,
+    "revival_expected_sales": 22792,
+    "sample_matches_revival": true,
+    "timing": [
+      {
+        "change": "cut",
+        "rows": 31548,
+        "sales": 3015.0,
+        "rate": 0.09556865728413845
+      },
+      {
+        "change": "entry_gap",
+        "rows": 48394,
+        "sales": 4718.0,
+        "rate": 0.09749142455676324
+      },
+      {
+        "change": "increase",
+        "rows": 1910,
+        "sales": 84.0,
+        "rate": 0.04397905759162304
+      },
+      {
+        "change": "unchanged",
+        "rows": 375337,
+        "sales": 14975.0,
+        "rate": 0.03989747879905259
+      }
+    ],
+    "focal": [
+      {
+        "Seller": "GadgetPickup",
+        "rows": 21012,
+        "sales": 1638.0,
+        "strict": 18500,
+        "fresh": 18692
+      },
+      {
+        "Seller": "We Buy Mobile Corp",
+        "rows": 14276,
+        "sales": 336.0,
+        "strict": 3263,
+        "fresh": 12760
+      }
+    ]
+  },
+  "reference": {
+    "workbooks": 166,
+    "raw_rows": 97390,
+    "valid_rows": 97293,
+    "name_unlocked": 55783,
+    "network_unlocked": 54288,
+    "disagreement": 1495,
+    "revival_reported_unlocked": 46867,
+    "rejected_quotes": 269,
+    "sku_dates": 23380,
+    "external_share": 0.9389442878109491,
+    "fallback_ratio": 1.063736559139785,
+    "reference_changed_share": 0.13425738589511121,
+    "reference_ratio_quantiles": {
+      "0.0": 0.04333202644185087,
+      "0.1": 0.9996142021063877,
+      "0.5": 1.0,
+      "0.9": 1.0,
+      "1.0": 1.4930057794967575
+    },
+    "price_reference_old_sources": "existing Stata-derived full-source panel",
+    "new_sources": "named workbook columns, branch name-unlocked restriction",
+    "script_sha256": "c673ed657a792fefa630a9f2e571bbb4e9d22c29b727ad2115fc851219e81135",
+    "source_sha256": {
+      "data_0711.xlsx": "0fa648352a4f0cd06ef86c5b31e69070848d44dd1cca8f38f14c688d81b0f810",
+      "data_0712.xlsx": "71e826f03fa508cc4bf191b7fd4ac00b4fd381b4a7c1e4d82f26bd3697ba3a17",
+      "data_0713.xlsx": "b5710ac657cd6604cd30fc474fe769ace2e0f01c5fd4424980f6f53c3154f7b8",
+      "data_0714.xlsx": "7a96a7efa6b21b9a750b0410c518e7dc17403d2f67bae373320c1bfb7f38382b",
+      "data_0715.xlsx": "72152293e878109daa7624d8986376920780df38a41dc913ac9ea5b11424793b",
+      "data_0716.xlsx": "921caf141ccabc85825b95093e21be454d67665b1a9cb5eecec739b8b2c7b7d7",
+      "data_0717.xlsx": "13e96e6b55d365241be10f14d0f4343bc0a31b6214debb395ccd834663cb62db",
+      "data_0718.xlsx": "8e3cee0bfa2ff4312698543092e4d575a7580df516c5c45a59e0fca097f28c8f",
+      "data_0719.xlsx": "52af5df219c2c65f6a42211caa38f2919db8dff5d5578bab11f0cf3eb430c559",
+      "data_0720.xlsx": "98b834b81c91233da893afc782abc9b621d49a3eff4043874fa04b7c21e97a5c",
+      "data_0721.xlsx": "f0aea860ad2841e0a57ea8fff84412874519d1cd4bbc3755e46ca8f61fe09b2a",
+      "data_0722.xlsx": "9c511489ac1ad77c2468931863a3cb1655495cb066c7d34793708116e5718516",
+      "data_0723.xlsx": "1a0f8bd0c6e2b3f996bcbd61f7cb89db865c2f41d38929c2ec6cac9355dd2086",
+      "data_0724.xlsx": "742a4458272a56450591be6de488bfdda522e6a5246cae344256a1bf2214ccc8",
+      "data_0725.xlsx": "027bdfb29f13e5dd5e250696e8d53e5cc63d1c320a0b6b0cb1c31ffd11dbaa2a",
+      "data_0726.xlsx": "d5d15bfe958d4121ec3c4ad31f9a8ade1767ce37c6090ae04fc3559414ee17bb",
+      "data_0727.xlsx": "5a12cfe80a2d373d7931ab1c5a6625b47f354a6e787e8ac2d07c2530ec89a62b",
+      "data_0728.xlsx": "ed9c07700df2064723d14af04c5ed4e7c361fcb071282997e05b54a3cdfe830a",
+      "data_0729.xlsx": "d6dd6c46ac5c7fe94fdefe83a0ce0ca296c18e3b04205782491c6d8c2714f95f",
+      "data_0730.xlsx": "8e2d2b4f92287fd2b63047cf9d7a19bb1f9799270d0bc611aa5dcd9b1042e0e9",
+      "data_0731.xlsx": "45cfeb928507725d0b1acb68c694aa721d3274cf0d7a360eafecd51c47f10d52",
+      "data_0801.xlsx": "2d2f08ef9d08ebe58d254ab59cc6e5aaa54de7a7cca6cd8fec485bf7773fade5",
+      "data_0802.xlsx": "4e95b997348c6ed2a62b54636e19e76d0ad7047236cf633f2fcc93a2baa56686",
+      "data_0803.xlsx": "2ec1f563cb0baf61772d2872166fde6bc67d2bd8c1823ddd2c740afed73ba4bb",
+      "data_0804.xlsx": "8c466642f3bc20a1f14ae4839b3f8133f90109e126d52d981d55ab35dee00b9f",
+      "data_0805.xlsx": "fb34425b6cb25d2a624f04463364a2dee1dd534da870e1ca0688d4d64e34fdad",
+      "data_0806.xlsx": "ed9a0fe158268d4783616b40ac72f04ff6d3923c5c9109d8d791d9b0e90a6dbb",
+      "data_0807.xlsx": "24efafbc1df29b5323b0bed0ac1819f7dd66eab78d70fe0d45fd51475d698a0f",
+      "data_0808.xlsx": "1caa3290bd96af88d4a274490d2e0f5351d2ed2c04bab53d828f9a5ce2583acf",
+      "data_0809.xlsx": "3ad5523ebcab5a8dd3f1aa338259b6f23723074f055650de391a81e0a67f68fe",
+      "data_0810.xlsx": "aceeaebb87e499fc4830ea5cdcdecec87786edb578be4da5707edf2bb29333a1",
+      "data_0811.xlsx": "a4e3a56c6ce980180ecb18018ac628e01746766bd9b8002511ac42db2391af99",
+      "data_0812.xlsx": "cd299f9686000e86d8d51809cc9b0520267dda9aa443d3ffb6f468cb8ded20e5",
+      "data_0813.xlsx": "7d3bbb0e303f311853f5cddca2bcafdf2403b21ff6b8ccd1b946f3065b195484",
+      "data_0814.xlsx": "595c328c7959c392b80eca51dce2939e425265fd854fef4ac40784fc4325753c",
+      "data_0815.xlsx": "bf6fb4795adf93b8ca4da5548afabf7b173c1df16c1c77f59eb2dd14205cd885",
+      "data_0816.xlsx": "e407e9e77233e34dd4c8dbb09ca27f3dcaa384d576a8dc2ea47658e0df08e2d6",
+      "data_0817.xlsx": "ad4d7c7fb16431416609608a74bbd4cd0837bd8bfc119074aaec18a46b1d70ae",
+      "data_0818.xlsx": "3c9e0e3868f6da6609c5bf1993110e0871a060ffc94f52063d5a9a863165cfeb",
+      "data_0819.xlsx": "be11f8edfa257a087834f4c3242a551886184e0f1cb75bae5edf30e7b9db801e",
+      "data_0820.xlsx": "785dad1f59f7195b58ca001a754ff6011434cdee7d15d9f954c34e45b056ae9f",
+      "data_0821.xlsx": "7ce908b36547e2880305bea23a245f5350518963adc6c18baf4f6186eba54dfe",
+      "data_0822.xlsx": "c15a7a082b1b118f0c4262fdfae22be58c422416f36f0b2ea94c368be3a14ee4",
+      "data_0823.xlsx": "4ac8871404ada92fa0ba11487b0bf2d7e14af2a5b573ac9de4ec7f2dfafda1ff",
+      "data_0824.xlsx": "4038c826d13b6d03286790a7de026da4fde12d93d072654533d5e37426d0fe12",
+      "data_0825.xlsx": "4a173c933862ad209ab3769f735bf22e8cb97320e19ab32f7c2515c14cb5ee69",
+      "data_0826.xlsx": "e23f7e54033295a3be9a869c2d2b3f1e446156f25c874f8fe5cd82f0fe5fa062",
+      "data_0827.xlsx": "45eeaf5cb67cb3cdef030149b994befa2dce74e3b01577b08395ee80fed0b37d",
+      "data_0828.xlsx": "4203b89fd4281d7f2e5999b792885195d9e7c7e3eb27ca038ba00753ab8f4f19",
+      "data_0829.xlsx": "476315ce538bc7758a73b6611f5b618755941e663c0019a70796def6340d2250",
+      "data_0830.xlsx": "48b0aae7e3b3fd38981f0f9ce003e1fe3b0e4e12a0df1ef9ac0131768e877b93",
+      "data_0831.xlsx": "1fc387186ac76874d6424b0ce8ac8a86b0efffd9448aae32bee5d3d941e1d2e3",
+      "data_0901.xlsx": "286620dc7931fd571dbff6f44b1d23311ed6f75cc79cbdfcf28c41d591ffb768",
+      "data_0902.xlsx": "2b34d4aa24fc5c2ced80a8a674c7cbb5d8a2ce52b181b1150f2747fbbd8f0a36",
+      "data_0903.xlsx": "99a1d1f1fb6821567c4db977a6b3e39bff97cb725a36a6ada9736ade5f302420",
+      "data_0904.xlsx": "cf55e438eb3798a549974df7abec244510c99320c80e9e1a207d452a4b7edf4f",
+      "data_0905.xlsx": "0ce77a412a1fcb5c536501b6df430545e7df9899f68816b9fad09d38c82d62f2",
+      "data_0906.xlsx": "c34a18c616eac29d277654de09953ee12498b3b350b8f31e7528d018cf246b33",
+      "data_0907.xlsx": "272d9eed53f675fa323776daebe96fde74ea98ea358922f0e71ea4e97a20436e",
+      "data_0908.xlsx": "5ceb457c5d0fc4023f08ed07c353aa8ab0e344349a67f38a5f79d997d02421cc",
+      "data_0909.xlsx": "01264a9337e15f4c3d1f80dc1cc2abf31f261d935a8f36047a8c823e69d51af0",
+      "data_0910.xlsx": "8aebcfa22bdab5ee2c3c15c0ef26879dc042ac8d39a9be60a9204d9a00ad7ced",
+      "data_0911.xlsx": "c074e15095b57f43e7936f8f8d16078c739c2c154627217a9957511a79c4d162",
+      "data_0912.xlsx": "c027174270a96ffc51cee6afb52feb682d50f276b7122cbee9e5dc4a2d054c27",
+      "data_0913.xlsx": "20f5c43bc20ec1cfe3d096a7ae8d1886e9ff4849f333f85aaa1275f71f660103",
+      "data_0914.xlsx": "1e447f409b763d684fa6d26fb537835c0bcad21e580b4d14c53e257a76a1409b",
+      "data_0915.xlsx": "175af0d6c2dea27112f4505e31724cb739a824ff228f73181ab9838d9fc95078",
+      "data_0916.xlsx": "1cc8936315e09a44149f1a29159aa919a88d34fe892dcbbda7afb3dabbec69ec",
+      "data_0917.xlsx": "4c6e3a646a6ddd9947bcd8e9b1ab5a216e2846932b4087e75d667dd83c0ed4a0",
+      "data_0918.xlsx": "a540bedb137982bc35e31ebc5738182adad3795389beaa84e0868359d19eeb10",
+      "data_0919.xlsx": "e01da826a8ba1e2afadd9a91bb6b25e2955af7e85c3edf72dc6b5f15e47b771b",
+      "data_0920.xlsx": "3a9a1f3763309d8a3d4a6826fee4476530fa51a7ecc7b985873054c5a3c4befc",
+      "data_0921.xlsx": "753b9dd27b188d22ce0e8cf5e493c5d4dca5b6a96ba8f561c65bcca104eca14d",
+      "data_0922.xlsx": "28cc32c78ed9fb43bb18844e1fb5d9a60c1539821bd3c895a1ef32a05c23a321",
+      "data_0923.xlsx": "0227549eef95fbd270d183b17ea8f6b751423257f8d0c443231a68656592da4f",
+      "data_0924.xlsx": "b1ec9d8ea2b4f1c992416b813ed58f04fe5a0dca7fc1e9c1f3dd3d2d79c40a77",
+      "data_0925.xlsx": "46d3b93af4444fac7a28a69136686397dd3897f4dc95cb32baa0378f510d011c",
+      "data_0926.xlsx": "4af823f1143c0e43109fde1d5f99945e342ba6aaddfef30f89a486aee974d81b",
+      "data_0927.xlsx": "d1a8848910ca283a5e0cefc0344da2d60c95a23a461a8fce2e760513606de457",
+      "data_0928.xlsx": "d395531588fa913f8bc3ed0159c8eb3d88bab6dac07981b20386a6a483e6e8f4",
+      "data_0929.xlsx": "befb7e3d060cd0a9be1eb0a13ac39a7e539461c7b54b519c312d2cd3a2e1cdef",
+      "data_0930.xlsx": "fecfb90aa69e58229d9bfe4a173372c620ce17baab867f4b88ddc938dd62b2c1",
+      "data_1001.xlsx": "bc04c8dbc72977ac0a821f1d61f62ddf16343e23a00a8bed2f03cc7705f90eb1",
+      "data_1002.xlsx": "e73928d53c874640a7c08a43efb323c62ce1f25a2be1c663527ef54f43184f9c",
+      "data_1003.xlsx": "a438b036eedfc32b5d6599765f1d6d027e5fa63b0c7e3c6590b2c1598c7dbef3",
+      "data_1004.xlsx": "2dea8630ba7da5766e9c7e45aad07594d09bc5578e6101b9516d19b355848be0",
+      "data_1005.xlsx": "12fdf290b76770d48fc6aa17d83ea211f4caee1f88d4e270e1049c823d2887a2",
+      "data_1006.xlsx": "c26e1123da4dbf4f0b8ef912c138b944b696b07b757ca98523130058a2c5ebae",
+      "data_1007.xlsx": "5d6ab7808abf68fc7bdc5239bf1973f81a1d557000be38175ba08b51ea1714af",
+      "data_1008.xlsx": "6b5b7a8bdb35813082b89288de7b294b1d9fbfb96db7c1ee16f1c98983898e4f",
+      "data_1009.xlsx": "7241cbcf089e27ecd35da690643e6e341ac8aead644f4438ffae0061a3edb4b4",
+      "data_1010.xlsx": "6e7ecb5335d57a0b6ac54fdbbf8ca5ba21d358a6e06a6ad3d5187126167f5dcf",
+      "data_1011.xlsx": "be2a03d8fc8028e5b5f6d7cc6e3d2ba8f680da521d75ba383dcb827c49607001",
+      "data_1012.xlsx": "e0cf18829a8d237444e99491201baacb1ae04e001019945bbec9138968be1ae1",
+      "data_1013.xlsx": "f91c3d91e1db5fa1b85d41873368c37c16bf40df45d39a3c0fe0363e5a467226",
+      "data_1014.xlsx": "bcb4fd052c36854e127bc4aaef4501997d1bdbb340f42c9676576ce542167e44",
+      "data_1015.xlsx": "c563ca5d2dc9397b727a1780683d96a98ac6da54046d27861aba0cc17380fa69",
+      "data_1016.xlsx": "37abc8c165bb8889ed756bb8eff97af4897f7fe286cab06abd925fae4232a1e7",
+      "data_1017.xlsx": "91d11601b28d1e2cda0feb58bea5dbf1abd0abc139bc916a5dfc0b3e497bc46b",
+      "data_1018.xlsx": "6f3d2ad813af3953219a5f18c60d9775080bb83c59640e8362f15cc40aba62e5",
+      "data_1019.xlsx": "0f35c72924b61ff7a7b27a7d323e8b1b65c64a6d550610a66f2a8b2d49f2f21e",
+      "data_1020.xlsx": "cb74863274652b12faef6b9bc537b4a81e558cfa5c9344ecb91afd4673c446e6",
+      "data_1021.xlsx": "68463377cfe87fd548b6f5a92c61d1687402b2864a7dd3e0bd3c368430a32bc6",
+      "data_1022.xlsx": "bc6c9da9b0379331413798297d38f6e0b2a634f673e7e2e2c77e9be1c6897069",
+      "data_1023.xlsx": "49af5b5520fa69cc83e423d385ec156badf7c470c036fc5610ca18a860c65e99",
+      "data_1024.xlsx": "2ea154df6acea26d9986342434f6a2f03d82554e919b8ea8391cdc705ec33f23",
+      "data_1025.xlsx": "b83b0561bdd2c999923f9a6de9657fb264d405a520d1abda0f63af18b818dc31",
+      "data_1026.xlsx": "a8b2aeef92f6d1922cec5fba6777fe365f2a5929ee51d7dba35c64d035bd82c3",
+      "data_1027.xlsx": "52f025e4a888bd4f7bfa698003d4f29c06c8f7e0df6b06a989df6ca28ba4ed54",
+      "data_1028.xlsx": "f1dc1f3ec88d37c23ad5a64d4dca041ef26c516072adb8871b1026b6734de419",
+      "data_1029.xlsx": "bb74a762923a8f5c2a1f9a9cb7a2c2baab8bfd1fa07bc0e9bd792558d27171fc",
+      "data_1030.xlsx": "5ccb43ebf495761530fbda5020ca03b0c2f7ec825875d2cb3180879fe393c284",
+      "data_1031.xlsx": "90641f1508f3d38031256631ab1b62cc0831b0ae3ee9c2e1dd35e2d8f8b4c075",
+      "data_1101.xlsx": "9fe9f56e9496d51c8b568947aed78434cef82fda64aac875ac1aa29f28688a60",
+      "data_1102.xlsx": "6fd206a6cc6cc4ff2a937e42d0e0feb35aaf3a75bf403c8079ea6181b14fd9ac",
+      "data_1103.xlsx": "d9e8438f2114d8211257cc9a42d6e97475bda9871b4800da7874153bd4a449c4",
+      "data_1104.xlsx": "54658af4fd45080a40b73375f0bba12953bb8d1485e0976b90695d4bce78a779",
+      "data_1105.xlsx": "96b6f63b0ba63a7a4b884b5c6db4afc86e39f002d2cec99a5f66da4122cc8df2",
+      "data_1106.xlsx": "0546a3666aa68eb9c3c068599ef86b712e89a7e0022ac87280d1d96ae38f8781",
+      "data_1107.xlsx": "938ad9a30a7de9d8ba106cd9882cb63333c026f8ddd6841f2a4ec0b807c05d2a",
+      "data_1108.xlsx": "0172addc8cee16a746f0995447ac7fbd35a7105c004fbea38a3f149e5cc21575",
+      "data_1109.xlsx": "0cbd0e836ca1347439b6afde0cdd53114b9a68f064db280386bca7c2754c1b50",
+      "data_1110.xlsx": "64808a17754622ff958f9e30979e33739a0f9e7873c6fa16ff89a74a379e99de",
+      "data_1111.xlsx": "54c55b38b3a0f954320c5e191e8f62dad2fac997817fd848d1c92ebe2733ce2e",
+      "data_1112.xlsx": "263c0c952dff477cdd094a47660ee55a9a428b96451cd8bac562d6ea6f8b7f9c",
+      "data_1113.xlsx": "20e3cf9cb09f2de92cea52e41dbf285aca943a179456b8734887205648c9151e",
+      "data_1114.xlsx": "ab34c648972c478ca6ee39846bc14cf1d2fdcd4c481801ae328bd7d05a7e767e",
+      "data_1115.xlsx": "545aef840f0c4a72777cf9c2f94d03ee54d30f9658bd30b04845baf3253731f2",
+      "data_1116.xlsx": "f7e57829f8c2e76298932b11f4f14ebb46dcb51bb56fc21e093f3a5976b204e8",
+      "data_1117.xlsx": "74245fdf9d5e24363aa46f7de67586e4d4aeed19f5b77cdb3b83315f3380a8e3",
+      "data_1118.xlsx": "a54116d8126295648e68838a4b399d8ddab319592b517d3ca4091e40eddccd7b",
+      "data_1119.xlsx": "c82394389a980d0dcaf43b8a77abc20ba27d4bb0a4ef8b1cffbe1200cb69a7da",
+      "data_1120.xlsx": "29effe17c0c8b7216106bea98bbfe6e69bd0adea8c3db5abe79659a68a28307f",
+      "data_1121.xlsx": "4dd6f0a02fcf4fb6ec9931b6f7cc04c1d54d2593aec089b52cfdc0568cac8154",
+      "data_1122.xlsx": "53f2580c1a06356af30154dda220b922c75e5309ab102afac88f241aee151a38",
+      "data_1123.xlsx": "a0c629104ed89c45c4a048f79089ab3545b932738940275571b626f84f4b9ab6",
+      "data_1124.xlsx": "9425f70384b71a949f4235992ad93e0496017f9c9495118728a05fadf70fc17a",
+      "data_1125.xlsx": "5cd1ab25092ac4eddef3b429697b89ee0f57b6d9663bc2a65921b4912d306f63",
+      "data_1126.xlsx": "73d35c5c55184bda10ffa0137388507eff16b462432fe937a3703bd739b1bb98",
+      "data_1127.xlsx": "914d46e50d70e9bee58c5b19085c0b5703ece233716bcb337036111d046f0422",
+      "data_1128.xlsx": "1b4050e8a238d88cf799857fb01072a7a77cb845273f32c1429e7feadb313503",
+      "data_1129.xlsx": "adac44e7199d82139ac80f42ecbdba78453ab63a9ecebe9caf068554d793bf3f",
+      "data_1130.xlsx": "d13f8bcbdbcc054c19dcc4db647cd5eca7729681291fe62062af18d20b228e6b",
+      "data_1201.xlsx": "96975dda844afafc62317949e6b441eab7f8d7e64f2801abafc15756f1278437",
+      "data_1202.xlsx": "46d4314a78f78cb644759d16237b9262d61a36aa42a437d99a26514e482b5b9f",
+      "data_1203.xlsx": "a6fb4aca0da04bd1106c4ca7a49a3d2d13492db546c22c30fccfd30806d42722",
+      "data_1204.xlsx": "79b79e3a244e6837fd85e3785d43730f7bc0ca349b17f71053d92316bf6b9069",
+      "data_1205.xlsx": "9fadd24ef8c6e1d2cc37333c0f0b36a27b69b9301aae6ce419152c9bddde4073",
+      "data_1206.xlsx": "fdda509875206c5c3fdbd7242e3593b39f34000b807f69b6eb78e89400134f3e",
+      "data_1207.xlsx": "badebcb5690ef50cfadf02170f81fff3463c79551919d9b771db00add87c19c7",
+      "data_1208.xlsx": "a99782d43233e59a32ca917f0ef5d896d193219b57ee5f884d433bfe8d158210",
+      "data_1209.xlsx": "9c8f76ce118b15ca0cd4fc61b4bc26d62edf0e5d6c385372cf7f0efce12c059f",
+      "data_1210.xlsx": "69d66341d600c0c0011326fdcf61ddd23adbea7ad407542538d98d7499805f5b",
+      "data_1211.xlsx": "c0ec5a4d2f1c5f8d58d76e9cfeab98f0e97435863a7b4610bab987904ccd453a",
+      "data_1212.xlsx": "1f1a6fe0a2aa891a257e034bfac7f6cf6a3e724313415066bab216309fd5f47c",
+      "data_1213.xlsx": "5bacea420aa87bf16d660ef21b2dbf66f766e407082a1ac7b2d61505164e1bb1",
+      "data_1214.xlsx": "9e6de4f42964dd49ec10ad72e5f9113e03b97e17d5547e96576fcc528efc27af",
+      "data_1215.xlsx": "0b7af2aba48a7253e048d9bb156884063e357cbc30a3c0db636ea0a38e1b0f0b",
+      "data_1216.xlsx": "6da9e3d6a93a15c268007fe4de7d5aa872bc8ccb5c260cb7f72282b3e62ee0fa",
+      "data_1217.xlsx": "bb4b9648a3e0063b94278a1e6bf38d451f239c96ddcef5ad3814f33d58da02ea",
+      "data_1218.xlsx": "03097fe2042b84ebea25ab3cbe0235b7436072ca431c9c89752cf0c51a6d4a49",
+      "data_1219.xlsx": "222f787558d9d71936071909d376900073b6f3e3d9717b9ce54447f86deed200",
+      "data_1220.xlsx": "fa4fefc737bad6da6427cab51853a1d0d7c8896c03ec8d97872e4752781cc189",
+      "data_1221.xlsx": "2ec177f395d0cef482fef1a0772885b4672d52771fdfa6806144b4fe146a6d44",
+      "data_1222.xlsx": "458d263092a0ca6b01ae4a4f207904cf92009937c6fc1e15833a952339314471",
+      "data_1223.xlsx": "a6c90490481eba51aa427b2ce4ac7c14867484403953ee5b9538057f32d39b71"
+    }
+  },
+  "models": [
+    {
+      "tag": "d0_revival_like",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 574,
+      "seconds": 35.10429263114929,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 4.6325707159233787e-11,
+        "objective": 75198.0296288029
+      },
+      "holdout_convergence": {
+        "iterations": 11,
+        "score_max": 1.1221752693746367e-10,
+        "objective": 59987.52639179635
+      },
+      "coefficients": {
+        "lp_ref": -3.8193981876487038,
+        "gap_up": -5.495511212041263,
+        "gap_dn": -0.2820680027369253,
+        "peer_rel": 1.307457355886261,
+        "age": -0.27990339114470514,
+        "age_k0": -0.1101990678104948,
+        "age_k1": 0.002414804461306442,
+        "age_k2": 0.23964693628597408,
+        "age_k3": -0.22573634580436686,
+        "age_k4": 0.2905781752971144,
+        "batt": 7.604155169700474,
+        "batt_missing": -0.32574524757434636,
+        "batt_full": -0.07698457371335266,
+        "log_rival_n": -0.053498782713492975,
+        "no_rival": 0.011236118988484266,
+        "log_own_n": -0.5570221419708706,
+        "has_peer": 0.31671313861722145,
+        "log_interval": 1.1067724781609676,
+        "ref_external": 0.5400834193873899,
+        "initial_res": 0.6897625397445953
+      },
+      "holdout_logloss": 0.16860262006285343,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4633.423500717343,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": 561.6497365321881,
+          "change_pct": 34.3080053389901,
+          "arc_elasticity": -5.750566953669289
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": 274.72850605227154,
+          "change_pct": 16.781610386946078,
+          "arc_elasticity": -6.127522050457202
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": 107.67457473611913,
+          "change_pct": 6.5772306913715495,
+          "arc_elasticity": -6.338067512529012
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": 53.44530687317412,
+          "change_pct": 3.264671474556513,
+          "arc_elasticity": -6.408950487607784
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": -53.44127661630965,
+          "change_pct": -3.2644252889625025,
+          "arc_elasticity": -6.654373445307825
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": -106.4411988077492,
+          "change_pct": -6.501890732704874,
+          "arc_elasticity": -6.7564559038422525
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": -256.5639045587634,
+          "change_pct": -15.672037632816982,
+          "arc_elasticity": -6.903144601593489
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.0807074985764,
+          "change_sales": -475.6672549894512,
+          "change_pct": -29.05582191584557,
+          "arc_elasticity": -7.0357796124203515
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": 126.72787163128669,
+          "change_pct": 37.68187803377838,
+          "arc_elasticity": -6.234257522568209
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": 61.34969371431907,
+          "change_pct": 18.24201453235721,
+          "arc_elasticity": -6.618397170319429
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": 24.095847801225897,
+          "change_pct": 7.1647758798319305,
+          "arc_elasticity": -6.885085876875251
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": 11.998817888314344,
+          "change_pct": 3.5677865208094905,
+          "arc_elasticity": -6.993688192615519
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": -11.871541367246376,
+          "change_pct": -3.529941504699685,
+          "arc_elasticity": -7.205453903261183
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": -23.487516410773875,
+          "change_pct": -6.983891683135046,
+          "arc_elasticity": -7.275888731105121
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": -56.153538071908685,
+          "change_pct": -16.69696449212993,
+          "arc_elasticity": -7.398374559999627
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.3098609832733,
+          "change_sales": -103.42675503352027,
+          "change_pct": -30.75341137221792,
+          "arc_elasticity": -7.5321801039759855
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 297.9801814333348
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 59.11097172198749
+        }
+      ]
+    },
+    {
+      "tag": "d1_rich_competition",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 577,
+      "seconds": 36.51191854476929,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 3.628973510583222e-11,
+        "objective": 75100.05792027085
+      },
+      "holdout_convergence": {
+        "iterations": 10,
+        "score_max": 1.8160112302822995e-11,
+        "objective": 59914.307290502795
+      },
+      "coefficients": {
+        "lp_ref": -5.611786851734991,
+        "gap_up": -4.037230958460326,
+        "gap_dn": 1.751555525140752,
+        "peer_rel": 1.3279421755713774,
+        "age": -0.27717487961253684,
+        "age_k0": -0.11496168396084269,
+        "age_k1": 0.004332888636987377,
+        "age_k2": 0.2516838438159905,
+        "age_k3": -0.24045148887107623,
+        "age_k4": 0.2915710730371875,
+        "batt": 7.670416596690431,
+        "batt_missing": -0.32553618273721724,
+        "batt_full": -0.07515039048429907,
+        "log_rival_n": -0.06123260588189511,
+        "no_rival": -0.20813383913028316,
+        "log_own_n": -0.552726542354355,
+        "has_peer": 0.31415508873944226,
+        "log_interval": 1.1128769687925972,
+        "ref_external": 0.5344617333379895,
+        "initial_res": 0.6875795340640688,
+        "rival_mean_ref": 2.993868215771832,
+        "rival_sd": -3.2972646593563675,
+        "rival_median_ref": -0.7930603917248237
+      },
+      "holdout_logloss": 0.16831745559214958,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4630.616104585153,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": 578.5944676913111,
+          "change_pct": 35.34337367963716,
+          "arc_elasticity": -5.900281421933325
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": 283.6630380608373,
+          "change_pct": 17.327522665899608,
+          "arc_elasticity": -6.311730347309401
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": 111.25079305137501,
+          "change_pct": 6.795741353456042,
+          "arc_elasticity": -6.5418574795616795
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": 55.23030622465979,
+          "change_pct": 3.3737366330650387,
+          "arc_elasticity": -6.619544982449444
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": -55.30375984678858,
+          "change_pct": -3.378223538764946,
+          "arc_elasticity": -6.890376930912733
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": -110.2014213338374,
+          "change_pct": -6.731640607920452,
+          "arc_elasticity": -7.003713174002454
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": -265.4941809296914,
+          "change_pct": -16.217680206671957,
+          "arc_elasticity": -7.166037255013307
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.0663223490303,
+          "change_sales": -491.2294653902715,
+          "change_pct": -30.0066929900192,
+          "arc_elasticity": -7.312346017411249
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": 130.26882018250583,
+          "change_pct": 38.73618928178002,
+          "arc_elasticity": -6.3829790791507115
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": 63.210017213017665,
+          "change_pct": 18.795865256457134,
+          "arc_elasticity": -6.8029750523059
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": 24.861969782308236,
+          "change_pct": 7.392850922086702,
+          "arc_elasticity": -7.096621440269452
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": 12.38736139941172,
+          "change_pct": 3.683453762743638,
+          "arc_elasticity": -7.216370274658327
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": -12.269142582567666,
+          "change_pct": -3.6483007118484068,
+          "arc_elasticity": -7.451598063475892
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": -24.285056858981108,
+          "change_pct": -7.221302518057282,
+          "arc_elasticity": -7.532726966531052
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": -58.03114321657117,
+          "change_pct": -17.25589703450052,
+          "arc_elasticity": -7.671016456190244
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.2974587791455,
+          "change_sales": -106.69310160921133,
+          "change_pct": -31.725812617358862,
+          "arc_elasticity": -7.822036004952698
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 297.57762378926714
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 59.08906893467535
+        }
+      ]
+    },
+    {
+      "tag": "d2_product_week",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 6983,
+      "seconds": 42.61854529380798,
+      "convergence": {
+        "iterations": 8,
+        "score_max": 2.0263624112004663e-11,
+        "objective": 72776.13778437942
+      },
+      "holdout_convergence": {
+        "iterations": 8,
+        "score_max": 1.3468615112088855e-11,
+        "objective": 57988.24563694577
+      },
+      "coefficients": {
+        "lp_ref": -6.357346120723095,
+        "gap_up": -3.986437675680349,
+        "gap_dn": 2.5679015192507095,
+        "peer_rel": 1.1212984582095256,
+        "age": -0.2413924478203774,
+        "age_k0": -0.10000715929521102,
+        "age_k1": -0.06598959572241969,
+        "age_k2": 0.21715558484982367,
+        "age_k3": -0.2887795481905021,
+        "age_k4": 0.3878776311187578,
+        "batt": 7.818549532623846,
+        "batt_missing": -0.33619532743027153,
+        "batt_full": -0.016489210434765828,
+        "log_rival_n": 0.26496833941397185,
+        "no_rival": 0.138402909415996,
+        "log_own_n": -0.4579379964746432,
+        "has_peer": 0.26686087764615196,
+        "log_interval": 1.1587101245691356,
+        "ref_external": 0.2625699529769777,
+        "initial_res": 0.6747363399350294,
+        "rival_mean_ref": 3.7497060611873994,
+        "rival_sd": -4.445011705930483,
+        "rival_median_ref": -0.8282059125196511
+      },
+      "holdout_logloss": 0.1685576350052843,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4733.324525322195,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": 632.3401558064236,
+          "change_pct": 38.62779037331778,
+          "arc_elasticity": -6.367740507070855
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": 308.56095204069885,
+          "change_pct": 18.849076186880986,
+          "arc_elasticity": -6.820662948458513
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": 120.56573633218427,
+          "change_pct": 7.365004335846748,
+          "arc_elasticity": -7.070818314038566
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": 59.77834494644915,
+          "change_pct": 3.6516823362427786,
+          "arc_elasticity": -7.155228815622532
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": -59.68502675209507,
+          "change_pct": -3.6459818036790548,
+          "arc_elasticity": -7.446772673443434
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": -118.80003617599677,
+          "change_pct": -7.257142934243421,
+          "arc_elasticity": -7.5715573025713105
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": -285.39707693962424,
+          "change_pct": -17.434063549423364,
+          "arc_elasticity": -7.758311578264748
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.0083551121618,
+          "change_sales": -525.2364434268306,
+          "change_pct": -32.085141275338415,
+          "arc_elasticity": -7.930191453156457
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": 141.66212903558625,
+          "change_pct": 42.13825095375323,
+          "arc_elasticity": -6.855281970833753
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": 68.43455539328319,
+          "change_pct": 20.356269446905518,
+          "arc_elasticity": -7.318408862678442
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": 26.876946640360956,
+          "change_pct": 7.994709172538705,
+          "arc_elasticity": -7.652684638012911
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": 13.36742847483341,
+          "change_pct": 3.9762218704010754,
+          "arc_elasticity": -7.778897917108915
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": -13.200742372483411,
+          "change_pct": -3.926640088317579,
+          "arc_elasticity": -8.031636530921496
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": -26.119387805524074,
+          "change_pct": -7.769368748023631,
+          "arc_elasticity": -8.128160322871969
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": -62.21213497462174,
+          "change_pct": -18.50537312813393,
+          "arc_elasticity": -8.287219309753196
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.18416955905593,
+          "change_sales": -113.66686889880737,
+          "change_pct": -33.81089271630323,
+          "arc_elasticity": -8.457734999478003
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 310.7934792113398
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 62.02465502941479
+        }
+      ]
+    },
+    {
+      "tag": "d3_complete_daily_histories",
+      "rows": 279225,
+      "sales": 19979,
+      "parameters": 573,
+      "seconds": 17.56556248664856,
+      "convergence": {
+        "iterations": 8,
+        "score_max": 1.3904599693859154e-11,
+        "objective": 60362.17064792498
+      },
+      "holdout_convergence": {
+        "iterations": 8,
+        "score_max": 7.448017202982271e-11,
+        "objective": 48074.03507044386
+      },
+      "coefficients": {
+        "lp_ref": -6.001410952515534,
+        "gap_up": -4.0807738651273935,
+        "gap_dn": 1.4445578085405657,
+        "peer_rel": 1.6206257220717672,
+        "age": -0.2585965519151499,
+        "age_k0": -0.11578352276075486,
+        "age_k1": 0.053620818195652176,
+        "age_k2": 0.12433725046730762,
+        "age_k3": -0.015559093147513033,
+        "age_k4": 0.013997426027981756,
+        "batt": 7.504198305426714,
+        "batt_missing": -0.35881045731886785,
+        "batt_full": -0.05986067613248022,
+        "log_rival_n": -0.05342594471401478,
+        "no_rival": -0.14430601287354608,
+        "log_own_n": -0.4877902096273033,
+        "has_peer": 0.30537004027793485,
+        "log_interval": 0.0,
+        "ref_external": 0.42056234471062254,
+        "initial_res": 0.5047491385092746,
+        "rival_mean_ref": 3.126179254165698,
+        "rival_sd": -3.3167617224186645,
+        "rival_median_ref": -0.9185467973688282
+      },
+      "holdout_logloss": 0.21800969667113967,
+      "holdout_actual_sales": 4039.0,
+      "holdout_predicted_sales": 4099.533996293178,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": 570.862477836731,
+          "change_pct": 36.828503814301094,
+          "arc_elasticity": -6.113043867736649
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": 278.1636530037796,
+          "change_pct": 17.94539237273105,
+          "arc_elasticity": -6.519188192106437
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": 108.8524319156896,
+          "change_pct": 7.022483276873337,
+          "arc_elasticity": -6.75288383125278
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": 53.99650732708577,
+          "change_pct": 3.483519504715571,
+          "arc_elasticity": -6.831301045561808
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": -53.86523886929176,
+          "change_pct": -3.4750508785818646,
+          "arc_elasticity": -7.09140382336341
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": -107.16563694430478,
+          "change_pct": -6.913661734996934,
+          "arc_elasticity": -7.2000374780088965
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": -257.606019155423,
+          "change_pct": -16.61914143491108,
+          "arc_elasticity": -7.360558381926236
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1550.0561215170942,
+          "change_sales": -475.51541574434754,
+          "change_pct": -30.677303172671188,
+          "arc_elasticity": -7.509665607918317
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": 67.19869788377301,
+          "change_pct": 34.42564242967767,
+          "arc_elasticity": -5.767635308325736
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": 32.623964592913296,
+          "change_pct": 16.713135448794205,
+          "arc_elasticity": -6.104355656226062
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": 12.841357034452884,
+          "change_pct": 6.5785793401013315,
+          "arc_elasticity": -6.339326586058992
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": 6.388103893194746,
+          "change_pct": 3.2726018115874833,
+          "arc_elasticity": -6.424270714322214
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": -6.361221310666561,
+          "change_pct": -3.258829964768306,
+          "arc_elasticity": -6.642776597561132
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": -12.674052529778477,
+          "change_pct": -6.492869866016637,
+          "arc_elasticity": -6.746760029804337
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": -30.965543657253527,
+          "change_pct": -15.863532585541362,
+          "arc_elasticity": -6.995213353400615
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 195.19954644576896,
+          "change_sales": -57.90317055328798,
+          "change_pct": -29.66357842915115,
+          "arc_elasticity": -7.212118252602237
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3146,
+          "actual": 313.0,
+          "predicted": 290.768639345629
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 675,
+          "actual": 41.0,
+          "predicted": 38.98550639676136
+        }
+      ]
+    },
+    {
+      "tag": "d4_current_matched",
+      "rows": 395393,
+      "sales": 17417,
+      "parameters": 569,
+      "seconds": 38.05209231376648,
+      "convergence": {
+        "iterations": 11,
+        "score_max": 2.383647099146735e-11,
+        "objective": 60055.20511173283
+      },
+      "holdout_convergence": {
+        "iterations": 10,
+        "score_max": 9.968012526506698e-12,
+        "objective": 47908.69581946749
+      },
+      "coefficients": {
+        "lp_ref": -5.547068250803942,
+        "gap_up": -3.996313474197869,
+        "gap_dn": 1.923618251081578,
+        "peer_rel": 1.282074233686182,
+        "age": -0.1987107260441805,
+        "age_k0": -0.19713942524116707,
+        "age_k1": -0.008375478846458265,
+        "age_k2": 0.23801751384179504,
+        "age_k3": -0.19334723156645758,
+        "age_k4": 0.20144984487446327,
+        "batt": 7.571906374339227,
+        "batt_missing": -0.366578373793159,
+        "batt_full": -0.12190092609546514,
+        "log_rival_n": -0.06465527060502813,
+        "no_rival": -0.21746472580366102,
+        "log_own_n": -0.5370592227186756,
+        "has_peer": 0.28044737788369467,
+        "log_interval": 1.2362843495722577,
+        "ref_external": 0.5548391505114876,
+        "initial_res": 0.6755633793171654,
+        "rival_mean_ref": 2.9873613271146993,
+        "rival_sd": -3.32012851760934,
+        "rival_median_ref": -0.7373592085332867
+      },
+      "holdout_logloss": 0.156305035146199,
+      "holdout_actual_sales": 3515.0,
+      "holdout_predicted_sales": 3533.8731641959184,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": 463.37239372963774,
+          "change_pct": 35.128839760086606,
+          "arc_elasticity": -5.869354065050686
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": 227.40952420589593,
+          "change_pct": 17.240199985689173,
+          "arc_elasticity": -6.282322534881354
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": 89.29426088489207,
+          "change_pct": 6.769509415252228,
+          "arc_elasticity": -6.517414777529723
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": 44.369430359293716,
+          "change_pct": 3.3637019175712046,
+          "arc_elasticity": -6.6001781801420405
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": -44.54099992082338,
+          "change_pct": -3.376708820261698,
+          "arc_elasticity": -6.887233767322015
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": -88.93027234324754,
+          "change_pct": -6.741914989414688,
+          "arc_elasticity": -7.01478470678246
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": -214.5719604973238,
+          "change_pct": -16.266968251276758,
+          "arc_elasticity": -7.189868676144189
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1319.0654655669027,
+          "change_sales": -397.0928175912179,
+          "change_pct": -30.104102332825235,
+          "arc_elasticity": -7.3408899757394686
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": 103.86275328710158,
+          "change_pct": 38.70735896487321,
+          "arc_elasticity": -6.37892731469508
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": 50.462631213780185,
+          "change_pct": 18.80631043261951,
+          "arc_elasticity": -6.806447768162183
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": 19.893384631866287,
+          "change_pct": 7.413825992494338,
+          "arc_elasticity": -7.116052884161149
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": 9.920300405164358,
+          "change_pct": 3.697077312794095,
+          "arc_elasticity": -7.242581920796608
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": -9.818320054797223,
+          "change_pct": -3.659071483908438,
+          "arc_elasticity": -7.47401236492848
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": -19.432513104165604,
+          "change_pct": -7.242069331951284,
+          "arc_elasticity": -7.555224385031958
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": -46.4357457532991,
+          "change_pct": -17.305578975998014,
+          "arc_elasticity": -7.6953398895991025
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 268.3281837475831,
+          "change_sales": -85.30388701045052,
+          "change_pct": -31.790878549938697,
+          "arc_elasticity": -7.841578133476536
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 2919,
+          "actual": 259.0,
+          "predicted": 235.19431329912697
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2215,
+          "actual": 60.0,
+          "predicted": 45.58688891128806
+        }
+      ]
+    },
+    {
+      "tag": "d5_previous_matched",
+      "rows": 395393,
+      "sales": 17417,
+      "parameters": 569,
+      "seconds": 34.302342891693115,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 2.192621084695645e-11,
+        "objective": 60689.06921902121
+      },
+      "holdout_convergence": {
+        "iterations": 9,
+        "score_max": 2.08786836257413e-08,
+        "objective": 48448.46229000521
+      },
+      "coefficients": {
+        "lp_ref": -4.792675339264176,
+        "gap_up": -3.3242582336314537,
+        "gap_dn": 1.7841729621279108,
+        "peer_rel": 1.0531632974042766,
+        "age": -0.21175203714959384,
+        "age_k0": -0.2105788893612666,
+        "age_k1": 0.009821841365094569,
+        "age_k2": 0.22909447239765965,
+        "age_k3": -0.19616842219824063,
+        "age_k4": 0.21794726507796186,
+        "batt": 7.233418531264739,
+        "batt_missing": -0.36775083004415704,
+        "batt_full": -0.12691160127576712,
+        "log_rival_n": -0.07783822619145048,
+        "no_rival": -0.2100964865287374,
+        "log_own_n": -0.5331955686403292,
+        "has_peer": 0.2378724073102218,
+        "log_interval": 1.2508913060097935,
+        "ref_external": 0.48648179056990276,
+        "initial_res": 0.5486842280762707,
+        "rival_mean_ref": 2.6334940422014186,
+        "rival_sd": -2.9440616843460528,
+        "rival_median_ref": -0.6465594651974144
+      },
+      "holdout_logloss": 0.15747757028481732,
+      "holdout_actual_sales": 3515.0,
+      "holdout_predicted_sales": 3530.535107931744,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": 399.44186382814985,
+          "change_pct": 30.28138753491525,
+          "arc_elasticity": -5.157135019847645
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": 197.33748050957823,
+          "change_pct": 14.960006107535095,
+          "arc_elasticity": -5.506563166790163
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": 77.84363122799864,
+          "change_pct": 5.901267187542958,
+          "arc_elasticity": -5.704986706065001
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": 38.739540742042315,
+          "change_pct": 2.936815472699461,
+          "arc_elasticity": -5.774549722542956
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": -38.83183882155615,
+          "change_pct": -2.9438125207497112,
+          "arc_elasticity": -5.990952207026611
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": -77.31948009039908,
+          "change_pct": -5.861531683676635,
+          "arc_elasticity": -6.070493666358801
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": -186.97550251824106,
+          "change_pct": -14.174472342554134,
+          "arc_elasticity": -6.190260266771056
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1319.1002670124763,
+          "change_sales": -349.1012553719996,
+          "change_pct": -26.465103836469616,
+          "arc_elasticity": -6.300657518551231
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": 88.16785848606548,
+          "change_pct": 32.85522560517266,
+          "arc_elasticity": -5.538537219397509
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": 43.21886668115779,
+          "change_pct": 16.10525240820879,
+          "arc_elasticity": -5.898099162687427
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": 17.121021780710922,
+          "change_pct": 6.3800464574653715,
+          "arc_elasticity": -6.153808284609711
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": 8.548610718481836,
+          "change_pct": 3.185588700795172,
+          "arc_elasticity": -6.256109981716741
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": -8.47822163348831,
+          "change_pct": -3.1593586288923947,
+          "arc_elasticity": -6.436724560849075
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": -16.7945859034882,
+          "change_pct": -6.258402078482672,
+          "arc_elasticity": -6.495075216899216
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": -40.37123326591636,
+          "change_pct": -15.044098832460207,
+          "arc_elasticity": -6.602698411239254
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 268.3526192928789,
+          "change_sales": -75.00768368031018,
+          "change_pct": -27.9511651043164,
+          "arc_elasticity": -6.719100868559644
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 2919,
+          "actual": 259.0,
+          "predicted": 233.9207748896101
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2215,
+          "actual": 60.0,
+          "predicted": 46.00111412476903
+        }
+      ]
+    },
+    {
+      "tag": "d6_flexible_gap",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 581,
+      "seconds": 51.32278919219971,
+      "convergence": {
+        "iterations": 11,
+        "score_max": 4.097293337945729e-11,
+        "objective": 74110.5834134156
+      },
+      "holdout_convergence": {
+        "iterations": 8,
+        "score_max": 3.548664809227553e-08,
+        "objective": 59086.91749454577
+      },
+      "coefficients": {
+        "lp_ref": -5.2946105612382635,
+        "gap_up": 1.2827232955305545,
+        "gap_dn": 3.94519709141569,
+        "peer_rel": 1.267940771021996,
+        "age": -0.24480506355586304,
+        "age_k0": -0.12779923432814422,
+        "age_k1": -0.003257124710414174,
+        "age_k2": 0.24597900654534172,
+        "age_k3": -0.23310176394706925,
+        "age_k4": 0.24648001021948077,
+        "batt": 8.26101928162031,
+        "batt_missing": -0.3455609730382489,
+        "batt_full": -0.1005395617228958,
+        "log_rival_n": 0.03126861974917239,
+        "no_rival": 0.06961406740924919,
+        "log_own_n": -0.5606140570032669,
+        "has_peer": 0.34543652965108507,
+        "log_interval": 1.0628188810523873,
+        "ref_external": 0.49067243523921195,
+        "initial_res": 0.5914601307929758,
+        "rival_mean_ref": 2.6514872890501153,
+        "rival_sd": -2.896053752726313,
+        "rival_median_ref": -0.7006442412021666,
+        "gap_hinge0": -3.0237398498152257,
+        "gap_hinge1": -6.527832557272122,
+        "gap_hinge2": 4.858367188969608,
+        "gap_hinge3": 6.789157329830716
+      },
+      "holdout_logloss": 0.1664489264507513,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4645.847201482159,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": 929.3597230690154,
+          "change_pct": 56.77592842168462,
+          "arc_elasticity": -8.766202245209092
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": 416.7997541914167,
+          "change_pct": 25.46289926574563,
+          "arc_elasticity": -8.959697681520723
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": 155.4642023448012,
+          "change_pct": 9.49753276945835,
+          "arc_elasticity": -9.027741216950572
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": 75.92244828343739,
+          "change_pct": 4.63821207476558,
+          "arc_elasticity": -9.045034780638233
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": -72.55079187597954,
+          "change_pct": -4.432232712737494,
+          "arc_elasticity": -9.08956546015735
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": -141.79882513100446,
+          "change_pct": -8.662695128782783,
+          "arc_elasticity": -9.1063188309214
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": -327.649975184244,
+          "change_pct": -20.01661044336641,
+          "arc_elasticity": -9.045264149229318
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1636.8904021551189,
+          "change_sales": -571.7684607562865,
+          "change_pct": -34.93016148200881,
+          "arc_elasticity": -8.807288548119553
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": 218.3505200071833,
+          "change_pct": 64.95505905734602,
+          "arc_elasticity": -9.757666912213004
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": 95.72102315589704,
+          "change_pct": 28.475154132522018,
+          "arc_elasticity": -9.896802549148326
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": 35.40552249904532,
+          "change_pct": 10.53245856618994,
+          "arc_elasticity": -9.963750065262346
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": 17.258803595821206,
+          "change_pct": 5.134160462676363,
+          "arc_elasticity": -9.988359007508906
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": -16.360763681703013,
+          "change_pct": -4.8670109470466905,
+          "arc_elasticity": -10.00380416571756
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": -31.832505079703573,
+          "change_pct": -9.46955494920454,
+          "arc_elasticity": -9.998057745229294
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": -72.86396406168689,
+          "change_pct": -21.675620871539504,
+          "arc_elasticity": -9.894103961257482
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.15629509998763,
+          "change_sales": -125.62352692081564,
+          "change_pct": -37.37057099687801,
+          "arc_elasticity": -9.590763106556949
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 299.2768842885596
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 59.724325868339484
+        }
+      ]
+    },
+    {
+      "tag": "raw_d0",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 574,
+      "seconds": 35.34762191772461,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 2.2375490349446636e-11,
+        "objective": 74942.8348720832
+      },
+      "holdout_convergence": {
+        "iterations": 10,
+        "score_max": 1.664857141037146e-11,
+        "objective": 59770.0497970174
+      },
+      "coefficients": {
+        "lp_ref": -4.87063268570637,
+        "gap_up": -4.81448915531172,
+        "gap_dn": 0.5006433071963469,
+        "peer_rel": 0.7055939787216993,
+        "age": -0.2696392724854517,
+        "age_k0": -0.11117056375769033,
+        "age_k1": -0.0013053351367291585,
+        "age_k2": 0.24678857972026505,
+        "age_k3": -0.23394332229260764,
+        "age_k4": 0.27991532662659313,
+        "batt": 7.774696639888213,
+        "batt_missing": -0.33088688735681937,
+        "batt_full": -0.07484178019865781,
+        "log_rival_n": -0.08972925955249411,
+        "no_rival": -0.013722719054271979,
+        "log_own_n": -0.5641142494061052,
+        "has_peer": 0.2744389923188509,
+        "log_interval": 1.1267056357159666,
+        "ref_external": 0.556040421375108,
+        "initial_res": 0.6230307722229453
+      },
+      "holdout_logloss": 0.16820637114051432,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4634.169805667323,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": 631.5943139700005,
+          "change_pct": 38.58049136073394,
+          "arc_elasticity": -6.3610875414337364
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": 305.33502816687354,
+          "change_pct": 18.651173951007173,
+          "arc_elasticity": -6.754837985423486
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": 118.9124219790352,
+          "change_pct": 7.263681080358841,
+          "arc_elasticity": -6.976873930141115
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": 58.892472372232525,
+          "change_pct": 3.597404965993878,
+          "arc_elasticity": -7.050733176284528
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": -58.56467644532897,
+          "change_pct": -3.577381783950817,
+          "arc_elasticity": -7.30407616955223
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": -116.37491422590273,
+          "change_pct": -7.108679216374092,
+          "arc_elasticity": -7.41080583002637
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": -279.14326285344305,
+          "change_pct": -17.05126851638482,
+          "arc_elasticity": -7.5709875302453975
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.082089143163,
+          "change_sales": -513.7752637562483,
+          "change_pct": -31.383598120308953,
+          "arc_elasticity": -7.71955970614687
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": 143.83785164919078,
+          "change_pct": 42.76961583819685,
+          "arc_elasticity": -6.941688407556117
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": 68.65411308697279,
+          "change_pct": 20.41402877459111,
+          "arc_elasticity": -7.337359469492219
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": 26.742090854326634,
+          "change_pct": 7.951654862999646,
+          "arc_elasticity": -7.613009343493345
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": 13.278466522032971,
+          "change_pct": 3.948299460512006,
+          "arc_elasticity": -7.725315885444892
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": -13.061793619826513,
+          "change_pct": -3.8838726306917426,
+          "arc_elasticity": -7.942403162942149
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": -25.78337235483766,
+          "change_pct": -7.666583712047503,
+          "arc_elasticity": -8.01622289960255
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": -61.26996118791507,
+          "change_pct": -18.218380435905956,
+          "arc_elasticity": -8.144851687829352
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.30849571655847,
+          "change_sales": -111.87866451850469,
+          "change_pct": -33.26667804812051,
+          "arc_elasticity": -8.28990402495422
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 297.53052186326465
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 59.32700089695763
+        }
+      ]
+    },
+    {
+      "tag": "raw_d1",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 577,
+      "seconds": 40.61515736579895,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 3.4447306118678966e-11,
+        "objective": 74817.20862092296
+      },
+      "holdout_convergence": {
+        "iterations": 9,
+        "score_max": 2.354783035229957e-11,
+        "objective": 59675.53300673759
+      },
+      "coefficients": {
+        "lp_ref": -6.832482508658838,
+        "gap_up": -3.2747052166302235,
+        "gap_dn": 2.660677624665292,
+        "peer_rel": 0.7023325103032448,
+        "age": -0.26577399918034156,
+        "age_k0": -0.11752838936047016,
+        "age_k1": 0.0039000178782572226,
+        "age_k2": 0.24912926179251418,
+        "age_k3": -0.2323741079159869,
+        "age_k4": 0.26796513247374376,
+        "batt": 7.854970120455287,
+        "batt_missing": -0.3320563718445422,
+        "batt_full": -0.0733485080096708,
+        "log_rival_n": -0.09779987284735886,
+        "no_rival": -0.2617026348752236,
+        "log_own_n": -0.5602997370287797,
+        "has_peer": 0.26925445728231484,
+        "log_interval": 1.149643088936132,
+        "ref_external": 0.5283867234400658,
+        "initial_res": 0.6509895556968689,
+        "rival_mean_ref": 2.7599604301195924,
+        "rival_sd": -3.2264182245807578,
+        "rival_median_ref": -0.26331130254149326
+      },
+      "holdout_logloss": 0.16785386112095999,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4629.247709679851,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": 658.368965284163,
+          "change_pct": 40.216538681334015,
+          "arc_elasticity": -6.589901284521814
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": 318.5057434303032,
+          "change_pct": 19.455957413428738,
+          "arc_elasticity": -7.021838555300119
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": 124.0208279095364,
+          "change_pct": 7.575825541476067,
+          "arc_elasticity": -7.266002636444395
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": 61.4165547745424,
+          "change_pct": 3.751636819178694,
+          "arc_elasticity": -7.347519654733349
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": -61.116132061377655,
+          "change_pct": -3.7332854656037084,
+          "arc_elasticity": -7.6285220508909655
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": -121.46830929974706,
+          "change_pct": -7.419904669110666,
+          "arc_elasticity": -7.748086150050431
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": -290.9875081458462,
+          "change_pct": -17.775003066982997,
+          "arc_elasticity": -7.925885950568507
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.0602415611083,
+          "change_sales": -533.9092985903762,
+          "change_pct": -32.613906625771925,
+          "arc_elasticity": -8.090391287620987
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": 149.5909096034726,
+          "change_pct": 44.48276491703154,
+          "arc_elasticity": -7.174232907321937
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": 71.4250229197547,
+          "change_pct": 21.239141550478834,
+          "arc_elasticity": -7.607087695583106
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": 27.82899796769539,
+          "change_pct": 8.275307488636363,
+          "arc_elasticity": -7.910874039764514
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": 13.821500597099165,
+          "change_pct": 4.109999487877292,
+          "arc_elasticity": -8.035412570590061
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": -13.599580230658075,
+          "change_pct": -4.044008636448792,
+          "arc_elasticity": -8.276727689045472
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": -26.85591750491409,
+          "change_pct": -7.985949601943954,
+          "arc_elasticity": -8.36443532481391
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": -63.751495208286705,
+          "change_pct": -18.957320214019536,
+          "arc_elasticity": -8.51243497937555
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.28959414390476,
+          "change_sales": -116.06825120721524,
+          "change_pct": -34.51437488058207,
+          "arc_elasticity": -8.676739225311014
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 296.98675544154884
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 58.98665523548196
+        }
+      ]
+    },
+    {
+      "tag": "raw_d2",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 6983,
+      "seconds": 40.28859281539917,
+      "convergence": {
+        "iterations": 8,
+        "score_max": 3.989330393805446e-11,
+        "objective": 72621.19409425092
+      },
+      "holdout_convergence": {
+        "iterations": 8,
+        "score_max": 2.9494406916796834e-11,
+        "objective": 57864.511001580795
+      },
+      "coefficients": {
+        "lp_ref": -7.125359256650029,
+        "gap_up": -3.486000435759163,
+        "gap_dn": 3.1626542852061053,
+        "peer_rel": 0.7200771993190804,
+        "age": -0.2367339411893009,
+        "age_k0": -0.1002032916903124,
+        "age_k1": -0.06847484810048289,
+        "age_k2": 0.2177230414047664,
+        "age_k3": -0.28672462752353906,
+        "age_k4": 0.3799921869387096,
+        "batt": 7.930528980685542,
+        "batt_missing": -0.33938113763859795,
+        "batt_full": -0.014735475102187853,
+        "log_rival_n": 0.2425589506165094,
+        "no_rival": 0.10800388225542422,
+        "log_own_n": -0.4644037102257992,
+        "has_peer": 0.23535250284803658,
+        "log_interval": 1.1622605559879469,
+        "ref_external": 0.27376297661939436,
+        "initial_res": 0.686877453294252,
+        "rival_mean_ref": 3.392547142043853,
+        "rival_sd": -4.293416181318205,
+        "rival_median_ref": -0.3475424254907195
+      },
+      "holdout_logloss": 0.16823959255532475,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4733.399530254856,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": 681.0003340162684,
+          "change_pct": 41.600280428965505,
+          "arc_elasticity": -6.7813537783710425
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": 329.7951599243563,
+          "change_pct": 20.146203242010465,
+          "arc_elasticity": -7.249410204045098
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": 128.36640382948912,
+          "change_pct": 7.84152096588695,
+          "arc_elasticity": -7.511446989336359
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": 63.55477770542938,
+          "change_pct": 3.8823719212497165,
+          "arc_elasticity": -7.59874633824719
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": -63.22692200039507,
+          "change_pct": -3.8623441935256464,
+          "arc_elasticity": -7.897499570922114
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": -125.65118153744748,
+          "change_pct": -7.675656129801245,
+          "arc_elasticity": -8.026098146236318
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": -300.77997873865434,
+          "change_pct": -18.373752313970815,
+          "arc_elasticity": -8.221864421126636
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1637.0089984828571,
+          "change_sales": -550.7294919066912,
+          "change_pct": -33.64242300543826,
+          "arc_elasticity": -8.405633417215945
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": 153.59431036933393,
+          "change_pct": 45.687829874673014,
+          "arc_elasticity": -7.336163519235214
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": 73.49102759166047,
+          "change_pct": 21.860481406172294,
+          "arc_elasticity": -7.8089939473713486
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": 28.70516328995148,
+          "change_pct": 8.53857550948618,
+          "arc_elasticity": -8.152509493108369
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": 14.250696733898703,
+          "change_pct": 4.238981290441823,
+          "arc_elasticity": -8.282419481067642
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": -14.019320517446758,
+          "change_pct": -4.170156623767118,
+          "arc_elasticity": -8.540486717010303
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": -27.697129502232126,
+          "change_pct": -8.238727968971816,
+          "arc_elasticity": -8.640903699015656
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": -65.70131037924371,
+          "change_pct": -19.54336904753793,
+          "arc_elasticity": -8.806354203129098
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.18210974489455,
+          "change_sales": -119.31072180675197,
+          "change_pct": -35.489908102869805,
+          "arc_elasticity": -8.984362286256456
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 310.1638925831033
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 61.73379207347178
+        }
+      ]
+    },
+    {
+      "tag": "raw_d6",
+      "rows": 457189,
+      "sales": 22792,
+      "parameters": 581,
+      "seconds": 63.7142813205719,
+      "convergence": {
+        "iterations": 10,
+        "score_max": 1.5269113792792943e-08,
+        "objective": 73822.05259452018
+      },
+      "holdout_convergence": {
+        "iterations": 8,
+        "score_max": 7.1813252427999075e-09,
+        "objective": 58850.5566439721
+      },
+      "coefficients": {
+        "lp_ref": -6.4753778942548195,
+        "gap_up": 2.56895803880369,
+        "gap_dn": 5.130471002715264,
+        "peer_rel": 0.6612403561228378,
+        "age": -0.23319096246918403,
+        "age_k0": -0.13156977289157218,
+        "age_k1": -0.001821702343931669,
+        "age_k2": 0.23767379173151312,
+        "age_k3": -0.2204766101893599,
+        "age_k4": 0.22608229278114736,
+        "batt": 8.443062692966365,
+        "batt_missing": -0.3510348706063344,
+        "batt_full": -0.09835495160559832,
+        "log_rival_n": -0.0061118468795236846,
+        "no_rival": 0.011937210475738973,
+        "log_own_n": -0.5687902540443407,
+        "has_peer": 0.30202187828549637,
+        "log_interval": 1.1018026646373151,
+        "ref_external": 0.46647932798836916,
+        "initial_res": 0.5579627544604899,
+        "rival_mean_ref": 2.4633617137369135,
+        "rival_sd": -2.878043876948406,
+        "rival_median_ref": -0.24107572279245662,
+        "gap_hinge0": -3.0889780842133288,
+        "gap_hinge1": -6.871503643846619,
+        "gap_hinge2": 4.549163330155646,
+        "gap_hinge3": 7.104857912578268
+      },
+      "holdout_logloss": 0.16586694025393756,
+      "holdout_actual_sales": 4584.0,
+      "holdout_predicted_sales": 4639.573361827734,
+      "effects": [
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.05,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": 1008.3823538033931,
+          "change_pct": 61.60383914905707,
+          "arc_elasticity": -9.35751393351146
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.025,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": 448.892905688279,
+          "change_pct": 27.423651606824208,
+          "arc_elasticity": -9.572202635987791
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.01,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": 166.7615639251561,
+          "change_pct": 10.18775519181041,
+          "arc_elasticity": -9.652969966309733
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": -0.005,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": 81.32547885705932,
+          "change_pct": 4.968315539570756,
+          "arc_elasticity": -9.67340793805484
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.005,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": -77.49734400361456,
+          "change_pct": -4.7344480954777275,
+          "arc_elasticity": -9.72461294078773
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.01,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": -151.2763834934368,
+          "change_pct": -9.241738474132166,
+          "arc_elasticity": -9.745473021942134
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.025,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": -348.7166609952352,
+          "change_pct": -21.303709859182263,
+          "arc_elasticity": -9.702260951596347
+        },
+        {
+          "seller": "GadgetPickup",
+          "shift": 0.05,
+          "predicted_base_sales": 1636.8823237842435,
+          "change_sales": -606.8867532267687,
+          "change_pct": -37.075771691622386,
+          "arc_elasticity": -9.494514244842836
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.05,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": 239.0232856603757,
+          "change_pct": 71.1071777358475,
+          "arc_elasticity": -10.471543131990437
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.025,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": 103.71424866110362,
+          "change_pct": 30.854012791723374,
+          "arc_elasticity": -10.621460981045615
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.01,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": 38.1446411176034,
+          "change_pct": 11.34767170539812,
+          "arc_elasticity": -10.69489610774106
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": -0.005,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": 18.559500134025754,
+          "change_pct": 5.521276603124825,
+          "arc_elasticity": -10.721590452453912
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.005,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": -17.53420144658968,
+          "change_pct": -5.216259893985276,
+          "arc_elasticity": -10.741225749892614
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.01,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": -34.066253685277744,
+          "change_pct": -10.134389831103729,
+          "arc_elasticity": -10.738824019500917
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.025,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": -77.71122717040278,
+          "change_pct": -23.118358645308756,
+          "arc_elasticity": -10.647033440670649
+        },
+        {
+          "seller": "We Buy Mobile Corp",
+          "shift": 0.05,
+          "predicted_base_sales": 336.1450886833273,
+          "change_sales": -133.4448420949347,
+          "change_pct": -39.69858450636157,
+          "arc_elasticity": -10.367142987759742
+        }
+      ],
+      "focal_holdout": [
+        {
+          "Seller": "GadgetPickup",
+          "rows": 3522,
+          "actual": 330.0,
+          "predicted": 297.40336186270156
+        },
+        {
+          "Seller": "We Buy Mobile Corp",
+          "rows": 2555,
+          "actual": 72.0,
+          "predicted": 58.44467185999822
+        }
+      ]
+    }
+  ],
+  "script_hashes": {
+    "check_demand_repair_20261106.py": "600c84b7744e151f8e9d512b806e054f604fa6e39ec48ec9d718dff91f144325",
+    "demand_reference_audit_20261106.py": "c673ed657a792fefa630a9f2e571bbb4e9d22c29b727ad2115fc851219e81135",
+    "demand_repair_pilot_20261106.py": "c947c5c49a168c2e3ec82306c3c1cf09cba6ba158a7a199b8aef2b60d0e7bb0b"
+  },
+  "source_manifest": {
+    "status": "exploratory; no causal identification or structural inference",
+    "source_panel": "output\\swappa_rescue_20261016\\fullsource\\reference_screened\\panel.parquet",
+    "panel_sha256": "6a97b9abfd21e802985a13b57a822b3d38b82cec829cd0eb38dcd4bb64ed598b",
+    "script_sha256": "c5cd167d675847693282d4c7bd0d079ff2f249d7433d1ffcdfa9814455b56701",
+    "code_base_commit": "465a0148c3e677c3d6cbe3403f542e66585357b6",
+    "revival_commit": "16be52968a0776f0aec086a2bbeabf5b8f6abfcb",
+    "python": "3.12.10",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0",
+    "holdout_seed": 20261106
+  }
+}

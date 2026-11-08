@@ -1,0 +1,10 @@
+issue_id,status,change,code_commit,artifact,check,remaining_limitation
+M1,proposed,Correct Phi versus external nesting; external-level comparison optional,,docs/swappa-revival-agent-memo-2026-11-06.md,Source inconsistency verified,No method or manuscript edit applied
+M2,proposed,State stationary CLT conditions and joint stability tests,,docs/swappa-revival-agent-memo-2026-11-06.md,Birkhoff implication separated from inference,No new CLT or stability test
+M3,proposed,Joint first-stage and moment covariance with full-pipeline coverage,,docs/swappa-revival-agent-memo-2026-11-06.md,Missing covariance and partial bootstrap verified in source,Existing 95 percent claims remain provisional
+M4,proposed,Use original candidate family for simultaneous inference,,docs/swappa-revival-agent-memo-2026-11-06.md,Selection timing verified,No selective-inference guarantee
+M5,robustness verified,11 demand specifications and downstream baseline/rich/flexible cost-fee calculations,,docs/evidence/swappa_demand_downstream_results_20261106.json,"Saved designs, direct profits, gradients and placebo checked",Reference discrepancy and causal identification unresolved; inference provisional
+M6,proposed,Feasible rounded full-inventory price deviations,,docs/swappa-revival-agent-memo-2026-11-06.md,Current branch uses continuous scaling,Rounded maps not run
+M7,partially investigated,Run conditional fee scenarios; identify flexible-demand root instability,,docs/evidence/swappa_demand_downstream_results_20261106.json,Direct fitted sets computed; root search expanded; multiplicity flagged,Preferred matched-combination joint projection not rerun; covariance unfixed; some search edges censored
+M8,proposed,Recommender interpretation and full parameter projection,,docs/swappa-revival-agent-memo-2026-11-06.md,Three-point theta sensitivity verified,No complete projection or attainability extension
+M9,proposed,Qualify mature-learner and signed-mean Markov claims,,docs/swappa-revival-agent-memo-2026-11-06.md,Missing clock and positive-part bridge identified,No certified mature-learner allowance
