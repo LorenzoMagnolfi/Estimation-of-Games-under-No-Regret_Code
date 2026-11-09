@@ -8,6 +8,7 @@ import glob
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 d = sys.argv[1]
@@ -23,7 +24,7 @@ if P:
     P = pd.concat(P)
     pw = P.pivot_table(index=["run", "N"], columns="rule", values=["lam_lo", "lam_hi", "width", "contains_truth"])
     pw.columns = [f"{a}_{b}" for a, b in pw.columns]; pw = pw.reset_index()
-    for a, b in [("momentF", "jointF"), ("momentF", "tailF"), ("jointF", "tailF"), ("momentB", "jointB"), ("tailB", "tailBc"), ("momentB", "momentBc")]:
+    for a, b in [("momentF", "jointF"), ("momentF", "tailF"), ("jointF", "tailF"), ("momentF", "momentF_matched"), ("momentF_matched", "jointF"), ("momentB", "jointB"), ("momentB", "momentB_matched"), ("tailB", "tailBc"), ("momentB", "momentBc")]:
         if f"width_{a}" in pw and f"width_{b}" in pw:
             pw[f"ratio_{a}_over_{b}"] = pw[f"width_{a}"] / pw[f"width_{b}"]
     pw.to_csv(os.path.join(d, "summary_P.csv"), index=False)
@@ -31,9 +32,12 @@ if P:
     print("Regime P:\n", pw[cols].round(2).to_string(index=False))
 if O:
     O = pd.concat(O)
-    ow = O.pivot_table(index=["run", "N"], columns="rule", values=["share", "truth_feasible", "emp_feasible"])
+    vals = ["share", "truth_feasible", "emp_feasible"] + [c for c in ("n_feasible", "n_unresolved", "share_outer", "n_floor_replaced") if c in O.columns]
+    for c in ("truth_feasible", "emp_feasible"):
+        O[c] = O[c].map(lambda v: 2.0 if str(v) == "unresolved" else float(str(v) == "True") if str(v) in ("True", "False") else np.nan)
+    ow = O.pivot_table(index=["run", "N"], columns="rule", values=vals)
     ow.columns = [f"{a}_{b}" for a, b in ow.columns]; ow = ow.reset_index()
-    for r in ["momentF", "jointF", "tailF", "tailF_own", "momentB", "jointB", "tailB", "tailBc", "momentBc", "tailB_own"]:
+    for r in ["momentF", "momentF_matched", "jointF", "tailF", "tailF_own", "momentB", "momentB_matched", "jointB", "tailB", "tailBc", "momentBc", "tailB_own"]:
         if f"share_{r}" in ow and "share_none" in ow:
             ow[f"removed_by_{r}"] = 1.0 - ow[f"share_{r}"] / ow["share_none"]
     ow.to_csv(os.path.join(d, "summary_O.csv"), index=False)
