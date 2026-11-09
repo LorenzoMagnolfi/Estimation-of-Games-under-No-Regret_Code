@@ -1,0 +1,746 @@
+{
+ "phi": {
+  "E_placeholder_cell_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.7575,
+    0.8425,
+    false
+   ],
+   "lerner": [
+    8.08,
+    17.36
+   ],
+   "allowance_at_theta08": 6.089579726928146
+  },
+  "E_placeholder_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.715,
+    0.8975,
+    false
+   ],
+   "lerner": [
+    2.08,
+    21.99
+   ],
+   "allowance_at_theta08": 34.257527755951855
+  },
+  "E_placeholder_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.58,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    36.72
+   ],
+   "allowance_at_theta08": 154.98996012999075
+  },
+  "Q20S_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.6225,
+    1.01,
+    false
+   ],
+   "lerner": [
+    -10.19,
+    32.08
+   ],
+   "allowance_at_theta08": 69.59772751948361
+  },
+  "Q20S_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 314.8782098412988
+  },
+  "Q20E_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.3875,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    57.72
+   ],
+   "allowance_at_theta08": 178.4445582479673
+  },
+  "Q20E_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.705,
+    0.91,
+    false
+   ],
+   "lerner": [
+    0.72,
+    23.08
+   ],
+   "allowance_at_theta08": 39.44171223704586
+  },
+  "Q20E_cell_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.5125,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    44.09
+   ],
+   "allowance_at_theta08": 137.99843291560393
+  },
+  "Q20S_day_rms": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.6075,
+    1.0925,
+    false
+   ],
+   "lerner": [
+    -19.19,
+    33.72
+   ],
+   "allowance_at_theta08": 86.69131790028084
+  },
+  "Q20W_day_local": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 163.6055896027614
+  },
+  "Q20W_day_common": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 740.1942133775282
+  },
+  "AWform_day_localsq_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 244.10054690129778
+  },
+  "AWform_day_common_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 886.6163889442225
+  },
+  "AWform_day_localsq_platformage": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 255.96418024353878
+  },
+  "AWform_day_common_platformage": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 929.7072049509117
+  },
+  "FS_day_common": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 391.4097585377035
+  },
+  "FS_day_local_mean": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.61,
+    1.04,
+    false
+   ],
+   "lerner": [
+    -13.47,
+    33.45
+   ],
+   "allowance_at_theta08": 86.51354355991724
+  },
+  "FS_day_rss_pretuned": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.5875,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    35.9
+   ],
+   "allowance_at_theta08": 107.7617527861523
+  },
+  "AWform_cell_localsq_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.695,
+    0.8975,
+    false
+   ],
+   "lerner": [
+    2.08,
+    24.17
+   ],
+   "allowance_at_theta08": 62.76997007464897
+  }
+ },
+ "ext_day": {
+  "E_placeholder_cell_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.75,
+    0.8425,
+    false
+   ],
+   "lerner": [
+    8.08,
+    18.17
+   ],
+   "allowance_at_theta08": 6.129257644687005
+  },
+  "E_placeholder_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.7125,
+    0.8975,
+    false
+   ],
+   "lerner": [
+    2.08,
+    22.26
+   ],
+   "allowance_at_theta08": 34.323173410603005
+  },
+  "E_placeholder_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.05,
+   "theta": [
+    0.5475,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    40.27
+   ],
+   "allowance_at_theta08": 139.37287388580893
+  },
+  "Q20S_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.62,
+    1.02,
+    false
+   ],
+   "lerner": [
+    -11.28,
+    32.36
+   ],
+   "allowance_at_theta08": 69.73109348849916
+  },
+  "Q20S_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 283.1504762811325
+  },
+  "Q20E_day_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2875,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    68.63
+   ],
+   "allowance_at_theta08": 160.46414162210237
+  },
+  "Q20E_day_local": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.7,
+    0.91,
+    false
+   ],
+   "lerner": [
+    0.72,
+    23.63
+   ],
+   "allowance_at_theta08": 39.51729203482954
+  },
+  "Q20E_cell_common": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.4925,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    46.27
+   ],
+   "allowance_at_theta08": 143.0749944728126
+  },
+  "Q20S_day_rms": {
+   "route": "expectation",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.605,
+    1.12,
+    false
+   ],
+   "lerner": [
+    -22.19,
+    33.99
+   ],
+   "allowance_at_theta08": 86.66395123996315
+  },
+  "Q20W_day_local": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 163.9190972239351
+  },
+  "Q20W_day_common": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 665.610821923875
+  },
+  "AWform_day_localsq_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 244.0234893952844
+  },
+  "AWform_day_common_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 797.279217684652
+  },
+  "AWform_day_localsq_platformage": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 255.8833776332673
+  },
+  "AWform_day_common_platformage": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 836.0281202580825
+  },
+  "FS_day_common": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.2,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    78.18
+   ],
+   "allowance_at_theta08": 351.970559051679
+  },
+  "FS_day_local_mean": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.61,
+    1.0475,
+    false
+   ],
+   "lerner": [
+    -14.28,
+    33.45
+   ],
+   "allowance_at_theta08": 86.67932429703406
+  },
+  "FS_day_rss_pretuned": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.5875,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    35.9
+   ],
+   "allowance_at_theta08": 107.72773462429751
+  },
+  "AWform_cell_localsq_Hratings": {
+   "route": "realized",
+   "alpha_sampling_or_demand": 0.025,
+   "theta": [
+    0.6975,
+    0.8975,
+    false
+   ],
+   "lerner": [
+    2.08,
+    23.9
+   ],
+   "allowance_at_theta08": 63.24548905215815
+  }
+ },
+ "phi_hypothetical_local_Phi": {
+  "small_shifts_pm1_pm2.5": {
+   "theta": [
+    0.7025,
+    0.8975,
+    false
+   ],
+   "lerner": [
+    2.08,
+    23.36
+   ],
+   "status": "hypothetical: no theorem"
+  },
+  "shifts_to_pm5": {
+   "theta": [
+    0.65,
+    1.0175,
+    false
+   ],
+   "lerner": [
+    -11.01,
+    29.08
+   ],
+   "status": "hypothetical: no theorem"
+  },
+  "all_eight": {
+   "theta": [
+    0.525,
+    1.2,
+    false
+   ],
+   "lerner": [
+    -30.92,
+    42.72
+   ],
+   "status": "hypothetical: no theorem"
+  }
+ },
+ "main_Q20E_bernstein_rms_skuday": {
+  "phi|H_x1": {
+   "bonferroni": [
+    6.99,
+    18.17
+   ],
+   "maxt": [
+    7.26,
+    17.63
+   ],
+   "theta_bonferroni": [
+    0.75,
+    0.8525,
+    false
+   ],
+   "theta_maxt": [
+    0.755,
+    0.85,
+    false
+   ],
+   "allowance_at_theta08": 11.57978840618997
+  },
+  "phi|H_x0.25": {
+   "bonferroni": [
+    5.63,
+    19.54
+   ],
+   "maxt": [
+    5.9,
+    18.99
+   ],
+   "theta_bonferroni": [
+    0.7375,
+    0.865,
+    false
+   ],
+   "theta_maxt": [
+    0.7425,
+    0.8625,
+    false
+   ],
+   "allowance_at_theta08": 21.02361641232351
+  },
+  "phi|H_x0.0625": {
+   "bonferroni": [
+    3.72,
+    21.45
+   ],
+   "maxt": [
+    4.26,
+    20.9
+   ],
+   "theta_bonferroni": [
+    0.72,
+    0.8825,
+    false
+   ],
+   "theta_maxt": [
+    0.725,
+    0.8775,
+    false
+   ],
+   "allowance_at_theta08": 32.86862655663649
+  },
+  "phi|H_x0.015625": {
+   "bonferroni": [
+    2.35,
+    22.54
+   ],
+   "maxt": [
+    2.9,
+    21.72
+   ],
+   "theta_bonferroni": [
+    0.71,
+    0.895,
+    false
+   ],
+   "theta_maxt": [
+    0.7175,
+    0.89,
+    false
+   ],
+   "allowance_at_theta08": 43.393522628142605
+  },
+  "ext_day|H_x1": {
+   "bonferroni": [
+    6.72,
+    18.99
+   ],
+   "maxt": [
+    6.99,
+    18.45
+   ],
+   "theta_bonferroni": [
+    0.7425,
+    0.855,
+    false
+   ],
+   "theta_maxt": [
+    0.7475,
+    0.8525,
+    false
+   ],
+   "allowance_at_theta08": 11.674608899182077
+  },
+  "ext_day|H_x0.25": {
+   "bonferroni": [
+    5.63,
+    20.63
+   ],
+   "maxt": [
+    5.9,
+    20.08
+   ],
+   "theta_bonferroni": [
+    0.7275,
+    0.865,
+    false
+   ],
+   "theta_maxt": [
+    0.7325,
+    0.8625,
+    false
+   ],
+   "allowance_at_theta08": 21.205662071028964
+  },
+  "ext_day|H_x0.0625": {
+   "bonferroni": [
+    3.44,
+    21.72
+   ],
+   "maxt": [
+    3.99,
+    21.17
+   ],
+   "theta_bonferroni": [
+    0.7175,
+    0.885,
+    false
+   ],
+   "theta_maxt": [
+    0.7225,
+    0.88,
+    false
+   ],
+   "allowance_at_theta08": 33.17288931076762
+  },
+  "ext_day|H_x0.015625": {
+   "bonferroni": [
+    2.35,
+    22.81
+   ],
+   "maxt": [
+    2.9,
+    21.99
+   ],
+   "theta_bonferroni": [
+    0.7075,
+    0.895,
+    false
+   ],
+   "theta_maxt": [
+    0.715,
+    0.89,
+    false
+   ],
+   "allowance_at_theta08": 43.822840176737195
+  }
+ }
+}
