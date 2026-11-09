@@ -1,0 +1,532 @@
+{
+ "phi | steady state, HAC(7), Bonferroni": {
+  "theta": [
+   0.775,
+   0.825,
+   false
+  ],
+  "lerner": [
+   9.99,
+   15.45
+  ]
+ },
+ "phi | steady state, lag 0, Bonferroni": {
+  "theta": [
+   0.78,
+   0.82,
+   false
+  ],
+  "lerner": [
+   10.54,
+   14.9
+  ]
+ },
+ "grid | steady state, HAC(7), Bonferroni": {
+  "theta": [
+   0.7725,
+   0.7975,
+   false
+  ],
+  "lerner": [
+   12.99,
+   15.72
+  ]
+ },
+ "grid | steady state, lag 0, Bonferroni": {
+  "theta": null,
+  "lerner": null
+ },
+ "grid_gen | steady state, HAC(7), Bonferroni": {
+  "theta": [
+   0.7775,
+   0.795,
+   false
+  ],
+  "lerner": [
+   13.26,
+   15.17
+  ]
+ },
+ "grid_gen | steady state, lag 0, Bonferroni": {
+  "theta": null,
+  "lerner": null
+ },
+ "grid | TEST OF RECORD (Prop 5), Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | TEST OF RECORD (Prop 5), max-t": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | finite-sample (Lemma 4), demand projection": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | expectation variant (Lemma 1), Bonferroni": {
+  "theta": [
+   0.5425,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   40.81
+  ]
+ },
+ "grid | test of record, H x 0.25, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | test of record, H x 0.0625, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | test of record, Kbar x 10, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | test of record, DEFF = cells per day (day clock bound), Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid | allowance at theta 0.8": {
+  "test": 850.2537316074865,
+  "finite": 3288.9365585560945,
+  "expect": 328.63700198873795
+ },
+ "grid_gen | TEST OF RECORD (Prop 5), Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | TEST OF RECORD (Prop 5), max-t": {
+  "theta": [
+   0.3375,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   63.18
+  ]
+ },
+ "grid_gen | finite-sample (Lemma 4), demand projection": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | expectation variant (Lemma 1), Bonferroni": {
+  "theta": [
+   0.6125,
+   1.0875,
+   false
+  ],
+  "lerner": [
+   -18.65,
+   33.18
+  ]
+ },
+ "grid_gen | test of record, H x 0.25, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | test of record, H x 0.0625, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | test of record, Kbar x 10, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | test of record, DEFF = cells per day (day clock bound), Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "grid_gen | allowance at theta 0.8": {
+  "test": 138.97610801789688,
+  "finite": 527.7429077834515,
+  "expect": 55.43464995391252
+ },
+ "a3 | steady state, lag 0, Bonferroni": {
+  "theta": [
+   0.78,
+   0.82,
+   false
+  ],
+  "lerner": [
+   10.54,
+   14.9
+  ]
+ },
+ "a3 | expectation (Lemma 1), lag 0, Bonferroni": {
+  "theta": [
+   0.745,
+   0.865,
+   false
+  ],
+  "lerner": [
+   5.63,
+   18.72
+  ]
+ },
+ "a3 | TEST OF RECORD (Lemma 2 + Prop 5), Bonferroni": {
+  "theta": [
+   0.725,
+   0.8925,
+   false
+  ],
+  "lerner": [
+   2.63,
+   20.9
+  ]
+ },
+ "a3 | TEST OF RECORD (Lemma 2 + Prop 5), max-t": {
+  "theta": [
+   0.7275,
+   0.89,
+   false
+  ],
+  "lerner": [
+   2.9,
+   20.63
+  ]
+ },
+ "a3 | finite sample (Lemma 4), demand projection": {
+  "theta": [
+   0.6225,
+   1.1325,
+   false
+  ],
+  "lerner": [
+   -23.56,
+   32.08
+  ]
+ },
+ "a3 | test of record, H x 1/4, Bonferroni": {
+  "theta": [
+   0.67,
+   0.99,
+   false
+  ],
+  "lerner": [
+   -8.01,
+   26.9
+  ]
+ },
+ "a3 | test of record, H x 1/16, Bonferroni": {
+  "theta": [
+   0.4825,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   47.36
+  ]
+ },
+ "a3 | test of record, Kblk x 2, Bonferroni": {
+  "theta": [
+   0.7175,
+   0.9025,
+   false
+  ],
+  "lerner": [
+   1.54,
+   21.72
+  ]
+ },
+ "a3 | test of record, DEFF = 1 (cells independent within a day), Bonferroni": {
+  "theta": [
+   0.7375,
+   0.8625,
+   false
+  ],
+  "lerner": [
+   5.9,
+   19.54
+  ]
+ },
+ "a3 | test of record, union over days instead of one maximal event, Bonferroni": {
+  "theta": [
+   0.715,
+   0.91,
+   false
+  ],
+  "lerner": [
+   0.72,
+   21.99
+  ]
+ },
+ "a3 | allowance at theta 0.8": {
+  "expect": 24.57442964204095,
+  "test": 43.57955770272769,
+  "finite": 156.31367870716176
+ },
+ "a3 | span at theta 0.8": {
+  "sqK": 1443959.344671477,
+  "maxK": 145.401650823151,
+  "blockmax": 1655.5665747828077,
+  "blockmean": 455.59934568190795,
+  "deff": 6.63362349541114,
+  "deffA": 6.63362349541114,
+  "astar": 0.0
+ },
+ "lat | steady state, lag 0, Bonferroni": {
+  "theta": [
+   0.78,
+   0.82,
+   false
+  ],
+  "lerner": [
+   10.54,
+   14.9
+  ]
+ },
+ "lat | expectation (Lemma 1), lag 0, Bonferroni": {
+  "theta": [
+   0.7325,
+   0.875,
+   false
+  ],
+  "lerner": [
+   4.54,
+   20.08
+  ]
+ },
+ "lat | TEST OF RECORD (Lemma 2 + Prop 5), Bonferroni": {
+  "theta": [
+   0.7175,
+   0.8975,
+   false
+  ],
+  "lerner": [
+   2.08,
+   21.72
+  ]
+ },
+ "lat | TEST OF RECORD (Lemma 2 + Prop 5), max-t": {
+  "theta": [
+   0.7225,
+   0.895,
+   false
+  ],
+  "lerner": [
+   2.35,
+   21.17
+  ]
+ },
+ "lat | finite sample (Lemma 4), demand projection": {
+  "theta": [
+   0.59,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   35.63
+  ]
+ },
+ "lat | test of record, H x 1/4, Bonferroni": {
+  "theta": [
+   0.64,
+   1.0275,
+   false
+  ],
+  "lerner": [
+   -12.1,
+   30.17
+  ]
+ },
+ "lat | test of record, H x 1/16, Bonferroni": {
+  "theta": [
+   0.2,
+   1.2,
+   false
+  ],
+  "lerner": [
+   -30.92,
+   78.18
+  ]
+ },
+ "lat | test of record, Kblk x 2, Bonferroni": {
+  "theta": [
+   0.71,
+   0.91,
+   false
+  ],
+  "lerner": [
+   0.72,
+   22.54
+  ]
+ },
+ "lat | test of record, DEFF = 1 (cells independent within a day), Bonferroni": {
+  "theta": [
+   0.73,
+   0.8675,
+   false
+  ],
+  "lerner": [
+   5.35,
+   20.36
+  ]
+ },
+ "lat | test of record, union over days instead of one maximal event, Bonferroni": {
+  "theta": [
+   0.705,
+   0.915,
+   false
+  ],
+  "lerner": [
+   0.17,
+   23.08
+  ]
+ },
+ "lat | allowance at theta 0.8": {
+  "expect": 30.87731581392063,
+  "test": 47.26948548407117,
+  "finite": 168.94473396890822
+ },
+ "lat | span at theta 0.8": {
+  "sqK": 1336678.4531665049,
+  "maxK": 143.88852502434327,
+  "blockmax": 1561.3195235665873,
+  "blockmean": 439.86103793752284,
+  "deff": 6.140685134090689,
+  "deffA": 6.140685134090689,
+  "astar": 0.0
+ },
+ "daily_profit_at_theta08": 591.2335461481689,
+ "grid | steady state fitted set, first half": {
+  "theta": null,
+  "lerner": null
+ },
+ "grid | steady state fitted set, second half": {
+  "theta": null,
+  "lerner": null
+ },
+ "span_at_theta08": {
+  "all__sqK": 25973707.68989557,
+  "all__maxK": 623.4564745287435,
+  "all__nC": 10120.0,
+  "all__deff": 6.708518809974199,
+  "all__deff_med": 0.21792539388990698,
+  "all__deffA": 6.611197871341354,
+  "all__deffA_med": 0.20679521465949144,
+  "all__astar_level": -0.02,
+  "older_se__sqK": 2669649.2093578316,
+  "older_se__maxK": 315.1587492132343,
+  "older_se__nC": 2778.0,
+  "older_se__deff": 1.9623664476038583,
+  "older_se__deff_med": 0.039424386314437766,
+  "older_se__deffA": 1.7789470201625817,
+  "older_se__deffA_med": 0.05615257689586813,
+  "older_se__astar_level": 0.01,
+  "g11_12__sqK": 7100228.251033463,
+  "g11_12__maxK": 286.5651281497629,
+  "g11_12__nC": 3278.0,
+  "g11_12__deff": 3.314208096796895,
+  "g11_12__deff_med": 0.10659617075511284,
+  "g11_12__deffA": 3.2976015770454126,
+  "g11_12__deffA_med": 0.11430574298195988,
+  "g11_12__astar_level": -0.02,
+  "g13_15__sqK": 16203830.229504274,
+  "g13_15__maxK": 623.4564745287435,
+  "g13_15__nC": 4064.0,
+  "g13_15__deff": 5.358596836906882,
+  "g13_15__deff_med": 0.1630107608184788,
+  "g13_15__deffA": 5.40803862323265,
+  "g13_15__deffA_med": 0.16682470117754805,
+  "g13_15__astar_level": -0.03
+ },
+ "rounding_daily_at_theta08": 10.460765340134452
+}

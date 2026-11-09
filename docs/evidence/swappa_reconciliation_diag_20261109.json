@@ -1,0 +1,554 @@
+{
+ "date": "2026-11-09",
+ "spec": "raw_d0",
+ "seller": "GadgetPickup",
+ "status": "diagnostic; not a proposed headline",
+ "rows": 21012,
+ "days": 164,
+ "cells": 10120,
+ "sales": 1638,
+ "H": {
+  "cell": 49196,
+  "listing": 102144,
+  "day": 797.8
+ },
+ "mean_price_sold": 409.531746031746,
+ "mean_ref_sold": 446.80709671206495,
+ "covariance": {
+  "negative_eigenvalues": 222,
+  "clipped_mass": 2.591710154639783
+ },
+ "comparators": {
+  "phi": {
+   "n_moments": 8,
+   "sets_theta": {
+    "fit": [
+     0.795,
+     0.8075,
+     false
+    ],
+    "SS_bonf": [
+     0.775,
+     0.825,
+     false
+    ],
+    "SS_bonf_cross": [
+     0.775,
+     0.825,
+     false
+    ],
+    "E_current_bonf": [
+     0.7575,
+     0.8425,
+     false
+    ],
+    "E_current_maxt": [
+     0.76,
+     0.84,
+     false
+    ],
+    "E_current_bonf_cross": [
+     0.7575,
+     0.8425,
+     false
+    ],
+    "E_current_maxt_cross": [
+     0.76,
+     0.84,
+     false
+    ],
+    "E_day_localrange_bonf_cross": [
+     0.715,
+     0.8975,
+     false
+    ],
+    "E_day_commonK_bonf_cross": [
+     0.58,
+     1.2,
+     false
+    ],
+    "E_cell_commonK_bonf_cross": [
+     0.5775,
+     1.0775,
+     false
+    ],
+    "Q20exp_cell_commonK_bonf_cross": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20exp_day_commonK_bonf_cross": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20exp_cell_localK_bonf_cross": [
+     0.745,
+     0.8575,
+     false
+    ],
+    "AW_current_point": [
+     0.73,
+     0.8825,
+     false
+    ],
+    "AW_budget_demandproj": [
+     0.695,
+     0.8975,
+     false
+    ],
+    "Q20real_cell_commonK_demandproj": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20real_day_commonK_demandproj": [
+     0.2,
+     1.2,
+     false
+    ],
+    "first_half_fit": [
+     0.82,
+     0.83,
+     false
+    ],
+    "first_half_SS_bonf_hac_only": [
+     0.805,
+     0.8425,
+     false
+    ],
+    "second_half_fit": [
+     0.7725,
+     0.785,
+     false
+    ],
+    "second_half_SS_bonf_hac_only": [
+     0.7625,
+     0.795,
+     false
+    ]
+   },
+   "lerner": {
+    "fit": [
+     11.9,
+     13.26
+    ],
+    "SS_bonf": [
+     9.99,
+     15.45
+    ],
+    "SS_bonf_cross": [
+     9.99,
+     15.45
+    ],
+    "E_current_bonf": [
+     8.08,
+     17.36
+    ],
+    "E_current_maxt": [
+     8.35,
+     17.08
+    ],
+    "E_current_bonf_cross": [
+     8.08,
+     17.36
+    ],
+    "E_current_maxt_cross": [
+     8.35,
+     17.08
+    ],
+    "E_day_localrange_bonf_cross": [
+     2.08,
+     21.99
+    ],
+    "E_day_commonK_bonf_cross": [
+     -30.92,
+     36.72
+    ],
+    "E_cell_commonK_bonf_cross": [
+     -17.56,
+     36.99
+    ],
+    "Q20exp_cell_commonK_bonf_cross": [
+     -30.92,
+     78.18
+    ],
+    "Q20exp_day_commonK_bonf_cross": [
+     -30.92,
+     78.18
+    ],
+    "Q20exp_cell_localK_bonf_cross": [
+     6.45,
+     18.72
+    ],
+    "AW_current_point": [
+     3.72,
+     20.36
+    ],
+    "AW_budget_demandproj": [
+     2.08,
+     24.17
+    ],
+    "Q20real_cell_commonK_demandproj": [
+     -30.92,
+     78.18
+    ],
+    "Q20real_day_commonK_demandproj": [
+     -30.92,
+     78.18
+    ],
+    "first_half_fit": [
+     9.45,
+     10.54
+    ],
+    "first_half_SS_bonf_hac_only": [
+     8.08,
+     12.17
+    ],
+    "second_half_fit": [
+     14.35,
+     15.72
+    ],
+    "second_half_SS_bonf_hac_only": [
+     13.26,
+     16.81
+    ]
+   },
+   "allowance_share_of_daily_profit_at_theta08": {
+    "E_current": 0.0103,
+    "E_day_localrange": 0.0579,
+    "E_day_commonK": 0.2621,
+    "E_cell_commonK": 0.2028,
+    "Q20exp_cell_commonK": 0.4633,
+    "Q20exp_day_commonK": 0.5326,
+    "Q20exp_cell_localK": 0.0235,
+    "Q20real_cell_commonK": 1.0185,
+    "Q20real_day_commonK": 1.2519,
+    "AW_current": 0.1036,
+    "AW_budget": 0.1062
+   },
+   "ranges_at_theta08": {
+    "cell": {
+     "mean": 7.383230503145544,
+     "median": 4.5548181953593705,
+     "p90": 16.120158703322115,
+     "p99": 46.353178381419546,
+     "max": 145.401650823151
+    },
+    "day": {
+     "mean": 326.3826732292196,
+     "max": 1476.6400503646328,
+     "sum_cell_ranges_per_day_mean": 455.59934568190795
+    },
+    "daily_expected_profit": 591.2335461481689
+   },
+   "q20_window_factors": {
+    "cell_expectation": 308.98369076526626,
+    "day_expectation": 34.97130285828379,
+    "cell_realized_martingale": 364.91648980428994,
+    "day_realized_martingale": 46.45421829650471,
+    "placeholder_cell": 135.2647834563386,
+    "placeholder_day": 17.21364218384963
+   },
+   "F08_window_sum_theta08": {
+    "exact_weighted_worst_order": 319.86943912187087,
+    "integral_average_times_sum": 321.12824672224787,
+    "window_start_envelope": 336.87125076938025,
+    "integral_over_exact": 1.0039353793967714
+   },
+   "F18_unweighted_unit_lerner": {
+    "SS_bonf": [
+     7.65,
+     13.25
+    ],
+    "E_current_bonf": [
+     5.7,
+     15.21
+    ]
+   },
+   "F12": {
+    "draws": 200,
+    "theta_subgrid": [
+     0.6,
+     1.0
+    ],
+    "set_draw_var_moment_only": [
+     0.7575,
+     0.8425,
+     false
+    ],
+    "set_draw_var_moment_minus_allowance": [
+     0.7575,
+     0.8425,
+     false
+    ],
+    "sd_ratio_at_theta08": [
+     1.006,
+     0.998,
+     0.989,
+     0.966,
+     1.06,
+     1.025,
+     1.014,
+     1.01
+    ],
+    "allowance_cv_at_theta08": 0.03257504538339387,
+    "seconds": 34.1,
+    "lerner": {
+     "set_draw_var_moment_only": [
+      8.08,
+      17.36
+     ],
+     "set_draw_var_moment_minus_allowance": [
+      8.08,
+      17.36
+     ]
+    }
+   }
+  },
+  "ext_day": {
+   "n_moments": 9,
+   "sets_theta": {
+    "fit": [
+     0.7925,
+     0.8075,
+     false
+    ],
+    "SS_bonf": [
+     0.76,
+     0.8325,
+     false
+    ],
+    "SS_bonf_cross": [
+     0.76,
+     0.8325,
+     false
+    ],
+    "E_current_bonf": [
+     0.75,
+     0.845,
+     false
+    ],
+    "E_current_maxt": [
+     0.755,
+     0.8425,
+     false
+    ],
+    "E_current_bonf_cross": [
+     0.75,
+     0.8425,
+     false
+    ],
+    "E_current_maxt_cross": [
+     0.755,
+     0.84,
+     false
+    ],
+    "E_day_localrange_bonf_cross": [
+     0.7125,
+     0.8975,
+     false
+    ],
+    "E_day_commonK_bonf_cross": [
+     0.5475,
+     1.2,
+     false
+    ],
+    "E_cell_commonK_bonf_cross": [
+     0.5675,
+     1.0575,
+     false
+    ],
+    "Q20exp_cell_commonK_bonf_cross": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20exp_day_commonK_bonf_cross": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20exp_cell_localK_bonf_cross": [
+     0.735,
+     0.86,
+     false
+    ],
+    "AW_current_point": [
+     0.7325,
+     0.885,
+     false
+    ],
+    "AW_budget_demandproj": [
+     0.6975,
+     0.8975,
+     false
+    ],
+    "Q20real_cell_commonK_demandproj": [
+     0.2,
+     1.2,
+     false
+    ],
+    "Q20real_day_commonK_demandproj": [
+     0.2,
+     1.2,
+     false
+    ],
+    "first_half_fit": [
+     0.81,
+     0.8375,
+     false
+    ],
+    "first_half_SS_bonf_hac_only": [
+     0.7825,
+     0.8475,
+     false
+    ],
+    "second_half_fit": null,
+    "second_half_SS_bonf_hac_only": [
+     0.7575,
+     0.79,
+     false
+    ]
+   },
+   "lerner": {
+    "fit": [
+     11.9,
+     13.54
+    ],
+    "SS_bonf": [
+     9.17,
+     17.08
+    ],
+    "SS_bonf_cross": [
+     9.17,
+     17.08
+    ],
+    "E_current_bonf": [
+     7.81,
+     18.17
+    ],
+    "E_current_maxt": [
+     8.08,
+     17.63
+    ],
+    "E_current_bonf_cross": [
+     8.08,
+     18.17
+    ],
+    "E_current_maxt_cross": [
+     8.35,
+     17.63
+    ],
+    "E_day_localrange_bonf_cross": [
+     2.08,
+     22.26
+    ],
+    "E_day_commonK_bonf_cross": [
+     -30.92,
+     40.27
+    ],
+    "E_cell_commonK_bonf_cross": [
+     -15.38,
+     38.08
+    ],
+    "Q20exp_cell_commonK_bonf_cross": [
+     -30.92,
+     78.18
+    ],
+    "Q20exp_day_commonK_bonf_cross": [
+     -30.92,
+     78.18
+    ],
+    "Q20exp_cell_localK_bonf_cross": [
+     6.17,
+     19.81
+    ],
+    "AW_current_point": [
+     3.44,
+     20.08
+    ],
+    "AW_budget_demandproj": [
+     2.08,
+     23.9
+    ],
+    "Q20real_cell_commonK_demandproj": [
+     -30.92,
+     78.18
+    ],
+    "Q20real_day_commonK_demandproj": [
+     -30.92,
+     78.18
+    ],
+    "first_half_fit": [
+     8.63,
+     11.63
+    ],
+    "first_half_SS_bonf_hac_only": [
+     7.54,
+     14.63
+    ],
+    "second_half_fit": null,
+    "second_half_SS_bonf_hac_only": [
+     13.81,
+     17.36
+    ]
+   },
+   "allowance_share_of_daily_profit_at_theta08": {
+    "E_current": 0.0104,
+    "E_day_localrange": 0.0581,
+    "E_day_commonK": 0.2357,
+    "E_cell_commonK": 0.2103,
+    "Q20exp_cell_commonK": 0.4804,
+    "Q20exp_day_commonK": 0.4789,
+    "Q20exp_cell_localK": 0.0237,
+    "Q20real_cell_commonK": 1.056,
+    "Q20real_day_commonK": 1.1258,
+    "AW_current": 0.1044,
+    "AW_budget": 0.107
+   },
+   "ranges_at_theta08": {
+    "cell": {
+     "mean": 7.43133747042985,
+     "median": 4.613044825513446,
+     "p90": 16.134521611268628,
+     "p99": 46.68450071711337,
+     "max": 150.75055526596384
+    },
+    "day": {
+     "mean": 327.0081008550413,
+     "max": 1327.8509610660985,
+     "sum_cell_ranges_per_day_mean": 458.5678975655493
+    },
+    "daily_expected_profit": 591.2335461481689
+   },
+   "q20_window_factors": {
+    "cell_expectation": 308.98369076526626,
+    "day_expectation": 34.97130285828379,
+    "cell_realized_martingale": 364.91648980428994,
+    "day_realized_martingale": 46.45421829650471,
+    "placeholder_cell": 135.2647834563386,
+    "placeholder_day": 17.21364218384963
+   },
+   "F18_unweighted_unit_lerner": {
+    "SS_bonf": [
+     6.81,
+     14.93
+    ],
+    "E_current_bonf": [
+     5.42,
+     16.05
+    ]
+   }
+  }
+ },
+ "hashes": {
+  "swappa_reconciliation_diag_20261109.py": "79a952fd303c87437df9951794812ce0da106788019b130da6583b125f952b52",
+  "swappa_common_20261108.py": "eafd6890ec3cb905f106b5e502d4ab856a65c8e95df9bd7db97daff5280e1001",
+  "swappa_core_inference_20261108.py": "bba0faa427060b90cc2ad1fb9be482367deabfb1ae3f792779a57cb7aa3caa7f",
+  "raw_reference_panel.parquet": "c1fd3e64ea1dc81de97e1b9ebd942d4281e68c7fe0c926a8f6af719f6c534403",
+  "raw_d0_coef.npz": "f43f031e7d5317b6b131ea0a54420e4ba406b322029a1f788ba0eb6568df21c5",
+  "branch_longevity.json": "907eda62f3d84f248e41f53ed067857279161af370590a43434f6124c375be31"
+ },
+ "seconds": 41.3
+}
