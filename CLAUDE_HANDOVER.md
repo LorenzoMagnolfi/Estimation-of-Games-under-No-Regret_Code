@@ -1,7 +1,11 @@
 # CLAUDE_HANDOVER.md — Estimation-of-Games-under-No-Regret_Code
 
-**Last updated:** 2026-11-08 (evening), machine LorenzosMiniPC (Windows 11, Python 3.14).
-**Session:** Swappa inference repair, the learning layers that replace the steady-state assumption, and the records behind the 8 November notes for Niccolò; committed and pushed as `b5cb262`, `9fba712` and `5340daf`.
+**Last updated:** 2026-11-10, machine ASCECN-NC330225 (OSU office, Windows 11).
+**Session:** Swappa horse race against the equilibrium benchmark (committed locally as `88c6eac`, not pushed) and two-seller lab probes (`python/lab_probes_20261110/`, uncommitted unless this pass is committed). Both parked; state, results and pending items in the paper sibling's `CLAUDE_HANDOVER.md` (Current State).
+
+**Horse race files (9 November):** `python/swappa_rescue/swappa_horserace_{tables,core,eval,lab,figs,evidence}_20261109.py`; job scripts `jobs/swappa_rescue/job_swappa_horserace_{tables,run}.sh` (Unity jobs 11392145, 11392198); note `docs/swappa-horse-race-equilibrium-benchmark-2026-11-09.md`; evidence and figures `docs/evidence/swappa_horserace_*` (figures live in `docs/evidence/` because `.gitignore`'s `Figures/` also matches `docs/figures/` on Windows). Gitignored, Dropbox only: `output/swappa_horserace_20261109/` (payoff tables for 13 sellers, eval and lab JSON). The evaluation reproduces the 9 November steady-state set for GadgetPickup exactly ([10.54, 14.90]).
+
+**Previous session:** 2026-11-08 (evening), machine LorenzosMiniPC (Windows 11, Python 3.14): Swappa inference repair, the learning layers that replace the steady-state assumption, and the records behind the 8 November notes for Niccolò; committed and pushed as `b5cb262`, `9fba712` and `5340daf`.
 
 ## Ownership
 
